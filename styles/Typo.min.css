@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: Helvetica;
   font-style: normal;
   font-weight: 400;
@@ -42,8 +42,8 @@
       format("woff"),
     url(../fonts/helvetica/1459834/0eb195a7-b0e3-4a07-99da-9f08b2ec9864.ttf)
       format("truetype");
-}
-@font-face {
+} */
+/* @font-face {
   font-family: Proxima Nova A;
   font-style: normal;
   font-weight: 400;
@@ -56,8 +56,8 @@
       format("woff"),
     url(../fonts/proxima/reg/14c284c3-7a50-4ef0-becf-c01232631f59.ttf)
       format("truetype");
-}
-@font-face {
+} */
+/* @font-face {
   font-family: Proxima Nova A;
   font-style: italic;
   font-weight: 400;
@@ -70,8 +70,8 @@
       format("woff"),
     url(../fonts/proxima/italic/155079dd-36cb-4995-8ced-3fc104e75028.ttf)
       format("truetype");
-}
-@font-face {
+} */
+/* @font-face {
   font-family: Proxima Nova A;
   font-style: normal;
   font-weight: 700;
@@ -84,7 +84,7 @@
       format("woff"),
     url(../fonts/proxima/bold/0ec7744d-038f-46bd-a3a8-f3e0020ab4b8.ttf)
       format("truetype");
-}
+} */
 @font-face {
   font-family: Brown-Ald;
   font-style: normal;
