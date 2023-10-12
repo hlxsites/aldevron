@@ -1,87 +1,45 @@
-import { getMetadata, decorateIcons } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+// function createSearchResultsBlock(results) {
+//   const searchResultsBlock = document.createElement('div');
+//   searchResultsBlock.classList.add('search-results'); // You can customize the class name
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
+//   // Loop through the search results and create elements for each result
+//   results.forEach(result => {
+//     const resultElement = document.createElement('div');
+//     resultElement.classList.add('search-result'); // You can customize the class name
+
+//     // Customize the content based on your search result data
+//     resultElement.innerHTML = `
+//     <img src="${result.image}" alt="${result.title}">
+//       <a href="${result.path}">${result.description}</a>
+//     `;
+
+//     // Append the result element to the search results block
+//     searchResultsBlock.appendChild(resultElement);
+//   });
+
+//   return searchResultsBlock;
+// }
+
+function addClassesToMenuItems(element, depth) {
+  const childItems = element.children;
+  for (let i = 0; i < childItems.length; i += 1) {
+    const item = childItems[i];
+    // Add class to the immediate child element
+    item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
+
+    // Check if the href matches the current domain
+    const link = item.querySelector('a');
+    if (link && link.href === window.location.href) {
+      item.classList.add('active');
     }
-  }
-}
+    const childElement = item.querySelector('ul');
 
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
-
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
-
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-  });
-}
-
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
-  if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
-      if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('role', 'button');
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', focusNavSection);
-      }
-    });
-  } else {
-    navDrops.forEach((drop) => {
-      drop.removeAttribute('role');
-      drop.removeAttribute('tabindex');
-      drop.removeEventListener('focus', focusNavSection);
-    });
-  }
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
+    if (childElement?.children?.length > 0) {
+      const nextDepth = depth + 1;
+      addClassesToMenuItems(childElement, nextDepth);
+    }
   }
 }
 
@@ -98,48 +56,156 @@ export default async function decorate(block) {
   if (resp.ok) {
     const html = await resp.text();
 
+    const htmlElements = document.createElement('div');
+    htmlElements.innerHTML = html;
+    const childElements = htmlElements.querySelector('div');
     // decorate nav DOM
-    const nav = document.createElement('nav');
-    nav.id = 'nav';
-    nav.innerHTML = html;
+    const nav = document.createElement('header');
+    nav.id = 'header';
 
-    const classes = ['brand', 'sections', 'tools'];
-    classes.forEach((c, i) => {
-      const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
+    const outer = document.createElement('div');
+    outer.classList.add('outer');
+    // outer.innerHTML = html;
+    nav.appendChild(outer);
+
+    // convertToLogo(nav.children[0]);
+    const logo = document.createElement('a');
+    logo.id = 'logo';
+    logo.href = '/';
+    logo.innerHTML = childElements.children[0].innerHTML;
+    outer.appendChild(logo);
+
+    const headerNav = document.createElement('div');
+    headerNav.id = 'header-nav';
+
+    const mobileNav = document.createElement('div');
+    mobileNav.id = 'mobile-nav';
+    const spanTag = document.createElement('span');
+    spanTag.classList.add('icon-menu');
+    mobileNav.appendChild(spanTag);
+
+    mobileNav.addEventListener('click', () => {
+      headerNav.classList.toggle('hover');
     });
 
-    const navSections = nav.querySelector('.nav-sections');
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          if (isDesktop.matches) {
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          }
-        });
-      });
-    }
+    const headerNavIn = document.createElement('div');
+    headerNavIn.id = 'header-nav-in';
 
-    // hamburger for mobile
-    const hamburger = document.createElement('div');
-    hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-        <span class="nav-hamburger-icon"></span>
-      </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    // prevent mobile nav behavior on window resize
-    toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    const headerInfo = document.createElement('div');
+    headerInfo.id = 'header-info';
 
-    decorateIcons(nav);
-    const navWrapper = document.createElement('div');
-    navWrapper.className = 'nav-wrapper';
-    navWrapper.append(nav);
-    block.append(navWrapper);
+    // Create a div element with id, class, and inline style
+    const customSearchDiv = document.createElement('div');
+    customSearchDiv.id = 'custom-search';
+    customSearchDiv.className = '';
+    customSearchDiv.style = '';
+
+    // Create a form element and set the data-hs-cf-bound attribute
+    const formElement = document.createElement('form');
+    formElement.setAttribute('data-hs-cf-bound', 'true');
+    formElement.setAttribute('data-gtm-form-interact-id', 0);
+
+    // Create an input element with name, id, value, placeholder, and inline style
+    const inputElement = document.createElement('input');
+    inputElement.name = 'q';
+    inputElement.id = 'customsearch-q';
+    inputElement.value = '';
+    inputElement.placeholder = 'Enter text...';
+    inputElement.style.display = 'none';
+    inputElement.setAttribute('data-gtm-form-interact-field-id', 0);
+
+    // Create a span element with class
+    const spanElement = document.createElement('span');
+    spanElement.className = 'icon-search';
+
+    // // Add event listener to input element
+    spanElement.addEventListener('click', () => {
+      customSearchDiv.classList.toggle('active');
+      if (inputElement.style.display === 'none') {
+        inputElement.style.display = 'inline-block';
+      } else {
+        inputElement.style.display = 'none';
+      }
+    });
+
+    // Append the input element and span element to the form element
+    formElement.appendChild(inputElement);
+    formElement.appendChild(spanElement);
+
+    // Append the form element to the custom search div
+    customSearchDiv.appendChild(formElement);
+
+    const clonedCustomSearchDiv = customSearchDiv.cloneNode(true);
+    clonedCustomSearchDiv.classList.add('mobile-search');
+    // Append the custom search div to the document body or any other parent element
+    outer.appendChild(clonedCustomSearchDiv);
+    customSearchDiv.classList.add('desktop-search');
+    headerInfo.appendChild(customSearchDiv);
+
+    const mobileSpan = clonedCustomSearchDiv.querySelector('span');
+    const mobileInput = clonedCustomSearchDiv.querySelector('input');
+
+    mobileSpan.addEventListener('click', () => {
+      clonedCustomSearchDiv.classList.toggle('active');
+      if (mobileInput.style.display === 'none') {
+        mobileInput.style.display = 'inline-block';
+      } else {
+        mobileInput.style.display = 'none';
+      }
+    });
+
+    formElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+
+    const listElements = document.createElement('div');
+
+    listElements.innerHTML = childElements.children[1].innerHTML;
+
+    const elements = listElements.querySelectorAll('li');
+    elements.forEach((li) => {
+      const anchor = li.querySelector('a');
+      if (anchor) {
+        // Get the first word of the anchor's inner text
+        const firstWord = anchor.innerText.split(' ')[0].toLocaleLowerCase();
+        // Set the first word as a class name
+        anchor.classList.add(firstWord);
+        // Append the modified anchor to headerInfo
+        headerInfo.appendChild(anchor.cloneNode(true));
+      }
+    });
+    // document.body.appendChild(headerInfo);
+    const headerMenu = document.createElement('nav');
+    headerMenu.id = 'menu';
+
+    const menuWrapper = document.createElement('div');
+    menuWrapper.id = 'hs_menu_wrapper_mainmenu';
+    menuWrapper.classList.add('hs-menu-wrapper', 'active-branch', 'no-flyouts', 'hs-menu-flow-horizontal');
+    const menuList = childElements.children[2].innerHTML;
+
+    // Create a temporary div element
+    const tempDiv = document.createElement('ul');
+
+    // Set the innerHTML of the temporary div
+    tempDiv.innerHTML = menuList;
+
+    // Find the ul element within the temporary div
+    const menuListWrapper = tempDiv;
+
+    // Append menuListWrapper to headerMenu
+    menuWrapper.appendChild(menuListWrapper);
+    headerMenu.appendChild(menuWrapper);
+
+    // Add classes to menu items
+    addClassesToMenuItems(menuListWrapper, 1);
+
+    headerNavIn.appendChild(headerInfo);
+    headerNavIn.appendChild(headerMenu);
+
+    headerNav.appendChild(headerNavIn);
+    headerNav.appendChild(mobileNav);
+    outer.appendChild(headerNav);
+
+    block.append(nav);
   }
 }

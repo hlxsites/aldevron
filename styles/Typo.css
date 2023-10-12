@@ -107,19 +107,17 @@
         url("../fonts/ald-icons.svg?dgljk#ald-icons") format("svg")
 }
 
-/* .img-colorbox-popup::after,
-[class*=" icon-"],
-[class^="icon-"] {
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: ald-icons !important;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 1;
-  text-transform: none;
-} */
+.img-colorbox-popup::after,[class*=" icon-"],[class^="icon-"] {
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: ald-icons!important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: none
+}
 
 .icon-cart::before {
     content: "\e906";
