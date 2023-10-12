@@ -1,26 +1,103 @@
 import { getMetadata } from '../../scripts/aem.js';
 
-// function createSearchResultsBlock(results) {
-//   const searchResultsBlock = document.createElement('div');
-//   searchResultsBlock.classList.add('search-results'); // You can customize the class name
+function createGcseTools() {
+  const gcseTools = document.createElement('div');
+  gcseTools.id = 'mmg-gcse-tools';
+  const gcseOuter = document.createElement('div');
+  gcseOuter.className = 'mmg-gcse-outer';
+  const closeButton = document.createElement('span');
+  closeButton.className = 'close-btn';
+  closeButton.innerText = '×';
 
-//   // Loop through the search results and create elements for each result
-//   results.forEach(result => {
-//     const resultElement = document.createElement('div');
-//     resultElement.classList.add('search-result'); // You can customize the class name
+  // Add click event to close the search and remove the element from the DOM
+  closeButton.addEventListener('click', () => {
+    const searchResultsBlock = document.getElementById('mmg-gcse');
+    if (searchResultsBlock) {
+      searchResultsBlock.remove();
+    }
+  });
 
-//     // Customize the content based on your search result data
-//     resultElement.innerHTML = `
-//     <img src="${result.image}" alt="${result.title}">
-//       <a href="${result.path}">${result.description}</a>
-//     `;
+  gcseOuter.appendChild(closeButton);
+  gcseTools.appendChild(gcseOuter);
+  return gcseTools;
+}
 
-//     // Append the result element to the search results block
-//     searchResultsBlock.appendChild(resultElement);
-//   });
+function createGcseBox() {
+  const gcseBox = document.createElement('div');
+  gcseBox.id = 'mmg-gcse-box';
+  const outer = document.createElement('div');
+  outer.className = 'mmg-gcse-outer';
+  outer.style.opacity = 1;
+  gcseBox.appendChild(outer);
+  return gcseBox;
+}
 
-//   return searchResultsBlock;
-// }
+function createHeadingElement(input) {
+  const heading = document.createElement('h2');
+  heading.innerText = `Search for: ${input}`;
+  heading.classList.add('search-title');
+  return heading;
+}
+
+function createCountElement(resultsLength, total) {
+  const count = document.createElement('p');
+  count.className = 'search-info';
+  count.innerText = `Results ${resultsLength} out of ${total} items`;
+  return count;
+}
+
+function createResultLink(result) {
+  const link = document.createElement('a');
+  link.classList.add('item');
+
+  const spanTitle = document.createElement('span');
+  spanTitle.classList.add('title');
+  spanTitle.textContent = result.title;
+
+  link.appendChild(spanTitle);
+  link.href = result.path;
+
+  return link;
+}
+
+function createSearchResultsBlock(results, input, total) {
+  // Create the main search results container
+  const searchResultsBlock = document.createElement('div');
+  searchResultsBlock.id = 'mmg-gcse';
+  searchResultsBlock.className = 'active';
+  const bodyHeight = document.body.clientHeight;
+  const header = document.getElementById('header');
+  const headerHeight = header.clientHeight;
+  searchResultsBlock.style.height = `${bodyHeight - headerHeight}px`;
+
+  // Create GCSE tools container
+  const gcseTools = createGcseTools();
+
+  // Create GCSE box container
+  const gcseBox = createGcseBox();
+
+  // Create heading element
+  const heading = createHeadingElement(input);
+
+  // Create count element
+  const count = createCountElement(results.length, total);
+
+  // Append elements to the searchResultsBlock
+  const outer = gcseBox.querySelector('.mmg-gcse-outer');
+  outer.appendChild(heading);
+  outer.appendChild(count);
+
+  // Create individual result elements
+  results.forEach((result) => {
+    const link = createResultLink(result);
+    outer.appendChild(link);
+  });
+
+  searchResultsBlock.appendChild(gcseTools);
+  searchResultsBlock.appendChild(gcseBox);
+
+  return searchResultsBlock;
+}
 
 function addClassesToMenuItems(element, depth) {
   const childItems = element.children;
@@ -41,6 +118,37 @@ function addClassesToMenuItems(element, depth) {
       addClassesToMenuItems(childElement, nextDepth);
     }
   }
+}
+
+function handleSearchFormSubmit(formElement) {
+  function searchFormHandler(e) {
+    e.preventDefault();
+    const inputValue = formElement.querySelector('input').value;
+    fetch('/query-index.json')
+      .then((response) => response.json())
+      .then((jsonData) => {
+        // Perform a search based on the fetched JSON data
+        const results = jsonData.data.filter((item) => {
+          // Customize this condition to match your search criteria
+          const it = item.title.toLowerCase().includes(inputValue);
+          return it;
+        });
+        const resultBlock = document.querySelector('.search-results');
+        if (resultBlock) {
+          resultBlock.remove();
+        }
+        if (results.length > 0 && inputValue !== '') {
+          // Create a block based on the search results
+          const searchResultsBlock = createSearchResultsBlock(
+            results,
+            inputValue,
+            jsonData.total,
+          );
+          document.body.appendChild(searchResultsBlock);
+        }
+      });
+  }
+  return searchFormHandler;
 }
 
 /**
@@ -144,6 +252,7 @@ export default async function decorate(block) {
 
     const mobileSpan = clonedCustomSearchDiv.querySelector('span');
     const mobileInput = clonedCustomSearchDiv.querySelector('input');
+    const mobileForm = clonedCustomSearchDiv.querySelector('form');
 
     mobileSpan.addEventListener('click', () => {
       clonedCustomSearchDiv.classList.toggle('active');
@@ -154,9 +263,8 @@ export default async function decorate(block) {
       }
     });
 
-    formElement.addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
+    mobileForm.addEventListener('submit', handleSearchFormSubmit(mobileForm));
+    formElement.addEventListener('submit', handleSearchFormSubmit(formElement));
 
     const listElements = document.createElement('div');
 
@@ -180,7 +288,12 @@ export default async function decorate(block) {
 
     const menuWrapper = document.createElement('div');
     menuWrapper.id = 'hs_menu_wrapper_mainmenu';
-    menuWrapper.classList.add('hs-menu-wrapper', 'active-branch', 'no-flyouts', 'hs-menu-flow-horizontal');
+    menuWrapper.classList.add(
+      'hs-menu-wrapper',
+      'active-branch',
+      'no-flyouts',
+      'hs-menu-flow-horizontal',
+    );
     const menuList = childElements.children[2].innerHTML;
 
     // Create a temporary div element
