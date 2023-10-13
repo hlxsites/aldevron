@@ -19,7 +19,7 @@ main .hero h1 {
   padding: 0;
   color: white;
   font-size: 44px;
-  text-shadow: 0 0 6px rgba(0,0,0,.5);
+  text-shadow: 0 0 6px rgba(0,0,0,50%);
 }
 
 main .hero picture {
