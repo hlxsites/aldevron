@@ -8,8 +8,8 @@ sampleRUM('cwv');
 
 // google tag manager -start
 function loadGTM() {
-    const scriptTag = document.createElement('script');
-    scriptTag.innerHTML = `
+  const scriptTag = document.createElement('script');
+  scriptTag.innerHTML = `
         let gtmId = 'GTM-MLWV3QQ';
         // googleTagManager
         (function (w, d, s, l, i) {
@@ -26,14 +26,13 @@ function loadGTM() {
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', gtmId);
         `;
-    document.head.prepend(scriptTag);
+  document.head.prepend(scriptTag);
 }
 // google tag manager -start
 
 if (
-    !window.location.hostname.includes('localhost')
+  !window.location.hostname.includes('localhost')
     && !document.location.hostname.includes('.hlx.page')
 ) {
-    loadGTM();
+  loadGTM();
 }
-
