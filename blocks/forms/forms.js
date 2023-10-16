@@ -1,7 +1,7 @@
 function embedHubSpotForm(formFields) {
   const script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = '//js.hsforms.net/forms/embed/v2.js';
+  script.src = '/scripts/v2.js';
   script.charset = 'utf-8';
   script.onload = () => {
     window.hbspt.forms.create(formFields);
