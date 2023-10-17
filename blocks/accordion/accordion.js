@@ -1,29 +1,33 @@
 export default function decorate(block) {
   const faqRows = [...block.children];
   block.classList.add('faq-accordion');
+
   faqRows.forEach((row) => {
     const faqQuestion = [...row.children][0];
+    const faqAnswer = [...row.children][1];
+
     faqQuestion.classList.add('faq-question');
-    faqQuestion.addEventListener('click', (e) => {
-      const openfaq = block.querySelector('.faq-question.active');
-      openfaq.classList.remove('active');
-      openfaq.nextElementSibling.classList.remove('active');
-      openfaq.nextElementSibling.style.removeProperty('max-height');
-      e.currentTarget.classList.toggle('active');
-      e.currentTarget.nextElementSibling.classList.toggle('active');
-      const faqAnswer = e.currentTarget.nextElementSibling;
-      if (faqAnswer.style.maxHeight) {
-        faqAnswer.style.removeProperty('max-height');
+    faqAnswer.classList.add('faq-answer');
+
+    faqQuestion.addEventListener('click', () => {
+      const isActive = faqQuestion.classList.contains('active');
+
+      if (isActive) {
+        faqQuestion.classList.remove('active');
+        faqAnswer.classList.remove('active');
+        // Set max-height to 0 for smooth closing
+        faqAnswer.style.maxHeight = '0';
       } else {
+        faqQuestion.classList.add('active');
+        faqAnswer.classList.add('active');
+        // Set max-height to scrollHeight for smooth opening
         faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
       }
     });
-    const faqAnswer = [...row.children][1];
-    faqAnswer.classList.add('faq-answer');
+
+    // Close all accordions initially
+    faqQuestion.classList.remove('active');
+    faqAnswer.classList.remove('active');
+    faqAnswer.style.maxHeight = '0';
   });
-  const fq = block.querySelector('.faq-question');
-  const fa = block.querySelector('.faq-answer');
-  fq.classList.toggle('active');
-  fa.classList.toggle('active');
-  fa.style.maxHeight = 'unset';
 }
