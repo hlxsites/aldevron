@@ -86,6 +86,14 @@ body {
     color: #e46b29
 }
 
+#header-info a.news {
+    font-weight: bold;
+    color: #FFF !important;
+    background-color: #e46b29;
+    padding: 3px 7px !important;
+    margin-left: 5px;
+}
+
 #menu {
     border-top: 1px solid #f4f4f4;
     bottom: 0;
