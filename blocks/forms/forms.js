@@ -3,7 +3,7 @@ function embedHubSpotForm(formFields) {
   script.type = 'text/javascript';
   script.src = '/scripts/v2.js';
   script.charset = 'utf-8';
-  script.setAttribute('defer', '');
+  script.setAttribute('async', '');
   script.onload = () => {
     window.hbspt.forms.create(formFields);
   };
