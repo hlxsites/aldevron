@@ -415,7 +415,6 @@ function mmgPrintImg(imgURL) {
           wrap = $("#content"),
           outer = $("#content .outer"),
           footer = $("#footer");
-          console.log(wrap.offset());
         w.bind("load resize scroll", function (e) {
           var wTop = w.scrollTop(),
             winW = w.width(),
