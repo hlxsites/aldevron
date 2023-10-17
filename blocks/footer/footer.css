@@ -20,23 +20,28 @@
 .social-icons.clearfix {
   text-align: right;
 }
+
 @media (max-width: 767px){
   .footer-wrapper div#footer-black div {
     display: block;
   }
 }
+
 @media (max-width: 1024px){
   .footer-wrapper div#footer-black div {
     padding: 0 20px;
   }
+
   .footer-wrapper div#footer-orange .outer{
     grid-template-columns: 1fr;
   }
+  
   .footer-wrapper div#footer-orange .outer .social-icons{
     display: flex;
     justify-content: flex-end;
   }
 }
+
 .social-icons.clearfix img {
   max-width: 44px;
 }
