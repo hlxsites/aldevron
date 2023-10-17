@@ -330,7 +330,7 @@ function createOptimizedPicture(
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
-      img.setAttribute('loading', eager ? 'eager' : 'eager');
+      img.setAttribute('loading', eager ? 'eager' : '');
       img.setAttribute('alt', alt);
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
@@ -405,7 +405,7 @@ function decorateIcon(span, prefix = '') {
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  // img.loading = 'lazy';
+  img.loading = 'lazy';
   span.append(img);
 }
 
