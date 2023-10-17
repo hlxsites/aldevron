@@ -33,3 +33,7 @@
 #footer-black img {
   width: 55px;
 }
+
+.footer-wrapper div#footer-black div.footericon.social-media-footer {
+  display: none;
+}

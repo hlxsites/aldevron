@@ -25,6 +25,17 @@ export default async function decorate(block) {
       }
     }
   }
+  function callSocialIcons(socialIcons) {
+    const allAnchorTags = createDivElement('social-icons', '');
+    for (let i = 0; i < socialIcons.children.length; i += 1) {
+      const createAtag = document.createElement('a');
+      createAtag.appendChild(socialIcons.children[i]?.children[0]?.querySelector('picture'));
+      createAtag.setAttribute('href', socialIcons.children[i]?.children[1]?.children[0].href);
+      createAtag.setAttribute('target', '_blank');
+      allAnchorTags.appendChild(createAtag);
+    }
+    return allAnchorTags;
+  }
   if (resp.ok) {
     const html = await resp.text();
     const topContainer = createDivElement('top-container', '');
@@ -32,8 +43,6 @@ export default async function decorate(block) {
     const footerParent = createDivElement('outer', '');
     const footerWapper = createDivElement('hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal', 'hs_menu_wrapper_footer_nav');
     const footerUl = createDivElement('outer', 'footer-black');
-    const socialIcons = createDivElement('social-icons clearfix', '');
-
     footerUl.innerHTML = html;
     footerWapper.append(footerUl.querySelector('ul'));
     footerOrangeSection.append(footerParent);
@@ -43,14 +52,14 @@ export default async function decorate(block) {
     // const childImage = childItems[5]
     // footerWapper.append(footerUl)
     addClassesToListItems(childItems, 1);
-    socialIcons.append(footerUl.querySelector('p'));
-    footerParent.append(socialIcons);
+    footerParent.append(callSocialIcons(footerUl.children[0].children[0]));
+    footerParent.append(footerUl);
     const footLogo = document.createElement('a');
     footLogo.id = 'footLogo';
     footLogo.target = '_blank';
     footLogo.href = 'https://www.danaher.com/?utm_source=ALD_web&utm_medium=referral&utm_content=trustmarkfooter';
-    footLogo.innerHTML = footerUl.children[0].children[1].innerHTML;
-    footerUl.children[0].children[1].children[0].children[3].replaceWith(footLogo);
+    footLogo.innerHTML = footerUl.children[0].children[2].innerHTML;
+    footerUl.children[0].children[2].replaceWith(footLogo);
     topContainer.append(footerUl);
     decorateIcons(footerWapper);
     block.append(topContainer);
