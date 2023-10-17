@@ -14,7 +14,6 @@
 .footer-wrapper div#footer-black div {
   display: flex;
   align-items: center;
-  flex-direction: row-reverse;
   justify-content: space-between;
 }
 

@@ -57,9 +57,13 @@ export default async function decorate(block) {
     const footLogo = document.createElement('a');
     footLogo.id = 'footLogo';
     footLogo.target = '_blank';
-    footLogo.href = 'https://www.danaher.com/?utm_source=ALD_web&utm_medium=referral&utm_content=trustmarkfooter';
-    footLogo.innerHTML = footerUl.children[0].children[2].innerHTML;
-    footerUl.children[0].children[2].replaceWith(footLogo);
+    // footLogo.href = '';
+    // footLogo.innerHTML = footerUl.children[0].children[2].innerHTML;
+
+    footLogo.append(footerUl.children[0]?.children[1]?.children[0]?.children[0]?.querySelector('picture'));
+    footLogo.href = footerUl.children[0]?.children[1]?.children[0]?.children[1]?.children[0]?.href;
+
+    footerUl.children[0].children[1].replaceWith(footLogo);
     topContainer.append(footerUl);
     decorateIcons(footerWapper);
     block.append(topContainer);
