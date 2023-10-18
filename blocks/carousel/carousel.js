@@ -1,40 +1,26 @@
-import Carousel from '../../scripts/lib-carousel.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-
+import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 /**
- * Get optimized img element width default
- * @param picture
+ * loads and decorates the carousel
+ * @param {Element} block The carousel block element
  */
-export function optimizeThumbnails(picture) {
-  picture
-    .querySelectorAll('img')
-    .forEach((img) => {
-      img
-        .closest('picture')
-        .replaceWith(
-          createOptimizedPicture(
-            img.src,
-            img.alt,
-            true,
-            img.width,
-            img.height,
-            [{ width: '768' }],
-          ),
-        );
-    });
-}
-
-export default function decorate(block) {
-  optimizeThumbnails(block);
-
-  const carousel = new Carousel(block.firstElementChild.lastElementChild);
-  carousel.createPictureSlider();
-  carousel.setSliderIds();
-
-  // if (carousel.sliderIds.length > 1) {
-  if (carousel.hasSlides()) {
-    carousel.createArrowNav();
-    carousel.createDottedNav();
-    carousel.initSlider();
+export default async function decorate(block) {
+  const cfg = readBlockConfig(block);
+  block.textContent = '';
+  // fetch carousel content
+  const carouselPath = cfg.carousel || '/carousel';
+  const resp = await fetch(`${carouselPath}.plain.html`, window.location.pathname.endsWith('/carousel') ? { cache: 'reload' } : {});
+  function createDivElement(className, IDName) {
+    const divEl = document.createElement('div');
+    divEl.setAttribute('class', className);
+    divEl.setAttribute('id', IDName);
+    return divEl;
+  }
+  if (resp.ok) {
+    const html = await resp.text();
+    const topContainer = createDivElement('top-container', '');
+    const carouselWapper = createDivElement('carousel', 'hs_menu_wrapper_carousel_nav');
+    carouselWapper.innerHTML = html;
+    decorateIcons(carouselWapper);
+    block.append(topContainer);
   }
 }
