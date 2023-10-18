@@ -45,8 +45,10 @@ async function loadFonts() {
 }
 
 const TEMPLATE_LIST = [
-  'red',
-  'green',
+  'Default',
+  'Plasmids',
+  'Proteins',
+  'mRNA',
 ];
 
 /**
