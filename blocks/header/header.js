@@ -117,8 +117,14 @@ function addClassesToMenuItems(element, depth) {
     // Add class to the immediate child element
     item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
 
+    const em = item.querySelector('em');
+
     // Check if the href matches the current domain
     const link = item.querySelector('a');
+    if (em) {
+      link.setAttribute('target', '_blank');
+      item.appendChild(link);
+    }
     if (link && link.href === window.location.href) {
       item.classList.add('active');
     }
@@ -295,6 +301,9 @@ export default async function decorate(block) {
 
     mobileForm.addEventListener('submit', handleSearchFormSubmit(mobileForm));
     formElement.addEventListener('submit', handleSearchFormSubmit(formElement));
+
+    mobileSpan.addEventListener('click', handleSearchFormSubmit(mobileForm));
+    spanElement.addEventListener('click', handleSearchFormSubmit(formElement));
 
     mobileInput.addEventListener('input', handleSearchFormSubmit(mobileForm));
     inputElement.addEventListener('input', handleSearchFormSubmit(formElement));
