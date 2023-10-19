@@ -370,6 +370,13 @@
         width: 33.3%
     }
 
+    #header-info a.news {
+        font-weight: bold;
+        color: #fff;
+        margin-left: 0;
+        padding: 13px 15px !important;
+    }
+
     #header-info a.careers,
     #header-info a.news {
         border-left: 1px solid #f1f1f1
