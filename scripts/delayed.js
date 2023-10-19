@@ -8,7 +8,7 @@ sampleRUM('cwv');
 function loadGTM() {
   const scriptTag = document.createElement('script');
   scriptTag.innerHTML = `
-        let gtmId = 'GTM-MLWV3QQ';
+        let gtmId = 'GTM-W93WJWB9';
         // googleTagManager
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -25,6 +25,12 @@ function loadGTM() {
         })(window, document, 'script', 'dataLayer', gtmId);
         `;
   document.head.prepend(scriptTag);
+  const noScriptTag = document.createElement('noscript');
+  noScriptTag.innerHTML = `
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W93WJWB9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  `;
+  document.body.prepend(noScriptTag);
 }
 // google tag manager -end
 
