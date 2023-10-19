@@ -50,9 +50,9 @@
     font-weight: 400;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/926e8ba2-1161-42b7-a850-c56765e872fd.eot#iefix");
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/926e8ba2-1161-42b7-a850-c56765e872fd.eot#iefix") format("eot"),
-        url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/09a1d106-4ddc-4781-bbaa-ca99d410f96c.woff2") format("woff2"),
-        url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/cf7ea09d-4129-4178-be10-46690a910bc6.woff") format("woff"),
-        url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/155079dd-36cb-4995-8ced-3fc104e75028.ttf") format("truetype")
+        url("../fonts/proxima/italic/09a1d106-4ddc-4781-bbaa-ca99d410f96c.woff2") format("woff2"),
+        url("../fonts/proxima/italic/cf7ea09d-4129-4178-be10-46690a910bc6.woff") format("woff"),
+        url("../fonts/proxima/italic/155079dd-36cb-4995-8ced-3fc104e75028.ttf") format("truetype")
 }
 
 @font-face {
