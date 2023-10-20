@@ -1,4 +1,7 @@
-/* eslint-disable */
+:root {
+    --primary-color: #fac922; /* Default primary color */
+}
+
 .img-colorbox-popup::after,
 [class*=" icon-"],
 [class^="icon-"] {
