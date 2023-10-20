@@ -1,5 +1,7 @@
 import { getMetadata } from '../../scripts/aem.js';
 
+const windowWidth = document.body.offsetWidth;
+
 function createGcseTools() {
   const gcseTools = document.createElement('div');
   gcseTools.id = 'mmg-gcse-tools';
@@ -60,7 +62,16 @@ function createResultLink(result) {
   return link;
 }
 
+function removeSearchResult() {
+  const searchResultsBlock1 = document.getElementById('mmg-gcse');
+  if (searchResultsBlock1) {
+    searchResultsBlock1.remove();
+  }
+}
+
 function createSearchResultsBlock(results, input, total) {
+  // Remove the main search results container if any
+  removeSearchResult();
   // Create the main search results container
   const searchResultsBlock = document.createElement('div');
   searchResultsBlock.id = 'mmg-gcse';
@@ -106,14 +117,35 @@ function addClassesToMenuItems(element, depth) {
     // Add class to the immediate child element
     item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
 
+    const em = item.querySelector('em');
+
     // Check if the href matches the current domain
     const link = item.querySelector('a');
+    if (em) {
+      link.setAttribute('target', '_blank');
+      item.appendChild(link);
+    }
     if (link && link.href === window.location.href) {
       item.classList.add('active');
     }
     const childElement = item.querySelector('ul');
 
     if (childElement?.children?.length > 0) {
+      const spanElement = document.createElement('span');
+      spanElement.className = 'arrow';
+      if (windowWidth < 961) {
+        childElement.style.display = 'none';
+        spanElement.addEventListener('click', () => {
+          if (childElement.style.display === 'block' || childElement.style.display === '') {
+            childElement.style.display = 'none';
+            item.classList.remove('open');
+          } else {
+            childElement.style.display = 'block';
+            item.classList.add('open');
+          }
+        });
+      }
+      item.prepend(spanElement);
       const nextDepth = depth + 1;
       addClassesToMenuItems(childElement, nextDepth);
     }
@@ -137,7 +169,7 @@ function handleSearchFormSubmit(formElement) {
         if (resultBlock) {
           resultBlock.remove();
         }
-        if (results.length > 0 && inputValue !== '') {
+        if (inputValue !== '') {
           // Create a block based on the search results
           const searchResultsBlock = createSearchResultsBlock(
             results,
@@ -145,6 +177,8 @@ function handleSearchFormSubmit(formElement) {
             jsonData.total,
           );
           document.body.appendChild(searchResultsBlock);
+        } else {
+          removeSearchResult();
         }
       });
   }
@@ -228,11 +262,12 @@ export default async function decorate(block) {
 
     // // Add event listener to input element
     spanElement.addEventListener('click', () => {
-      customSearchDiv.classList.toggle('active');
       if (inputElement.style.display === 'none') {
         inputElement.style.display = 'inline-block';
-      } else {
+        customSearchDiv.classList.add('active');
+      } else if (inputElement.value === '') {
         inputElement.style.display = 'none';
+        customSearchDiv.classList.remove('active');
       }
     });
 
@@ -255,16 +290,23 @@ export default async function decorate(block) {
     const mobileForm = clonedCustomSearchDiv.querySelector('form');
 
     mobileSpan.addEventListener('click', () => {
-      clonedCustomSearchDiv.classList.toggle('active');
       if (mobileInput.style.display === 'none') {
         mobileInput.style.display = 'inline-block';
-      } else {
+        clonedCustomSearchDiv.classList.add('active');
+      } else if (mobileInput.value === '') {
         mobileInput.style.display = 'none';
+        clonedCustomSearchDiv.classList.remove('active');
       }
     });
 
     mobileForm.addEventListener('submit', handleSearchFormSubmit(mobileForm));
     formElement.addEventListener('submit', handleSearchFormSubmit(formElement));
+
+    mobileSpan.addEventListener('click', handleSearchFormSubmit(mobileForm));
+    spanElement.addEventListener('click', handleSearchFormSubmit(formElement));
+
+    mobileInput.addEventListener('input', handleSearchFormSubmit(mobileForm));
+    inputElement.addEventListener('input', handleSearchFormSubmit(formElement));
 
     const listElements = document.createElement('div');
 
