@@ -18,3 +18,7 @@ table td {
     background-color: var(--primary-color);
     text-align: left;
 }
+
+.table-plain tr:nth-child(2n) {
+    background-color: #fff;
+}
