@@ -1071,3 +1071,8 @@ form.hs-form .hs-input[type="checkbox"] {
     font-size: .9em;
     line-height: normal
 }
+
+/* backgrounds */
+.bg-grey {
+    background-color: #ededed;
+}

@@ -1,8 +1,17 @@
+.pt-80 {
+    padding-top: 80px;
+}
+
+.pb-80 {
+    padding-bottom: 80px;
+}
+
 .article-lists {
     display: flex;
     justify-content: center;
     grid-gap: 4%;
     flex-wrap: wrap;
+    padding: 0;
 }
 
 .article-card {
@@ -17,24 +26,25 @@
     width: var(--custom-width, 300px);
     color: var(--custom-color);
     word-wrap: break-word;
-    background-color: var(--custom-bg, #fff);
     background-clip: border-box;
     border: var(--custom-width) solid var(--custom-border-color);
     border-radius: var(--custom-border-radius, 3px);
-    /* box-shadow: 2px 2px 3px 0.5px rgb(0 0 0 / 0.05), 0 0px 0px -8px rgb(0 0 0 / 0.1); */
-    
     transition-property: var(--custom-ts-property, transform);
     transition-timing-function: var(--custom-ts-timing, cubic-bezier(0.4, 0, 0.2, 1));
     transition-duration: var(--custom-ts-duration, 150ms);
-    
     cursor: var(--custom-cursor, pointer);
-    padding: 0px;
+    padding: 0 0 30px;
+}
+
+.article-card .article-card-body .description {
+    padding-top: 0.5em !important;
+    padding-bottom: 0!important;
 }
 
 .horizontal .article-card {
     grid-gap: 0.75rem;
     flex-direction: var(--custom-direction, row);
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .horizontal .article-card .article-card-img + * {
@@ -45,14 +55,23 @@
     padding: 0;
 }
 
+.horizontal .article-card .article-card-body .redirect-link {
+    font-size: 14px;
+    padding: 0;
+}
+
+.horizontal .article-card .article-card-body .description {
+    font-size: 14px;
+}
+
 .horizontal .article-card .article-card-img img {
     max-width: 250px;
-    max-height: 120px;
-    flex-shrink: 0;
+    max-height: fit-content;
+    height: fit-content!important;
 }
-  
+
 .article-card-header, .article-card-body, .article-card-footer {
-    padding: var(--custom-width, 0.75rem 0.5rem);
+    padding: 20px 0 0;
 }
 
 .article-card .article-card-img {
@@ -63,10 +82,6 @@
     width: 100%;
     height: 100%;
 }
-  
-.article-card .article-card-header {
-    background-color: var(--custom-header-color, #fff);
-}
 
 .article-card .article-card-title {
     font-size: var(--text-size, 1.5rem);
@@ -74,47 +89,44 @@
 }
 
 .article-card .article-card-subtitle {
+    font-family: Brown-Ald,Helvetica,Arial,sans-serif;
     font-weight: 700;
     font-size: var(--text-size, 1.875rem);
-    line-height: var(--text-line-height, 2.25rem);
+    color: #0d233e;
+    letter-spacing: -.02em;
+    line-height: normal;
+    margin: 0;
+    padding: 0 0 0.5em;
+
 }
 
 .article-card .redirect-link {
-    font-weight: 600;
+    padding-top: 20px;
+    font-size: 18px;
+    font-family: Brown-Ald,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: normal;
+    margin: 0;
 }
 
 .article-card .article-card-body {
     flex: 1 1 auto;
-    background-color: var(--custom-body-color, #fff);
-}
-  
-.article-card .article-card-footer {
-    background-color: var(--custom-footer-color, #fff);
 }
 
-.button {
-    background-color: #fff;
-    border: 2px solid #000;
-    color: #000;
-    border-radius: 5px;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Brown-Ald, Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 100%;
-    margin: 0;
-    padding: .8em 1.3em;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background .3s;
-    vertical-align: middle;
-    width: auto
+@media only screen and (max-width: 479px) {
+    .horizontal .article-card  {
+        flex-direction: column!important;
+    }
+
+    .horizontal .article-card .article-card-img img {
+        max-width: 100%!important;
+    }
 }
 
-.button:hover {
-    background-color: #000;
-    color: #fff;
+@media (min-width: 479px) and (max-width: 767px) {
+    .horizontal .article-card  {
+        flex-direction: row!important;
+        width: 100%;
+    }
 }
