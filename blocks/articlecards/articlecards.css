@@ -1,12 +1,7 @@
-.wrapper {
-    /* text-align: center; */
-    padding: 5rem 14rem;
-}
-
 .article-lists {
     display: flex;
     justify-content: center;
-    grid-gap: 3rem;
+    grid-gap: 4%;
     flex-wrap: wrap;
 }
 
@@ -39,6 +34,7 @@
 .horizontal .article-card {
     grid-gap: 0.75rem;
     flex-direction: var(--custom-direction, row);
+    padding-bottom: 20px;
 }
 
 .horizontal .article-card .article-card-img + * {

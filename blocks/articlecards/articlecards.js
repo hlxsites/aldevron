@@ -3,7 +3,7 @@ import { div, h2, h3, li, p, ul } from '../../scripts/dom-builder.js';
 export default function decorate(block) {
     const clonedBlock = block.cloneNode(true);
     const dataHeading = block.className.split(' ').filter(y => y.includes('data-block-heading-'));
-    const wrapper = div({ class: 'wrapper' });
+    const wrapper = div({ class: 'wrapper outer' });
     if (dataHeading.length > 0) wrapper.append(h2({ class: 'title' }, dataHeading[0].replace('data-block-heading-', '')));
     const lists = ul({ class: 'article-lists' });
     [...clonedBlock.children[0].children].forEach(element => {
