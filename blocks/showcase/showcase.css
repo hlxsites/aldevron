@@ -1,0 +1,103 @@
+.wrapper {
+    text-align: center;
+    padding: 5rem 1rem;
+    background-image: url('https://www.aldevron.com/hs-fs/hubfs/aldevron-solid-orange-background.png?width=1800&name=aldevron-solid-orange-background.png');
+}
+
+.title {
+    font-size: 37px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    padding-bottom: 1em;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.lists {
+    display: flex;
+    justify-content: center;
+    grid-gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    text-align: var(--custom-text-alignment, center);
+    flex-direction: var(--custom-direction, column);
+    min-width: var(--custom-min-width);
+    height: var(--custom-height);
+    height: var(--custom-min-height);
+    width: var(--custom-width, 300px);
+    color: var(--custom-color);
+    word-wrap: break-word;
+    background-color: var(--custom-bg, #fff);
+    background-clip: border-box;
+    border: var(--custom-width) solid var(--custom-border-color);
+    border-radius: var(--custom-border-radius, 3px);
+    /* box-shadow: 2px 2px 3px 0.5px rgb(0 0 0 / 0.05), 0 0px 0px -8px rgb(0 0 0 / 0.1); */
+    
+    transition-property: var(--custom-ts-property, transform);
+    transition-timing-function: var(--custom-ts-timing, cubic-bezier(0.4, 0, 0.2, 1));
+    transition-duration: var(--custom-ts-duration, 150ms);
+    
+    cursor: var(--custom-cursor, pointer);
+  
+    padding: 1rem 0.25rem;
+}
+  
+.card-header, .card-body, .card-footer {
+    padding: var(--custom-width, 0.75rem 0.5rem);
+}
+  
+.card .card-img img {
+    max-width: 120px;
+    width: 100%;
+    max-height: 130px;
+    height: 100%;
+}
+  
+.card .card-header {
+    background-color: var(--custom-header-color, #fff);
+}
+
+.card .card-header .card-title {
+    font-size: var(--text-size, 1.5rem);
+    line-height: var(--text-line-height, 1.5rem);
+}
+
+.card .card-body {
+    flex: 1 1 auto;
+    background-color: var(--custom-body-color, #fff);
+}
+  
+.card .card-footer {
+    background-color: var(--custom-footer-color, #fff);
+}
+
+.button {
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Brown-Ald, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+    margin: 0;
+    padding: .8em 1.3em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background .3s;
+    vertical-align: middle;
+    width: auto
+}
+
+.button:hover {
+    background-color: #000;
+    color: #fff;
+}
