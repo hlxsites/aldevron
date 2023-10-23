@@ -12,7 +12,7 @@ export default async function decorate(block) {
     }
     if (refAnchorEl.hasAttribute('title')) {
       anchorEl.setAttribute('title', refAnchorEl.getAttribute('title'));
-    } 
+    }
     if (refAnchorEl.hasAttribute('alt')) {
       anchorEl.setAttribute('alt', refAnchorEl.getAttribute('alt'));
     }
