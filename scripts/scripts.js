@@ -70,6 +70,30 @@ export function decorateMain(main) {
 }
 
 /**
+ * Loads a non module JS file.
+ * @param {string} src URL to the JS file
+ * @param {Object} attrs additional optional attributes
+ */
+export async function loadScript(url, attrs) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = url;
+    if (attrs) {
+    // eslint-disable-next-line no-restricted-syntax, guard-for-in
+      for (const attr in attrs) {
+        script.setAttribute(attr, attrs[attr]);
+      }
+    }
+
+    script.onload = () => resolve(script);
+    script.onerror = reject;
+
+    const head = document.querySelector('head');
+    head.append(script);
+  });
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
