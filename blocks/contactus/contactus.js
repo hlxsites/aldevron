@@ -14,10 +14,7 @@ export default function decorate() {
     } else if (i === 1) {
       innerElements += pTags[i].outerHTML;
     } else if (i === 3) {
-      phone = pTags[2].outerHTML.replace(
-        /<p>/g,
-        `<a class='phone' href="tel:' ${pTags[2].innerHTML.trim()} '">`
-      );
+      phone = pTags[2].outerHTML.replace(/<p>/g, `<a class='phone' href="tel:' ${pTags[2].innerHTML.trim()} '">`);
       phone.replace(/<\/p>/g, '</a>');
       pTags[i].innerHTML = `<div class="buttons">' ${
         phone + pTags[i].innerHTML
