@@ -2,6 +2,14 @@ body {
     padding-top: 100px
 }
 
+.no-padding {
+    padding: 0!important;
+}
+
+.no-margin {
+    margin: 0!important;
+}
+
 .outer {
     box-sizing: border-box;
     margin: 0 auto;
