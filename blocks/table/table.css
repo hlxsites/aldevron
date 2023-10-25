@@ -1,0 +1,24 @@
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-transparent {
+    background-color: transparent!important;
+}
+
+table td {
+    text-align: center;
+}
+
+.heading-top tr:first-child td {
+    background-color: var(--primary-color); /* Specify your desired background color here */
+}
+
+.heading-left tr td:first-child {
+    background-color: var(--primary-color);
+    text-align: left;
+}
+
+.table-plain tr:nth-child(2n) {
+    background-color: #fff;
+}
