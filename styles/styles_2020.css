@@ -152,7 +152,7 @@
   padding-bottom: 30px
 }
 
-.mmg-rich-columns .recent-posts .post:after {
+.mmg-rich-columns .recent-posts .post::after {
   clear: both;
   content: "";
   display: block;
@@ -173,7 +173,7 @@
   padding-left: 44%
 }
 
-.mmg-rich-columns .recent-posts .image:after {
+.mmg-rich-columns .recent-posts .image::after {
   content: "";
   display: block;
   padding-bottom: 56%
@@ -241,8 +241,8 @@
   z-index: 3
 }
 
-.module.split-bg:before {
-  background: url(//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png) 0 50% no-repeat;
+.module.split-bg::before {
+  background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png') 0 50% no-repeat;
   background-size: auto 100%;
   content: "";
   height: 100%;
@@ -280,7 +280,7 @@
   color: #ec8f2d
 }
 
-.module.custom-bg.split-bg:after {
+.module.custom-bg.split-bg::after {
   background-position: 0 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -370,7 +370,7 @@
 }
 
 .blog.anniversary-25 .listing-hero .figure {
-  background: url(//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/raw_assets/public/Coded%20files/Custom/page/img/hero-hexagon.svg) no-repeat 50% 100%;
+  background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/raw_assets/public/Coded%20files/Custom/page/img/hero-hexagon.svg') no-repeat 50% 100%;
   background-size: 100% auto;
   box-sizing: border-box;
   float: right;
@@ -391,15 +391,14 @@
 }
 
 .blog.anniversary-25 .post-listing {
-  grid-column-gap: 55px;
-  grid-row-gap: 70px;
+  grid-gap: 70px 55px;
   column-gap: 55px;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   row-gap: 70px
 }
 
-.blog.anniversary-25 .post-listing:after {
+.blog.anniversary-25 .post-listing::after {
   content: none
 }
 
@@ -573,9 +572,8 @@
 }
 
 .blog.anniversary-25 .post-popular .post-listing {
-  grid-column-gap: 50px;
-  grid-row-gap: 50px;
   column-gap: 50px;
+  grid-gap: 50px;
   row-gap: 50px
 }
 
@@ -587,7 +585,7 @@
 }
 
 .blog.anniversary-25 .blog-bottom {
-  background: url(https://www.aldevron.com/hubfs/aldevron_template/anniversary-btm-bg.webp) 50% 50% no-repeat;
+  background: url('https://www.aldevron.com/hubfs/aldevron_template/anniversary-btm-bg.webp') 50% 50% no-repeat;
   background-size: cover
 }
 
@@ -613,8 +611,8 @@
   text-decoration: none
 }
 
-.linkedin-bottom a:before {
-  background: url(https://www.aldevron.com/hubfs/aldevron_template/blog-linkedin-bg.webp) no-repeat 50% 50%;
+.linkedin-bottom a::before {
+  background: url('https://www.aldevron.com/hubfs/aldevron_template/blog-linkedin-bg.webp') no-repeat 50% 50%;
   background-size: cover;
   content: "";
   height: 100%;
@@ -626,7 +624,7 @@
   z-index: 0
 }
 
-.linkedin-bottom a:hover:before {
+.linkedin-bottom a:hover::before {
   transform: scale(1.1)
 }
 
@@ -676,7 +674,7 @@
   padding-bottom: 20px
 }
 
-.mmg-timeline .swiper-timeline:before {
+.mmg-timeline .swiper-timeline::before {
   background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
   content: "";
   height: 100%;
@@ -687,7 +685,7 @@
   z-index: 10
 }
 
-.mmg-timeline .swiper-timeline:after {
+.mmg-timeline .swiper-timeline::after {
   background: linear-gradient(270deg,#fff,hsla(0,0%,100%,0));
   content: "";
   height: 100%;
@@ -748,7 +746,7 @@
   color: #fff
 }
 
-.mmg-timeline .swiper-button-next:after,.mmg-timeline .swiper-button-prev:after {
+.mmg-timeline .swiper-button-next::after,.mmg-timeline .swiper-button-prev::after {
   font-size: 30px;
   line-height: 50px
 }
@@ -845,8 +843,7 @@
   }
 
   .blog.anniversary-25 .post-listing,.blog.anniversary-25 .post-popular .post-listing {
-      grid-column-gap: 40px;
-      grid-row-gap: 40px;
+      grid-gap: 40px;
       column-gap: 40px;
       row-gap: 40px
   }
@@ -910,11 +907,11 @@
   }
 
   .module.split-bg .outer {
-      background: url(//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png) 100% 50% no-repeat;
+      background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png') 100% 50% no-repeat;
       background-size: auto 130%
   }
 
-  .module.custom-bg.split-bg:after {
+  .module.custom-bg.split-bg::after {
       display: block;
       height: auto;
       padding-bottom: 45%;

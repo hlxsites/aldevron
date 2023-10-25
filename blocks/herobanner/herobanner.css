@@ -10,7 +10,7 @@
 .hero-banner.right-content .arrow {
     position: absolute;
     zoom: 1;
-    background: url(//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png) 0 50% no-repeat;
+    background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png') 0 50% no-repeat;
     background-size: cover;
     height: 100%;
     right: 0;
@@ -35,9 +35,9 @@
 
 .hero-banner .content .title, .hero-banner .content .description {
     color: #fff;
-    font: normal 16px/1.45 Proxima Nova A,Helvetica,sans-serif;
+    font: normal 16px/1.45 'Proxima Nova A',Helvetica,sans-serif;
     letter-spacing: 1px;
-    padding: 0 0 15px 0;
+    padding: 0 0 15px;
 }
 
 .hero-banner .content .title {
@@ -51,7 +51,7 @@
 }
 
 .hero-banner .content .description {
-    font: normal 16px/1.45 Proxima Nova A,Helvetica,sans-serif;
+    font: normal 16px/1.45 'Proxima Nova A',Helvetica,sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 23.2px;
@@ -76,5 +76,5 @@
 
 
 button{
-    font: normal 16px/1.45 Proxima Nova A,Helvetica,sans-serif;
+    font: normal 16px/1.45 'Proxima Nova A',Helvetica,sans-serif;
 }
