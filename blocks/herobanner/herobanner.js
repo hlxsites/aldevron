@@ -2,7 +2,7 @@ export default function decorate(block) {
   const clonedBlock = block.cloneNode(true);
   const pictureElement = clonedBlock.querySelector('picture');
   const moduleDiv = document.createElement('div');
-  moduleDiv.classList.add('module', 'mmg-rich-columns', 'padding-all', 'custom-bg', 'bg', 'wide-section', 'split-bg', 'style-standard')
+  moduleDiv.classList.add('module', 'mmg-rich-columns', 'padding-all', 'custom-bg', 'bg', 'wide-section', 'split-bg', 'style-standard');
   moduleDiv.style.backgroundColor = '#fff';
   moduleDiv.style.backgroundImage = `url(${pictureElement.querySelector('img').src})`;
   const outDiv = document.createElement('div');
@@ -36,5 +36,5 @@ export default function decorate(block) {
   textDiv.append(p2);
   moduleDiv.append(outDiv);
   block.textContent = '';
-  block.append(moduleDiv)
+  block.append(moduleDiv);
 }
