@@ -675,7 +675,7 @@
 }
 
 .mmg-timeline .swiper-timeline::before {
-  background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
+  background: linear-gradient(90deg,#fff,hsla(0deg,0%,100%,0%));
   content: "";
   height: 100%;
   left: 0;
@@ -686,7 +686,7 @@
 }
 
 .mmg-timeline .swiper-timeline::after {
-  background: linear-gradient(270deg,#fff,hsla(0,0%,100%,0));
+  background: linear-gradient(270deg,#fff,hsla(0deg,0%,100%,0%));
   content: "";
   height: 100%;
   position: absolute;
@@ -902,7 +902,7 @@
       padding: 0
   }
 
-  .module.split-bg:before {
+  .module.split-bg::before {
       content: none
   }
 
