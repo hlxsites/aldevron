@@ -146,6 +146,8 @@ function addClassesToMenuItems(element, depth) {
         });
       }
       item.prepend(spanElement);
+      item.appendChild(link);
+      item.appendChild(childElement);
       const nextDepth = depth + 1;
       addClassesToMenuItems(childElement, nextDepth);
     }
