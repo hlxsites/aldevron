@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './aem.js';
+import { buildForm } from '../blocks/forms/forms.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -34,3 +35,18 @@ if (
 ) {
   loadGTM();
 }
+
+function loadHubSpot() {
+  const hsScriptEl = document.createElement('script');
+  hsScriptEl.type = 'text/javascript';
+  hsScriptEl.async = true;
+  hsScriptEl.defer = true;
+  hsScriptEl.setAttribute('id', 'hs-script-loader');
+  hsScriptEl.src = '/scripts/v2.js';
+  document.querySelector('head').append(hsScriptEl);
+  hsScriptEl.addEventListener('load', () => {
+        buildForm(hbspt); // eslint-disable-line
+  });
+}
+
+loadHubSpot();
