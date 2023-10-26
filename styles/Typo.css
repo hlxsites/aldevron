@@ -1,4 +1,8 @@
-/* eslint-disable */
+:root {
+    --primary-color: #ec8f2d; /* Default primary color */
+    --text-color: #fff;
+}
+
 .img-colorbox-popup::after,
 [class*=" icon-"],
 [class^="icon-"] {
