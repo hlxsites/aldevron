@@ -42,7 +42,7 @@ function loadHubSpot() {
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
   hsScriptEl.setAttribute('id', 'hs-script-loader');
-  hsScriptEl.src = '/scripts/v2.js';
+  hsScriptEl.src = '//js.hsforms.net/forms/v2.js';
   document.querySelector('head').append(hsScriptEl);
   hsScriptEl.addEventListener('load', () => {
         buildForm(hbspt); // eslint-disable-line
