@@ -116,14 +116,19 @@ function addClassesToMenuItems(element, depth) {
     const item = childItems[i];
     // Add class to the immediate child element
     item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
+    const strong = item.querySelector('strong');
+    const link = item.querySelector('a');
+    if (strong) {
+      link.setAttribute('href', '#');
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+    }
 
     const em = item.querySelector('em');
-
     // Check if the href matches the current domain
-    const link = item.querySelector('a');
     if (em) {
       link.setAttribute('target', '_blank');
-      item.appendChild(link);
     }
     if (link && link.href === window.location.href) {
       item.classList.add('active');
@@ -146,6 +151,8 @@ function addClassesToMenuItems(element, depth) {
         });
       }
       item.prepend(spanElement);
+      item.appendChild(link);
+      item.appendChild(childElement);
       const nextDepth = depth + 1;
       addClassesToMenuItems(childElement, nextDepth);
     }
