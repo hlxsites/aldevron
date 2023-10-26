@@ -7,7 +7,7 @@ export default function decorate(block) {
   moduleDiv.classList.add('hs_cos_wrapper', 'hs_cos_wrapper_widget', 'hs_cos_wrapper_type_module', 'module-1');
   moduleDiv.setAttribute('data-hs-cos-type', 'module');
   moduleDiv.setAttribute('data-hs-cos-general-type', 'widget');
-  moduleDiv.setAttribute('id', clonedBlock.querySelector('h2').textContent.split(" ")[1]);
+  moduleDiv.setAttribute('id', clonedBlock.querySelector('h2').textContent.split(' ')[1]);
   const quoteboxDiv = document.createElement('div');
   quoteboxDiv.classList.add('quote-box');
   const blockquoteDiv = document.createElement('blockquote');
@@ -37,11 +37,11 @@ export default function decorate(block) {
   image.setAttribute('width', 279);
   image.setAttribute('height', 325);
   image.setAttribute('alt', 'Starter Culture Graphic');
-  image.setAttribute('src', `${pictureElement.querySelector('img').src}`)
+  image.setAttribute('src', `${pictureElement.querySelector('img').src}`);
   imageWrapper.append(image);
   moduleDiv.append(quoteboxDiv);
   moduleDiv.append(imageWrapper);
-  // sidebarDiv.append(moduleDiv)
+  // sidebarDiv.append(moduleDiv);
   block.textContent = '';
   block.append(moduleDiv);
   // block.append(sidebarDiv);
