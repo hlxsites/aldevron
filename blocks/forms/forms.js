@@ -11,6 +11,10 @@ export default function decorate(block) {
   block.append(form);
 }
 
+export function isForm() {
+  return !!formConfig.target;
+}
+
 export function buildForm(hbspt) {
   hbspt.forms.create({
     region: formConfig.region,

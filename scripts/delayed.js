@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './aem.js';
-import { buildForm } from '../blocks/forms/forms.js';
+import { buildForm, isForm } from '../blocks/forms/forms.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -40,7 +40,6 @@ function loadHubSpot() {
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
   hsScriptEl.async = true;
-  hsScriptEl.defer = true;
   hsScriptEl.setAttribute('id', 'hs-script-loader');
   hsScriptEl.src = '//js.hsforms.net/forms/v2.js';
   document.querySelector('head').append(hsScriptEl);
@@ -49,4 +48,7 @@ function loadHubSpot() {
   });
 }
 
-loadHubSpot();
+// only load this if there is a form block
+if (isForm()) {
+  loadHubSpot();
+}
