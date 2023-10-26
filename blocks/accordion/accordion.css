@@ -25,11 +25,11 @@ main .accordion.faq-accordion .faq-question {
 }
 
 main .accordion.faq-accordion .faq-question:hover {
-    color: #ec8f2d;
+    color: var(--primary-color);
 }
 
 main .accordion.faq-accordion .faq-question.active {
-    color: #ec8f2d;
+    color: var(--primary-color);
 }
 
 main .accordion.faq-accordion .faq-question::before {
@@ -87,7 +87,7 @@ main .accordion.faq-accordion .faq-answer ul {
 }
 
 main .accordion.faq-accordion .faq-answer ul li::before {
-    color: #ec8f2d;
+    color: var(--primary-color);
     content: "\25A0";
     font-family: Arial;
     font-size: 1em;
