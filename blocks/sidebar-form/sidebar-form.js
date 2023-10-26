@@ -24,7 +24,7 @@ export default function decorate(block) {
   // Add a delay of 4 seconds (4000 milliseconds) before loading the form
   setTimeout(() => {
     embedHubSpotForm(formDetails);
-  }, 1000);
+  }, 3000);
 
   const form = document.createElement('div');
   form.id = formDetails.target.replace('#', '');
