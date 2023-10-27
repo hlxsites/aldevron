@@ -45,6 +45,17 @@ async function loadFonts() {
   }
 }
 
+function capitalizeWords(str) {
+  const words = str.split(' ');
+  const capitalizedWords = words.map(word => {
+  if (word.length > 0) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  return word;
+  });
+  return capitalizedWords.join(' ');
+}
+
 const TEMPLATE_LIST = [
   'default',
   'plasmids',
@@ -61,8 +72,9 @@ async function decorateTemplates(main) {
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
-      const mod = await import(`../templates/${template.toUpperCase()}/${template.toUpperCase()}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template.toUpperCase()}/${template.toUpperCase()}.css`);
+      const templateName = capitalizeWords(template)
+      const mod = await import(`../templates/${templateName}/${templateName}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
       if (mod.default) {
         await mod.default(main);
       }
