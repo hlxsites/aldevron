@@ -7,6 +7,7 @@ import {
   decorateIcons,
   decorateSections,
   decorateBlocks,
+  decorateBlock,
   decorateTemplateAndTheme,
   waitForLCP,
   loadBlocks,
@@ -73,12 +74,32 @@ async function decorateTemplates(main) {
 }
 
 /**
+ * Builds embed block for inline links to known social platforms.
+ * @param {Element} main The container element
+ */
+function buildEmbedBlocks(main) {
+  const HOSTNAMES = [
+    'youtube',
+    'youtu',
+  ];
+  [...main.querySelectorAll(':is(p, div) > a[href]:only-child')]
+    .filter((a) => HOSTNAMES.includes(new URL(a.href).hostname.split('.').slice(-2, -1).pop()))
+    .forEach((a) => {
+      const parent = a.parentElement;
+      const block = buildBlock('embed', { elems: [a] });
+      parent.replaceWith(block);
+      decorateBlock(block);
+    });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildEmbedBlocks(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
