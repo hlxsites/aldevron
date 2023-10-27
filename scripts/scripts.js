@@ -61,8 +61,8 @@ async function decorateTemplates(main) {
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
-      const mod = await import(`../templates/${template}/${template}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+      const mod = await import(`../templates/${template.toUpperCase()}/${template.toUpperCase()}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template.toUpperCase()}/${template.toUpperCase()}.css`);
       if (mod.default) {
         await mod.default(main);
       }
