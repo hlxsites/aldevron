@@ -4,36 +4,41 @@ import {
 
 export default function decorate(block) {
   const clonedBlock = block.cloneNode(true);
-  const dataHeading = block.className.split(' ').filter((y) => y.includes('data-block-heading-'));
-  const wrapper = div({ class: 'wrapper outer' });
-  if (dataHeading.length > 0) wrapper.append(h2({ class: 'title' }, dataHeading[0].replace('data-block-heading-', '')));
-  const lists = ul({ class: 'article-lists' });
-  [...clonedBlock.children[0].children].forEach((element) => {
-    const showcaseBanner = li({ class: 'article-card' });
-    const picElement = element.querySelector('picture');
-    const subTitle = picElement.parentElement.previousElementSibling;
-    const ancButton = picElement.nextElementSibling;
-    const description = picElement.parentElement.nextElementSibling;
-    if (picElement) {
-      picElement.className = 'article-card-img';
-      if (subTitle) {
-        subTitle.className = 'article-card-subtitle';
-        showcaseBanner.append(subTitle);
+  const wrapper = div({ class: 'wrapper' });
+  [...clonedBlock.children].forEach((element) => {
+    const lists = ul({ class: 'posts' });
+    [...element.children].forEach((elementChild) => {
+      let title = elementChild.querySelector('picture').parentElement.previousElementSibling;
+      if (title) title = h2({ class: 'title' }, title.textContent);
+      const showcaseBanner = li({ class: 'post' });
+      const picElement = elementChild.querySelector('picture');
+      const linkElement = elementChild.querySelector('a');
+      const ancButton = picElement.nextElementSibling;
+      const description = picElement.parentElement.nextElementSibling;
+      if (picElement) {
+        const articleImage = document.createElement('a');
+        articleImage.className = 'article-card-img';
+        articleImage.append(picElement);
+        articleImage.href = linkElement.href;
+        if (title) {
+          title.className = 'article-card-subtitle';
+          showcaseBanner.append(title);
+        }
+        showcaseBanner.append(articleImage);
+        const contentEle = div({ class: 'article-card-body' });
+        if (ancButton) {
+          ancButton.className = 'redirect-link';
+          contentEle.append(ancButton);
+        }
+        if (description) {
+          description.className = 'description';
+          contentEle.append(description);
+        }
+        showcaseBanner.append(contentEle);
       }
-      showcaseBanner.append(picElement);
-      const contentEle = div({ class: 'article-card-body' });
-      if (ancButton) {
-        ancButton.className = 'redirect-link';
-        contentEle.append(ancButton);
-      }
-      if (description) {
-        description.className = 'description';
-        contentEle.append(description);
-      }
-      showcaseBanner.append(contentEle);
-    }
-    lists.append(showcaseBanner);
+      lists.append(showcaseBanner);
+    });
+    wrapper.append(lists);
   });
-  wrapper.append(lists);
   block.replaceChildren(wrapper);
 }
