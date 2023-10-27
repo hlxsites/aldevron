@@ -11,10 +11,10 @@ table td {
 }
 
 .heading-top tr:first-child td {
-    background-color: var(--primary-color); /* Specify your desired background color here */
+    background-color: var(--primary-color);
 }
 
-.heading-left tr td:first-child {
+.left-heading {
     background-color: var(--primary-color);
     text-align: left;
 }
