@@ -5,6 +5,8 @@ export default function decorate() {
   heroClass[0].children[0].children[0].setAttribute('class', 'vertical');
   const heroDiv = heroClass[0].children[0].children[0];
   const pTags = heroDiv.getElementsByTagName('p');
+  const supTag = heroDiv.getElementsByTagName('sup');
+  supTag[0].style.fontSize = '60%';
   const heroSrc = pTags[0].children[0].querySelector('img').src;
   heroClass[0].style.backgroundImage = `url('${heroSrc}')`;
   let innerElements = '';
