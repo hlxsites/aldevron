@@ -134,7 +134,7 @@
     }
 
     #cart .cart-num {
-        background: #ec8f2d;
+        background: var(--primary-color);
         border-radius: 50%;
         color: #fff;
         font-size: 10px;

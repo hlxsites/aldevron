@@ -3,6 +3,7 @@
     font-family: Helvetica;
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459830/b109e194-c563-4a1e-aa7b-0ab12434b83e.eot#iefix");
     src: local("Helvetica Regular"), url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459830/b109e194-c563-4a1e-aa7b-0ab12434b83e.eot#iefix") format("eot"),
         url("../fonts/helvetica/3515325d-15bc-419d-968e-43418f451aaa.woff2") format("woff2"),
@@ -14,6 +15,7 @@
     font-family: Helvetica;
     font-style: italic;
     font-weight: 400;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459832/2f5c8674-96c6-4e6f-af67-8154b447387b.eot#iefix");
     src: local("Helvetica Oblique"),
         url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459832/2f5c8674-96c6-4e6f-af67-8154b447387b.eot#iefix") format("eot"),
@@ -26,6 +28,7 @@
     font-family: Helvetica;
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459834/0d0cf487-b97e-4a3b-811b-a5ff4d2f3a8f.eot#iefix");
     src: local("Helvetica Bold"), url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459834/0d0cf487-b97e-4a3b-811b-a5ff4d2f3a8f.eot#iefix") format("eot"),
         url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/helvetica/1459834/2044ee80-fba8-4c91-87df-4995217f48fa.woff2") format("woff2"),
@@ -37,6 +40,7 @@
     font-family: "Proxima Nova A";
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/reg/96676c88-bae1-468a-acf5-fa74fdb2b736.eot#iefix");
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/reg/96676c88-bae1-468a-acf5-fa74fdb2b736.eot#iefix") format("eot"),
         url("../fonts/proxima/reg/a7333c48-140e-4bcb-a574-a2dcfcd4a621.woff2") format("woff2"),
@@ -48,6 +52,7 @@
     font-family: "Proxima Nova A";
     font-style: italic;
     font-weight: 400;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/926e8ba2-1161-42b7-a850-c56765e872fd.eot#iefix");
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/italic/926e8ba2-1161-42b7-a850-c56765e872fd.eot#iefix") format("eot"),
         url("../fonts/proxima/italic/09a1d106-4ddc-4781-bbaa-ca99d410f96c.woff2") format("woff2"),
@@ -59,6 +64,7 @@
     font-family: "Proxima Nova A";
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/bold/cb0a2948-31e1-4f3e-8df8-f8fed5125537.eot#iefix");
     src: url("//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/fonts/proxima/bold/cb0a2948-31e1-4f3e-8df8-f8fed5125537.eot#iefix") format("eot"),
         url("../fonts/proxima/bold/8666e3e0-713e-463a-8bb9-2d3c6b8050b1.woff2") format("woff2"),
@@ -70,6 +76,7 @@
     font-family: Brown-Ald;
     font-style: normal;
     font-weight: 300;
+    font-display: swap;
     src: url("../fonts/brown/lineto-brown-light.eot");
     src: url("../fonts/brown/lineto-brown-light.eot#iefix") format("embedded-opentype"),
         url("../fonts/brown/lineto-brown-light.woff") format("woff"),
@@ -80,6 +87,7 @@
     font-family: Brown-Ald;
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url("../fonts/brown/lineto-brown-regular.eot");
     src: url("../fonts/brown/lineto-brown-regular.eot#iefix") format("embedded-opentype"),
         url("../fonts/brown/lineto-brown-regular.woff") format("woff"),
@@ -90,6 +98,7 @@
     font-family: Brown-Ald;
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: url("../fonts/brown/lineto-brown-bold.eot");
     src: url("../fonts/brown/lineto-brown-bold.eot#iefix") format("embedded-opentype"),
         url("../fonts/brown/lineto-brown-bold.woff") format("woff"),
@@ -100,6 +109,7 @@
     font-family: ald-icons;
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url("../fonts/ald-icons.eot?dgljk");
     src: url("../fonts/ald-icons.eot?dgljk#iefix") format("embedded-opentype"),
         url("../fonts/ald-icons.ttf?dgljk") format("truetype"),

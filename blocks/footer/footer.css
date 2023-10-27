@@ -27,7 +27,10 @@
 
 @media (max-width: 767px){
   .footer-wrapper div#footer-black div {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
   }
 }
 
@@ -39,7 +42,7 @@
   .footer-wrapper div#footer-orange .outer{
     grid-template-columns: 1fr;
   }
-  
+
   .footer-wrapper div#footer-orange .outer .social-icons{
     display: flex;
     justify-content: flex-end;

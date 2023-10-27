@@ -1,4 +1,8 @@
-/* eslint-disable */
+:root {
+    --primary-color: #ec8f2d; /* Default primary color */
+    --text-color: #fff;
+}
+
 .img-colorbox-popup::after,
 [class*=" icon-"],
 [class^="icon-"] {
@@ -138,7 +142,7 @@ th {
 }
 
 th {
-    background-color: #ec8f2d;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -243,7 +247,7 @@ body {
 
 a {
     background: transparent;
-    color: #ec8f2d;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -314,7 +318,7 @@ h2+h4 {
 #main h1,
 #main h2,
 #main h3 {
-    border-left: 3px solid #ec8f2d;
+    border-left: 3px solid var(--primary-color);
     line-height: 1.1;
     margin: 1em 0 0.5em;
     padding: 0 0 0 10px;
@@ -439,7 +443,7 @@ ol li {
 }
 
 #content ul li::before {
-    color: #ec8f2d;
+    color: var(--primary-color);
     content: "\25A0";
     font-size: 1em;
     left: 0;
@@ -580,14 +584,14 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="text"]:focus
 {
-    border-color: #ec8f2d;
+    border-color: var(--primary-color);
     outline: none
 }
 
 select,select:focus,
 textarea:focus  {
     padding: .4em .6em;
-    border-color: #ec8f2d;
+    border-color: var(--primary-color);
     outline: none
 }
 
@@ -600,7 +604,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    background-color: #ec8f2d;
+    background-color: var(--primary-color);
     border-radius: 5px;
     box-sizing: border-box;
     color: #fff;
@@ -630,7 +634,7 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
     background-color: #fff;
-    color: #ec8f2d;
+    color: var(--primary-color);
     text-decoration: none
 }
 
@@ -1072,7 +1076,8 @@ form.hs-form .hs-input[type="checkbox"] {
     line-height: normal
 }
 
-/* backgrounds */
-.bg-grey {
-    background-color: #ededed;
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }

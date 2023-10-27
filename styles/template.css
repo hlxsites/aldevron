@@ -2,6 +2,14 @@ body {
     padding-top: 100px
 }
 
+.no-padding {
+    padding: 0!important;
+}
+
+.no-margin {
+    margin: 0!important;
+}
+
 .outer {
     box-sizing: border-box;
     margin: 0 auto;
@@ -162,7 +170,7 @@ body {
 }
 
 #menu li.hs-menu-depth-1.active-branch>a::after,#menu li.hs-menu-depth-1:hover>a::after {
-    border-color: #ec8f2d;
+    border-color: var(--primary-color);
     width: 100%
 }
 
@@ -391,7 +399,7 @@ body {
 }
 
 #home-slideshow .swiper-pagination-bullet-active {
-    background: #ec8f2d
+    background: var(--primary-color)
 }
 
 #section-about {
@@ -466,7 +474,7 @@ body {
 
 #section-about a:hover {
     background-color: #fff;
-    color: #ec8f2d
+    color: var(--primary-color)
 }
 
 #section-services {
@@ -927,7 +935,7 @@ body.widgets-no-border .mmg-rollover-menu {
 }
 
 .mmg-collapsible.open>.module-title,.mmg-collapsible>.module-title:hover {
-    color: #ec8f2d
+    color: var(--primary-color)
 }
 
 body.red .mmg-collapsible.open>.module-title,body.red .mmg-collapsible>.module-title:hover {
@@ -994,7 +1002,7 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 .careers-list .job-line:hover {
-    color: #ec8f2d
+    color: var(--primary-color)
 }
 
 .careers-list .job-line:nth-child(2n) {
@@ -1055,7 +1063,7 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 .post-title a:hover {
-    color: #ec8f2d
+    color: var(--primary-color)
 }
 
 .post-meta,.post-topics {
@@ -1515,7 +1523,7 @@ table.table_orderNested .info_label {
 
 .mmg-tabs .tab.active,.mmg-tabs .tab:focus,.mmg-tabs .tab:hover {
     background: #fff!important;
-    color: #ec8f2d!important;
+    color: var(--primary-color)!important;
     text-decoration: none
 }
 
