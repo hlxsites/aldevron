@@ -1,25 +1,30 @@
-export default function decorate() {
-  const heroClass = document.getElementsByClassName('hero block');
-  heroClass[0].setAttribute('id', 'heading');
-  heroClass[0].children[0].setAttribute('class', 'outer');
-  heroClass[0].children[0].children[0].setAttribute('class', 'vertical');
-  const heroDiv = heroClass[0].children[0].children[0];
-  const pTags = heroDiv.getElementsByTagName('p');
-  const supTag = heroDiv.getElementsByTagName('sup');
-  supTag[0].style.fontSize = '60%';
-  const heroSrc = pTags[0].children[0].querySelector('img').src;
-  heroClass[0].style.backgroundImage = `url('${heroSrc}')`;
-  let innerElements = '';
-  for (let i = 0; i < pTags.length; i += 1) {
-    if (pTags[i].outerHTML.includes('class')) {
-      innerElements += pTags[i].innerHTML.replace('class="button"', 'style="background-color:#000;" class="hs-button" target="_blank"');
-    } else if (i === 1) {
-      const heroTitle = pTags[i].outerHTML.replace(/<p[ ]*>/g, '');
-      innerElements += heroTitle.replace(/<\/p>/g, '<br>');
-    } else if (i === 2) {
-      const heroDescription = pTags[i].outerHTML.replace(/<p[ ]*>/g, '<span style="font-size: 70%;">');
-      innerElements += heroDescription.replace(/<\/p>/g, '</span><br>');
-    }
+export default function decorate( block) {
+  console.log(block);
+  if (!block || !block.children || block.children.length === 0) {
+    console.error("Invalid block or no children found.");
+    return;
   }
-  heroDiv.innerHTML = `<h1>${innerElements}</h1>`;
+
+  const bgImage = block.children[0].querySelector('img');
+  if (!bgImage) {
+      console.error("No image found in the first child of the block.");
+      return;
+  }
+
+  const heroContainer = document.createElement('div');
+  heroContainer.className = 'bg-primary';
+
+  // Set background image using CSS property
+  heroContainer.style.backgroundImage = `url(${bgImage.src})`;
+  heroContainer.style.backgroundSize = 'cover'; // Adjust as needed
+
+  if (block.children.length > 1) {
+      const additionalContent = block.children[1]; // Change the index if needed
+      if (additionalContent) {
+        additionalContent.classList.add('outer', 'hero-content');
+          heroContainer.appendChild(additionalContent);
+      }
+  }
+  block.innerText = '';
+  block.appendChild(heroContainer);
 }
