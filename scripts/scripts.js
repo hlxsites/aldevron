@@ -45,10 +45,10 @@ async function loadFonts() {
 }
 
 const TEMPLATE_LIST = [
-  'Default',
-  'Plasmids',
-  'Proteins',
-  'mRNA',
+  'default',
+  'plasmids',
+  'proteins',
+  'mrna',
 ];
 
 /**
