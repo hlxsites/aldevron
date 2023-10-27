@@ -7,7 +7,7 @@ export default function buildAutoBlocks(block) {
 
   // Appending Hero banner
   const heroBanner = blocks.querySelector('.hero-wrapper');
-  if(heroBanner) {
+  if (heroBanner) {
     defaultTemplate.appendChild(heroBanner);
   }
 

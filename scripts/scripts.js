@@ -47,11 +47,11 @@ async function loadFonts() {
 
 function capitalizeWords(str) {
   const words = str.split(' ');
-  const capitalizedWords = words.map(word => {
-  if (word.length > 0) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }
-  return word;
+  const capitalizedWords = words.map((word) => {
+    if (word.length > 0) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+    return word;
   });
   return capitalizedWords.join(' ');
 }
@@ -72,7 +72,7 @@ async function decorateTemplates(main) {
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
-      const templateName = capitalizeWords(template)
+      const templateName = capitalizeWords(template);
       const mod = await import(`../templates/${templateName}/${templateName}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
       if (mod.default) {
