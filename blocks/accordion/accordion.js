@@ -5,7 +5,9 @@ export default function decorate(block) {
   faqRows.forEach((row) => {
     const faqQuestion = [...row.children][0];
     const faqAnswer = [...row.children][1];
-
+    if (row.children[0].textContent === '') {
+        row.remove();
+    } else {
     faqQuestion.classList.add('faq-question');
     faqAnswer.classList.add('faq-answer');
 
@@ -29,5 +31,6 @@ export default function decorate(block) {
     faqQuestion.classList.remove('active');
     faqAnswer.classList.remove('active');
     faqAnswer.style.maxHeight = '0';
+  }
   });
 }
