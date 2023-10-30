@@ -606,6 +606,7 @@ input[type="reset"],
 input[type="submit"] {
     background-color: var(--primary-color);
     border-radius: 5px;
+    border: 1px solid var(--primary-color);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -635,7 +636,8 @@ input[type="reset"]:hover,
 input[type="submit"]:hover {
     background-color: #fff;
     color: var(--primary-color);
-    text-decoration: none
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
 }
 
 body.red #content-wrapper button,

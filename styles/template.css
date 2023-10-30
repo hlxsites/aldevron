@@ -1143,7 +1143,8 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 
 .blog-pagination a:hover {
     background: #727d84;
-    color: #eaeaee
+    color: #eaeaee;
+    border: 1px solid #aebac0;
 }
 
 .blog-pagination .all-posts {
