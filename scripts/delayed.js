@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './aem.js';
+import { buildForm, isForm } from '../blocks/forms/forms.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -39,4 +40,21 @@ if (
     && !document.location.hostname.includes('.hlx.page')
 ) {
   loadGTM();
+}
+
+function loadHubSpot() {
+  const hsScriptEl = document.createElement('script');
+  hsScriptEl.type = 'text/javascript';
+  hsScriptEl.async = true;
+  hsScriptEl.setAttribute('id', 'hs-script-loader');
+  hsScriptEl.src = '//js.hsforms.net/forms/v2.js';
+  document.querySelector('head').append(hsScriptEl);
+  hsScriptEl.addEventListener('load', () => {
+        buildForm(hbspt); // eslint-disable-line
+  });
+}
+
+// only load this if there is a form block
+if (isForm()) {
+  loadHubSpot();
 }

@@ -134,7 +134,7 @@
     }
 
     #cart .cart-num {
-        background: #ec8f2d;
+        background: var(--primary-color);
         border-radius: 50%;
         color: #fff;
         font-size: 10px;
@@ -368,6 +368,13 @@
         padding: 13px 15px !important;
         text-align: center;
         width: 33.3%
+    }
+
+    #header-info a.news {
+        font-weight: bold;
+        color: #fff;
+        margin-left: 0;
+        padding: 13px 15px !important;
     }
 
     #header-info a.careers,
