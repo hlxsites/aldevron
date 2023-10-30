@@ -29,9 +29,11 @@ ul.posts li.post:not(:first-child) a.article-card-img{
     flex-shrink: 0.9;
     padding: 20px 0 0;
 }
+
 .article-card-body a{
     font-weight: bold;
 }
+
 .article-card-body a:hover{
     color: #000;
     text-decoration: none;
