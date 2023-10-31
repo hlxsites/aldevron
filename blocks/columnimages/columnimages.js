@@ -1,4 +1,3 @@
-import { createOptimizedPicture } from "../../scripts/aem.js";
 import { div, p, a, h4 } from "../../scripts/dom-builder.js";
 
 export default function decorate(block) {
@@ -92,30 +91,18 @@ export default function decorate(block) {
     if (cName.includes("3col-img")) {
         col3El
             .querySelectorAll("img")
-            .forEach((img) =>
-                img
-                    .closest("picture")
-                    .replaceWith(createOptimizedPicture(img.src, img.alt, false, [{}]))
-            );
-        col3El
-            .querySelectorAll("img")
-            .forEach((img) =>
-                img.setAttribute("style", "width:200px;display:block;margin:0px auto;")
-            );
+            .forEach((img) => {
+                img.setAttribute("style", "width:200px;display:block;margin:0px auto;"),
+                img.setAttribute("loading","lazy")
+            });
         block.append(col3wrap);
     } else if (cName.includes("2col-img")) {
         col2El
             .querySelectorAll("img")
-            .forEach((img) =>
-                img
-                    .closest("picture")
-                    .replaceWith(createOptimizedPicture(img.src, img.alt, false, [{}]))
-            );
-        col2El
-            .querySelectorAll("img")
-            .forEach((img) =>
-                img.setAttribute("style", "width:200px;display:block;margin:0px auto;")
-            );
+            .forEach((img) => {
+                img.setAttribute("style", "width:200px;display:block;margin:0px auto;"),
+                img.setAttribute("loading","lazy")
+            });
         block.append(col2wrap);
     }
 }
