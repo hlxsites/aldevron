@@ -1083,3 +1083,11 @@ form.hs-form .hs-input[type="checkbox"] {
     display: table;
     clear: both;
 }
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-transparent {
+    background-color: transparent!important;
+}

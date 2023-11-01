@@ -5,7 +5,6 @@ export default function decorate(block) {
   faqRows.forEach((row) => {
     const faqQuestion = [...row.children][0];
     const faqAnswer = [...row.children][1];
-
     faqQuestion.classList.add('faq-question');
     faqAnswer.classList.add('faq-answer');
 
