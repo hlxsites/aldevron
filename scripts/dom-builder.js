@@ -28,7 +28,6 @@
  * @returns {Element} The constructred DOM Element
  */
 export function domEl(tag, ...items) {
-
   const element = document.createElement(tag);
   if (!items || items.length === 0) return element;
   if (!(items[0] instanceof Element || items[0] instanceof HTMLElement) && typeof items[0] === 'object') {
