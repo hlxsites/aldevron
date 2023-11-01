@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './aem.js';
+import { buildForm, isForm } from '../blocks/forms/forms.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -8,7 +9,7 @@ sampleRUM('cwv');
 function loadGTM() {
   const scriptTag = document.createElement('script');
   scriptTag.innerHTML = `
-        let gtmId = 'GTM-MLWV3QQ';
+        let gtmId = 'GTM-W93WJWB9';
         // googleTagManager
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -25,6 +26,12 @@ function loadGTM() {
         })(window, document, 'script', 'dataLayer', gtmId);
         `;
   document.head.prepend(scriptTag);
+  const noScriptTag = document.createElement('noscript');
+  noScriptTag.innerHTML = `
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W93WJWB9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  `;
+  document.body.prepend(noScriptTag);
 }
 // google tag manager -end
 
@@ -33,4 +40,21 @@ if (
     && !document.location.hostname.includes('.hlx.page')
 ) {
   loadGTM();
+}
+
+function loadHubSpot() {
+  const hsScriptEl = document.createElement('script');
+  hsScriptEl.type = 'text/javascript';
+  hsScriptEl.async = true;
+  hsScriptEl.setAttribute('id', 'hs-script-loader');
+  hsScriptEl.src = '//js.hsforms.net/forms/v2.js';
+  document.querySelector('head').append(hsScriptEl);
+  hsScriptEl.addEventListener('load', () => {
+        buildForm(hbspt); // eslint-disable-line
+  });
+}
+
+// only load this if there is a form block
+if (isForm()) {
+  loadHubSpot();
 }
