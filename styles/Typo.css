@@ -1146,22 +1146,4 @@ form.hs-form .hs-input[type="checkbox"] {
         padding-right: 20px;
         width: auto;
     }
-
-    .hero {
-        height: 260px;
-      }
-      
-      .hero > div:nth-child(1) picture > img {
-        height: 260px;
-      }
-}
-
-@media (max-width: 767px) {
-    .hero {
-        height: 180px;
-      }
-      
-    .hero > div:nth-child(1) picture > img {
-        height: 180px;
-    }
 }
