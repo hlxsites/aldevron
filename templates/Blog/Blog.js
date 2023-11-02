@@ -77,7 +77,7 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
     { class: `${art.image ? 'post-item post-has-img clearfix' : 'post-item clearfix'}` },
     div(
       { class: 'post-image ' },
-      img({ src: art.image, width: '1200', alt: '' }),
+      img({ src: art.image, width: '30%', height: '100%', alt: '' }),
     ),
     div(
       { class: 'post-content' },
@@ -211,8 +211,6 @@ export default async function buildAutoBlocks(block) {
   const sidebar = document.createElement('div');
   sidebar.id = 'sidebar';
 
-  // Adding sidebars if available
-
   // Moving remaining blocks to main
   [...blocks.children].forEach((child) => {
     main.appendChild(child);
@@ -240,8 +238,8 @@ export default async function buildAutoBlocks(block) {
   }
 
   const blogRegex = /^\/blog(?:\/(?:\?.*)?)?$/;
-  const blogsContent = await getBlogsContent(finalArticles, pageNumber);
-  if (blogsContent && blogRegex.test(window.location.pathname)) {
+  if (blogRegex.test(window.location.pathname)) {
+    const blogsContent = await getBlogsContent(finalArticles, pageNumber);
     main.appendChild(blogsContent);
   } else {
     const tagList = createPageTopics();

@@ -1,4 +1,7 @@
-export default function decorate(block) {
+import { waitForLCP } from "../../scripts/aem";
+
+export default function build(block) {
+  waitForLCP(block);
   const bgImage = block.children[0].querySelector('img');
 
   const heroContainer = document.createElement('div');
