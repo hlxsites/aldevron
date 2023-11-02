@@ -606,6 +606,7 @@ input[type="reset"],
 input[type="submit"] {
     background-color: var(--primary-color);
     border-radius: 5px;
+    border: 1px solid var(--primary-color);
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -635,7 +636,8 @@ input[type="reset"]:hover,
 input[type="submit"]:hover {
     background-color: #fff;
     color: var(--primary-color);
-    text-decoration: none
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
 }
 
 body.red #content-wrapper button,
@@ -1016,7 +1018,7 @@ body.purple input[type="submit"]:hover {
     width: 100%
 }
 
-.block.subscribe .hs_submit {
+.sidebar-block.subscribe .hs_submit {
     padding-bottom: 0
 }
 
@@ -1088,4 +1090,60 @@ form.hs-form .hs-input[type="checkbox"] {
 
 .bg-transparent {
     background-color: transparent!important;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+/* hero block code */
+.hero {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 310px;
+    background-color: var(--primary-color);
+}
+
+.hero > div:nth-child(1) picture > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 310px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.hero > div:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 980px;
+    align-items: center;
+    text-align: left;
+    margin: 0 auto;
+    display: flex;
+    color: #fff;
+}
+
+.hero > div:nth-child(2) h2 {
+    line-height: 1.2;
+    padding: 0;
+    color: white;
+    font-size: 44px;
+    text-shadow: 0 0 6px rgba(0,0,0,50%);
+}
+
+@media (max-width: 1024px) {
+    .hero > div:nth-child(2) {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: auto;
+    }
 }
