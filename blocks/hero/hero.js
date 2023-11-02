@@ -6,9 +6,6 @@ export default function decorateBlock(block) {
     heroContainer.className = 'bg-primary';
     heroContainer.style.backgroundImage = `url(${bgImage.src})`;
     heroContainer.style.backgroundSize = 'cover';
-    heroContainer.style.height = '400px'; // Set a fixed height to prevent layout shift
-
-    block.innerHTML = ''; // Clear the block content before appending
 
     if (block.children.length > 1) {
       const additionalContent = block.children[1];
@@ -17,7 +14,8 @@ export default function decorateBlock(block) {
         heroContainer.appendChild(additionalContent);
       }
     }
-
+    block.innerHTML = ''; // Clear the block content before appending
     block.appendChild(heroContainer);
+    block.style.display = 'block';
   }
 }
