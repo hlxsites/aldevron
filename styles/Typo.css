@@ -1103,9 +1103,9 @@ form.hs-form .hs-input[type="checkbox"] {
     position: relative;
     height: 310px;
     background-color: var(--primary-color);
-  }
-  
-  .hero > div:nth-child(1) picture > img {
+}
+
+.hero > div:nth-child(1) picture > img {
     position: absolute;
     top: 0;
     left: 0;
@@ -1115,9 +1115,9 @@ form.hs-form .hs-input[type="checkbox"] {
     height: 310px;
     width: 100%;
     object-fit: cover;
-  }
-  
-  .hero > div:nth-child(2) {
+}
+
+.hero > div:nth-child(2) {
     position: absolute;
     top: 0;
     left: 0;
@@ -1130,31 +1130,50 @@ form.hs-form .hs-input[type="checkbox"] {
     margin: 0 auto;
     display: flex;
     color: #fff;
-  }
-  
-  .hero > div:nth-child(2) h2 {
+}
+
+.hero > div:nth-child(2) h2 {
     line-height: 1.2;
     padding: 0;
     color: white;
     font-size: 44px;
     text-shadow: 0 0 6px rgba(0,0,0,50%);
-  }
-  
-  @media (max-width: 1120px) {
-    .hero > div:nth-child(2) {
-      min-height: 260px;
+}
+
+@media (max-width: 1120px) {
+    .hero {
+      height: 260px;
     }
-  }
-  
-  @media (max-width: 860px) {
-    .hero > div:nth-child(2) {
-      min-height: 220px;
+    
+    .hero > div:nth-child(1) picture > img {
+      height: 260px;
     }
-  }
-  
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 1024px) {
     .hero > div:nth-child(2) {
-      min-height: 180px;
+      padding-left: 20px;
+      padding-right: 20px;
+      width: auto;
     }
-  }
-  
+}
+
+@media (max-width: 860px) {
+    .hero {
+        height: 220px;
+      }
+      
+    .hero > div:nth-child(1) picture > img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        height: 180px;
+      }
+      
+    .hero > div:nth-child(1) picture > img {
+        height: 180px;
+    }
+}
