@@ -1018,7 +1018,7 @@ body.purple input[type="submit"]:hover {
     width: 100%
 }
 
-.block.subscribe .hs_submit {
+.sidebar-block.subscribe .hs_submit {
     padding-bottom: 0
 }
 
@@ -1090,4 +1090,8 @@ form.hs-form .hs-input[type="checkbox"] {
 
 .bg-transparent {
     background-color: transparent!important;
+}
+
+.cursor {
+    cursor: pointer;
 }

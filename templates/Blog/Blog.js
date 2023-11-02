@@ -2,47 +2,75 @@ import {
   div, article, p, a, img, h1, h4, h3,
 } from '../../scripts/dom-builder.js';
 
-import { capitalizeWords } from '../../scripts/aem.js';
+import { capitalizeWords, getMetadata } from '../../scripts/aem.js';
 
-let sideBarAvailbale = false;
+let sideBarVisible = false;
 
-function generateArchiveBlock(results) {
-  // Reduce the results array to an object with the dates as keys and the counts as values.
-  const dates = results.reduce((acc, article) => {
-    const date = new Date(Number(article.date) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-
-    // If the date is not already in the accumulator, add it with a count of 1.
-    if (!acc.hasOwnProperty(date)) {
-      acc[date] = 1;
-    } else {
-      // Increment the count for the date.
-      acc[date]++;
-    }
-
-    return acc;
-  }, {});
-
-  // Convert the object to an unordered list (UL) with list items (LI).
-  const archiveSidebar = document.createElement('div');
-  const heading = h3('Archives');
-  archiveSidebar.className = 'block';
-  archiveSidebar.appendChild(heading);
-
+function createSidebar(head, items, displayLimit) {
+  const sidebar = document.createElement('div');
+  sidebar.className = 'sidebar-block';
+  const heading = h3(`${head}s`);
   const ul = document.createElement('ul');
-  for (const [title, count] of Object.entries(dates)) {
-    
-    const li = document.createElement('li');
-    const link = document.createElement('a')
-    link.textContent = `${title} (${count})`;
-    link.setAttribute('href',`/archive/?date=${title.replace(' ','/')}`);
-    li.appendChild(link);
+  let itemCount = 0;
 
+  items.forEach(({ title, count }) => {
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.textContent = `${title} (${count})`;
+    link.setAttribute('href', `/blog/?${head.toLowerCase()}=${title.replace(' ', '-')}`);
+    li.appendChild(link);
     ul.appendChild(li);
+    itemCount += 1;
+    if (itemCount > displayLimit) {
+      li.style.display = 'none';
+    }
+  });
+
+  sidebar.appendChild(heading);
+  sidebar.appendChild(ul);
+
+  if (itemCount > displayLimit) {
+    const seeMoreButton = document.createElement('a');
+    seeMoreButton.classList.add('cursor');
+    seeMoreButton.textContent = 'See More';
+    seeMoreButton.addEventListener('click', () => {
+      ul.querySelectorAll('li').forEach((li, index) => {
+        if (index >= displayLimit) {
+          li.style.display = 'block';
+        }
+      });
+      seeMoreButton.style.display = 'none';
+    });
+
+    sidebar.appendChild(seeMoreButton);
   }
-  archiveSidebar.appendChild(ul);
-  return archiveSidebar;
+  return sidebar;
 }
 
+function generateArchiveBlock(results) {
+  const dates = results.reduce((acc, arc) => {
+    const date = new Date(Number(arc.date) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+    if (!(date in acc)) {
+      acc[date] = 1;
+    } else {
+      acc[date] += 1;
+    }
+    return acc;
+  }, {});
+  const archiveResults = Object.entries(dates).map(([title, count]) => ({ title, count }));
+  return createSidebar('Archive', archiveResults, 10);
+}
+
+function generateTopicBlock(results) {
+  const tagCounts = {};
+  results.forEach((arc) => {
+    JSON.parse(arc.tags).forEach((tag) => {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+  });
+  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag, count }));
+  return createSidebar('Topic', tagCountArray, 10);
+}
 
 function generateResultsBlock(articles, currentPage, totalArticles) {
   const articleElements = articles.map((art) => article(
@@ -60,7 +88,7 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
         p(
           { class: 'post-author' },
           '/ by ',
-          a({ href: `author/${art.author.toLowerCase()}` }, art.author),
+          a({ href: `?author=${art.author}` }, art.author),
         ),
       ),
       div(
@@ -72,20 +100,21 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
     ),
   ));
 
+  const postListing = div({ class: 'post-listing' }, ...articleElements);
+
   // Pagination logic
   const totalPages = Math.ceil(totalArticles / 10);
   const paginationDiv = div({ class: 'blog-pagination clearfix' });
   if (currentPage < totalPages) {
+    const nextPageUrl = new URL(window.location.href);
+    nextPageUrl.searchParams.set('page', parseInt(currentPage, 10) + 1);
     const nextButton = a(
-      { href: `?page=${parseInt(currentPage, 10) + 1}`, class: 'button next-posts' },
+      { href: `${nextPageUrl}`, class: 'button next-posts' },
       'Next',
     );
     paginationDiv.appendChild(nextButton);
+    postListing.appendChild(paginationDiv);
   }
-
-  // Appending pagination buttons to the results block
-  const postListing = div({ class: 'post-listing' }, ...articleElements);
-  postListing.appendChild(paginationDiv);
   return postListing;
 }
 
@@ -95,7 +124,6 @@ async function fetchBlogData() {
     const jsonData = await response.json();
     return jsonData.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
     return [];
   }
 }
@@ -115,29 +143,46 @@ async function getBlogsContent(filteredResults, pageNumber = 1) {
       return generateResultsBlock(paginatedResults, pageNumber, sortedResults.length);
     }
   } catch (error) {
-    console.error('Error fetching and processing data:', error);
+    return '';
   }
-  return [];
+  return '';
 }
 
 function setFullWidthToBody() {
   document.body.classList.add('full-width');
 }
 
+function createPageTopics() {
+  const tagList = document.createElement('p');
+  tagList.className = 'post-topics';
+  tagList.innerHTML = 'Topics: ';
+  const topics = getMetadata('article:tag');
+  topics.split(',').forEach((topic, index) => {
+    const anchor = document.createElement('a');
+    anchor.className = 'topic-link';
+    anchor.innerText = topic.trim();
+    anchor.href = `/blog/?topic=${topic.trim()}`;
+    tagList.appendChild(anchor);
+    if (index < topics.split(',').length - 1) {
+      tagList.appendChild(document.createTextNode(', '));
+    }
+  });
+  return tagList;
+}
 
 export default async function buildAutoBlocks(block) {
   const searchParams = new URLSearchParams(window.location.search);
-  let filteredResults;
   let pageNumber = 1; // Use let instead of const
+  let finalArticles = [];
   if (searchParams.has('page')) { // Check for 'page' instead of 'sort'
     pageNumber = searchParams.get('page');
   }
 
   const data = await fetchBlogData();
-    filteredResults = data.filter((item) => {
-      const path = item.path.toLowerCase();
-      const regex = /^\/blog\/.+/;
-      return regex.test(path);
+  const filteredResults = data.filter((item) => {
+    const path = item.path.toLowerCase();
+    const regex = /^\/blog\/.+/;
+    return regex.test(path);
   });
 
   const blocks = block.querySelector('.section');
@@ -173,24 +218,56 @@ export default async function buildAutoBlocks(block) {
     main.appendChild(child);
   });
 
-  const blogsContent = await getBlogsContent(filteredResults, pageNumber);
-  if (blogsContent) {
-    main.appendChild(blogsContent);
+  if (searchParams.has('archive')) {
+    const archive = searchParams.get('archive').toLowerCase();
+    finalArticles = filteredResults.filter((art) => {
+      const date = new Date(Number(art.date) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }).toLowerCase();
+      return date.replace(' ', '-') === archive;
+    });
+  } else if (searchParams.has('topic')) {
+    const topic = searchParams.get('topic').replace('-', ' ');
+    finalArticles = filteredResults.filter((art) => {
+      const tags = JSON.parse(art.tags).map((tag) => tag.toLowerCase());
+      return tags.includes(topic.toLowerCase());
+    });
+  } else if (searchParams.has('author')) {
+    const author = searchParams.get('author');
+    finalArticles = filteredResults.filter(
+      (art) => art.author.toLowerCase() === author.toLowerCase(),
+    );
+  } else {
+    finalArticles = filteredResults;
   }
+
+  const blogRegex = /^\/blog(?:\/(?:\?.*)?)?$/;
+  const blogsContent = await getBlogsContent(finalArticles, pageNumber);
+  if (blogsContent && blogRegex.test(window.location.pathname)) {
+    main.appendChild(blogsContent);
+  } else {
+    const tagList = createPageTopics();
+    main.appendChild(tagList);
+  }
+
   const archiveSidebar = generateArchiveBlock(filteredResults);
-  if(archiveSidebar) {
-    sideBarAvailbale = true;
+  if (archiveSidebar) {
+    sideBarVisible = true;
     sidebar.appendChild(archiveSidebar);
+  }
+
+  const topicSidebar = generateTopicBlock(filteredResults);
+  if (topicSidebar) {
+    sideBarVisible = true;
+    sidebar.appendChild(topicSidebar);
   }
 
   if (sidebars.length > 0) {
     sidebars.forEach((sidebarItem) => {
       sidebar.appendChild(sidebarItem);
     });
-  } else {
-    if(!sideBarAvailbale) {
-      setFullWidthToBody();
-    }
+  }
+
+  if (!sideBarVisible) {
+    setFullWidthToBody();
   }
 
   // Creating clearfix element

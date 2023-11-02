@@ -2,3 +2,7 @@
 .default-content-wrapper {
     text-align: left!important;
 }
+
+.default-content-wrapper h2:first-child {
+    margin-top: 0px!important;
+}

@@ -635,22 +635,26 @@ body.sidebar-50 #sidebar {
     display: block
 }
 
-#sidebar .block h3 {
+#sidebar .sidebar-block {
+    background-color: #fff;
+}
+
+#sidebar .sidebar-block h3 {
     font-size: 20px;
     line-height: 110%;
     padding: 0 0 .3em
 }
 
-#sidebar .block ul {
+#sidebar .sidebar-block ul {
     padding: 0
 }
 
-#sidebar .block a {
+#sidebar .sidebar-block a {
     color: #000;
     text-decoration: none
 }
 
-#sidebar .block a:hover {
+#sidebar .sidebar-block a:hover {
     text-decoration: underline
 }
 
@@ -658,7 +662,7 @@ body.sidebar-50 #sidebar {
     width: 100%
 }
 
-#hs_menu_wrapper_sidebarmenu,#sidebar .block,#sidebar div.hs_cos_wrapper_widget {
+#hs_menu_wrapper_sidebarmenu,#sidebar .sidebar-block,#sidebar div.hs_cos_wrapper_widget {
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 11px rgba(0 0 0 / 10%);
@@ -670,11 +674,11 @@ body.sidebar-50 #sidebar {
     margin-bottom: 25px
 }
 
-#sidebar .block,#sidebar div.hs_cos_wrapper_widget {
+#sidebar .sidebar-block,#sidebar div.hs_cos_wrapper_widget {
     margin-top: 25px
 }
 
-#sidebar .block:first-child,#sidebar div.hs_cos_wrapper_widget:first-child {
+#sidebar .sidebar-block:first-child,#sidebar div.hs_cos_wrapper_widget:first-child {
     margin-top: 0
 }
 
