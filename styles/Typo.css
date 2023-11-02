@@ -1140,32 +1140,20 @@ form.hs-form .hs-input[type="checkbox"] {
     text-shadow: 0 0 6px rgba(0,0,0,50%);
 }
 
-@media (max-width: 1120px) {
-    .hero {
-      height: 260px;
-    }
-    
-    .hero > div:nth-child(1) picture > img {
-      height: 260px;
-    }
-}
-
 @media (max-width: 1024px) {
     .hero > div:nth-child(2) {
-      padding-left: 20px;
-      padding-right: 20px;
-      width: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: auto;
     }
-}
 
-@media (max-width: 860px) {
     .hero {
-        height: 220px;
+        height: 260px;
       }
       
-    .hero > div:nth-child(1) picture > img {
-        height: 220px;
-    }
+      .hero > div:nth-child(1) picture > img {
+        height: 260px;
+      }
 }
 
 @media (max-width: 767px) {
