@@ -77,7 +77,9 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
     { class: `${art.image ? 'post-item post-has-img clearfix' : 'post-item clearfix'}` },
     div(
       { class: 'post-image ' },
-      img({ src: art.image, width: '30%', height: '100%', alt: '' }),
+      img({
+        src: art.image, width: '30%', height: '100%', alt: '',
+      }),
     ),
     div(
       { class: 'post-content' },

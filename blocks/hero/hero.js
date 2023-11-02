@@ -1,4 +1,4 @@
-export default function decorate(block) {
+export default function buildAutoBlocks(block) {
   const bgImage = block.children[0].querySelector('img');
 
   const heroContainer = document.createElement('div');
