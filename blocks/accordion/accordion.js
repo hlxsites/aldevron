@@ -41,14 +41,12 @@ export default function decorate(block) {
     const faqQuestion = [...row.children][0];
     faqQuestion.classList.add('faq-question');
     faqQuestion.addEventListener('click', (e) => {
-      // console.log('......e...',e)
+      const currentFaq = e.currentTarget.classList.contains('active');
       const openfaq = block.querySelector('.faq-question.active');
-      // console.log('Openfaq...',openfaq)
-      if (openfaq) {
+      if (openfaq && !currentFaq) {
         openfaq.classList.toggle('active');
         openfaq.nextElementSibling.classList.toggle('active');
       }
-      // faqQuestion.classList.toggle('active');
       faqQuestion.nextElementSibling.style.removeProperty('max-height');
       e.currentTarget.classList.toggle('active');
       e.currentTarget.nextElementSibling.classList.toggle('active');

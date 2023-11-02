@@ -103,12 +103,14 @@ main .accordion.faq-accordion .faq-answer.active {
 
 main .expand_collapse {
     text-align: right;
-    margin-top:10px;
+    max-width: 980px;
+    margin: 10px auto 0;
 }
 
 main .expand_collapse .collapse-btn, .expand_collapse.expanded .expand-btn {
     display: none;
 }
+
 main .expand-btn, .collapse-btn {
     color: #fff;
     background-color: #e46b29;
