@@ -25,6 +25,10 @@ ul.posts li.post:not(:first-child){
     gap: 0.75rem;
 }
 
+ul.posts li.post:before {
+    display: none;
+}
+
 ul.posts li.post:not(:first-child) a.article-card-img{
     flex-shrink: 0.9;
     padding: 20px 0 0;
@@ -153,6 +157,29 @@ ul.posts li.post:not(:first-child) a.article-card-img{
 
 .article-card .article-card-body {
     flex: 1 1 auto;
+}
+
+#main h3.entry-title,
+ h3.entry-title {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+ul.posts li.post:not(:first-child) .entry-title,
+ul.posts li.post:not(:first-child) .description {
+    font-size: 14px;
+}
+
+ul.posts li.post:first-child .entry-title {
+    font-size: 18px;
+}
+
+ul.posts li.post:first-child .description {
+    font-size: 16px;
+}
+
+ul.posts li.post:first-child .article-card-img img {
+    height: 264px;
 }
 
 @media only screen and (max-width: 479px) {
