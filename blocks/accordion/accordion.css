@@ -101,6 +101,24 @@ main .accordion.faq-accordion .faq-answer.active {
     display: block;
 }
 
+main .expand_collapse {
+    text-align: right;
+    max-width: 980px;
+    margin: 10px auto 0;
+}
+
+main .expand_collapse .collapse-btn, .expand_collapse.expanded .expand-btn {
+    display: none;
+}
+
+main .expand-btn, .collapse-btn {
+    color: #fff;
+    background-color: #e46b29;
+    padding: 4px 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
 /* Tablet */
 @media only screen and (min-width: 768px) {
     main .accordion {
