@@ -14,6 +14,7 @@ import {
   loadCSS,
   toClassName,
   getMetadata,
+  capitalizeWords,
 } from './aem.js';
 
 const LCP_BLOCKS = ['forms']; // add your LCP blocks to the list
@@ -30,22 +31,12 @@ async function loadFonts() {
   }
 }
 
-function capitalizeWords(str) {
-  const words = str.split(' ');
-  const capitalizedWords = words.map((word) => {
-    if (word.length > 0) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    }
-    return word;
-  });
-  return capitalizedWords.join(' ');
-}
-
 const TEMPLATE_LIST = [
   'default',
   'plasmids',
   'proteins',
   'mrna',
+  'blog',
 ];
 
 /**
