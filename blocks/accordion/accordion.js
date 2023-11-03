@@ -1,40 +1,43 @@
 export default function decorate(block) {
-  const expandCollapse = document.createElement('div');
-  expandCollapse.classList.add('expand_collapse');
-  const expandBtn = document.createElement('a');
-  expandBtn.classList.add('expand-btn');
-  expandBtn.setAttribute('href', '#');
-  expandBtn.textContent = 'Expand All';
-  const collapseBtn = document.createElement('a');
-  collapseBtn.classList.add('collapse-btn');
-  collapseBtn.setAttribute('href', '#');
-  collapseBtn.textContent = 'Collapse All';
-  expandCollapse.appendChild(expandBtn);
-  expandCollapse.appendChild(collapseBtn);
-  const parent = block.parentNode;
-  parent.prepend(expandCollapse);
-  // event listeners for expand, collapse buttons
-  expandCollapse.addEventListener('click', (event) => {
-    if (event.target.classList.contains('expand-btn')) {
-      document.querySelector('.expand_collapse').classList.add('expanded');
-      document.querySelector('.collapse-btn').style.display = 'inline-block';
-      const allQuestions = document.querySelectorAll('.faq-question');
-      allQuestions.forEach((ele) => {
-        ele.classList.add('active');
-        ele.nextElementSibling.classList.add('active');
-        ele.nextElementSibling.style.maxHeight = `${ele.nextElementSibling.scrollHeight}px`;
-      });
-    } else if (event.target.classList.contains('collapse-btn')) {
-      document.querySelector('.expand_collapse').classList.remove('expanded');
-      document.querySelector('.collapse-btn').style.display = 'none';
-      const allQuestions = document.querySelectorAll('.faq-question');
-      allQuestions.forEach((ele) => {
-        ele.classList.remove('active');
-        ele.nextElementSibling.classList.remove('active');
-        ele.nextElementSibling.style.removeProperty('max-height');
-      });
-    }
-  });
+  const divCta = document.querySelector('div .cta');
+  if (divCta) {
+    const expandCollapse = document.createElement('div');
+    expandCollapse.classList.add('expand_collapse');
+    const expandBtn = document.createElement('a');
+    expandBtn.classList.add('expand-btn');
+    expandBtn.setAttribute('href', '#');
+    expandBtn.textContent = 'Expand All';
+    const collapseBtn = document.createElement('a');
+    collapseBtn.classList.add('collapse-btn');
+    collapseBtn.setAttribute('href', '#');
+    collapseBtn.textContent = 'Collapse All';
+    expandCollapse.appendChild(expandBtn);
+    expandCollapse.appendChild(collapseBtn);
+    const parent = block.parentNode;
+    parent.prepend(expandCollapse);
+    // event listeners for expand, collapse buttons
+    expandCollapse.addEventListener('click', (event) => {
+      if (event.target.classList.contains('expand-btn')) {
+        document.querySelector('.expand_collapse').classList.add('expanded');
+        document.querySelector('.collapse-btn').style.display = 'inline-block';
+        const allQuestions = document.querySelectorAll('.faq-question');
+        allQuestions.forEach((ele) => {
+          ele.classList.add('active');
+          ele.nextElementSibling.classList.add('active');
+          ele.nextElementSibling.style.maxHeight = `${ele.nextElementSibling.scrollHeight}px`;
+        });
+      } else if (event.target.classList.contains('collapse-btn')) {
+        document.querySelector('.expand_collapse').classList.remove('expanded');
+        document.querySelector('.collapse-btn').style.display = 'none';
+        const allQuestions = document.querySelectorAll('.faq-question');
+        allQuestions.forEach((ele) => {
+          ele.classList.remove('active');
+          ele.nextElementSibling.classList.remove('active');
+          ele.nextElementSibling.style.removeProperty('max-height');
+        });
+      }
+    });
+  }
   const faqRows = [...block.children];
   block.classList.add('faq-accordion');
   faqRows.forEach((row) => {
