@@ -288,7 +288,7 @@ export default async function buildAutoBlocks(block) {
     const shareTitle = getMetadata('title');
     const shareContainer = document.createElement('div');
     shareContainer.className = 'hs-blog-social-share';
-    renderShareButtons(shareContainer, 'window.location.href', shareTitle);
+    renderShareButtons(shareContainer, new URL(window.location.href), shareTitle);
     main.appendChild(shareContainer);
   }
 
