@@ -285,7 +285,7 @@ export default async function buildAutoBlocks(block) {
   } else {
     const tagList = createPageTopics();
     main.appendChild(tagList);
-    const shareTitle = getMetadata('title');
+    const shareTitle = getMetadata('og:title');
     const shareContainer = document.createElement('div');
     shareContainer.className = 'hs-blog-social-share';
     renderShareButtons(shareContainer, new URL(window.location.href), shareTitle);
