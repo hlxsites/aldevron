@@ -6,7 +6,7 @@ export default function decorate(block) {
   formConfig = readBlockConfig(block);
   const form = document.createElement('div');
   form.id = formConfig.target;
-  form.classList.add('content', 'outer');
+  form.classList.add('content');
   block.textContent = '';
   block.append(form);
 }
