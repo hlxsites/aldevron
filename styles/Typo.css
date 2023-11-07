@@ -1147,3 +1147,8 @@ form.hs-form .hs-input[type="checkbox"] {
         width: auto;
     }
 }
+
+/* Blog pagination */
+.blog-pagination .prev-posts {
+    margin-right: 20px;
+}
