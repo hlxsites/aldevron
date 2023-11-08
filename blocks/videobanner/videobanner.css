@@ -7,6 +7,7 @@
 .videobanner .listing-hero .outer {
     position: relative;
     z-index: 2;
+    
     @media (max-width: 860px) {
     padding: 0;
 }
@@ -16,6 +17,7 @@
     float: left;
     margin-top: 30px;
     width: 150px;
+    
     @media (max-width: 860px) {
     float: none;
     left: 50%;
@@ -30,6 +32,7 @@
     box-sizing: border-box;
     float: right;
     width: 78%;
+    
     @media (max-width: 860px) {
     background-size: 118% auto;
     box-sizing: border-box;
@@ -81,6 +84,7 @@
 
 .videobanner .listing-hero-mobitext {
     display: none;
+    
     @media (max-width: 860px) {
     background: #1f2f68;
     color: #fff;
