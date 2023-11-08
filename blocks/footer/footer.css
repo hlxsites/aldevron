@@ -49,6 +49,11 @@
   }
 }
 
+@media (max-width: 479px){
+  .footer-wrapper div#footer-black div {
+    padding: 0 10px;
+  }
+}
 .social-icons.clearfix img {
   max-width: 44px;
 }
