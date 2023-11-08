@@ -17,7 +17,7 @@ function createSidebar(head, items, displayLimit) {
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${title} (${count})`;
-    link.setAttribute('href', `/blog/?${head.toLowerCase()}=${title.replace(' ', '-')}`);
+    link.setAttribute('href', `/news/?${head.toLowerCase()}=${title.replace(' ', '-')}`);
     li.appendChild(link);
     ul.appendChild(li);
     itemCount += 1;
@@ -75,12 +75,13 @@ function generateTopicBlock(results) {
 function generateResultsBlock(articles, currentPage, totalArticles) {
   const articleElements = articles.map((art) => article(
     { class: `${art.image ? 'post-item post-has-img clearfix' : 'post-item clearfix'}` },
-    div(
-      { class: 'post-image ' },
-      img({
-        src: art.image, width: '30%', height: '100%', alt: '',
-      }),
-    ),
+    art.image
+      ? div({ class: 'post-image ' }, a(
+        { href: art.path },
+        img({
+          src: art.image, width: '30%', height: '100%', alt: '',
+        }),
+      )) : '',
     div(
       { class: 'post-content' },
       h1({ class: 'post-title' }, a({ href: art.path }, capitalizeWords(art.title.replace(/[\W]+/g, ' ')))),
@@ -107,7 +108,7 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
   // Pagination logic
   const totalPages = Math.ceil(totalArticles / 10);
   const paginationDiv = div({ class: 'blog-pagination clearfix' });
-  if (currentPage > 1 && totalPages > 1) {
+  if (currentPage > 1) {
     const prevPageUrl = new URL(window.location.href);
     prevPageUrl.searchParams.set('page', parseInt(currentPage, 10) - 1);
     const prevButton = a(
@@ -125,13 +126,11 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
     );
     paginationDiv.appendChild(nextButton);
   }
-  if (totalPages > 1) {
-    postListing.appendChild(paginationDiv);
-  }
+  postListing.appendChild(paginationDiv);
   return postListing;
 }
 
-async function fetchBlogData() {
+async function fetchNewsData() {
   try {
     const response = await fetch('/query-index.json');
     const jsonData = await response.json();
@@ -141,7 +140,7 @@ async function fetchBlogData() {
   }
 }
 
-async function getBlogsContent(filteredResults, pageNumber = 1) {
+async function getNewsContent(filteredResults, pageNumber = 1) {
   try {
     let sortedResults = [];
     if (filteredResults.length) {
@@ -233,10 +232,10 @@ export default async function buildAutoBlocks(block) {
     pageNumber = searchParams.get('page');
   }
 
-  const data = await fetchBlogData();
+  const data = await fetchNewsData();
   const filteredResults = data.filter((item) => {
     const path = item.path.toLowerCase();
-    const regex = /^\/blog\/.+/;
+    const regex = /^\/news\/.+/;
     return regex.test(path);
   });
 
@@ -292,10 +291,10 @@ export default async function buildAutoBlocks(block) {
     finalArticles = filteredResults;
   }
 
-  const blogRegex = /^\/blog(?:\/(?:\?.*)?)?$/;
-  if (blogRegex.test(window.location.pathname)) {
-    const blogsContent = await getBlogsContent(finalArticles, parseInt(pageNumber, 10));
-    main.appendChild(blogsContent);
+  const newsRegex = /^\/news(?:\/(?:\?.*)?)?$/;
+  if (newsRegex.test(window.location.pathname)) {
+    const newsContent = await getNewsContent(finalArticles, parseInt(pageNumber, 10));
+    main.appendChild(newsContent);
   } else {
     const tagList = createPageTopics();
     if (tagList) {

@@ -37,6 +37,7 @@ const TEMPLATE_LIST = [
   'proteins',
   'mrna',
   'blog',
+  'news',
 ];
 
 /**
