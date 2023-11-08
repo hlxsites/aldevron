@@ -1148,6 +1148,11 @@ form.hs-form .hs-input[type="checkbox"] {
     }
 }
 
+/* Blog pagination */
+.blog-pagination .prev-posts {
+    margin-right: 20px;
+}
+
 /* social share */
 .hs-blog-social-share-list {
     list-style-type: none;
