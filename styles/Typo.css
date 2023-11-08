@@ -1152,3 +1152,52 @@ form.hs-form .hs-input[type="checkbox"] {
 .blog-pagination .prev-posts {
     margin-right: 20px;
 }
+
+/* social share */
+.hs-blog-social-share-list {
+    list-style-type: none;
+    display: flex;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item {
+    padding-left: 0;
+    padding-right: 10px;
+    outline: none;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item .hs-blog-social-share-item-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 15px;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item .hs-blog-social-share-item-linkedin {
+    background-color: #0073b1!important;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item .hs-blog-social-share-item-facebook {
+    background-color: #385898!important;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item .hs-blog-social-share-item-twitter {
+    background-color: #1d9bf0!important;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item img {
+    height: 15px;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item span {
+    color: #fff;
+    padding-left: 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hs-blog-social-share-list .hs-blog-social-share-item::before {
+    content: ''!important;
+}

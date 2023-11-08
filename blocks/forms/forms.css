@@ -1,3 +1,9 @@
 .forms {
     padding: 50px 0;
 }
+
+.grey-forms {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    background-color: #eee;
+}

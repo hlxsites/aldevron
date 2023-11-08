@@ -186,6 +186,45 @@ function createPageTopics() {
   return '';
 }
 
+function createShareButton(network, url, title) {
+  const baseUrl = {
+    twitter: 'https://twitter.com/intent/tweet?url=',
+    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=',
+    facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+  };
+
+  const fullUrl = `${baseUrl[network]}${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+
+  const listItem = document.createElement('li');
+  listItem.className = 'hs-blog-social-share-item';
+  const link = document.createElement('a');
+  link.className = `hs-blog-social-share-item-link hs-blog-social-share-item-${network}`;
+  link.href = fullUrl;
+  const image = document.createElement('img');
+  image.setAttribute('src', `/icons/${network}.svg`);
+  const label = document.createElement('span');
+  label.innerText = network === 'twitter' ? 'Tweet' : 'Share';
+  link.appendChild(image);
+  link.appendChild(label);
+
+  listItem.appendChild(link);
+
+  return listItem;
+}
+
+function renderShareButtons(container, url, title) {
+  const networks = ['twitter', 'linkedin', 'facebook'];
+  const list = document.createElement('ul');
+  list.className = 'hs-blog-social-share-list';
+
+  networks.forEach((network) => {
+    const listItem = createShareButton(network, url, title);
+    list.appendChild(listItem);
+  });
+
+  container.appendChild(list);
+}
+
 export default async function buildAutoBlocks(block) {
   const searchParams = new URLSearchParams(window.location.search);
   let pageNumber = 1; // Use let instead of const
@@ -262,6 +301,11 @@ export default async function buildAutoBlocks(block) {
     if (tagList) {
       main.appendChild(tagList);
     }
+    const shareTitle = getMetadata('og:title');
+    const shareContainer = document.createElement('div');
+    shareContainer.className = 'hs-blog-social-share';
+    renderShareButtons(shareContainer, new URL(window.location.href), shareTitle);
+    main.appendChild(shareContainer);
   }
 
   const archiveSidebar = generateArchiveBlock(filteredResults);
