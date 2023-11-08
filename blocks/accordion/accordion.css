@@ -7,6 +7,7 @@ main .accordion {
 main .accordion.faq-accordion>div {
     border: 1px solid #dbdbdb;
     border-radius: 5px;
+    margin-bottom: 14px;
 }
 
 main .accordion.spacer.faq-accordion>div {
