@@ -1,7 +1,5 @@
 export default function decorate(block) {
   const clonedBlock = block.cloneNode(true);
-  // const sidebarDiv = document.createElement('div');
-  // sidebarDiv.setAttribute('id', 'sidebar');
   const pictureElement = clonedBlock.querySelector('picture');
   const moduleDiv = document.createElement('div');
   moduleDiv.classList.add('hs_cos_wrapper', 'hs_cos_wrapper_widget', 'hs_cos_wrapper_type_module', 'module-1');
@@ -34,15 +32,13 @@ export default function decorate(block) {
   const imageWrapper = document.createElement('div');
   imageWrapper.classList.add('testimonial-headshot', 'text-center');
   const image = document.createElement('img');
-  image.setAttribute('width', 279);
-  image.setAttribute('height', 325);
-  image.setAttribute('alt', 'Starter Culture Graphic');
+  image.setAttribute('width', `${pictureElement.querySelector('img').width}`);
+  image.setAttribute('height', `${pictureElement.querySelector('img').height}`);
+  image.setAttribute('alt', `${pictureElement.querySelector('img').alt}`);
   image.setAttribute('src', `${pictureElement.querySelector('img').src}`);
   imageWrapper.append(image);
   moduleDiv.append(quoteboxDiv);
   moduleDiv.append(imageWrapper);
-  // sidebarDiv.append(moduleDiv);
   block.textContent = '';
   block.append(moduleDiv);
-  // block.append(sidebarDiv);
 }
