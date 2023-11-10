@@ -71,16 +71,16 @@ export default function decorate(block) {
     if (deltaX > 50 && currentIndex > 0) {
       goToSlide(currentIndex - 1);
       clearInterval(interval);
-      interval = setInterval(showNextSlide, 70000);
+      interval = setInterval(showNextSlide, 7000);
     } else if (deltaX < -50 && currentIndex < slideCount - 1) {
       goToSlide(currentIndex + 1);
       clearInterval(interval);
-      interval = setInterval(showNextSlide, 70000);
+      interval = setInterval(showNextSlide, 7000);
     }
   });
 
   // Start the automatic slide transition
-  interval = setInterval(showNextSlide, 70000); // Change slide every 7 seconds
+  interval = setInterval(showNextSlide, 7000); // Change slide every 7 seconds
 
   // Pause the automatic transition when a user hovers over the carousel
   block.addEventListener('mouseenter', () => {
@@ -89,6 +89,6 @@ export default function decorate(block) {
 
   // Resume the automatic transition when a user leaves the carousel
   block.addEventListener('mouseleave', () => {
-    interval = setInterval(showNextSlide, 70000);
+    interval = setInterval(showNextSlide, 7000);
   });
 }

@@ -1176,6 +1176,7 @@ form.hs-form .hs-input[type="checkbox"] {
 .hero-carousel-slide {
     position: relative;
     animation: fade-out 0.3s ease-in-out;
+    display: none;
 }
 
 .hero-carousel-slide > div:nth-child(1) picture > img {
