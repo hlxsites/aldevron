@@ -13,6 +13,10 @@ export default function decorate(block) {
       const showcaseBanner = li({ class: 'post' });
       const picElement = elementChild.querySelector('picture');
       const linkElement = elementChild.querySelector('a');
+      if (linkElement) {
+        linkElement.hasAttribute('title');
+        linkElement.removeAttribute('title');
+      }
       const ancButton = picElement.nextElementSibling;
       const description = picElement.parentElement.nextElementSibling;
       if (picElement) {
