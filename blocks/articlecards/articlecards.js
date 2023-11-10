@@ -1,5 +1,5 @@
 import {
-  div, h2, li, ul,
+  div, h2, li, ul, h3,
 } from '../../scripts/dom-builder.js';
 
 export default function decorate(block) {
@@ -27,8 +27,10 @@ export default function decorate(block) {
         showcaseBanner.append(articleImage);
         const contentEle = div({ class: 'article-card-body' });
         if (ancButton) {
+          const anchorSideLine = h3({ class: 'entry-title' });
           ancButton.className = 'redirect-link';
-          contentEle.append(ancButton);
+          anchorSideLine.append(ancButton);
+          contentEle.append(anchorSideLine);
         }
         if (description) {
           description.className = 'description';
