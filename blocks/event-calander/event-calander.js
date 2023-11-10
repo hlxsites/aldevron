@@ -1,7 +1,18 @@
+// setting the attributes for the element
+const setAttributes = (ele, obj) => {
+    for (const [key, value] of Object.entries(obj)) {
+        ele.setAttribute(key, value);
+    }
+};
+
 export default function decorate(block) {
-    const calendarBlock = document.createElement('div');
-    calendarBlock.id = 'timely_script';
-    let iframeBlockFromHubSpot = '<iframe src="https://calendar.time.ly/cvylkpzb/posterboard" width="100%" height="600px" style="border:none; height:100vh"></iframe>';
-    calendarBlock.innerHTML = iframeBlockFromHubSpot;
-    block.appendChild(calendarBlock);
+    let calenderScript = document.createElement('script');
+    setAttributes(calenderScript, {
+        id: 'timely_script',
+        class: 'timely-script',
+        src: 'https://calendar.time.ly/embed.js',
+        'data-src': 'https://calendar.time.ly/cvylkpzb/',
+        'data-max-height': '0'
+    });
+    document.head.append(calenderScript);
 }
