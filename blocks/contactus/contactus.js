@@ -6,8 +6,7 @@ export default function decorate() {
   const contactUsDiv = contactUsClass[0].children[0].children[0];
   const pTags = contactUsDiv.getElementsByTagName('p');
   const aTags = contactUsDiv.querySelector('a');
-  if (aTags) {
-    aTags.hasAttribute('title');
+  if (aTags.hasAttribute('title')) {
     aTags.removeAttribute('title');
   }
   let innerElements = '';
