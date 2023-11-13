@@ -7,11 +7,11 @@ main .accordion {
 main .accordion.faq-accordion>div {
     border: 1px solid #dbdbdb;
     border-radius: 5px;
-    margin-bottom: 14px;
 }
 
-main .accordion.spacer.faq-accordion>div {
-    margin-top: 7px;
+main .spacer.faq-accordion>div {
+    /* margin-top: 7px; */
+    margin-bottom: 14px;
 }
 
 
@@ -75,7 +75,7 @@ main .accordion.faq-accordion .faq-answer {
     overflow: hidden;
     font-size: 16px;
     max-height: 0;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.5s ease-in-out;
     text-align: left;
 }
 
