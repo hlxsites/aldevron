@@ -1,0 +1,177 @@
+#colorbox,#cboxOverlay,#cboxWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+  -webkit-transform: translate3d(0,0,0)
+}
+
+#cboxWrapper {
+  max-width: none
+}
+
+#cboxOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%
+}
+
+#cboxContent {
+  position: relative
+}
+
+#cboxLoadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
+}
+
+#cboxClose {
+  cursor: pointer
+}
+
+.cboxPhoto {
+  float: left;
+  margin: auto;
+  border: 0;
+  display: block;
+  max-width: none;
+  -ms-interpolation-mode: bicubic
+}
+
+#colorbox,#cboxContent{
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box
+}
+
+#cboxOverlay {
+  background: #000
+}
+
+#colorbox {
+  outline: 0
+}
+
+#cboxContent {
+  margin-top: 20px;
+  background: #fff
+}
+
+#cboxContent .button {
+  padding: .6em 1em;
+  margin-top: 10px
+}
+
+#cboxClose {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  width: auto;
+  background: 0
+}
+
+#cboxClose:active {
+  outline: 0
+}
+
+#cboxClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 28px;
+  font-family: Arial,Helvetica;
+  line-height: 32px;
+  background-color: #ec8f2d;
+  color: #fff;
+  border-radius: 0
+}
+
+#cboxClose:hover {
+  background-color: #000 !important
+}
+
+.icon-search {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 16px;
+  line-height: 32px;
+  background-color: #ec8f2d;
+  color: #fff;
+  border-radius: 0
+}
+
+.icon-search:hover {
+  background-color: #000 !important
+}
+
+#colorbox{
+  animation: createBox 1s;
+}
+@keyframes createBox {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.image-wrapper{
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0 0 0 / 10%);
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0.6em 0;
+  padding: 10px;
+  width: 676px;
+  margin: 0 auto;
+}
+
+.image-wrapper-ani{
+  animation: createBox1 0s;
+}
+@keyframes createBox1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+/* .colorbox-wrapper{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100vw;
+  height: 100vh;
+} */
+
+#colorbox{
+  display: block;
+  visibility: visible;
+  background-color: white;
+  padding: 15px;
+  /* top: 50%;
+  left: 50%;
+  transform: translateX(-50%); */
+}
