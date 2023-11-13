@@ -1,5 +1,6 @@
 export default function decorate(block) {
   const divCta = document.querySelector('div .cta');
+  block.classList.add('faq-accordion');
   if (divCta) {
     const expandCollapse = document.createElement('div');
     expandCollapse.classList.add('expand_collapse');
@@ -29,17 +30,22 @@ export default function decorate(block) {
       } else if (event.target.classList.contains('collapse-btn')) {
         document.querySelector('.expand_collapse').classList.remove('expanded');
         document.querySelector('.collapse-btn').style.display = 'none';
-        const allQuestions = document.querySelectorAll('.faq-question');
-        allQuestions.forEach((ele) => {
-          ele.classList.remove('active');
-          ele.nextElementSibling.classList.remove('active');
-          ele.nextElementSibling.style.removeProperty('max-height');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach((ele) => {
+          ele.nextElementSibling.style.maxHeight = '0';
         });
+        setTimeout(() => {
+          const allQuestions = document.querySelectorAll('.faq-question');
+          allQuestions.forEach((ele) => {
+            ele.classList.remove('active');
+            ele.nextElementSibling.classList.remove('active');
+            ele.nextElementSibling.style.removeProperty('max-height');
+          });
+        }, 300);
       }
     });
   }
   const faqRows = [...block.children];
-  block.classList.add('faq-accordion');
   faqRows.forEach((row) => {
     const faqQuestion = [...row.children][0];
     faqQuestion.classList.add('faq-question');
@@ -50,14 +56,16 @@ export default function decorate(block) {
         openfaq.classList.toggle('active');
         openfaq.nextElementSibling.classList.toggle('active');
       }
-      faqQuestion.nextElementSibling.style.removeProperty('max-height');
-      e.currentTarget.classList.toggle('active');
-      e.currentTarget.nextElementSibling.classList.toggle('active');
       const faqAnswer = e.currentTarget.nextElementSibling;
-      if (faqAnswer.style.maxHeight) {
-        faqAnswer.style.removeProperty('max-height');
-      } else {
+      e.currentTarget.classList.toggle('active');
+      if (e.currentTarget.classList.contains('active')) {
+        faqAnswer.classList.toggle('active');
         faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
+      } else {
+        faqAnswer.style.maxHeight = 0;
+        setTimeout(() => {
+          faqAnswer.classList.toggle('active');
+        }, 300);
       }
     });
     const faqAnswer = [...row.children][1];
