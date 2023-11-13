@@ -6,8 +6,7 @@ export default function decorate() {
   const contactUsDiv = contactUsClass[0].children[0].children[0];
   const pTags = contactUsDiv.getElementsByTagName('p');
   const aTags = contactUsDiv.querySelector('a');
-  if (aTags) {
-    aTags.hasAttribute('title');
+  if (aTags.hasAttribute('title')) {
     aTags.removeAttribute('title');
   }
   let innerElements = '';
@@ -19,7 +18,9 @@ export default function decorate() {
     } else if (i === 1) {
       innerElements += pTags[i].outerHTML;
     } else if (i === 3) {
-      phone = pTags[2].outerHTML.replace(/<p>/g, `<a class='phone' href="tel:' ${pTags[2].innerHTML.trim()} '">`);
+      const contactNumber = pTags[2].innerHTML.trim();
+      const contactNumberReplace = contactNumber.replace(/[()-\s]/g, '');
+      phone = pTags[2].outerHTML.replace(/<p>/g, `<a class='phone' href="tel:${contactNumberReplace}">`);
       phone.replace(/<\/p>/g, '</a>');
       pTags[i].innerHTML = `<br><div class="buttons"> ${phone + pTags[i].innerHTML} </div>`;
       const button = pTags[i].outerHTML.replace(/<p>/g, '');
