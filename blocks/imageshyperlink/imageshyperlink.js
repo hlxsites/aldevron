@@ -10,12 +10,6 @@ export default async function decorate(block) {
     if (refAnchorEl.hasAttribute('href')) {
       anchorEl.setAttribute('href', refAnchorEl.getAttribute('href'));
     }
-    if (refAnchorEl.hasAttribute('title')) {
-      anchorEl.setAttribute('title', refAnchorEl.getAttribute('title'));
-    }
-    if (refAnchorEl.hasAttribute('alt')) {
-      anchorEl.setAttribute('alt', refAnchorEl.getAttribute('alt'));
-    }
     anchorEl.appendChild(pic);
     block.textContent = '';
     block.append(anchorEl);
