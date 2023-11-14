@@ -1,5 +1,6 @@
 export default function decorate(block) {
   const clonedBlock = block.cloneNode(true);
+  const paras = block.querySelectorAll('p');
   const pictureElement = clonedBlock.querySelector('picture');
   const moduleDiv = document.createElement('div');
   moduleDiv.classList.add('module', 'mmg-rich-columns', 'padding-all', 'custom-bg', 'bg', 'wide-section', 'split-bg', 'style-standard');
@@ -18,21 +19,18 @@ export default function decorate(block) {
   colWithCtaDiv.append(textDiv);
   const h2 = document.createElement('h2');
   h2.classList.add('title');
-  h2.textContent = 'About Aldveron';
+  h2.textContent = paras[0].textContent;
   textDiv.append(h2);
   const p = document.createElement('p');
   const span = document.createElement('span');
   textDiv.append(p);
   p.append(span);
-  const text1 = block.querySelector('div > div + div > p + p');
+  const text1 = paras[1];
   span.textContent = text1.textContent;
   const p2 = document.createElement('p');
   p2.classList.add('actions');
-  const anchor = document.createElement('a');
-  anchor.classList.add('button');
-  anchor.setAttribute('href', '/about-us');
-  anchor.textContent = 'Learn More';
-  p2.append(anchor);
+  const anchorTag = block.querySelector('p.button-container a');
+  p2.append(anchorTag);
   textDiv.append(p2);
   moduleDiv.append(outDiv);
   block.textContent = '';

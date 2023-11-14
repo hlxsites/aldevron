@@ -14,24 +14,10 @@ import {
   loadCSS,
   toClassName,
   getMetadata,
+  capitalizeWords,
 } from './aem.js';
 
 const LCP_BLOCKS = ['forms']; // add your LCP blocks to the list
-
-/**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
- */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
 
 /**
  * load fonts.css and set a session storage flag
@@ -50,6 +36,8 @@ const TEMPLATE_LIST = [
   'plasmids',
   'proteins',
   'mrna',
+  'blog',
+  'news',
 ];
 
 /**
@@ -61,8 +49,9 @@ async function decorateTemplates(main) {
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
-      const mod = await import(`../templates/${template}/${template}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+      const templateName = capitalizeWords(template);
+      const mod = await import(`../templates/${templateName}/${templateName}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
       if (mod.default) {
         await mod.default(main);
       }
@@ -98,7 +87,6 @@ function buildEmbedBlocks(main) {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
     buildEmbedBlocks(main);
   } catch (error) {
     // eslint-disable-next-line no-console
