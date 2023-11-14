@@ -3,7 +3,7 @@
         height: auto;
         padding-bottom: 47%
     }
-    
+
     #logo {
         left: 20px;
         width: 190px
@@ -61,6 +61,10 @@
     body.scrolled #header {
         height: 50px;
         transition: none
+    }
+
+    #header .outer {
+        width: 100%;
     }
 
     #logo {
