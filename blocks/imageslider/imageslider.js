@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { decorateIcons, loadCSS } from '../../scripts/aem.js';
+import { decorateIcons } from '../../scripts/aem.js';
 import { div, p, span } from '../../scripts/dom-builder.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -359,9 +359,9 @@ class ImageSlider {
       });
     };
 
-    const section = this.block.closest('.section');
+    /* const section = this.block.closest('.section');
 
-    const observer = new MutationObserver((mutationList) => {
+     const observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes'
           && mutation.attributeName === 'data-section-status'
@@ -372,14 +372,14 @@ class ImageSlider {
       });
     });
 
-    observer.observe(section, { attributes: true });
+    observer.observe(section, { attributes: true }); */
 
     // just in case the mutation observer didn't work
     setTimeout(scrollToSelectedItem, 700);
 
     // ensure that we disconnect the observer
     // if the animation has kicked in, we for sure no longer need it
-    setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
+    // setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
   }
 
   createDotButtons() {
@@ -510,7 +510,7 @@ class ImageSlider {
       ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
 
-    let defaultCSSPromise;
+    /* let defaultCSSPromise;
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       // add default imageslider classes to apply default CSS
       defaultCSSPromise = new Promise((resolve) => {
@@ -520,7 +520,7 @@ class ImageSlider {
       });
       this.block.parentElement.classList.add('imageslider-wrapper');
       this.block.classList.add('imageslider');
-    }
+    } */
 
     this.block.parentElement.classList.add('outer');
     this.block.innerHTML = '';
@@ -554,15 +554,15 @@ class ImageSlider {
     activeMainItems[this.currentIndex].classList.add('selected');
 
     // create autoscrolling animation
-    this.autoScroll && this.infiniteScroll
-      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
+    // this.autoScroll && this.infiniteScroll
+    //  && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
     this.dotButtons && this.createDotButtons();
     this.counter && this.createCounter();
     this.navButtons && this.createNavButtons(this.block.parentElement);
     this.infiniteScroll && this.createClones();
-    this.addSwipeCapability();
+    // this.addSwipeCapability();
     this.infiniteScroll && this.setInitialScrollingPosition();
-    this.cssFiles && (await defaultCSSPromise);
+    // this.cssFiles && (await defaultCSSPromise);
     this.clickthumbnails();
     this.setSliderWidth();
     this.setInitialImage();
