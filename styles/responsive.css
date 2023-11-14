@@ -3,6 +3,10 @@
         height: auto;
         padding-bottom: 47%
     }
+    #logo {
+        left: 20px;
+        width: 210px
+    }    
 }
 
 @media (max-width: 1024px) {
@@ -14,7 +18,7 @@
 
     #logo {
         left: 20px;
-        width: 210px
+        width: 180px
     }
 
     #cart {
