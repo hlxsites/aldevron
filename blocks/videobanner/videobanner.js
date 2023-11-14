@@ -13,7 +13,7 @@ export default function decorate(block) {
   const logoImage = block.children[2].children[1].querySelector('img');
   const bgImage = block.children[3].children[1].querySelector('img');
   const container = div(
-    { class: 'listing-hero padding-btm wide-section' },
+    { class: 'listing-hero padding-btm wide-section', style: `--background-poster-image: url('${posterImage.src}')` },
     div(
       { class: 'outer' },
       img(
@@ -22,7 +22,7 @@ export default function decorate(block) {
         },
       ),
       div(
-        { class: 'figure' },
+        { class: 'figure', style: `--background-arrow-image: url('${bgImage.src}')` },
         div(
           { class: 'text' },
           h1(titleText),
@@ -35,7 +35,6 @@ export default function decorate(block) {
     { class: 'listing-hero-mobitext' },
     p(description),
   );
-
   const v = document.createElement('video');
   v.setAttribute('id', 'bgvideo');
   // Set the attributes of the video
@@ -50,7 +49,4 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.append(container);
   block.append(mobiTextContainer);
-  const figure = document.getElementsByClassName('figure')[0];
-  figure.style.background = `url(${bgImage.src}) no-repeat 50% 100%`;
-  figure.style.backgroundSize = '100% auto';
 }
