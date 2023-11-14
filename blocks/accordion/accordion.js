@@ -46,6 +46,11 @@ export default function decorate(block) {
     });
   }
   const faqRows = [...block.children];
+  faqRows.forEach((ele) => {
+    if (ele.children[0].innerHTML === '') {
+      ele.remove();
+    }
+  });
   faqRows.forEach((row) => {
     const faqQuestion = [...row.children][0];
     faqQuestion.classList.add('faq-question');
