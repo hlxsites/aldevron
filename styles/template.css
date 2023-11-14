@@ -30,7 +30,8 @@ body {
 
 #header .outer {
     height: 100%;
-    position: relative
+    position: relative;
+    width: 80%;
 }
 
 #logo {
@@ -130,7 +131,7 @@ body {
     color: #0d233e;
     display: inline-block;
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     height: 45px;
     line-height: 38px;
