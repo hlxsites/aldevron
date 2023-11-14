@@ -8,21 +8,23 @@ const creteEleAddCls = (obj) => {
   }
   return targetEle;
 };
-// adding the inline-styles for the element
-const addStyles = (ele, obj) => {
-  for (const [key, value] of Object.entries(obj)) {
+// Adding the inline-styles for the element
+const addStyles = (ele, styles) => {
+  Object.entries(styles).forEach(([key, value]) => {
     ele.style[key] = value;
-  }
+  });
 };
-// setting the attributes for the element
-const setAttributes = (ele, obj) => {
-  for (const [key, value] of Object.entries(obj)) {
+
+// Setting the attributes for the element
+const setAttributes = (ele, attributes) => {
+  Object.entries(attributes).forEach(([key, value]) => {
     ele.setAttribute(key, value);
-  }
+  });
 };
+
 export default function decorate(block) {
   const imgWrap = creteEleAddCls({ targetEle: 'div', classes: ['img-colorbox-popup', 'cboxElement'] });
-  const pictureTag = block.querySelector('picture');
+  const pictureTag = block.querySelector('img');
   const pictureTagForZoom = pictureTag.cloneNode(true);
   addStyles(pictureTagForZoom, { cursor: 'pointer' });
   imgWrap.append(pictureTag);
@@ -32,14 +34,13 @@ export default function decorate(block) {
   const overlayDiv = creteEleAddCls({ targetEle: 'div', classes: [] });
   addStyles(overlayDiv, {
     display: 'none',
-    opacity: '0',
     cursor: 'pointer',
     visibility: 'visible',
   });
   setAttributes(overlayDiv, {
     id: 'cboxOverlay',
   });
-  document.body.append(overlayDiv);
+  block.appendChild(overlayDiv);
 
   const colorboxWrapper = creteEleAddCls({ targetEle: 'div', classes: ['colorbox-wrapper'] });
   const colorboxDiv = creteEleAddCls({ targetEle: 'div', classes: [] });
@@ -51,16 +52,15 @@ export default function decorate(block) {
   addStyles(colorboxDiv, {
     display: 'none',
     visibility: 'visible',
-    // top: '50px',
-    // left: '20px',
-    // position: 'absolute',
   });
 
   colorboxWrapper.append(colorboxDiv);
-  document.body.append(colorboxWrapper);
+  overlayDiv.appendChild(colorboxWrapper);
   const pictureWrapperDiv = creteEleAddCls({ targetEle: 'div', classes: ['picture-wrapper'] });
   const pictureOverflowWrapperDiv = creteEleAddCls({ targetEle: 'div', classes: ['picture-overflow-wrap'] });
   pictureOverflowWrapperDiv.append(pictureTagForZoom);
+  pictureTagForZoom.style.width = '100%';
+  pictureTagForZoom.style.height = '100%';
   pictureWrapperDiv.append(pictureOverflowWrapperDiv);
   colorboxDiv.append(pictureWrapperDiv);
   const cboxWrapperSecondChildCboxbtnIconSearch = creteEleAddCls({ targetEle: 'span', classes: ['button', 'icon-search'] });
@@ -72,65 +72,57 @@ export default function decorate(block) {
   cboxWrapperSecondChildCboxCloseBtn.innerHTML = '&#215';
   colorboxDiv.append(cboxWrapperSecondChildCboxCloseBtn);
   colorboxDiv.append(cboxWrapperSecondChildCboxbtnIconSearch);
-  document.querySelector('.img-colorbox-popup.cboxElement').addEventListener('click', () => {
+  block.querySelector('.img-colorbox-popup.cboxElement').addEventListener('click', (e) => {
+    e.stopPropagation();
     addStyles(overlayDiv, {
-      display: 'block',
-      opacity: '0.7',
+      display: 'flex',
       cursor: 'pointer',
       visibility: 'visible',
     });
     addStyles(colorboxDiv, {
       display: 'block',
       visibility: 'visible',
-      // top: '50px',
-      // left: '20px',
-      // right: '20px',
-      // position: 'absolute',
       'z-index': '9999',
       'background-color': 'white',
       padding: '15px',
     });
   });
-  document.getElementById('cboxClose').addEventListener('click', () => {
+  cboxWrapperSecondChildCboxCloseBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     addStyles(overlayDiv, {
       display: 'none',
-      opacity: '0',
     });
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    addStyles(document.querySelector('.picture-wrapper'), { overflow: 'unset' });
-    addStyles(document.querySelector('.picture-overflow-wrap'), { width: '100%', height: '100%' });
+    pictureTagForZoom.style.width = '100%';
+    pictureTagForZoom.style.height = 'auto';
+    pictureTagForZoom.style.maxWidth = '100%';
+    pictureTagForZoom.style.maxHeight = '100%';
   });
-  overlayDiv.addEventListener('click', () => {
+  overlayDiv.addEventListener('click', (e) => {
+    e.stopPropagation();
     addStyles(overlayDiv, {
       display: 'none',
-      opacity: '0',
     });
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    addStyles(document.querySelector('.picture-wrapper'), { overflow: 'unset' });
-    addStyles(document.querySelector('.picture-overflow-wrap'),
-      {
-        width: '100%',
-        height: '100%',
-      });
+    pictureTagForZoom.style.width = '100%';
+    pictureTagForZoom.style.height = 'auto';
+    pictureTagForZoom.style.maxWidth = '100%';
+    pictureTagForZoom.style.maxHeight = '100%';
   });
-  pictureTagForZoom.addEventListener('click', () => {
-    addStyles(document.querySelector('.picture-wrapper'), { overflow: 'auto' });
-    addStyles(document.querySelector('.picture-overflow-wrap'),
-      {
-        width: `${pictureTag.querySelector('img').getAttribute('width')}px`,
-        height: `${pictureTag.querySelector('img').getAttribute('height')}px`
-      });
+  pictureTagForZoom.addEventListener('click', (e) => {
+    e.stopPropagation();
+    pictureTagForZoom.style.width = '150%';
+    pictureTagForZoom.style.height = '150%';
+    pictureTagForZoom.style.maxWidth = '150%';
   });
-  document.querySelector('.button.icon-search').addEventListener('click', () => {
-    addStyles(document.querySelector('.picture-wrapper'), { overflow: 'auto' });
-    addStyles(document.querySelector('.picture-overflow-wrap'),
-      {
-        width: '133%'
-      }
-    );
+  block.querySelector('.button.icon-search').addEventListener('click', (e) => {
+    e.stopPropagation();
+    pictureTagForZoom.style.width = '150%';
+    pictureTagForZoom.style.height = '150%';
+    pictureTagForZoom.style.maxWidth = '150%';
   });
 }

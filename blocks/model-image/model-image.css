@@ -1,24 +1,28 @@
-#colorbox,#cboxOverlay,#cboxWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  overflow: hidden;
-  -webkit-transform: translate3d(0,0,0)
+.model-image .img-colorbox-popup  {
+  margin: 0.6em 0;
 }
 
-#cboxWrapper {
-  max-width: none
+.model-image {
+  position: relative;
+}
+
+.model-image .img-colorbox-popup img {
+  width: 100%;
 }
 
 #cboxOverlay {
   position: fixed;
-  width: 100%;
-  height: 100%
-}
-
-#cboxContent {
-  position: relative
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  overflow: hidden;
+  transform: translate3d(0,0,0);
+  background: #0009;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 #cboxLoadingOverlay {
@@ -29,50 +33,34 @@
   height: 100%
 }
 
-#cboxClose {
-  cursor: pointer
-}
-
 .cboxPhoto {
   float: left;
   margin: auto;
   border: 0;
   display: block;
   max-width: none;
-  -ms-interpolation-mode: bicubic
 }
 
-#colorbox,#cboxContent{
+#colorbox{
   box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box
-}
-
-#cboxOverlay {
-  background: #000
-}
-
-#colorbox {
-  outline: 0
+  outline: 0;
+  animation: create-box 1s;
 }
 
 #cboxContent {
   margin-top: 20px;
-  background: #fff
+  background: #fff;
+  box-sizing: content-box;
+  position: relative;
+}
+
+.picture-wrapper {
+  overflow: scroll;
 }
 
 #cboxContent .button {
   padding: .6em 1em;
   margin-top: 10px
-}
-
-#cboxClose {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  width: auto;
-  background: 0
 }
 
 #cboxClose:active {
@@ -92,14 +80,17 @@
   line-height: 32px;
   background-color: #ec8f2d;
   color: #fff;
-  border-radius: 0
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  overflow: visible;
 }
 
 #cboxClose:hover {
-  background-color: #000 !important
+  background-color: #00000050 !important
 }
 
-.icon-search {
+.model-image .icon-search {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -116,17 +107,15 @@
   border-radius: 0
 }
 
-.icon-search:hover {
+.model-image .icon-search:hover {
   background-color: #000 !important
 }
 
-#colorbox{
-  animation: createBox 1s;
-}
-@keyframes createBox {
+@keyframes create-box {
   from {
     transform: scale(0);
   }
+
   to {
     transform: scale(1);
   }
@@ -137,41 +126,26 @@
   box-shadow: 0 2px 8px rgba(0 0 0 / 10%);
   box-sizing: border-box;
   cursor: pointer;
-  margin: 0.6em 0;
   padding: 10px;
-  width: 676px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .image-wrapper-ani{
-  animation: createBox1 0s;
+  animation: create-box1 0s;
 }
-@keyframes createBox1 {
+
+@keyframes create-box1 {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.5);
   }
 }
 
-/* .colorbox-wrapper{
-  display: flex;
+.colorbox-wrapper{
   position: absolute;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100vw;
-  height: 100vh;
-} */
-
-#colorbox{
-  display: block;
-  visibility: visible;
-  background-color: white;
-  padding: 15px;
-  /* top: 50%;
-  left: 50%;
-  transform: translateX(-50%); */
+  z-index: 999;
 }
