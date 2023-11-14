@@ -30,6 +30,7 @@ export default function decorate(block) {
   const p2 = document.createElement('p');
   p2.classList.add('actions');
   const anchorTag = block.querySelector('p.button-container a');
+  anchorTag.removeAttribute("title");
   p2.append(anchorTag);
   textDiv.append(p2);
   moduleDiv.append(outDiv);
