@@ -81,10 +81,11 @@
 @media only screen and (min-width: 861px) {
   #footer-orange .social-icons a[href*="twitter"]{
     margin-left: 2px;
-}
+  }
 }
 
 @media only screen and (min-width: 1025px){
   #footer-orange .social-icons a[href*="twitter"] {
     margin-right: 5px;
+  }
 }
