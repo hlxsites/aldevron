@@ -113,7 +113,7 @@ export default function decorate(block) {
       translateYearSlider();
 
       year.classList.add('active');
-      const contentId = `#content-'${year.textContent.trim()}`;
+      const contentId = `#content-${year.textContent.trim()}`;
       block.querySelector(contentId).classList.add('active');
     });
   });
