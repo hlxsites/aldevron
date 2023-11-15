@@ -1,5 +1,5 @@
 .articlecards-wrapper{
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .section.articlecards-container {
@@ -9,35 +9,56 @@
 .wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 2.50rem;
+    grid-gap: 2.25rem;
 }
 
 @media only screen and (max-width: 768px) {
     .wrapper{
         grid-template-columns: 1fr;
+        grid-gap: 0;
     }
+}
+
+ul.posts {
+   margin: 0;
+   padding: 0; 
+}
+
+.entry-title {
+    margin-top: 0;
+    padding-top: 0;
+    line-height: 18px;
+}
+
+ul.posts:not(:first-child) li.post:first-child {
+    padding-left: 0;
 }
 
 ul.posts li.post:not(:first-child) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 20px;
+    gap: 0.75rem;
 }
-
-ul.posts li.post::before { display: none; }
 
 ul.posts li.post:not(:first-child) a.article-card-img {
+    flex-shrink: 0.9;
     padding: 20px 0 0;
-    min-width: 188px;
 }
 
-.article-card-body a {
+ul.posts li.post a.article-card-img img {
+    width: 470px;
+    height: 264px;
+}
+
+
+.article-card-body a{
     font-weight: bold;
+    font-size: 18px;
+    letter-spacing: -0.02em;
 }
 
-.article-card-body a:hover {
+.article-card-body a:hover{
     color: #000;
     text-decoration: none;
 }
@@ -80,9 +101,11 @@ ul.posts li.post:not(:first-child) a.article-card-img {
     padding: 0 0 30px;
 }
 
-.article-card .article-card-body .description {
-    padding-top: 0.5em !important;
-    padding-bottom: 0!important;
+.article-cards .article-card-body .description {
+    padding : 0;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    line-height: 23px;
 }
 
 .horizontal .article-card {
@@ -108,21 +131,11 @@ ul.posts li.post:not(:first-child) a.article-card-img {
     font-size: 14px;
 }
 
-.horizontal .article-card .article-card-img img {
-    max-width: 250px;
-    max-height: fit-content;
-    height: fit-content!important;
-}
-
 .article-card-header, .article-card-body, .article-card-footer {
     padding: 20px 0 0;
 }
 
-.article-card .article-card-img {
-    display: flex;
-}
-
-.article-card .article-card-img img {
+.article-card-img img {
     width: 100%;
     height: 100%;
 }
@@ -132,15 +145,15 @@ ul.posts li.post:not(:first-child) a.article-card-img {
     line-height: var(--text-line-height, 1.5rem);
 }
 
-.article-card .article-card-subtitle {
+.article-card-subtitle {
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
     font-weight: 700;
     font-size: var(--text-size, 1.875rem);
     color: #0d233e;
     letter-spacing: -.02em;
-    line-height: normal;
+    line-height: 24px;
     margin: 0;
-    padding: 0 0 0.5em;
+    padding: 0 0 0.75em;
 
 }
 
@@ -158,60 +171,30 @@ ul.posts li.post:not(:first-child) a.article-card-img {
     flex: 1 1 auto;
 }
 
-#main h3.entry-title,
- h3.entry-title {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-ul.posts li.post:not(:first-child) .entry-title,
-ul.posts li.post:not(:first-child) .description {
-    font-size: 14px;
-}
-
-ul.posts li.post:not(:first-child) .description {
-    letter-spacing: 0.005em;
-}
-
-ul.posts li.post:first-child .entry-title {
-    font-size: 18px;
-}
-
-ul.posts li.post:first-child .description {
-    font-size: 16px;
-}
-
-ul.posts li.post:first-child .article-card-img img {
-    height: 264px;
-}
-
-ul.posts li.post{
-    padding: 0;
-}
-
 @media only screen and (max-width: 479px) {
     .horizontal .article-card  {
         flex-direction: column!important;
+    }
+
+    .outer {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .horizontal .article-card .article-card-img img {
         max-width: 100%!important;
     }
 
-    .wrapper {
-        grid-gap: 0;
+    ul.posts li.post {
+        padding: 0 0 30px 0;
     }
 
-    ul.posts li.post:not(:first-child) {
+    ul.posts li.post:last-child {
+        padding: 0;
+    }
+
+    ul.posts li.post:not(:first-child){
         display: block;
-    }
-
-    ul.posts li.post:first-child .article-card-img img {
-        height: auto;
-    }
-
-    ul.posts li.post:not(:first-child) a.article-card-img {
-        min-width: 100%;
     }
 }
 
