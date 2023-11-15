@@ -19,7 +19,6 @@ function activeFirstElements(content) {
 export default function decorate(block) {
   const tabComponent = document.createElement('div');
   tabComponent.className = 'mmg-tabs';
-  tabComponent.classList.add('outer');
   const ul = document.createElement('div');
   ul.className = 'tablist';
   const tabContent = document.createElement('div');
