@@ -70,3 +70,22 @@
 .footer-wrapper div#footer-black div.footericon.social-media-footer {
   display: none;
 }
+
+#footer-orange .social-icons a[href*="twitter"]{
+    width: 41px;
+    height: 48px;
+    opacity: .85;
+    margin-left: -2px;
+}
+
+@media only screen and (min-width: 861px) {
+  #footer-orange .social-icons a[href*="twitter"]{
+    margin-left: 2px;
+  }
+}
+
+@media only screen and (min-width: 1025px){
+  #footer-orange .social-icons a[href*="twitter"] {
+    margin-right: 5px;
+  }
+}
