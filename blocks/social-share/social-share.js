@@ -12,7 +12,7 @@ function createShareButton(network, url, title) {
   const link = document.createElement('a');
   link.className = `hs-blog-social-share-item-link hs-blog-social-share-item-${network}`;
   link.href = fullUrl;
-  link.setAttribute('aria-label', 'Social Share');
+  link.ariaLabel = `${network}` ;
   const img = document.createElement('img');
   img.setAttribute('src', `/icons/${network}.svg`);
   const label = document.createElement('span');
