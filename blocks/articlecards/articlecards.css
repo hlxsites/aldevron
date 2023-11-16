@@ -26,7 +26,7 @@ ul.posts {
 
 ul.posts li.post {
     padding: 0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .entry-title {
@@ -46,18 +46,20 @@ ul.posts li.post:not(:first-child) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0;
 }
 
 ul.posts li.post:not(:first-child) a.article-card-img {
     flex-shrink: 0.9;
     padding: 0;
-    margin: 8px 0 0 0;
+    margin: 5px 0 0 0;
 }
 
 ul.posts li.post:first-child a.article-card-img img {
-    width: 470px;
-    height: 264px;
+    /* width: 470px;
+    height: 264px; */
+    width: 100%;
+    height: 100%;
 }
 
 ul.posts li.post:first-child .article-card-body{
@@ -138,13 +140,25 @@ ul.posts li.post:first-child .article-card-body{
     font-size: 14px;
     padding: 0;
 }
+ul.posts li.post:first-child .description{
+    padding: .5em 0 0 0;
+}
 
 ul.posts li.post:not(:first-child) .description {
     font-size: 14px;
+    padding: .5em 0 0 0;
+    width: 101%;
+}
+ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
+    margin-top: 0px;
+}
+
+ul.posts li.post:last-child {
+    margin-bottom: 30px;
 }
 
 .article-card-img img {
-    width: 100%;
+    width: 88%;
     height: 100%;
 }
 
@@ -159,9 +173,8 @@ ul.posts li.post:not(:first-child) .description {
     font-size: 30px;
     color: #0d233e;
     letter-spacing: -.02em;
-    line-height: 24px;
     margin: 0;
-    padding: 0 0 0.75em;
+    padding: 0 0 0.5em;
 
 }
 
@@ -200,6 +213,7 @@ ul.posts li.post:not(:first-child) .description {
 
     ul.posts li.post:last-child {
         padding: 0;
+        margin-bottom: 0;
     }
 
     ul.posts li.post:not(:first-child){
@@ -210,11 +224,6 @@ ul.posts li.post:not(:first-child) .description {
         height: auto;
     }
 
-    .article-card-subtitle{
-        padding: 0 0 12px 0;
-        font-size: 24px;
-    }
-
     .articlecards .article-card-body .description {
        padding: 8px 0 0 0;
     }
@@ -223,7 +232,7 @@ ul.posts li.post:not(:first-child) .description {
     }
 
     ul.posts:not(:first-child) {
-        padding: 60px 0 0 0;
+        padding: 0;
     }
 
     ul.posts li.post:not(:first-child) .entry-title {
@@ -234,11 +243,34 @@ ul.posts li.post:not(:first-child) .description {
         font-size: 18px;
     }
 
+    .article-card-img img{
+        width:100%;
+    }
+
+    ul.posts li.post:last-child .article-card-body{
+        padding-bottom: 30px;
+    }
 }
 
 @media (min-width: 479px) and (max-width: 767px) {
     .horizontal .article-card  {
         flex-direction: row!important;
         width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .articlecards-wrapper{
+        padding: 60px 0;
+    }
+    ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .article-card-subtitle{
+        padding: 0 0 .5em 0;
+        font-size: 24px;
     }
 }
