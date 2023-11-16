@@ -33,11 +33,15 @@ async function loadFonts() {
 
 const TEMPLATE_LIST = [
   'default',
+  'blog',
+  'news',
+];
+
+const CATEGORY_LIST = [
   'plasmids',
   'proteins',
   'mrna',
-  'blog',
-  'news',
+  'gene',
 ];
 
 /**
@@ -52,6 +56,28 @@ async function decorateTemplates(main) {
       const templateName = capitalizeWords(template);
       const mod = await import(`../templates/${templateName}/${templateName}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
+ * Run template specific decoration code.
+ * @param {Element} main The container element
+ */
+async function decorateCategory(main) {
+  try {
+    const category = toClassName(getMetadata('category'));
+    const categories = CATEGORY_LIST;
+    if (categories.includes(category)) {
+      const categoryName = capitalizeWords(category);
+      const mod = await import(`../category/${categoryName}/${categoryName}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/category/${categoryName}/${categoryName}.css`);
       if (mod.default) {
         await mod.default(main);
       }
@@ -119,6 +145,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     await decorateTemplates(main);
+    await decorateCategory(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }
