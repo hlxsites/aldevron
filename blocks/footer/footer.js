@@ -57,6 +57,7 @@ export default async function decorate(block) {
     const footLogo = document.createElement('a');
     footLogo.id = 'footLogo';
     footLogo.target = '_blank';
+    footLogo.ariaLabel = 'Danaher Logo';
     // footLogo.href = '';
     // footLogo.innerHTML = footerUl.children[0].children[2].innerHTML;
 
