@@ -193,6 +193,27 @@ ul.posts li.post:last-child {
     flex: 1 1 auto;
 }
 
+#main .articlecards .posts .post::before {
+    content: "" !important;
+}
+
+#main .articlecards ul.posts li.post:first-child .article-card-body {
+        padding: 0;
+}
+
+#main .articlecards .post:not(:first-child) .article-card-body .entry-title{
+    font-size: 14px;
+    margin: .35em 0 0.5em;
+}
+
+#main .articlecards ul.posts li.post:not(:first-child) {
+    padding: .65em 0 0;
+}
+
+#main .articlecards ul.posts li.post:first-child .entry-title {
+    font-size: 18px;
+}
+
 @media only screen and (max-width: 479px) {
     .horizontal .article-card  {
         flex-direction: column!important;
@@ -252,6 +273,24 @@ ul.posts li.post:last-child {
     ul.posts li.post:last-child .article-card-body{
         padding-bottom: 30px;
     }
+
+    #main .articlecards ul.posts li.post:last-child .article-card-body{
+        padding-bottom: 0px;
+    }
+
+    #main .articlecards ul.posts li.post:not(:first-child) .entry-title {
+        margin: 1em 0 .5em;
+        font-size: 18px;
+    }
+
+    #main .articlecards-wrapper{
+        padding: 55px 0;
+    }
+
+    #main .articlecards  ul.posts li.post{
+        padding: 0 0 30px !important;
+    }
+
 }
 
 @media (min-width: 479px) and (max-width: 767px) {
@@ -269,6 +308,10 @@ ul.posts li.post:last-child {
     ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
         margin-top: 30px;
     }
+
+    #main .articlecards ul.posts li.post:not(:first-child){
+        padding: 0;
+    }
 }
 
 @media only screen and (max-width: 414px) {
@@ -276,4 +319,18 @@ ul.posts li.post:last-child {
         padding: 0 0 .5em;
         font-size: 24px;
     }
+
+    #main .articlecards  .post:first-child .entry-title {
+        font-size: 24px;
+    }
+
+    #main .articlecards ul.posts li.post:not(:first-child){
+        padding: 0 0 30px;
+        margin: 0;
+    }
+
+    #main .articlecards-wrapper{
+        padding: 50px 0 !important;
+    }
+
 }
