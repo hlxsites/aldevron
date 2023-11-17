@@ -1,9 +1,15 @@
-.articlecards-wrapper{
+.articlecards{
     padding: 80px 0;
+    text-align: left;
 }
 
-.section.articlecards-container {
+.grey-article-outer {
     background-color: #ededed;
+}
+
+.grey-article-outer > div{
+    width: 980px;
+    margin: 0 auto;
 }
 
 .wrapper{
@@ -262,7 +268,7 @@ ul.posts li.post:last-child {
 }
 
 @media (max-width: 767px) {
-    .articlecards-wrapper{
+    .articlecards{
         padding: 60px 0;
     }
 
