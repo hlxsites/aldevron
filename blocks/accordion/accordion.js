@@ -1,4 +1,8 @@
 export default function decorate(block) {
+  const allAnchorTags = document.querySelectorAll('a');
+  allAnchorTags.forEach((anchorTag) => {
+    anchorTag.removeAttribute('title');
+  });
   const divCta = document.querySelector('div .cta');
   block.classList.add('faq-accordion');
   if (divCta) {
