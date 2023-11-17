@@ -5,7 +5,6 @@ export default function decorate(block) {
   moduleDiv.classList.add('hs_cos_wrapper', 'hs_cos_wrapper_widget', 'hs_cos_wrapper_type_module', 'module-1');
   moduleDiv.setAttribute('data-hs-cos-type', 'module');
   moduleDiv.setAttribute('data-hs-cos-general-type', 'widget');
-  moduleDiv.setAttribute('id', clonedBlock.querySelector('h2').textContent.split(' ')[1]);
   const quoteboxDiv = document.createElement('div');
   quoteboxDiv.classList.add('quote-box');
   const blockquoteDiv = document.createElement('blockquote');
