@@ -236,6 +236,7 @@ function setSidebarMaxHeight() {
 
 function setSidebarHeight() {
   window.addEventListener('resize', setSidebarMaxHeight);
+  window.addEventListener('click', setSidebarMaxHeight);
 }
 
 export default async function buildAutoBlocks(block) {
