@@ -625,6 +625,23 @@ input[type="submit"] {
     width: auto
 }
 
+.button.secondary {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: #ec8f2d;
+    text-transform: none;
+    font-style: normal;
+    transition: all .3s ease-in-out;
+}
+
+.button.secondary:hover {
+    border: none;
+    color: #ec8f2d;
+    text-decoration: underline;
+    transition: all .3s ease-in-out;
+}
+
 .blog-pagination a:hover,
 .button:hover,
 .cta_button:hover,

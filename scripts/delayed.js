@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './aem.js';
-import { buildForm, isForm } from '../blocks/forms/forms.js';
+import { sampleRUM, buildForm, isForm } from './aem.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -50,7 +49,7 @@ function loadHubSpot() {
   hsScriptEl.src = '//js.hsforms.net/forms/v2.js';
   document.querySelector('head').append(hsScriptEl);
   hsScriptEl.addEventListener('load', () => {
-        buildForm(hbspt); // eslint-disable-line
+    buildForm(hbspt); // eslint-disable-line
   });
 }
 

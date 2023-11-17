@@ -503,42 +503,6 @@ body.full-width #main {
     width: 100%
 }
 
-#references {
-    clear: both;
-    font-size: 12px;
-    padding-top: 30px;
-    width: 100%
-}
-
-#references h6 {
-    border-top: 1px solid #ccc;
-    color: inherit;
-    padding: 20px 0 0
-}
-
-#references ol {
-    counter-reset: li;
-    list-style: none
-}
-
-#references ol li {
-    line-height: normal;
-    margin-left: 0;
-    padding: .4em 0 .4em 1em;
-    position: relative
-}
-
-#references ol li::before {
-    color: #000;
-    content: counter(li);
-    counter-increment: li;
-    font-size: 1em;
-    left: 0;
-    line-height: 100%;
-    position: absolute;
-    top: 10%
-}
-
 #sidebar {
     float: right;
     font-size: 16px;

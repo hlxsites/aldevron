@@ -21,6 +21,7 @@
  * @param {string} data.target subject of the checkpoint event,
  * for instance the href of a link, or a search term
  */
+const formConfigData = [];
 function sampleRUM(checkpoint, data = {}) {
   sampleRUM.defer = sampleRUM.defer || [];
   const defer = (fnname) => {
@@ -251,6 +252,35 @@ async function loadCSS(href) {
     } else {
       resolve();
     }
+  });
+}
+
+function extractTableData(table) {
+  const tableData = {};
+  table.querySelectorAll('tbody tr').forEach((row) => {
+    const key = row.cells[0].textContent.toLowerCase();
+    const value = row.cells[1].textContent;
+    tableData[key] = value;
+  });
+  return tableData;
+}
+
+function passFormConfig(config) {
+  formConfigData.push(config);
+}
+
+function isForm() {
+  return formConfigData.length;
+}
+
+function buildForm(hbspt) {
+  formConfigData.forEach((formData) => {
+    hbspt.forms.create({
+      region: formData.region,
+      portalId: formData.portalid,
+      formId: formData.formid,
+      target: `#${formData.target}`,
+    });
   });
 }
 
@@ -718,4 +748,8 @@ export {
   updateSectionsStatus,
   waitForLCP,
   capitalizeWords,
+  passFormConfig,
+  isForm,
+  buildForm,
+  extractTableData,
 };
