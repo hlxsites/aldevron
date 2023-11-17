@@ -14,7 +14,7 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     text-align: left;
-    width: 980px
+    width: 980px;
 }
 
 #header {
@@ -543,7 +543,7 @@ body.full-width #main {
     float: right;
     font-size: 16px;
     line-height: normal;
-    width: 26%
+    width: 26%;
 }
 
 body.sidebar-50 #sidebar {

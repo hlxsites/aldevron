@@ -817,6 +817,62 @@ body.purple input[type="submit"]:hover {
     width: 100%
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.padding-1 {
+    padding: 1px;
+}
+
+.padding-2 {
+    padding: 2px
+}
+
+.padding-4 {
+    padding: 4px;
+}
+
+.padding-8 {
+    padding: 8px;
+}
+
+.padding-16 {
+    padding: 16px;
+}
+
+.margin-1 {
+    margin: 1px;
+}
+
+.margin-2 {
+    margin: 2px
+}
+
+.margin-4 {
+    margin: 4px;
+}
+
+.margin-8 {
+    margin: 8px;
+}
+
+.margin-16 {
+    margin: 16px;
+}
+
+.bg-grey {
+    background-color: #ededed;
+}
+
 .cols-row,
 .cols2-row,
 .cols3-row {
