@@ -247,7 +247,7 @@ body {
 
 a {
     background: transparent;
-    color: #ec8f2d;
+    color: var(--primary-color);
     text-decoration: none;
 }
 

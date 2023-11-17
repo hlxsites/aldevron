@@ -27,3 +27,7 @@
     width: 100%;
    max-width: 100%;
 }
+
+.sidebar-rte .button {
+    width: 100%;
+}

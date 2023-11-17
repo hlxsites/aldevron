@@ -9,9 +9,8 @@ export default function decorate(block) {
         if (nextNextSibling) {
           const link = nextNextSibling.querySelector('a');
           if (link && link.classList.contains('secondary')) {
-            link.innerHTML = ''; // Clear the existing content of the link
-            const imageClone = image.cloneNode(true); // Clone the image
-            link.appendChild(imageClone); // Insert the cloned image into the link
+            link.innerHTML = '';
+            link.appendChild(image);
           }
         }
       }
