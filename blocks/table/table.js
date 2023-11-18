@@ -1,14 +1,6 @@
-function removeClassesFromChildTables(table) {
-  table.classList.add('no-margin');
-  const tdElements = table.querySelectorAll('td');
-  tdElements.forEach((td) => {
-    td.classList.add('bg-transparent');
-  });
-}
-
 export default function decorate(block) {
   const getHeadingLeftClass = block.classList.contains('heading-left');
-  if (getHeadingLeftClass !== null && getHeadingLeftClass !== undefined) {
+  if (getHeadingLeftClass) {
     const tds = block.querySelectorAll('tr td:first-child');
     let index = 0;
     while (index < tds.length) {
@@ -33,11 +25,4 @@ export default function decorate(block) {
       }
     });
   });
-  const parentTable = block.querySelector('.table[data-block-name="table"] table');
-  const childTable = parentTable.querySelector('table');
-  if (childTable) {
-    const { classList } = childTable.parentElement;
-    classList.add('no-padding', 'no-margin');
-    removeClassesFromChildTables(childTable);
-  }
 }
