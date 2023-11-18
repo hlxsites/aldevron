@@ -152,6 +152,32 @@ th {
     padding: 12px 10px;
 }
 
+/* Horizontal alignment based on align attribute */
+td[align="left"] {
+    text-align: left;
+}
+
+td[align="center"] {
+text-align: center;
+}
+
+td[align="right"] {
+text-align: right;
+}
+
+/* Vertical alignment based on valign attribute */
+td[valign="top"] {
+vertical-align: top;
+}
+
+td[valign="middle"] {
+vertical-align: middle;
+}
+
+td[valign="bottom"] {
+vertical-align: bottom;
+}
+
 body.red th {
     background-color: #d1222b;
 }
