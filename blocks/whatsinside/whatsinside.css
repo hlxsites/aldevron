@@ -25,6 +25,8 @@
 
 .whatsinside .wrapper .whats-inside_block .whats-inside_block-image img {
     margin-top: 1rem;
+    width: 60px;
+    height: auto;
 }
 
 .whatsinside .wrapper .whats-inside_block .whats-inside_block-content {
