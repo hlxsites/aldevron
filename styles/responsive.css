@@ -3,6 +3,11 @@
         height: auto;
         padding-bottom: 47%
     }
+
+    #logo {
+        left: 20px;
+        width: 190px
+    }    
 }
 
 @media (max-width: 1024px) {
@@ -14,7 +19,7 @@
 
     #logo {
         left: 20px;
-        width: 210px
+        width: 120px;
     }
 
     #cart {
@@ -56,6 +61,10 @@
     body.scrolled #header {
         height: 50px;
         transition: none
+    }
+
+    #header .outer {
+        width: 100%;
     }
 
     #logo {
@@ -309,7 +318,8 @@
     }
 
     #header-info a {
-        background: #e46b29;
+        background: #1a1919;
+        font-weight: 500;
         border-bottom: 1px solid #f1f1f1;
         box-sizing: border-box;
         color: #fff;

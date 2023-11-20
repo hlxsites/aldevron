@@ -221,6 +221,7 @@ export default async function decorate(block) {
     const logo = document.createElement('a');
     logo.id = 'logo';
     logo.href = '/';
+    logo.ariaLabel = 'Aldevron Logo';
     logo.innerHTML = childElements.children[0].innerHTML;
     outer.appendChild(logo);
 
