@@ -25,7 +25,7 @@ export default function decorate(block) {
       wrapper.append(mainDiv);
     }
   });
-  const parent = block.parentNode;
-  parent.prepend(headingDiv);
-  block.replaceChildren(wrapper);
+  block.innerText = '';
+  block.appendChild(headingDiv);
+  block.appendChild(wrapper);
 }
