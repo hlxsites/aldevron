@@ -224,6 +224,20 @@ function renderShareButtons(container, url, title) {
   container.appendChild(list);
 }
 
+function setSidebarMaxHeight() {
+  let height = 0;
+  const sidebar = document.querySelector('#sidebar');
+  [...sidebar.children].forEach((element) => {
+    height += element.offsetHeight;
+  });
+  sidebar.style.maxHeight = `${height}px`;
+}
+
+function setSidebarHeight() {
+  window.addEventListener('resize', setSidebarMaxHeight);
+  window.addEventListener('click', setSidebarMaxHeight);
+}
+
 export default async function buildAutoBlocks(block) {
   const searchParams = new URLSearchParams(window.location.search);
   let pageNumber = 1; // Use let instead of const
@@ -339,4 +353,6 @@ export default async function buildAutoBlocks(block) {
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);
   block.appendChild(defaultTemplate);
+  setSidebarMaxHeight();
+  setSidebarHeight();
 }

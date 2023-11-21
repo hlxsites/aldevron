@@ -32,6 +32,7 @@ export default async function decorate(block) {
       createAtag.appendChild(socialIcons.children[i]?.children[0]?.querySelector('picture'));
       createAtag.setAttribute('href', socialIcons.children[i]?.children[1]?.children[0].href);
       createAtag.setAttribute('target', '_blank');
+      createAtag.setAttribute('aria-label', 'Social Media Link');
       allAnchorTags.appendChild(createAtag);
     }
     return allAnchorTags;
@@ -57,6 +58,7 @@ export default async function decorate(block) {
     const footLogo = document.createElement('a');
     footLogo.id = 'footLogo';
     footLogo.target = '_blank';
+    footLogo.ariaLabel = 'Danaher Logo';
     // footLogo.href = '';
     // footLogo.innerHTML = footerUl.children[0].children[2].innerHTML;
 

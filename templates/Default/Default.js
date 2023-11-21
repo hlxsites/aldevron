@@ -1,3 +1,17 @@
+function setSidebarMaxHeight() {
+  let height = 0;
+  const sidebar = document.querySelector('#sidebar');
+  [...sidebar.children].forEach((element) => {
+    height += element.offsetHeight;
+  });
+  sidebar.style.maxHeight = `${height}px`;
+}
+
+function setSidebarHeight() {
+  window.addEventListener('resize', setSidebarMaxHeight);
+  window.addEventListener('click', setSidebarMaxHeight);
+}
+
 export default function buildAutoBlocks(block) {
   const blocks = block.querySelector('.section');
   const sidebars = blocks.querySelectorAll('[data-block-name^="sidebar-"]');
@@ -50,4 +64,6 @@ export default function buildAutoBlocks(block) {
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);
   block.appendChild(defaultTemplate);
+  setSidebarMaxHeight();
+  setSidebarHeight();
 }
