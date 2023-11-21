@@ -1,91 +1,95 @@
-.articlecards-wrapper{
+.articlecards {
+    padding: 20px 0;
+    text-align: left;
+}
+
+#main .articlecards .wrapper{
+    padding: 0;
+}
+
+.grey-article-outer {
+    background-color: #ededed;
     padding: 80px 0;
 }
 
-.section.articlecards-container {
-    background-color: #ededed;
+.grey-article-outer > div {
+    max-width: 980px;
+    margin: 0 auto;
 }
 
-.wrapper{
+.articlecards .wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 4%;
+    padding: 0 20px;
 }
 
 @media only screen and (max-width: 768px) {
-    .wrapper{
+    .articlecards .wrapper{
         grid-template-columns: 1fr;
         grid-gap: 0;
     }
 }
 
-ul.posts {
+.articlecards ul.posts {
    margin: 0;
    padding: 0;
 }
 
-ul.posts li.post {
+.articlecards ul.posts li.post {
     padding: 0;
     margin-bottom: 25px;
 }
 
-.entry-title {
+.articlecards .entry-title {
     padding: 0;
     line-height: 18px;
 }
 
-ul.posts li.post:not(:first-child) .entry-title .redirect-link {
+.articlecards ul.posts li.post:not(:first-child) .entry-title .redirect-link {
     font-size: 14px;
 }
 
-ul.posts:not(:first-child) li.post:first-child {
+.articlecards ul.posts:not(:first-child) li.post:first-child {
     padding-left: 0;
 }
 
-ul.posts li.post:not(:first-child) {
+.articlecards ul.posts li.post:not(:first-child) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 0;
 }
 
-ul.posts li.post:not(:first-child) a.article-card-img {
+.articlecards ul.posts li.post:not(:first-child) a.article-card-img {
     flex-shrink: 0.9;
     padding: 0;
     margin: 5px 0 0;
 }
 
-ul.posts li.post:first-child a.article-card-img img {
+.articlecards ul.posts li.post:first-child a.article-card-img img {
     /* width: 470px;
     height: 264px; */
     width: 100%;
     height: 100%;
 }
 
-ul.posts li.post:first-child .article-card-body{
+.articlecards ul.posts li.post:first-child .article-card-body{
     padding-top: 20px;
 }
 
-.article-card-body a{
+.articlecards .article-card-body a{
     font-weight: bold;
     font-size: 18px;
     letter-spacing: -0.02em;
 }
 
-.article-card-body a:hover{
+.articlecards .article-card-body a:hover{
     color: #000;
     text-decoration: none;
 }
 
-.pt-80 {
-    padding-top: 80px;
-}
-
-.pb-80 {
-    padding-bottom: 80px;
-}
-
-.article-lists {
+.articlecards .article-lists {
     display: flex;
     justify-content: center;
     grid-gap: 4%;
@@ -93,7 +97,7 @@ ul.posts li.post:first-child .article-card-body{
     padding: 0;
 }
 
-.article-card {
+.articlecards .article-card {
     position: relative;
     display: flex;
     flex: 2 1 auto;
@@ -115,61 +119,35 @@ ul.posts li.post:first-child .article-card-body{
     padding: 0 0 30px;
 }
 
-.article-cards .article-card-body .description {
-    padding : 0;
-    font-size: 16px;
-    letter-spacing: -0.02em;
-    line-height: 23px;
-}
-
-.horizontal .article-card {
-    grid-gap: 0.75rem;
-    flex-direction: var(--custom-direction, row);
-    padding-bottom: 30px;
-}
-
-.horizontal .article-card .article-card-img + * {
-    flex-shrink: 4;
-}
-
-.horizontal .article-card .article-card-body {
-    padding: 0;
-}
-
-.horizontal .article-card .article-card-body .redirect-link {
-    font-size: 14px;
-    padding: 0;
-}
-
-ul.posts li.post:first-child .description{
+.articlecards ul.posts li.post:first-child .description{
     padding: .5em 0 0;
 }
 
-ul.posts li.post:not(:first-child) .description {
+.articlecards ul.posts li.post:not(:first-child) .description {
     font-size: 14px;
     padding: .5em 0 0;
     width: 101%;
 }
 
-ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
+.articlecards ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
     margin-top: 0;
 }
 
-ul.posts li.post:last-child {
+.articlecards ul.posts li.post:last-child {
     margin-bottom: 30px;
 }
 
-.article-card-img img {
+.articlecards .article-card-img img {
     width: 88%;
     height: 100%;
 }
 
-.article-card .article-card-title {
+.articlecards .article-card .article-card-title {
     font-size: var(--text-size, 1.5rem);
     line-height: var(--text-line-height, 1.5rem);
 }
 
-.article-card-subtitle {
+.articlecards .article-card-subtitle {
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
     font-weight: 700;
     font-size: 30px;
@@ -179,7 +157,7 @@ ul.posts li.post:last-child {
     padding: 0 0 0.5em;
 }
 
-.article-card .redirect-link {
+.articlecards .article-card .redirect-link {
     padding-top: 20px;
     font-size: 18px;
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
@@ -189,39 +167,47 @@ ul.posts li.post:last-child {
     margin: 0;
 }
 
-.article-card .article-card-body {
+.articlecards .article-card .article-card-body {
     flex: 1 1 auto;
 }
 
+#main .articlecards .posts .post::before {
+    content: "" !important;
+}
+
+#main .articlecards ul.posts li.post:first-child .article-card-body {
+        padding: 0;
+}
+
+#main .articlecards .post:not(:first-child) .article-card-body .entry-title{
+    font-size: 14px;
+    margin: .35em 0 0.5em;
+}
+
+#main .articlecards ul.posts li.post:not(:first-child) {
+    padding: .65em 0 0;
+}
+
+#main .articlecards ul.posts li.post:first-child .entry-title {
+    font-size: 18px;
+}
+
 @media only screen and (max-width: 479px) {
-    .horizontal .article-card  {
-        flex-direction: column!important;
-    }
-
-    .outer {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .horizontal .article-card .article-card-img img {
-        max-width: 100%!important;
-    }
-
-    ul.posts li.post {
+    .articlecards .ul.posts li.post {
         padding: 0 0 30px;
         margin: 0;
     }
 
-    ul.posts li.post:last-child {
+    .articlecards ul.posts li.post:last-child {
         padding: 0;
         margin-bottom: 0;
     }
 
-    ul.posts li.post:not(:first-child){
+    .articlecards ul.posts li.post:not(:first-child){
         display: block;
     }
 
-    ul.posts li.post:first-child a.article-card-img img {
+    .articlecards ul.posts li.post:first-child a.article-card-img img {
         height: auto;
     }
 
@@ -229,51 +215,68 @@ ul.posts li.post:last-child {
        padding: 8px 0 0;
     }
 
-    .mmg-rich-columns .recent-posts .post p{
-        padding: 7px;
-    }
-
-    ul.posts:not(:first-child) {
+    .articlecards ul.posts:not(:first-child) {
         padding: 0;
     }
 
-    ul.posts li.post:not(:first-child) .entry-title {
+    .articlecards ul.posts li.post:not(:first-child) .entry-title {
         padding: 20px 0 0;
     }
 
-    ul.posts li.post:not(:first-child) .entry-title .redirect-link {
+    .articlecards ul.posts li.post:not(:first-child) .entry-title .redirect-link {
         font-size: 18px;
     }
 
-    .article-card-img img{
+    .articlecards .article-card-img img{
         width:100%;
     }
 
-    ul.posts li.post:last-child .article-card-body{
+    .articlecards ul.posts li.post:last-child .article-card-body{
         padding-bottom: 30px;
     }
-}
 
-@media (min-width: 479px) and (max-width: 767px) {
-    .horizontal .article-card  {
-        flex-direction: row!important;
-        width: 100%;
+    #main .articlecards ul.posts li.post:last-child .article-card-body{
+        padding-bottom: 0;
     }
+
+    #main .articlecards ul.posts li.post:not(:first-child) .entry-title {
+        margin: 1em 0 .5em;
+        font-size: 18px;
+    }
+
+    #main .articlecards  ul.posts li.post{
+        padding: 0 0 30px !important;
+    }
+
 }
 
 @media (max-width: 767px) {
-    .articlecards-wrapper{
+    .grey-article-outer {
         padding: 60px 0;
     }
 
-    ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
+    .articlecards ul.posts:not(:first-child) li.post:first-child .article-card-subtitle{
         margin-top: 30px;
+    }
+
+    #main .articlecards ul.posts li.post:not(:first-child){
+        padding: 0;
     }
 }
 
 @media only screen and (max-width: 414px) {
-    .article-card-subtitle{
+    .articlecards .article-card-subtitle{
         padding: 0 0 .5em;
         font-size: 24px;
     }
+
+    #main .articlecards  .post:first-child .entry-title {
+        font-size: 24px;
+    }
+
+    #main .articlecards ul.posts li.post:not(:first-child){
+        padding: 0 0 30px;
+        margin: 0;
+    }
+
 }
