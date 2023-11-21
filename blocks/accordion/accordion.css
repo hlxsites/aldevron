@@ -75,7 +75,7 @@ main .accordion.faq-accordion .faq-answer {
     overflow: hidden;
     font-size: 16px;
     max-height: 0;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
     text-align: left;
 }
 

@@ -1,25 +1,15 @@
-import { readBlockConfig } from '../../scripts/aem.js';
+import { passFormConfig, extractTableData } from '../../scripts/aem.js';
 
 let formConfig = {};
 
-export default function decorate(block) {
-  formConfig = readBlockConfig(block);
+export default async function decorate(block) {
+  const table = block.querySelector('table');
+  formConfig = await extractTableData(table);
   const form = document.createElement('div');
   form.id = formConfig.target;
   form.classList.add('content');
-  block.textContent = '';
-  block.append(form);
-}
-
-export function isForm() {
-  return !!formConfig.target;
-}
-
-export function buildForm(hbspt) {
-  hbspt.forms.create({
-    region: formConfig.region,
-    portalId: formConfig.portalid,
-    formId: formConfig.formid,
-    target: `#${formConfig.target}`,
-  });
+  if (table) {
+    table.replaceWith(form);
+  }
+  passFormConfig(formConfig);
 }

@@ -212,7 +212,7 @@ function createShareButton(network, url, title) {
 }
 
 function renderShareButtons(container, url, title) {
-  const networks = ['twitter', 'linkedin', 'facebook'];
+  const networks = ['twitter', 'facebook', 'linkedin'];
   const list = document.createElement('ul');
   list.className = 'hs-blog-social-share-list';
 
