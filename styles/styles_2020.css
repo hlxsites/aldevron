@@ -242,7 +242,6 @@
 }
 
 .module.split-bg::before {
-  background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png') 0 50% no-repeat;
   background-size: auto 100%;
   content: "";
   height: 100%;
@@ -904,11 +903,6 @@
 
   .module.split-bg::before {
       content: none
-  }
-
-  .module.split-bg .outer {
-      background: url('//1769030.fs1.hubspotusercontent-na1.net/hubfs/1769030/aldevron_template/about-pattern.png') 100% 50% no-repeat;
-      background-size: auto 130%
   }
 
   .module.custom-bg.split-bg::after {
