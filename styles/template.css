@@ -14,7 +14,7 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     text-align: left;
-    width: 980px
+    width: 980px;
 }
 
 #header {
@@ -30,11 +30,12 @@ body {
 
 #header .outer {
     height: 100%;
-    position: relative
+    position: relative;
+    width: 85%;
 }
 
 #logo {
-    bottom: 15px;
+    top: 0;
     left: 0;
     width: 220px;
     z-index: 2
@@ -85,7 +86,7 @@ body {
 }
 
 #header-info a {
-    color: #767a7f;
+    color: #1a1919;
     padding-left: 10px;
     text-decoration: none
 }
@@ -97,13 +98,12 @@ body {
 #header-info a.news {
     font-weight: bold;
     color: #FFF !important;
-    background-color: #e46b29;
     padding: 3px 7px !important;
     margin-left: 5px;
+    background-color: #221107;
 }
 
 #menu {
-    border-top: 1px solid #f4f4f4;
     bottom: 0;
     padding-top: 8px;
     position: absolute;
@@ -130,7 +130,7 @@ body {
     color: #0d233e;
     display: inline-block;
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     height: 45px;
     line-height: 38px;
@@ -543,7 +543,7 @@ body.full-width #main {
     float: right;
     font-size: 16px;
     line-height: normal;
-    width: 26%
+    width: 26%;
 }
 
 body.sidebar-50 #sidebar {
@@ -758,7 +758,8 @@ body.sidebar-50 #sidebar {
 
 #footer-black {
     padding: 30px 0 40px;
-    text-align: center
+    text-align: center;
+    width: 85%;
 }
 
 #footer-black #footer-logo {
