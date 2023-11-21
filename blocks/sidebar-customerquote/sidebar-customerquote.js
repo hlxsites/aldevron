@@ -1,7 +1,10 @@
 export default function decorate(block) {
   const clonedBlock = block.cloneNode(true);
   const pictureElement = clonedBlock.querySelector('picture');
+  const quotelistWrapper = document.createElement('div');
   const moduleDiv = document.createElement('div');
+  quotelistWrapper.append(moduleDiv);
+  quotelistWrapper.classList.add('quotelist-wrapper');
   moduleDiv.classList.add('hs_cos_wrapper', 'hs_cos_wrapper_widget', 'hs_cos_wrapper_type_module', 'module-1');
   moduleDiv.setAttribute('data-hs-cos-type', 'module');
   moduleDiv.setAttribute('data-hs-cos-general-type', 'widget');
@@ -9,17 +12,17 @@ export default function decorate(block) {
   quoteboxDiv.classList.add('quote-box');
   const blockquoteDiv = document.createElement('blockquote');
   blockquoteDiv.classList.add('quote');
-  blockquoteDiv.textContent = clonedBlock.querySelector('blockquote > p').textContent;
+  blockquoteDiv.textContent = clonedBlock.querySelector('p').textContent;
   quoteboxDiv.append(blockquoteDiv);
   const para = document.createElement('p');
   para.classList.add('details');
   const spanInside = document.createElement('span');
   spanInside.classList.add('name');
-  spanInside.textContent = clonedBlock.querySelector('blockquote + p').textContent;
+  spanInside.textContent = clonedBlock.querySelector('p + p').textContent;
   para.append(spanInside);
   const spanTitle = document.createElement('span');
   spanTitle.classList.add('title');
-  spanTitle.textContent = clonedBlock.querySelector('blockquote + p + p').textContent;
+  spanTitle.textContent = clonedBlock.querySelector('p + p + p').textContent;
   para.append(spanTitle);
   quoteboxDiv.append(para);
   const spanIconWrapper = document.createElement('span');
@@ -28,16 +31,22 @@ export default function decorate(block) {
   spanIcon.classList.add('fa', 'fa-quote-right');
   spanIconWrapper.append(spanIcon);
   quoteboxDiv.append(spanIconWrapper);
-  const imageWrapper = document.createElement('div');
-  imageWrapper.classList.add('testimonial-headshot', 'text-center');
-  const image = document.createElement('img');
-  image.setAttribute('width', `${pictureElement.querySelector('img').width}`);
-  image.setAttribute('height', `${pictureElement.querySelector('img').height}`);
-  image.setAttribute('alt', `${pictureElement.querySelector('img').alt}`);
-  image.setAttribute('src', `${pictureElement.querySelector('img').src}`);
-  imageWrapper.append(image);
   moduleDiv.append(quoteboxDiv);
-  moduleDiv.append(imageWrapper);
+  if (pictureElement) {
+    const imageWrapper = document.createElement('div');
+    imageWrapper.classList.add('testimonial-headshot', 'text-center');
+    const image = document.createElement('img');
+    image.setAttribute('width', `${pictureElement.querySelector('img').width}`);
+    image.setAttribute('height', `${pictureElement.querySelector('img').height}`);
+    image.setAttribute('alt', `${pictureElement.querySelector('img').alt}`);
+    image.setAttribute('src', `${pictureElement.querySelector('img').src}`);
+    imageWrapper.append(image);
+    moduleDiv.append(imageWrapper);
+    quoteboxDiv.classList.add('triangle-icon');
+  }
+  if (!pictureElement) {
+    quoteboxDiv.style.marginBottom = 0;
+  }
   block.textContent = '';
-  block.append(moduleDiv);
+  block.append(quotelistWrapper);
 }

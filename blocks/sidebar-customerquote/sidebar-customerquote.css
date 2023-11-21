@@ -1,5 +1,9 @@
 /* customer quotes css */
 
+.quotelist-wrapper {
+  margin-bottom: 25px;
+}
+
 .quote-box {
   background: #f5f5f5;
   padding: 30px;
@@ -10,7 +14,7 @@
   margin-bottom: 30px;
 }
 
-.quote-box::after {
+.quote-box.triangle-icon::after {
   content: "";
   display: block;
   width: 0;
