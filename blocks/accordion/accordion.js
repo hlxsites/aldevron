@@ -63,7 +63,10 @@ export default function decorate(block) {
       const openfaq = block.querySelector('.faq-question.active');
       if (openfaq && !currentFaq) {
         openfaq.classList.toggle('active');
-        openfaq.nextElementSibling.classList.toggle('active');
+        openfaq.nextElementSibling.style.maxHeight = 0;
+        setTimeout(() => {
+          openfaq.nextElementSibling.classList.toggle('active');
+        }, 300);
       }
       const faqAnswer = e.currentTarget.nextElementSibling;
       e.currentTarget.classList.toggle('active');
