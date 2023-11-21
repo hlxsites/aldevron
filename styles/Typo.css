@@ -509,6 +509,7 @@ body.purple #content ul li::before {
 button,
 input,
 optgroup,
+.hs-form input[type="submit"],
 select,
 textarea {
     color: inherit;
@@ -629,6 +630,7 @@ textarea:focus  {
 button,
 input[type="button"],
 input[type="reset"],
+.hs-form input[type="submit"],
 input[type="submit"] {
     background-color: var(--primary-color);
     border-radius: 5px;
@@ -674,6 +676,7 @@ input[type="submit"] {
 .hs-button:hover,
 .readmore:hover,
 button:hover,
+.hs-form input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
@@ -1582,3 +1585,8 @@ form.hs-form .hs-input[type="checkbox"] {
 .hs-blog-social-share-list .hs-blog-social-share-item::before {
     content: ''!important;
 }
+
+.block.subscribe .hs_submit {
+    padding-bottom: 0
+}
+

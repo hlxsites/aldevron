@@ -275,12 +275,16 @@ function isForm() {
 
 function buildForm(hbspt) {
   formConfigData.forEach((formData) => {
-    hbspt.forms.create({
+    const config = {
       region: formData.region,
       portalId: formData.portalid,
       formId: formData.formid,
       target: `#${formData.target}`,
-    });
+    };
+    if (formData.redirecturl) {
+      config.redirectUrl = formData.redirecturl;
+    }
+    hbspt.forms.create(config);
   });
 }
 
