@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { decorateIcons, loadCSS } from '../../scripts/aem.js';
+import { decorateIcons } from '../../scripts/aem.js';
 import { div, p, span } from '../../scripts/dom-builder.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -260,9 +260,6 @@ class ImageSlider {
     const initialChildren = [...this.block.children];
 
     this.block.parentElement.firstChild.lastChild.after(createClone(initialChildren[0]));
-    // this.block.parentElement.firstChild.lastChild.after(createClone(initialChildren[1]));
-    // this.block.parentElement.firstChild.lastChild.after(createClone(initialChildren[2]));
-
     this.block.parentElement.firstChild.firstChild
       .before(createClone(initialChildren[initialChildren.length - 1]));
 
@@ -284,7 +281,6 @@ class ImageSlider {
     buttonLeft.classList.add('imageslider-nav-button');
     buttonLeft.ariaLabel = 'Scroll to previous item';
     buttonLeft.innerText = '<';
-    // buttonLeft.append(span({ class: 'icon icon-chevron-left' }));
     buttonLeft.addEventListener('click', () => {
       clearInterval(this.intervalId);
       this.prevItem();
@@ -299,7 +295,6 @@ class ImageSlider {
     buttonRight.classList.add('imageslider-nav-button');
     buttonRight.ariaLabel = 'Scroll to next item';
     buttonRight.innerText = '>';
-    // buttonRight.append(span({ class: 'icon icon-chevron-right' }));
     buttonRight.addEventListener('click', () => {
       clearInterval(this.intervalId);
       this.nextItem();
@@ -358,28 +353,7 @@ class ImageSlider {
         left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
       });
     };
-
-    const section = this.block.closest('.section');
-
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-section-status'
-          && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
-          scrollToSelectedItem();
-          observer.disconnect();
-        }
-      });
-    });
-
-    observer.observe(section, { attributes: true });
-
-    // just in case the mutation observer didn't work
     setTimeout(scrollToSelectedItem, 700);
-
-    // ensure that we disconnect the observer
-    // if the animation has kicked in, we for sure no longer need it
-    setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
   }
 
   createDotButtons() {
@@ -416,15 +390,7 @@ class ImageSlider {
   clickthumbnails() {
     const items = [...this.block.children];
     items.forEach((item) => {
-      // console.log('item', item);
-      // console.log('i', i);
-      // console.log('count : ',count);
-
       item.addEventListener('click', () => {
-        // console.log('currIndx', this.currentIndex);
-        // console.log('i :: ', i);
-      // this.nextItem();
-
         const selectedItem = this.block.querySelector('.imageslider-item.selected');
         if (item.classList.toString()
         === selectedItem.previousElementSibling.classList.toString()) {
@@ -490,6 +456,7 @@ class ImageSlider {
     const itemChildren = [...item.children];
     itemChildren.forEach((itemChild, idx) => {
       if (itemChild.querySelector('img')) {
+        itemChild.querySelector('img').setAttribute('title', itemChild.querySelector('img').getAttribute('alt'));
         itemChild.classList.add('imageslider-item-image');
       } else {
         itemChild.classList.add('imageslider-item-text');
@@ -509,18 +476,6 @@ class ImageSlider {
     this.block.parentElement.classList.add(
       ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
-
-    let defaultCSSPromise;
-    if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-      // add default imageslider classes to apply default CSS
-      defaultCSSPromise = new Promise((resolve) => {
-        this.cssFiles.forEach((cssFile) => {
-          loadCSS(cssFile, (e) => resolve(e));
-        });
-      });
-      this.block.parentElement.classList.add('imageslider-wrapper');
-      this.block.classList.add('imageslider');
-    }
 
     this.block.parentElement.classList.add('outer');
     this.block.innerHTML = '';
@@ -553,16 +508,11 @@ class ImageSlider {
     const activeMainItems = this.block.parentElement.firstChild.querySelectorAll('.imageslider-item:not(.clone,.skip)');
     activeMainItems[this.currentIndex].classList.add('selected');
 
-    // create autoscrolling animation
-    this.autoScroll && this.infiniteScroll
-      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
     this.dotButtons && this.createDotButtons();
     this.counter && this.createCounter();
     this.navButtons && this.createNavButtons(this.block.parentElement);
     this.infiniteScroll && this.createClones();
-    this.addSwipeCapability();
     this.infiniteScroll && this.setInitialScrollingPosition();
-    this.cssFiles && (await defaultCSSPromise);
     this.clickthumbnails();
     this.setSliderWidth();
     this.setInitialImage();
