@@ -63,19 +63,24 @@ export default function decorate(block) {
       const openfaq = block.querySelector('.faq-question.active');
       if (openfaq && !currentFaq) {
         openfaq.classList.toggle('active');
-        openfaq.nextElementSibling.classList.toggle('active');
-      }
-      const faqAnswer = e.currentTarget.nextElementSibling;
-      e.currentTarget.classList.toggle('active');
-      if (e.currentTarget.classList.contains('active')) {
-        faqAnswer.classList.toggle('active');
-        faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
-      } else {
-        faqAnswer.style.maxHeight = 0;
+        openfaq.nextElementSibling.style.maxHeight = 0;
         setTimeout(() => {
-          faqAnswer.classList.toggle('active');
+          openfaq.nextElementSibling.classList.toggle('active');
         }, 300);
       }
+      setTimeout(() => {
+        const faqAnswer = e.target.nextElementSibling;
+        e.target.classList.toggle('active');
+        if (e.target.classList.contains('active')) {
+          faqAnswer.classList.toggle('active');
+          faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
+        } else {
+          faqAnswer.style.maxHeight = 0;
+          setTimeout(() => {
+            faqAnswer.classList.toggle('active');
+          }, 300);
+        }
+      }, 300, e);
     });
     const faqAnswer = [...row.children][1];
     faqAnswer.classList.add('faq-answer');
