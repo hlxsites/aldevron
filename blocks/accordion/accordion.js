@@ -10,11 +10,9 @@ export default function decorate(block) {
     expandCollapse.classList.add('expand_collapse');
     const expandBtn = document.createElement('a');
     expandBtn.classList.add('expand-btn');
-    expandBtn.setAttribute('href', '#');
     expandBtn.textContent = 'Expand All';
     const collapseBtn = document.createElement('a');
     collapseBtn.classList.add('collapse-btn');
-    collapseBtn.setAttribute('href', '#');
     collapseBtn.textContent = 'Collapse All';
     expandCollapse.appendChild(expandBtn);
     expandCollapse.appendChild(collapseBtn);
