@@ -500,7 +500,7 @@ body.sidebar-50 #main {
 
 body.full-width #main {
     float: none;
-    width: 100%
+    width: 100%!important;
 }
 
 #references {
