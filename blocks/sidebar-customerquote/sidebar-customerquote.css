@@ -5,7 +5,6 @@
   box-shadow: 0 2px 11px rgba(0,0,0,.1);
   display: block;
   padding: 7%;
-  margin-top: 25px;
 }
 
 .quote-wrapper{
@@ -16,6 +15,10 @@
   background-clip: padding-box;
   position: relative;
   color: #666;
+}
+
+.sidebar-customerquote:not(:first-child) {
+  margin-top: 25px;
 }
 
 .quote-wrapper.bottom-icon::after {

@@ -6,8 +6,7 @@ export default function decorate(block) {
   quoteWrapper.children[2].classList.add('title');
   block.textContent = '';
   block.append(quoteWrapper);
-  // if (quoteWrapper.children[3]) {
-  if (quoteWrapper.querySelector('picture')) {
+  if (quoteWrapper.children[3] && quoteWrapper.children[3].querySelector('picture')) {
     quoteWrapper.children[3].classList.add('testimonial-headshot');
     quoteWrapper.classList.add('bottom-icon');
     block.appendChild(quoteWrapper.children[3]);
