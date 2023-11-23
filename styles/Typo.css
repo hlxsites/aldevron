@@ -1686,6 +1686,7 @@ form.hs-form .hs-input[type="checkbox"] {
     
     .landing-section > div {
         padding: 0;
+        width: 100%;
     }
 }
 
