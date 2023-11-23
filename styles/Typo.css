@@ -1681,7 +1681,11 @@ form.hs-form .hs-input[type="checkbox"] {
     .landing-section {
         padding: 40px 20px;
         width: auto;
-
+        flex-direction: column;
+    }
+    
+    .landing-section > div {
+        padding: 0;
     }
 }
 
