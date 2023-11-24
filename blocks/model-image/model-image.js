@@ -111,5 +111,6 @@ export default function decorate(block) {
   });
   block.querySelector('.button.icon-search').addEventListener('click', (e) => {
     e.stopPropagation();
+    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': 'unset'});
   });
 }
