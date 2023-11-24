@@ -26,7 +26,7 @@ export default function decorate(block) {
   const imgWrap = creteEleAddCls({ targetEle: 'div', classes: ['img-colorbox-popup', 'cboxElement'] });
   const pictureTag = block.querySelector('picture');
   const pictureTagForZoom = pictureTag.cloneNode(true);
-  addStyles(pictureTagForZoom, { cursor: 'pointer'});
+  addStyles(pictureTagForZoom, { cursor: 'pointer' });
   imgWrap.append(pictureTag);
   imgWrap.classList.add('image-wrapper');
   block.textContent = '';
@@ -93,7 +93,7 @@ export default function decorate(block) {
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': '100%'});
+    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '100%' });
   });
   overlayDiv.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -103,14 +103,14 @@ export default function decorate(block) {
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': '100%'});
+    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '100%' });
   });
   pictureTagForZoom.addEventListener('click', (e) => {
     e.stopPropagation();
-    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': 'unset'});
+    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': 'unset' });
   });
   block.querySelector('.button.icon-search').addEventListener('click', (e) => {
     e.stopPropagation();
-    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': 'unset'});
+    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': 'unset' });
   });
 }
