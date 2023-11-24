@@ -919,6 +919,12 @@ body.purple input[type="submit"]:hover {
     background-color: #ededed;
 }
 
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2%;
+}
+
 .cols-row,
 .cols2-row,
 .cols3-row {
@@ -1410,6 +1416,11 @@ form.hs-form .hs-input[type="checkbox"] {
 }
 
 @media (max-width: 767px) {
+
+    .grid-2{
+        grid-template-columns: 1fr;
+    }
+
     .hero-carousel {
         height: 300px;
     }
