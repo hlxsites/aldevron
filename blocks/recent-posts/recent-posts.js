@@ -1,63 +1,79 @@
 import {
-    div, h2, a, img, p, li, ul, h3,
-  } from '../../scripts/dom-builder.js';
+  div, a, img, p, h3,
+} from '../../scripts/dom-builder.js';
+
+import { readBlockConfig } from '../../scripts/aem.js';
 
 async function fetchPostData() {
-    try {
-      const response = await fetch('/query-index.json');
-      const jsonData = await response.json();
-      return jsonData.data;
-    } catch (error) {
-      return [];
-    }
+  try {
+    const response = await fetch('/query-index.json');
+    const jsonData = await response.json();
+    return jsonData.data;
+  } catch (error) {
+    return [];
   }
+}
+
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.slice(0, maxLength)}...`;
+}
 
 function createRecentPosts(results) {
-    const lists = ul({ class: 'posts' });
-    console.log(results);
-    results.forEach(post => {
-        console.log(post);
-        const showcaseBanner = li({ class: 'post' });
-        const articleCardImage = a({class: 'article-card-img'}, img({ src: post.image, alt : post.title }) );
-        const articleCardBody = div({ class: 'article-card-body' });
-        const articleHeading = h3({ class: 'entry-title' }, a( post.title ));
-        const articleDescription = p({ class: 'description' }, post.description);
-        articleCardBody.appendChild(articleHeading);
-        articleCardBody.appendChild(articleDescription);
-        showcaseBanner.appendChild(articleCardImage);
-        showcaseBanner.appendChild(articleCardBody);
-        lists.append(post);
-    })
-    return  lists;
+  const lists = div({ class: 'posts' });
+  results.forEach((post) => {
+    const showcaseBanner = div({ class: 'post' });
+    const articleCardImage = a({ class: 'image', href: post.path }, img({ src: post.image, alt: post.title }));
+    const articleCardBody = div({ class: 'text' });
+    const articleHeading = h3({ class: 'entry-title' }, a({ href: post.path }, post.title));
+    const articleDescription = p({ class: 'intro' }, truncateText(post.description, 180));
+    articleCardBody.appendChild(articleHeading);
+    articleCardBody.appendChild(articleDescription);
+    showcaseBanner.appendChild(articleCardImage);
+    showcaseBanner.appendChild(articleCardBody);
+    lists.append(showcaseBanner);
+  });
+  return lists;
 }
 
 export default async function decorate(block) {
-    const postData = await fetchPostData();
-    console.log(postData);
-    const wrapper = div({ class: 'wrapper' });
-    [...block.children].forEach(children => {
-        wrapper.appendChild(children);
-        const anchor = children.querySelector('a');
-        console.log(anchor);
-        const url = new URL(anchor.href);
-        console.log(url);
-        console.log(url.pathname);
-        let sortedResults = [];
-        const filteredResults = postData.filter((item) => {
-            // const path = item.path.toLowerCase();
-            // const regex = `/^${url.pathname.replace('/',"\/")}.+/`;
-            // console.log(regex);
-            return item.path.includes(url.pathname);
-        });
-        if (filteredResults.length) {
-            sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
-          }
-        console.log(filteredResults);
-        const postElement = createRecentPosts(sortedResults.slice(0,3));
-        console.log(postElement);
-        wrapper.appendChild(postElement);
-    })
-    // wrapper.appendChild([...block.children]);
-    block.appendChild(wrapper);
-    console.log(block);
+  const blockData = readBlockConfig(block);
+  let topic = '';
+  if (blockData.topic) {
+    topic = blockData.topic;
+  }
+  const postData = await fetchPostData();
+  const wrapper = div({ class: 'content flex cols2' });
+  const blogTitles = block.children[0].cloneNode(true);
+  if (blogTitles.children[0]) {
+    const title = blogTitles.children[0];
+    const blogsContainer = div({ class: 'col recent-posts' });
+    let sortedResults = [];
+    const filteredResults = postData.filter((item) => item.path.includes('/news/') && (topic ? item.tags.includes(topic) : true));
+    if (filteredResults.length) {
+      sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
+    }
+    const postElement = createRecentPosts(sortedResults.slice(0, 3));
+    blogsContainer.appendChild(title);
+    blogsContainer.appendChild(postElement);
+    wrapper.appendChild(blogsContainer);
+  }
+  const newsTitles = block.children[0].cloneNode(true);
+  if (newsTitles.children[1]) {
+    const title = newsTitles.children[1];
+    const blogsContainer = div({ class: 'col recent-posts' });
+    let sortedResults = [];
+    const filteredResults = postData.filter((item) => item.path.includes('/blog/') && (topic ? item.tags.includes(topic) : true));
+    if (filteredResults.length) {
+      sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
+    }
+    const postElement = createRecentPosts(sortedResults.slice(0, 3));
+    blogsContainer.appendChild(title);
+    blogsContainer.appendChild(postElement);
+    wrapper.appendChild(blogsContainer);
+  }
+  block.innerText = '';
+  block.appendChild(wrapper);
 }

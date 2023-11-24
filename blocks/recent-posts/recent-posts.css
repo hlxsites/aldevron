@@ -8,20 +8,12 @@
     margin: 0 auto;
 }
 
-.recent-posts .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 4%;
-    padding: 0 20px;
+.recent-posts  {
+    text-align: left;
 }
 
 @media (max-width: 768px) {
     .grey-article-outer {
         padding: 60px 0;
-    }
-
-    .recent-posts .wrapper {
-        grid-template-columns: 1fr;
-        grid-gap: 0;
     }
 }

@@ -148,18 +148,18 @@
   color: #fff
 }
 
-.mmg-rich-columns .recent-posts .post {
+.recent-posts .post {
   padding-bottom: 30px
 }
 
-.mmg-rich-columns .recent-posts .post::after {
+.recent-posts .post::after {
   clear: both;
   content: "";
   display: block;
   font-size: 0
 }
 
-.mmg-rich-columns .recent-posts .image {
+.recent-posts .image {
   background: 50% 50% no-repeat;
   background-size: cover;
   display: block;
@@ -168,52 +168,46 @@
   width: 40%
 }
 
-.mmg-rich-columns .recent-posts .text {
+.recent-posts .text {
   font-size: 14px;
   padding-left: 44%
 }
 
-.mmg-rich-columns .recent-posts .image::after {
-  content: "";
-  display: block;
-  padding-bottom: 56%
-}
-
-.mmg-rich-columns .recent-posts .post .entry-title {
+.recent-posts .post .entry-title {
   color: #ec8f2d;
   font-size: 14px;
   padding: 0
 }
 
-.mmg-rich-columns .recent-posts .post .entry-title a {
+.recent-posts .post .entry-title a {
   color: inherit;
   text-decoration: none
 }
 
-.mmg-rich-columns .recent-posts .post .entry-title a:hover {
+.recent-posts .post .entry-title a:hover {
   color: #000
 }
 
-.mmg-rich-columns .recent-posts .post p {
+.recent-posts .post p {
   padding: .5em 0 0
 }
 
-.mmg-rich-columns .recent-posts .post .tags a {
+.recent-posts .post .tags a {
   color: #ec8f2d
 }
 
-.mmg-rich-columns .recent-posts .post:first-child .image {
+.recent-posts .post:first-child .image {
   display: block;
   float: none;
   width: 100%
 }
 
-.mmg-rich-columns .recent-posts .post:first-child .text {
+.recent-posts .post:first-child .text {
   font-size: 1em;
   padding-left: 0
 }
 
-.mmg-rich-columns .recent-posts .post:first-child .entry-title {
+.recent-posts .post:first-child .entry-title {
   font-size: 18px;
   padding-top: 20px
 }
@@ -483,7 +477,7 @@
   width: 100%
 }
 
-.blog.anniversary-25 #sidebar .recent-posts {
+#sidebar .recent-posts {
   border: 2px solid #f49600;
   border-radius: 13px;
   padding: 10%
@@ -990,17 +984,17 @@
 }
 
 @media (max-width: 479px) {
-  .mmg-rich-columns .recent-posts .image {
+  .recent-posts .image {
       float:none;
       margin: 0;
       width: 100%
   }
 
-  .mmg-rich-columns .recent-posts .text {
+  .recent-posts .text {
       padding-left: 0
   }
 
-  .mmg-rich-columns .recent-posts .post .entry-title {
+  .recent-posts .post .entry-title {
       font-size: 18px;
       padding-top: 20px
   }
