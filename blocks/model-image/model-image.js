@@ -24,9 +24,9 @@ const setAttributes = (ele, attributes) => {
 
 export default function decorate(block) {
   const imgWrap = creteEleAddCls({ targetEle: 'div', classes: ['img-colorbox-popup', 'cboxElement'] });
-  const pictureTag = block.querySelector('img');
+  const pictureTag = block.querySelector('picture');
   const pictureTagForZoom = pictureTag.cloneNode(true);
-  addStyles(pictureTagForZoom, { cursor: 'pointer' });
+  addStyles(pictureTagForZoom, { cursor: 'pointer'});
   imgWrap.append(pictureTag);
   imgWrap.classList.add('image-wrapper');
   block.textContent = '';
@@ -59,8 +59,6 @@ export default function decorate(block) {
   const pictureWrapperDiv = creteEleAddCls({ targetEle: 'div', classes: ['picture-wrapper'] });
   const pictureOverflowWrapperDiv = creteEleAddCls({ targetEle: 'div', classes: ['picture-overflow-wrap'] });
   pictureOverflowWrapperDiv.append(pictureTagForZoom);
-  pictureTagForZoom.style.width = '100%';
-  pictureTagForZoom.style.height = '100%';
   pictureWrapperDiv.append(pictureOverflowWrapperDiv);
   colorboxDiv.append(pictureWrapperDiv);
   const cboxWrapperSecondChildCboxbtnIconSearch = creteEleAddCls({ targetEle: 'span', classes: ['button', 'icon-search'] });
@@ -95,10 +93,7 @@ export default function decorate(block) {
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    pictureTagForZoom.style.width = '100%';
-    pictureTagForZoom.style.height = 'auto';
-    pictureTagForZoom.style.maxWidth = '100%';
-    pictureTagForZoom.style.maxHeight = '100%';
+    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': '100%'});
   });
   overlayDiv.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -108,21 +103,13 @@ export default function decorate(block) {
     addStyles(colorboxDiv, {
       display: 'none',
     });
-    pictureTagForZoom.style.width = '100%';
-    pictureTagForZoom.style.height = 'auto';
-    pictureTagForZoom.style.maxWidth = '100%';
-    pictureTagForZoom.style.maxHeight = '100%';
+    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': '100%'});
   });
   pictureTagForZoom.addEventListener('click', (e) => {
     e.stopPropagation();
-    pictureTagForZoom.style.width = '150%';
-    pictureTagForZoom.style.height = '150%';
-    pictureTagForZoom.style.maxWidth = '150%';
+    addStyles(pictureTagForZoom.querySelector('img'),{'max-width': 'unset'});
   });
   block.querySelector('.button.icon-search').addEventListener('click', (e) => {
     e.stopPropagation();
-    pictureTagForZoom.style.width = '150%';
-    pictureTagForZoom.style.height = '150%';
-    pictureTagForZoom.style.maxWidth = '150%';
   });
 }

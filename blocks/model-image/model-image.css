@@ -55,7 +55,7 @@
 }
 
 .picture-wrapper {
-  overflow: scroll;
+  overflow: auto;
 }
 
 #cboxContent .button {
@@ -148,4 +148,16 @@
 .colorbox-wrapper{
   position: absolute;
   z-index: 999;
+}
+
+.picture-overflow-wrap {
+  width: calc(100vw - 400px);
+  /* height: calc(100vh - 60px); */
+  max-height: 80vh;
+  overflow: auto;
+
+  @media only screen and (max-width: 860px) {
+    width: calc(100vw - 100px);
+  }
+
 }
