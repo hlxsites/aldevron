@@ -1416,6 +1416,8 @@ form.hs-form .hs-input[type="checkbox"] {
 
     .hero-carousel-slide > div:nth-child(2) {
         width: 70%;
+        padding-right: 50px;
+        padding-left: 20px;
     }
 
     .hero-carousel-slide > div:nth-child(2) > * {
@@ -1427,7 +1429,7 @@ form.hs-form .hs-input[type="checkbox"] {
     }
 
     .hero-carousel h2 {
-        font-size: 28px
+        font-size: 28px;
     }
 
     .hero-carousel h1 {
@@ -1474,15 +1476,21 @@ form.hs-form .hs-input[type="checkbox"] {
 
 @media (max-width: 479px) {
     .hero-carousel {
-        height: 220px
+        height: 220px;
     }
 
     .hero-carousel-slide > div:nth-child(1) picture > img {
         height: 220px;
     }
 
-    .hero-carousel p {
+    .hero-carousel h2 {
         font-size: 20px;
+        line-height: 1.4em;
+    }
+
+    .hero-carousel p {
+        font-size: 14px;
+        line-height: 1.4em;
     }
 
     .hero-carousel a {
