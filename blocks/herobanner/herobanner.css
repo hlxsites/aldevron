@@ -2,7 +2,7 @@
     background-image: url('../../icons/about-pattern.png');
 }
 
-.herobanner .content .title, .hero-banner .content .description, p {
+.herobanner .content .title, .hero-banner .content .description, .hero-banner p {
     color: #fff;
     font: normal 16px/1.45 'Proxima Nova A',Helvetica,sans-serif;
     padding: 15px 0;
