@@ -43,30 +43,39 @@ function createRecentPosts(results) {
 export default async function decorate(block) {
   const blockData = readBlockConfig(block);
   const postData = await fetchPostData();
-  const topic = blockData.topic || '';
-
+  let topic = '';
+  if (blockData.topic) {
+    topic = blockData.topic;
+  }
   const wrapper = div({ class: 'content flex cols2' });
-
-  // Function to process and append posts
-  const processAndAppendPosts = (pathFilter, titleIndex) => {
-    const titleNode = block.children[0].children[titleIndex]?.cloneNode(true);
-    if (titleNode) {
-      const blogsContainer = div({ class: 'col recent-posts' });
-      const filteredAndSortedResults = postData
-        .filter((item) => item.path.includes(pathFilter) && (!topic || item.tags.includes(topic)))
-        .sort((ac, b) => b.date - ac.date)
-        .slice(0, 3);
-      const postElement = createRecentPosts(filteredAndSortedResults);
-      blogsContainer.appendChild(titleNode);
-      blogsContainer.appendChild(postElement);
-      wrapper.appendChild(blogsContainer);
+  const blogTitles = block.children[0].cloneNode(true);
+  if (blogTitles.children[0]) {
+    const title = blogTitles.children[0];
+    const blogsContainer = div({ class: 'col recent-posts' });
+    let sortedResults = [];
+    const filteredResults = postData.filter((item) => item.path.includes('/news/') && (topic ? item.tags.includes(topic) : true));
+    if (filteredResults.length) {
+      sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
     }
-  };
-
-  // Process blog and news titles
-  processAndAppendPosts('/news/', 0);
-  processAndAppendPosts('/blog/', 1);
-
+    const postElement = createRecentPosts(sortedResults.slice(0, 3));
+    blogsContainer.appendChild(title);
+    blogsContainer.appendChild(postElement);
+    wrapper.appendChild(blogsContainer);
+  }
+  const newsTitles = block.children[0].cloneNode(true);
+  if (newsTitles.children[1]) {
+    const title = newsTitles.children[1];
+    const blogsContainer = div({ class: 'col recent-posts' });
+    let sortedResults = [];
+    const filteredResults = postData.filter((item) => item.path.includes('/blog/') && (topic ? item.tags.includes(topic) : true));
+    if (filteredResults.length) {
+      sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
+    }
+    const postElement = createRecentPosts(sortedResults.slice(0, 3));
+    blogsContainer.appendChild(title);
+    blogsContainer.appendChild(postElement);
+    wrapper.appendChild(blogsContainer);
+  }
   block.innerText = '';
   block.appendChild(wrapper);
 }
