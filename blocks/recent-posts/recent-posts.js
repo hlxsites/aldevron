@@ -40,13 +40,13 @@ function createRecentPosts(results) {
   return lists;
 }
 
-export default async function decorate(block) {
+export default function decorate(block) {
   const blockData = readBlockConfig(block);
+  const postData = fetchPostData();
   let topic = '';
   if (blockData.topic) {
     topic = blockData.topic;
   }
-  const postData = await fetchPostData();
   const wrapper = div({ class: 'content flex cols2' });
   const blogTitles = block.children[0].cloneNode(true);
   if (blogTitles.children[0]) {
