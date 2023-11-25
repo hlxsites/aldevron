@@ -25,7 +25,9 @@ function createRecentPosts(results) {
   const lists = div({ class: 'posts' });
   results.forEach((post) => {
     const showcaseBanner = div({ class: 'post' });
-    const articleCardImage = a({ class: 'image', href: post.path }, img({ src: post.image, alt: post.title }));
+    const articleCardImage = a({ class: 'image', href: post.path }, img({
+      src: post.image, alt: post.title, width: '100%', height: 'auto',
+    }));
     const articleCardBody = div({ class: 'text' });
     const articleHeading = h3({ class: 'entry-title' }, a({ href: post.path }, post.title));
     const articleDescription = p({ class: 'intro' }, truncateText(post.description, 180));
