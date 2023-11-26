@@ -504,7 +504,7 @@ body.full-width #main {
 }
 
 body.full-width #sidebar {
-    width: 0%;
+    width: 0%!important;
 }
 
 #sidebar {
