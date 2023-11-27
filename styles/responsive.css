@@ -7,7 +7,11 @@
     #logo {
         left: 20px;
         width: 190px
-    }    
+    }
+
+    #menu li.hs-menu-depth-1>a {
+        padding: 0 20px !important;
+    }  
 }
 
 @media (max-width: 1024px) {
@@ -38,6 +42,11 @@
     #heading .vertical {
         display: block
     }
+
+    #menu li.hs-menu-depth-1>a {
+        font-size: 15px !important;
+        padding: 0 12px !important;
+    }
 }
 
 @media (max-width: 1023px) {
@@ -49,11 +58,6 @@
     #section-services h2 {
         font-size: 17px;
         line-height: 1.1
-    }
-
-    #menu li.hs-menu-depth-1>a {
-        font-size: 15px !important;
-        padding: 0 12px !important;
     }
 }
 
