@@ -2,6 +2,11 @@
     padding: 50px 0;
 }
 
+.forms h1, .forms h2, .forms h3, .forms h4, .forms h5, .forms h6 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .grey-forms {
     border: 1px solid #ccc;
     padding: 10px 15px;
