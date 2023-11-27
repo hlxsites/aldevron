@@ -254,16 +254,11 @@ export default async function buildAutoBlocks(block) {
     return regex.test(path);
   });
 
-  const blocks = block.querySelector('.section');
-  const sidebars = blocks.querySelectorAll('[data-block-name^="sidebar-"]');
+  const contentBlocks = block.querySelectorAll('.section');
 
   // Creating the default template wrapper
   const defaultTemplate = document.createElement('div');
   defaultTemplate.id = 'content-wrapper';
-
-  // Appending Hero banner
-  const heroBanner = blocks.querySelector('.hero-wrapper');
-  defaultTemplate.appendChild(heroBanner);
 
   // Creating content wrapper
   const content = document.createElement('div');
@@ -280,9 +275,24 @@ export default async function buildAutoBlocks(block) {
   const sidebar = document.createElement('div');
   sidebar.id = 'sidebar';
 
-  // Moving remaining blocks to main
-  [...blocks.children].forEach((child) => {
-    main.appendChild(child);
+  // Iterate over each section
+  contentBlocks.forEach((blocks) => {
+    // Appending Hero banner from each section
+    const heroBanner = blocks.querySelector('.hero-wrapper');
+    if (heroBanner) {
+      defaultTemplate.appendChild(heroBanner); // Clone to avoid removing the original
+    }
+
+    // Handling sidebars within each section
+    const sidebars = blocks.querySelectorAll('[data-block-name^="sidebar-"]');
+    if (sidebars.length > 0) {
+      sidebars.forEach((sidebarItem) => {
+        sidebar.appendChild(sidebarItem); // Clone to keep the original in place
+      });
+    }
+
+    main.appendChild(blocks);
+    blocks.style.display = null;
   });
 
   if (searchParams.has('archive')) {
@@ -325,19 +335,13 @@ export default async function buildAutoBlocks(block) {
   const archiveSidebar = generateArchiveBlock(filteredResults);
   if (archiveSidebar) {
     sideBarVisible = true;
-    sidebar.appendChild(archiveSidebar);
+    sidebar.prepend(archiveSidebar);
   }
 
   const topicSidebar = generateTopicBlock(filteredResults);
   if (topicSidebar) {
     sideBarVisible = true;
-    sidebar.appendChild(topicSidebar);
-  }
-
-  if (sidebars.length > 0) {
-    sidebars.forEach((sidebarItem) => {
-      sidebar.appendChild(sidebarItem);
-    });
+    sidebar.prepend(topicSidebar);
   }
 
   if (!sideBarVisible) {
@@ -350,6 +354,9 @@ export default async function buildAutoBlocks(block) {
 
   outerElement.appendChild(main);
   outerElement.appendChild(sidebar);
+  if (!sidebar.children.length > 0) {
+    document.body.classList.add('full-width');
+  }
   content.appendChild(outerElement);
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);

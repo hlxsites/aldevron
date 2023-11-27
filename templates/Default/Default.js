@@ -13,17 +13,11 @@ function setSidebarHeight() {
 }
 
 export default function buildAutoBlocks(block) {
-  const blocks = block.querySelector('.section');
-  const sidebars = blocks.querySelectorAll('[data-block-name^="sidebar-"]');
+  const contentBlocks = block.querySelectorAll('.section');
+
   // Creating the default template wrapper
   const defaultTemplate = document.createElement('div');
   defaultTemplate.id = 'content-wrapper';
-
-  // Appending Hero banner
-  const heroBanner = blocks.querySelector('.hero-wrapper');
-  if (heroBanner) {
-    defaultTemplate.appendChild(heroBanner);
-  }
 
   // Creating content wrapper
   const content = document.createElement('div');
@@ -40,18 +34,24 @@ export default function buildAutoBlocks(block) {
   const sidebar = document.createElement('div');
   sidebar.id = 'sidebar';
 
-  // Adding sidebars if available
-  if (sidebars.length > 0) {
-    sidebars.forEach((sidebarItem) => {
-      sidebar.appendChild(sidebarItem);
-    });
-  } else {
-    document.body.classList.add('full-width');
-  }
+  // Iterate over each section
+  contentBlocks.forEach((blocks) => {
+    // Appending Hero banner from each section
+    const heroBanner = blocks.querySelector('.hero-wrapper');
+    if (heroBanner) {
+      defaultTemplate.appendChild(heroBanner); // Clone to avoid removing the original
+    }
 
-  // Moving remaining blocks to main
-  [...blocks.children].forEach((child) => {
-    main.appendChild(child);
+    // Handling sidebars within each section
+    const sidebars = blocks.querySelectorAll('[data-block-name^="sidebar-"]');
+    if (sidebars.length > 0) {
+      sidebars.forEach((sidebarItem) => {
+        sidebar.appendChild(sidebarItem); // Clone to keep the original in place
+      });
+    }
+
+    main.appendChild(blocks);
+    blocks.style.display = null;
   });
 
   // Creating clearfix element
@@ -60,6 +60,9 @@ export default function buildAutoBlocks(block) {
 
   outerElement.appendChild(main);
   outerElement.appendChild(sidebar);
+  if (!sidebar.children.length > 0) {
+    document.body.classList.add('full-width');
+  }
   content.appendChild(outerElement);
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);
