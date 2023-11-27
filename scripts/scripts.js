@@ -41,7 +41,6 @@ const CATEGORY_LIST = [
   'plasmids',
   'proteins',
   'mrna',
-  'gene',
 ];
 
 /**
