@@ -178,11 +178,11 @@ td[valign="bottom"] {
 vertical-align: bottom;
 }
 
-body.red th {
+body.plasmids th {
     background-color: #d1222b;
 }
 
-body.green th {
+body.proteins th {
     background-color: #78a12e;
 }
 
@@ -194,7 +194,7 @@ body.grey th {
     background-color: #76797f;
 }
 
-body.purple th {
+body.mrna th {
     background-color: #6f2a8e;
 }
 
@@ -350,15 +350,15 @@ h2+h4 {
     padding: 0 0 0 10px;
 }
 
-body.red #main h1,
-body.red #main h2,
-body.red #main h3 {
+body.plasmids #main h1,
+body.plasmids #main h2,
+body.plasmids #main h3 {
     border-color: #d1222b;
 }
 
-body.green #main h1,
-body.green #main h2,
-body.green #main h3 {
+body.proteins #main h1,
+body.proteins #main h2,
+body.proteins #main h3 {
     border-color: #78a12e;
 }
 
@@ -374,9 +374,9 @@ body.grey #main h3 {
     border-color: #76797f;
 }
 
-body.purple #main h1,
-body.purple #main h2,
-body.purple #main h3 {
+body.mrna #main h1,
+body.mrna #main h2,
+body.mrna #main h3 {
     border-color: #6f2a8e;
 }
 
@@ -486,11 +486,11 @@ ol li {
     content: none;
 }
 
-body.red #content ul li::before {
+body.plasmids #content ul li::before {
     color: #d1222b;
 }
 
-body.green #content ul li::before {
+body.proteins #content ul li::before {
     color: #78a12e;
 }
 
@@ -502,7 +502,7 @@ body.grey #content ul li::before {
     color: #76797f;
 }
 
-body.purple #content ul li::before {
+body.mrna #content ul li::before {
     color: #6f2a8e;
 }
 
@@ -670,6 +670,23 @@ input[type="submit"] {
     transition: all .3s ease-in-out;
 }
 
+.button.primary {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: #ec8f2d;
+    text-transform: none;
+    font-style: normal;
+    transition: all .3s ease-in-out;
+}
+
+.button.primary:hover {
+    border: none;
+    color: #ec8f2d;
+    text-decoration: underline;
+    transition: all .3s ease-in-out;
+}
+
 .blog-pagination a:hover,
 .button:hover,
 .cta_button:hover,
@@ -686,58 +703,58 @@ input[type="submit"]:hover {
     border: 1px solid var(--primary-color);
 }
 
-body.red #content-wrapper button,
-body.red .blog-pagination a,
-body.red .button,
-body.red .cta_button,
-body.red .hs-button,
-body.red .readmore,
-body.red input[type="button"],
-body.red input[type="reset"],
-body.red input[type="submit"] {
+body.plasmids #content-wrapper button,
+body.plasmids .blog-pagination a,
+body.plasmids .button,
+body.plasmids .cta_button,
+body.plasmids .hs-button,
+body.plasmids .readmore,
+body.plasmids input[type="button"],
+body.plasmids input[type="reset"],
+body.plasmids input[type="submit"] {
     background-color: #d1222b;
     border-color: #d1222b;
     color: #fff
 }
 
-body.red #content-wrapper button:hover,
-body.red .blog-pagination a:hover,
-body.red .button:hover,
-body.red .cta_button:hover,
-body.red .hs-button:hover,
-body.red .readmore:hover,
-body.red input[type="button"]:hover,
-body.red input[type="reset"]:hover,
-body.red input[type="submit"]:hover {
+body.plasmids #content-wrapper button:hover,
+body.plasmids .blog-pagination a:hover,
+body.plasmids .button:hover,
+body.plasmids .cta_button:hover,
+body.plasmids .hs-button:hover,
+body.plasmids .readmore:hover,
+body.plasmids input[type="button"]:hover,
+body.plasmids input[type="reset"]:hover,
+body.plasmids input[type="submit"]:hover {
     background-color: #fff;
     color: #d1222b
 }
 
-.button.green,
-body.green #content-wrapper button,
-body.green .blog-pagination a,
-body.green .button,
-body.green .cta_button,
-body.green .hs-button,
-body.green .readmore,
-body.green input[type="button"],
-body.green input[type="reset"],
-body.green input[type="submit"] {
+.button.proteins,
+body.proteins #content-wrapper button,
+body.proteins .blog-pagination a,
+body.proteins .button,
+body.proteins .cta_button,
+body.proteins .hs-button,
+body.proteins .readmore,
+body.proteins input[type="button"],
+body.proteins input[type="reset"],
+body.proteins input[type="submit"] {
     background-color: #78a12e;
     border-color: #78a12e;
     color: #fff
 }
 
-.button.green:hover,
-body.green #content-wrapper button:hover,
-body.green .blog-pagination a:hover,
-body.green .button:hover,
-body.green .cta_button:hover,
-body.green .hs-button:hover,
-body.green .readmore:hover,
-body.green input[type="button"]:hover,
-body.green input[type="reset"]:hover,
-body.green input[type="submit"]:hover {
+.button.proteins:hover,
+body.proteins #content-wrapper button:hover,
+body.proteins .blog-pagination a:hover,
+body.proteins .button:hover,
+body.proteins .cta_button:hover,
+body.proteins .hs-button:hover,
+body.proteins .readmore:hover,
+body.proteins input[type="button"]:hover,
+body.proteins input[type="reset"]:hover,
+body.proteins input[type="submit"]:hover {
     background-color: #fff;
     color: #78a12e
 }
@@ -798,29 +815,29 @@ body.grey input[type="submit"]:hover {
     color: #76797f
 }
 
-body.purple #content-wrapper button,
-body.purple .blog-pagination a,
-body.purple .button,
-body.purple .cta_button,
-body.purple .hs-button,
-body.purple .readmore,
-body.purple input[type="button"],
-body.purple input[type="reset"],
-body.purple input[type="submit"] {
+body.mrna #content-wrapper button,
+body.mrna .blog-pagination a,
+body.mrna .button,
+body.mrna .cta_button,
+body.mrna .hs-button,
+body.mrna .readmore,
+body.mrna input[type="button"],
+body.mrna input[type="reset"],
+body.mrna input[type="submit"] {
     background-color: #6f2a8e;
     border-color: #6f2a8e;
     color: #fff
 }
 
-body.purple #content-wrapper button:hover,
-body.purple .blog-pagination a:hover,
-body.purple .button:hover,
-body.purple .cta_button:hover,
-body.purple .hs-button:hover,
-body.purple .readmore:hover,
-body.purple input[type="button"]:hover,
-body.purple input[type="reset"]:hover,
-body.purple input[type="submit"]:hover {
+body.mrna #content-wrapper button:hover,
+body.mrna .blog-pagination a:hover,
+body.mrna .button:hover,
+body.mrna .cta_button:hover,
+body.mrna .hs-button:hover,
+body.mrna .readmore:hover,
+body.mrna input[type="button"]:hover,
+body.mrna input[type="reset"]:hover,
+body.mrna input[type="submit"]:hover {
     background-color: #fff;
     color: #6f2a8e
 }

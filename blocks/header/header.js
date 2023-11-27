@@ -136,9 +136,9 @@ function addClassesToMenuItems(element, depth) {
     const childElement = item.querySelector('ul');
 
     if (childElement?.children?.length > 0) {
-      const spanElement = document.createElement('span');
-      spanElement.className = 'arrow';
       if (windowWidth < 961) {
+        const spanElement = document.createElement('span');
+        spanElement.className = 'arrow';
         childElement.style.display = 'none';
         spanElement.addEventListener('click', () => {
           if (childElement.style.display === 'block' || childElement.style.display === '') {
@@ -149,8 +149,8 @@ function addClassesToMenuItems(element, depth) {
             item.classList.add('open');
           }
         });
+        item.prepend(spanElement);
       }
-      item.prepend(spanElement);
       item.appendChild(link);
       item.appendChild(childElement);
       const nextDepth = depth + 1;
