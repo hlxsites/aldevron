@@ -26,7 +26,6 @@
 
 .embed iframe {
   border: 1px solid var(--text-color);
-  border-radius: .5rem;
 }
 
 .embed img {
