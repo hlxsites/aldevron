@@ -67,6 +67,6 @@ export default function buildAutoBlocks(block) {
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);
   block.appendChild(defaultTemplate);
-  setSidebarMaxHeight();
+  setTimeout(() => { setSidebarMaxHeight(); }, 1000);
   setSidebarHeight();
 }
