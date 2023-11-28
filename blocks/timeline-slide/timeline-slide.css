@@ -6,7 +6,7 @@
     padding: 40px 0;
     overflow: hidden;
   }
-  
+
   /* Slider styles */
   #year-slider {
     display: flex;
@@ -15,7 +15,7 @@
     transition: 0.5s all ease-in-out;
     transition-duration: 0ms;
   }
-  
+
   .year {
     cursor: pointer;
     border-radius: 5px;
@@ -24,13 +24,14 @@
     font-weight: 700;
     transition: 0.3s all ease-in-out;
     text-align: center;
+    flex: 0 0 160px;
   }
-  
+
   .year:hover, .year.active {
     color: #f49600;
     transition: 0.3s all ease-in-out;
   }
-  
+
   /* Content area styles */
   #content-slider-container {
     position: relative;
@@ -57,7 +58,7 @@
     position: absolute;
     top: 0.45em;
 }
-  
+
   .year-content {
     display: none;
     transition: transform 0.5s ease, opacity 0.5s ease;
@@ -65,7 +66,7 @@
     left: 0;
     right: 0;
   }
-  
+
   .year-content.active {
     display: block;
     opacity: 1;
@@ -172,4 +173,7 @@
         position: relative;
         justify-content: center;
       }
+    .year {
+      flex: 0 0 150px;
+    }
   }
