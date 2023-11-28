@@ -410,12 +410,7 @@ hr {
     clear: both;
     display: block;
     height: 1px;
-    padding: 0;
-}
-
-hr,
-pre {
-    margin: 1em 0;
+    padding: 1em 0;
 }
 
 pre {
@@ -424,6 +419,7 @@ pre {
     border-radius: 4px;
     padding: 0.7em 1em;
     overflow: auto;
+    margin: 1em 0;
 }
 
 blockquote {
