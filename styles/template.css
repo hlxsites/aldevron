@@ -500,7 +500,11 @@ body.sidebar-50 #main {
 
 body.full-width #main {
     float: none;
-    width: 100%
+    width: 100%!important;
+}
+
+body.full-width #sidebar {
+    width: 0;
 }
 
 #sidebar {
@@ -508,6 +512,10 @@ body.full-width #main {
     font-size: 16px;
     line-height: normal;
     width: 26%;
+}
+
+#sidebar > div {
+    margin-top: 0;
 }
 
 body.sidebar-50 #sidebar {

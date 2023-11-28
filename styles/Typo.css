@@ -3,6 +3,11 @@
     --text-color: #fff;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
 .img-colorbox-popup::after,
 [class*=" icon-"],
 [class^="icon-"] {
@@ -178,11 +183,11 @@ td[valign="bottom"] {
 vertical-align: bottom;
 }
 
-body.red th {
+body.plasmids th {
     background-color: #d1222b;
 }
 
-body.green th {
+body.proteins th {
     background-color: #78a12e;
 }
 
@@ -194,7 +199,7 @@ body.grey th {
     background-color: #76797f;
 }
 
-body.purple th {
+body.mrna th {
     background-color: #6f2a8e;
 }
 
@@ -350,15 +355,15 @@ h2+h4 {
     padding: 0 0 0 10px;
 }
 
-body.red #main h1,
-body.red #main h2,
-body.red #main h3 {
+body.plasmids #main h1,
+body.plasmids #main h2,
+body.plasmids #main h3 {
     border-color: #d1222b;
 }
 
-body.green #main h1,
-body.green #main h2,
-body.green #main h3 {
+body.proteins #main h1,
+body.proteins #main h2,
+body.proteins #main h3 {
     border-color: #78a12e;
 }
 
@@ -374,9 +379,9 @@ body.grey #main h3 {
     border-color: #76797f;
 }
 
-body.purple #main h1,
-body.purple #main h2,
-body.purple #main h3 {
+body.mrna #main h1,
+body.mrna #main h2,
+body.mrna #main h3 {
     border-color: #6f2a8e;
 }
 
@@ -486,11 +491,11 @@ ol li {
     content: none;
 }
 
-body.red #content ul li::before {
+body.plasmids #content ul li::before {
     color: #d1222b;
 }
 
-body.green #content ul li::before {
+body.proteins #content ul li::before {
     color: #78a12e;
 }
 
@@ -502,7 +507,7 @@ body.grey #content ul li::before {
     color: #76797f;
 }
 
-body.purple #content ul li::before {
+body.mrna #content ul li::before {
     color: #6f2a8e;
 }
 
@@ -670,6 +675,23 @@ input[type="submit"] {
     transition: all .3s ease-in-out;
 }
 
+.button.primary {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: #ec8f2d;
+    text-transform: none;
+    font-style: normal;
+    transition: all .3s ease-in-out;
+}
+
+.button.primary:hover {
+    border: none;
+    color: #ec8f2d;
+    text-decoration: underline;
+    transition: all .3s ease-in-out;
+}
+
 .blog-pagination a:hover,
 .button:hover,
 .cta_button:hover,
@@ -686,58 +708,58 @@ input[type="submit"]:hover {
     border: 1px solid var(--primary-color);
 }
 
-body.red #content-wrapper button,
-body.red .blog-pagination a,
-body.red .button,
-body.red .cta_button,
-body.red .hs-button,
-body.red .readmore,
-body.red input[type="button"],
-body.red input[type="reset"],
-body.red input[type="submit"] {
+body.plasmids #content-wrapper button,
+body.plasmids .blog-pagination a,
+body.plasmids .button,
+body.plasmids .cta_button,
+body.plasmids .hs-button,
+body.plasmids .readmore,
+body.plasmids input[type="button"],
+body.plasmids input[type="reset"],
+body.plasmids input[type="submit"] {
     background-color: #d1222b;
     border-color: #d1222b;
     color: #fff
 }
 
-body.red #content-wrapper button:hover,
-body.red .blog-pagination a:hover,
-body.red .button:hover,
-body.red .cta_button:hover,
-body.red .hs-button:hover,
-body.red .readmore:hover,
-body.red input[type="button"]:hover,
-body.red input[type="reset"]:hover,
-body.red input[type="submit"]:hover {
+body.plasmids #content-wrapper button:hover,
+body.plasmids .blog-pagination a:hover,
+body.plasmids .button:hover,
+body.plasmids .cta_button:hover,
+body.plasmids .hs-button:hover,
+body.plasmids .readmore:hover,
+body.plasmids input[type="button"]:hover,
+body.plasmids input[type="reset"]:hover,
+body.plasmids input[type="submit"]:hover {
     background-color: #fff;
     color: #d1222b
 }
 
-.button.green,
-body.green #content-wrapper button,
-body.green .blog-pagination a,
-body.green .button,
-body.green .cta_button,
-body.green .hs-button,
-body.green .readmore,
-body.green input[type="button"],
-body.green input[type="reset"],
-body.green input[type="submit"] {
+.button.proteins,
+body.proteins #content-wrapper button,
+body.proteins .blog-pagination a,
+body.proteins .button,
+body.proteins .cta_button,
+body.proteins .hs-button,
+body.proteins .readmore,
+body.proteins input[type="button"],
+body.proteins input[type="reset"],
+body.proteins input[type="submit"] {
     background-color: #78a12e;
     border-color: #78a12e;
     color: #fff
 }
 
-.button.green:hover,
-body.green #content-wrapper button:hover,
-body.green .blog-pagination a:hover,
-body.green .button:hover,
-body.green .cta_button:hover,
-body.green .hs-button:hover,
-body.green .readmore:hover,
-body.green input[type="button"]:hover,
-body.green input[type="reset"]:hover,
-body.green input[type="submit"]:hover {
+.button.proteins:hover,
+body.proteins #content-wrapper button:hover,
+body.proteins .blog-pagination a:hover,
+body.proteins .button:hover,
+body.proteins .cta_button:hover,
+body.proteins .hs-button:hover,
+body.proteins .readmore:hover,
+body.proteins input[type="button"]:hover,
+body.proteins input[type="reset"]:hover,
+body.proteins input[type="submit"]:hover {
     background-color: #fff;
     color: #78a12e
 }
@@ -798,29 +820,29 @@ body.grey input[type="submit"]:hover {
     color: #76797f
 }
 
-body.purple #content-wrapper button,
-body.purple .blog-pagination a,
-body.purple .button,
-body.purple .cta_button,
-body.purple .hs-button,
-body.purple .readmore,
-body.purple input[type="button"],
-body.purple input[type="reset"],
-body.purple input[type="submit"] {
+body.mrna #content-wrapper button,
+body.mrna .blog-pagination a,
+body.mrna .button,
+body.mrna .cta_button,
+body.mrna .hs-button,
+body.mrna .readmore,
+body.mrna input[type="button"],
+body.mrna input[type="reset"],
+body.mrna input[type="submit"] {
     background-color: #6f2a8e;
     border-color: #6f2a8e;
     color: #fff
 }
 
-body.purple #content-wrapper button:hover,
-body.purple .blog-pagination a:hover,
-body.purple .button:hover,
-body.purple .cta_button:hover,
-body.purple .hs-button:hover,
-body.purple .readmore:hover,
-body.purple input[type="button"]:hover,
-body.purple input[type="reset"]:hover,
-body.purple input[type="submit"]:hover {
+body.mrna #content-wrapper button:hover,
+body.mrna .blog-pagination a:hover,
+body.mrna .button:hover,
+body.mrna .cta_button:hover,
+body.mrna .hs-button:hover,
+body.mrna .readmore:hover,
+body.mrna input[type="button"]:hover,
+body.mrna input[type="reset"]:hover,
+body.mrna input[type="submit"]:hover {
     background-color: #fff;
     color: #6f2a8e
 }
@@ -864,59 +886,127 @@ body.purple input[type="submit"]:hover {
 }
 
 .text-left {
-    text-align: left;
+    text-align: left!important;
 }
 
 .text-center {
-    text-align: center;
+    text-align: center!important;
 }
 
 .text-right {
-    text-align: right;
+    text-align: right!important;
 }
 
-.padding-1 {
-    padding: 1px;
+.align-start {
+    align-items: flex-start;
 }
 
-.padding-2 {
-    padding: 2px
+.align-center {
+    align-items: center;
 }
 
-.padding-4 {
-    padding: 4px;
+.align-end {
+    align-items: flex-end;
 }
 
-.padding-8 {
-    padding: 8px;
+.justify-start {
+    justify-content: flex-start;
 }
 
-.padding-16 {
-    padding: 16px;
+.justify-center {
+    justify-content: center;
 }
 
-.margin-1 {
-    margin: 1px;
+.justify-end {
+    justify-content: flex-end;
 }
 
-.margin-2 {
-    margin: 2px
+.flex {
+    display: flex;
 }
 
-.margin-4 {
-    margin: 4px;
+.flex-row {
+    flex-direction: row;
 }
 
-.margin-8 {
-    margin: 8px;
+.flex-column {
+    flex-direction: column;
 }
 
-.margin-16 {
-    margin: 16px;
+
+
+.h-space-10 {
+    padding: 0 10px;
+}
+
+.h-space-20 {
+    padding: 0 20px
+}
+
+.h-space-30 {
+    padding: 0 30px;
+}
+
+.h-space-40 {
+    padding: 0 40px;
+}
+
+.h-space-50 {
+    padding: 0 50px;
+}
+
+.v-space-10 {
+    padding: 10px 0;
+}
+
+.v-space-20 {
+    padding: 20px 0;
+}
+
+.v-space-30 {
+    padding: 30px 0;
+}
+
+.v-space-40 {
+    padding: 40px 0;
+}
+
+.v-space-50 {
+    padding: 50px 0;
+}
+
+.space-5 {
+    padding: 5px;
+}
+
+.space-10 {
+    padding: 10px;
+}
+
+.space-20 {
+    padding: 20px;
+}
+
+.space-30 {
+    padding: 30px;
+}
+
+.space-40 {
+    padding: 40px;
+}
+
+.space-50 {
+    padding: 50px;
 }
 
 .bg-grey {
     background-color: #ededed;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2%;
 }
 
 .cols-row,
@@ -1410,6 +1500,10 @@ form.hs-form .hs-input[type="checkbox"] {
 }
 
 @media (max-width: 767px) {
+    .grid-2{
+        grid-template-columns: 1fr;
+    }
+
     .hero-carousel {
         height: 300px;
     }
@@ -1590,3 +1684,47 @@ form.hs-form .hs-input[type="checkbox"] {
     padding-bottom: 0
 }
 
+/* landing section */
+
+.landing-section {
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 980px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    padding: 50px 0;
+}
+
+.landing-section > div {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 0 20px;
+}
+
+.landing-section .forms {
+    padding: 30px;
+    background-color: #fff;;
+    border: 1px solid #cbd6e2;
+}
+
+@media (max-width: 1024px) {
+    .landing-section {
+        padding: 40px 20px;
+        width: auto;
+        flex-direction: column;
+    }
+    
+    .landing-section > div {
+        padding: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 479px) {
+    .landing-section {
+        padding: 30px 10px;
+        width: auto;
+    }
+}
