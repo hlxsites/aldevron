@@ -426,6 +426,7 @@ function decorateButtons(element) {
           && twoup.tagName === 'P'
         ) {
           a.className = 'button primary';
+          a.setAttribute('target', '_blank');
           twoup.classList.add('button-container');
         }
         if (

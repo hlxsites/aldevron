@@ -490,7 +490,7 @@ body {
 }
 
 #main {
-    float: left;
+    float: left;    
     width: 69%
 }
 
@@ -500,11 +500,11 @@ body.sidebar-50 #main {
 
 body.full-width #main {
     float: none;
-    width: 100%!important;
+    width: 100%;
 }
 
 body.full-width #sidebar {
-    width: 0;
+    width: 0%!important;
 }
 
 #sidebar {
