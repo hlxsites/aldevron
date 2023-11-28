@@ -507,11 +507,19 @@ body.full-width #sidebar {
     width: 0%!important;
 }
 
+body.full-width #sidebar {
+    width: 0;
+}
+
 #sidebar {
     float: right;
     font-size: 16px;
     line-height: normal;
     width: 26%;
+}
+
+#sidebar > div {
+    margin-top: 0;
 }
 
 body.sidebar-50 #sidebar {
