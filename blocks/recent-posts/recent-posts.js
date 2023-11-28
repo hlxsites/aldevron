@@ -49,11 +49,16 @@ export default async function decorate(block) {
   }
   const wrapper = div({ class: 'content flex cols2' });
   const blogTitles = block.children[0].cloneNode(true);
+  if(block.children[1]) {
+    topic = block.children[1].children[1].innerText.trim();
+  }
   if (blogTitles.children[0]) {
     const title = blogTitles.children[0];
     const blogsContainer = div({ class: 'col recent-posts' });
     let sortedResults = [];
-    const filteredResults = postData.filter((item) => item.path.includes('/news/') && (topic ? item.tags.includes(topic) : true));
+    const filteredResults = postData.filter((item) =>
+    item.path.includes('/news/') &&
+    (topic ? JSON.parse(item.tags).filter(tag => tag.toLowerCase() === topic.toLowerCase()).length > 0 : true));
     if (filteredResults.length) {
       sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
     }
@@ -67,7 +72,9 @@ export default async function decorate(block) {
     const title = newsTitles.children[1];
     const blogsContainer = div({ class: 'col recent-posts' });
     let sortedResults = [];
-    const filteredResults = postData.filter((item) => item.path.includes('/blog/') && (topic ? item.tags.includes(topic) : true));
+    const filteredResults = postData.filter((item) =>
+    item.path.includes('/blog/') &&
+    (topic ? JSON.parse(item.tags).filter(tag => tag.toLowerCase() === topic.toLowerCase()).length > 0 : true));
     if (filteredResults.length) {
       sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
     }

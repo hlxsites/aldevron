@@ -12,12 +12,11 @@ function createSidebar(head, items, displayLimit) {
   const heading = h3(`${head}s`);
   const ul = document.createElement('ul');
   let itemCount = 0;
-
   items.forEach(({ title, count }) => {
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${title} (${count})`;
-    link.setAttribute('href', `/news/?${head.toLowerCase()}=${title.replace(' ', '-')}`);
+    link.setAttribute('href', `${window.location.pathname}?${head.toLowerCase()}=${title.replace(' ', '-')}`);
     li.appendChild(link);
     ul.appendChild(li);
     itemCount += 1;
@@ -249,7 +248,7 @@ export default async function buildAutoBlocks(block) {
   const data = await fetchNewsData();
   const filteredResults = data.filter((item) => {
     const path = item.path.toLowerCase();
-    const regex = /^\/news\/.+/;
+    const regex = /^\/about-us\/news\/.*$/;
     return regex.test(path);
   });
 
@@ -305,7 +304,7 @@ export default async function buildAutoBlocks(block) {
     finalArticles = filteredResults;
   }
 
-  const newsRegex = /^\/news(?:\/(?:\?.*)?)?$/;
+  const newsRegex = /^\/about-us\/news(?:\/(?:\?.*)?)?$/;
   if (newsRegex.test(window.location.pathname)) {
     const newsContent = await getNewsContent(finalArticles, parseInt(pageNumber, 10));
     main.appendChild(newsContent);
