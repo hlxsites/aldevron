@@ -8,6 +8,8 @@ function loadHSScript() {
 }
 
 export default function decorate(block) {
+    console.log(block);
+    const link = block.querySelector('a');
     const hsCalendarBlock = document.createElement('div');
     hsCalendarBlock.id = 'hs_script';
 
@@ -15,11 +17,11 @@ export default function decorate(block) {
     hsCalendarBlock.style.width = '100%'; // Adjust these values based on the expected size
     hsCalendarBlock.style.minHeight = '400px'; // Adjust these values based on the expected size
 
-    let blockFromHubSpot = '<div class="meetings-iframe-container" data-src="https://app.hubspot.com/meetings/tom-lynch?embed=true">&nbsp;</div>';
-    hsCalendarBlock.innerHTML = blockFromHubSpot;
     block.innerText = '';
     block.appendChild(hsCalendarBlock);
     setTimeout(() => {
+        let blockFromHubSpot = `<div class="meetings-iframe-container" data-src="${link.href}">&nbsp;</div>`;
+        hsCalendarBlock.innerHTML = blockFromHubSpot;
         loadHSScript();
     }, 3000);
 }
