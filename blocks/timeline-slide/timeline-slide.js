@@ -83,7 +83,6 @@ export default function decorate(block) {
     if (child.children.length >= 2) {
       const yearChild = child.children[0].cloneNode(true);
       yearChild.classList.add('year');
-      yearChild.style.width = '130px';
       yearSlider.appendChild(yearChild);
       const contentChild = child.children[1].cloneNode(true);
       contentChild.classList.add('year-content');
@@ -102,6 +101,16 @@ export default function decorate(block) {
   [...yearSlider.children].forEach((year, index) => {
     year.addEventListener('click', () => {
       clearActiveClasses();
+
+      // disable previous arrow button based on first slide.
+      if (index === 0 && !prevButton.classList.contains('hide')) {
+        prevButton.classList.add('hide');
+      } else { prevButton.classList.remove('hide'); }
+
+      // disable next arrow button based on last slide.
+      if (index === yearSlider.children.length - 1 && !nextButton.classList.contains('hide')) {
+        nextButton.classList.add('hide');
+      } else { nextButton.classList.remove('hide'); }
 
       // Check direction for slide effect
       const direction = index > activeYearIndex ? 'left' : 'right';

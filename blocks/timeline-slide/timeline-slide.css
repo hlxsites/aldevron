@@ -24,10 +24,10 @@
     font-weight: 700;
     transition: 0.3s all ease-in-out;
     text-align: center;
-    flex: 0 0 160px;
+    width: 160px;
   }
 
-  .year:hover, .year.active {
+  .year.active {
     color: #f49600;
     transition: 0.3s all ease-in-out;
   }
@@ -88,7 +88,9 @@
   }
 
   .button-container .hide {
-    opacity: 0.5;
+    opacity: .35;
+    cursor: auto;
+    pointer-events: none;
   }
 
   .button-prev {
@@ -175,6 +177,6 @@
       }
 
     .year {
-      flex: 0 0 150px;
+      width: 150px;
     }
   }
