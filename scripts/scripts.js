@@ -87,6 +87,51 @@ async function decorateCategory(main) {
   }
 }
 
+function findParentListItem(content, url) {
+  const divContainer = content.querySelector('div');
+  const anchorTags = divContainer.querySelectorAll('a');
+  for (let anchor of anchorTags) {
+      if (anchor.getAttribute('href') === url) {
+        anchor.parentElement.classList.add('active');
+          const parentListItem = anchor.closest('ul');
+          return parentListItem;
+      }
+  }
+  return null;
+}
+
+
+async function getSubNavigation(pathname) {
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  const resp = await fetch(`${navPath}.plain.html`);
+
+  if (resp.ok) {
+    const html = await resp.text();
+    const headerElement = document.createElement('div');
+    headerElement.innerHTML = html
+    const parentListItem = findParentListItem(headerElement, pathname);
+    return parentListItem;
+  }
+  return '';
+}
+
+async function decorateNavigation(main) {
+  console.log(getMetadata('navigation'));
+  if(getMetadata('navigation')) {
+    const sidebarElement = main.querySelector('#sidebar');
+    console.log(sidebarElement);
+    console.log(window.location.href);
+    const navigation = await getSubNavigation(window.location.pathname);
+    const block = await buildBlock('sidebar-navigation', navigation);
+    sidebarElement.prepend(block);
+    console.log(sidebarElement);
+    if (document.body.classList.contains('full-width')) {
+      document.body.classList.remove('full-width');
+    }
+  }
+}
+
 /**
  * Builds embed block for inline links to known social platforms.
  * @param {Element} main The container element
@@ -145,6 +190,7 @@ async function loadEager(doc) {
     decorateMain(main);
     await decorateTemplates(main);
     await decorateCategory(main);
+    await decorateNavigation(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }

@@ -573,19 +573,19 @@ body.sidebar-50 #sidebar {
     margin-top: 0
 }
 
-#sidebar .hs-menu-wrapper ul {
+#sidebar ul {
     padding: 0
 }
 
-#sidebar .hs-menu-wrapper li {
+#sidebar li {
     padding: 8px 0
 }
 
-#sidebar .hs-menu-wrapper li::before {
+#sidebar li::before {
     content: none
 }
 
-#sidebar .hs-menu-wrapper a {
+#sidebar a {
     color: #0d233e;
     display: block;
     font-size: 1em;
@@ -599,15 +599,15 @@ body.sidebar-50 #sidebar {
     text-decoration: underline
 }
 
-#sidebar .hs-menu-wrapper ul ul {
+#sidebar ul ul {
     display: none
 }
 
-#sidebar .hs-menu-wrapper li.active-branch>ul {
+#sidebar li.active-branch>ul {
     display: block
 }
 
-#sidebar .hs-menu-wrapper ul ul li {
+#sidebar ul ul li {
     padding: 16px 0 0
 }
 
@@ -616,7 +616,7 @@ body.sidebar-50 #sidebar {
     font-weight: 400
 }
 
-#sidebar .hs-menu-wrapper .active>a {
+#sidebar .active>a {
     border-left: 3px solid #fac922;
     padding-left: 7px
 }
