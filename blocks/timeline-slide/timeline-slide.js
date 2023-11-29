@@ -8,7 +8,6 @@ export default function decorate(block) {
   const prevButton = div({ class: 'button-block' }, div({ class: 'button-prev' }));
   const buttonContainer = div({ class: 'button-container' });
   let activeYearIndex = 0;
-  let touchStartX = 0;
 
   buttonContainer.appendChild(prevButton);
   buttonContainer.appendChild(nextButton);
@@ -37,47 +36,6 @@ export default function decorate(block) {
       setTimeout(() => {
         content.style.transform = 'translateX(0)';
       }, 50); // Delay to ensure the transition effect is applied
-    }
-  }
-
-  function slideToRightMouse() {
-    // Calculate the next index
-    const nextIndex = activeYearIndex + 1;
-
-    if (nextIndex < yearSlider.children.length) {
-      // Move to the next year and update the active index
-      yearSlider.children[nextIndex].click();
-      // yearSlider.children[activeYearIndex].click();
-      activeYearIndex = nextIndex;
-      // Always show the prev button when moving forward
-      prevButton.classList.remove('hide');
-      translateYearSlider();
-    }
-
-    // Hide the next button if we reach the end
-    if (nextIndex === yearSlider.children.length - 1) {
-      nextButton.classList.add('hide');
-    }
-  }
-
-  function slideToLeftMouse() {
-    const prevIndex = activeYearIndex - 1;
-
-    if (prevIndex >= 0) {
-      // Move to the previous year and update the active index
-      yearSlider.children[prevIndex].click();
-      activeYearIndex = prevIndex;
-
-      // Always show the next button when moving backward
-      nextButton.classList.remove('hide');
-
-      // Translate the year slider
-      translateYearSlider();
-    }
-
-    // Hide the prev button if we reach the beginning
-    if (prevIndex === 0) {
-      prevButton.classList.add('hide');
     }
   }
 
@@ -130,21 +88,6 @@ export default function decorate(block) {
       contentChild.classList.add('year-content');
       contentChild.id = `content-${yearChild.innerText}`;
       contentSlider.appendChild(contentChild);
-    }
-  });
-
-  block.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-  });
-
-  block.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const deltaX = touchEndX - touchStartX;
-    // If the touch ends to the right of the starting position, move to the previous slide
-    if (deltaX < 0) {
-      slideToRightMouse();
-    } else if (deltaX > 0) {
-      slideToLeftMouse();
     }
   });
 
