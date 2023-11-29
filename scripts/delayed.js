@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM, buildForm, isForm } from './aem.js';
+import {
+  sampleRUM, buildForm, isForm, loadFormDelayed, getFormMeetingConfig,
+} from './aem.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -56,4 +58,8 @@ function loadHubSpot() {
 // only load this if there is a form block
 if (isForm()) {
   loadHubSpot();
+}
+
+if (getFormMeetingConfig()) {
+  loadFormDelayed();
 }
