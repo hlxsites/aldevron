@@ -22,6 +22,7 @@
  * for instance the href of a link, or a search term
  */
 const formConfigData = [];
+const formMeetingConfig = [];
 function sampleRUM(checkpoint, data = {}) {
   sampleRUM.defer = sampleRUM.defer || [];
   const defer = (fnname) => {
@@ -269,6 +270,33 @@ function passFormConfig(config) {
   formConfigData.push(config);
 }
 
+function passFormMeetingConfig(config) {
+  formMeetingConfig.push(config);
+}
+
+function loadHSScript() {
+  if (!document.querySelector('script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]')) {
+    const scriptTag = document.createElement('script');
+    scriptTag.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+    scriptTag.async = true;
+    document.head.appendChild(scriptTag);
+  }
+}
+
+function getFormMeetingConfig() {
+  return formMeetingConfig.length;
+}
+
+function loadFormDelayed() {
+  loadHSScript();
+  formMeetingConfig.forEach((block) => {
+    const hsCalendarBlock = document.getElementById(block.blockId);
+    if (hsCalendarBlock) {
+      hsCalendarBlock.innerHTML = `<div class="meetings-iframe-container" data-src="${block.link}">&nbsp;</div>`;
+    }
+  });
+}
+
 function isForm() {
   return formConfigData.length;
 }
@@ -426,6 +454,7 @@ function decorateButtons(element) {
           && twoup.tagName === 'P'
         ) {
           a.className = 'button primary';
+          a.setAttribute('target', '_blank');
           twoup.classList.add('button-container');
         }
         if (
@@ -755,4 +784,7 @@ export {
   isForm,
   buildForm,
   extractTableData,
+  passFormMeetingConfig,
+  loadFormDelayed,
+  getFormMeetingConfig,
 };
