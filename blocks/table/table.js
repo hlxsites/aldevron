@@ -9,6 +9,12 @@ export default function decorate(block) {
       const rowspan = td.getAttribute('rowspan');
       if (rowspan !== null && rowspan > 1) {
         const rowspanCount = parseInt(rowspan, 10);
+        if (rowspanCount > 1) {
+          for (let i = 1; i < rowspanCount; i += 1) {
+            const parent = td.parentElement;
+            parent.classList.add('bg-white');
+          }
+        }
         index += rowspanCount;
       } else {
         index += 1;
