@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 0;
+    padding: 80px 0;
     overflow: hidden;
   }
 
@@ -14,6 +14,7 @@
     transform: translate3d(43%, 0, 0);
     transition: 0.5s all ease-in-out;
     transition-duration: 500ms;
+    padding-bottom: 20px;
   }
 
   .year {
@@ -42,7 +43,7 @@
     /* width: 100%; */
     display: flex;
     align-items: center;
-    min-height: 250px;
+    min-height: 190px;
     max-width: 600px;
     margin: 0 auto;
     overflow: hidden;
@@ -171,10 +172,25 @@
   }
 
   @media (max-width: 767px) {
+    .timeline-slide {
+      padding: 60px 0;
+    }
+
+    #content-slider {
+      margin: 0 30px;
+      min-height: unset;
+    }
+
     .button-container {
         position: relative;
         justify-content: center;
-      }
+        margin-top: 32px;
+        height: 54px;
+    }
+
+    .button-block{
+      margin-right: -10px;
+    }
 
     .year {
       width: 150px;
