@@ -133,7 +133,7 @@ class ModalImageSlider {
         itemChild.classList.add('hs-image__grid__item__overlay__content--fit');
         itemChild.setAttribute(
           'style',
-          'white-space: normal;display: inline-block;font-size: 12px;font-weight: bold;',
+          'white-space: normal;display: inline-block;font-size: 16px;font-weight: bold;',
         );
         const overlayEl = div(
           { class: 'hs-image__grid__item__overlay' },
