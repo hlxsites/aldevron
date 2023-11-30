@@ -67,6 +67,15 @@ export default function buildAutoBlocks(block) {
   content.appendChild(clearFix);
   defaultTemplate.appendChild(content);
   block.appendChild(defaultTemplate);
-  setTimeout(() => { setSidebarMaxHeight(); }, 1000);
+  const observer = new MutationObserver(() => {
+    setSidebarMaxHeight();
+  });
+  observer.observe(sidebar, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+  });
+  setSidebarMaxHeight();
   setSidebarHeight();
 }
