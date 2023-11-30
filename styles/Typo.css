@@ -1744,6 +1744,18 @@ form.hs-form .hs-input[type="checkbox"] {
     display: block;
 }
 
+.sidebar-navigation ul {
+    font-weight: 700;
+}
+
+.sidebar-navigation ul ul {
+    font-weight: 400;
+}
+
+.sidebar-navigation ul ul li {
+    display: none;
+}
+
 .sidebar-navigation ul li::before {
     content: ''!important;
 }
@@ -1757,4 +1769,8 @@ form.hs-form .hs-input[type="checkbox"] {
 .sidebar-navigation ul li a {
     font-size: 16px!important;
     color: #0d233e!important;
+}
+
+.sidebar-navigation a:hover {
+    text-decoration: underline!important;
 }

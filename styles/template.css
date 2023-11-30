@@ -514,7 +514,7 @@ body.full-width #sidebar {
     width: 26%;
 }
 
-#sidebar > div {
+#sidebar > div:first-child {
     margin-top: 0;
 }
 
@@ -589,7 +589,6 @@ body.sidebar-50 #sidebar {
     color: #0d233e;
     display: block;
     font-size: 1em;
-    font-weight: 700;
     line-height: 1.2;
     padding: 0 10px;
     text-decoration: none
@@ -599,12 +598,13 @@ body.sidebar-50 #sidebar {
     text-decoration: underline
 }
 
-#sidebar ul ul {
-    display: none
+#sidebar li.active-branch>ul {
+    display: block;
 }
 
-#sidebar li.active-branch>ul {
-    display: block
+#sidebar .active-branch a {
+    display: block;
+    font-weight: 400;
 }
 
 #sidebar ul ul li {
