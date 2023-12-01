@@ -1,9 +1,11 @@
 .heading-top tr:first-child td {
     background-color: var(--primary-color);
+    color: #fff;
 }
 
 .left-heading {
     background-color: var(--primary-color);
+    color: #fff;
     text-align: left;
 }
 

@@ -932,77 +932,85 @@ body.mrna input[type="submit"]:hover {
 
 
 .h-space-10 {
-    padding: 0 10px;
+    padding: 0 10px!important;
 }
 
 .h-space-20 {
-    padding: 0 20px
+    padding: 0 20px!important;
 }
 
 .h-space-30 {
-    padding: 0 30px;
+    padding: 0 30px!important;
 }
 
 .h-space-40 {
-    padding: 0 40px;
+    padding: 0 40px!important;
 }
 
 .h-space-50 {
-    padding: 0 50px;
+    padding: 0 50px!important;
 }
 
 .v-space-10 {
-    padding: 10px 0;
+    padding: 10px 0!important;
 }
 
 .v-space-20 {
-    padding: 20px 0;
+    padding: 20px 0!important;
 }
 
 .v-space-30 {
-    padding: 30px 0;
+    padding: 30px 0!important;
 }
 
 .v-space-40 {
-    padding: 40px 0;
+    padding: 40px 0!important;
 }
 
 .v-space-50 {
-    padding: 50px 0;
+    padding: 50px 0!important;
 }
 
 .space-5 {
-    padding: 5px;
+    padding: 5px!important;
 }
 
 .space-10 {
-    padding: 10px;
+    padding: 10px!important;
 }
 
 .space-20 {
-    padding: 20px;
+    padding: 20px!important;
 }
 
 .space-30 {
-    padding: 30px;
+    padding: 30px!important;
 }
 
 .space-40 {
-    padding: 40px;
+    padding: 40px!important;
 }
 
 .space-50 {
-    padding: 50px;
+    padding: 50px!important;
 }
 
 .bg-grey {
-    background-color: #ededed;
+    background-color: #ededed!important;
+}
+
+.bg-white {
+    background-color: #fff!important;
 }
 
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
+}
+
+.text-normal {
+    font-weight: normal;
 }
 
 .cols-row,
@@ -1731,4 +1739,55 @@ form.hs-form .hs-input[type="checkbox"] {
         padding: 30px 10px;
         width: auto;
     }
+}
+
+/* sidebar-navigation css */
+.sidebar-navigation {
+    padding: 7%;
+    margin-top: 25px;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    display: block;
+}
+
+.sidebar-navigation a {
+    color: #0d233e;
+    display: block;
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0 10px;
+    text-decoration: none
+}
+
+.sidebar-navigation ul {
+    font-weight: 700;
+}
+
+.sidebar-navigation ul ul {
+    font-weight: 400;
+}
+
+.sidebar-navigation ul ul li {
+    display: none;
+}
+
+.sidebar-navigation ul li::before {
+    content: ''!important;
+}
+
+.sidebar-navigation ul li {
+    padding-left: 0.5em 0 0.5em 0!important;
+    font-size: 16px!important;
+    color: #0d233e!important;
+}
+
+.sidebar-navigation ul li a {
+    font-size: 16px!important;
+    color: #0d233e!important;
+}
+
+.sidebar-navigation a:hover {
+    text-decoration: underline!important;
 }

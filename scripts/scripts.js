@@ -87,6 +87,50 @@ async function decorateCategory(main) {
   }
 }
 
+function findParentListItem(content, url) {
+  const matchingChild = Array.from(content.children).find((child) => !!child.querySelector(`a[href="${url}"]`));
+  if (matchingChild) {
+    const element = matchingChild.querySelector(`a[href="${url}"]`);
+    const elementParent = element.closest('li');
+    if (elementParent) {
+      elementParent.classList.add('active');
+      Array.from(elementParent.parentNode.children).forEach((sibling) => {
+        sibling.style.display = 'block';
+      });
+    }
+    return matchingChild.querySelector('ul') || null;
+  }
+  return null;
+}
+
+async function getSubNavigation(pathname) {
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  const resp = await fetch(`${navPath}.plain.html`);
+
+  if (resp.ok) {
+    const html = await resp.text();
+    const headerElement = document.createElement('div');
+    headerElement.innerHTML = html;
+    const lastUlElement = headerElement.querySelector('div > div > ul:last-child');
+    const parentListItem = findParentListItem(lastUlElement, pathname);
+    return parentListItem;
+  }
+  return '';
+}
+
+async function decorateNavigation(main) {
+  if (getMetadata('navigation')) {
+    const sidebarElement = main.querySelector('#sidebar');
+    const navigation = await getSubNavigation(window.location.pathname);
+    const block = await buildBlock('sidebar-navigation', navigation);
+    sidebarElement.prepend(block);
+    if (document.body.classList.contains('full-width')) {
+      document.body.classList.remove('full-width');
+    }
+  }
+}
+
 /**
  * Builds embed block for inline links to known social platforms.
  * @param {Element} main The container element
@@ -145,6 +189,7 @@ async function loadEager(doc) {
     decorateMain(main);
     await decorateTemplates(main);
     await decorateCategory(main);
+    await decorateNavigation(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }

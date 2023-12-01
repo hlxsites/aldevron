@@ -514,7 +514,7 @@ body.full-width #sidebar {
     width: 26%;
 }
 
-#sidebar > div {
+#sidebar > div:first-child {
     margin-top: 0;
 }
 
@@ -573,41 +573,28 @@ body.sidebar-50 #sidebar {
     margin-top: 0
 }
 
-#sidebar .hs-menu-wrapper ul {
+#sidebar ul {
     padding: 0
 }
 
-#sidebar .hs-menu-wrapper li {
-    padding: 8px 0
-}
-
-#sidebar .hs-menu-wrapper li::before {
+#sidebar li::before {
     content: none
-}
-
-#sidebar .hs-menu-wrapper a {
-    color: #0d233e;
-    display: block;
-    font-size: 1em;
-    font-weight: 700;
-    line-height: 1.2;
-    padding: 0 10px;
-    text-decoration: none
 }
 
 #sidebar .hs-menu-wrapper a:hover {
     text-decoration: underline
 }
 
-#sidebar .hs-menu-wrapper ul ul {
-    display: none
+#sidebar li.active-branch>ul {
+    display: block;
 }
 
-#sidebar .hs-menu-wrapper li.active-branch>ul {
-    display: block
+#sidebar .active-branch a {
+    display: block;
+    font-weight: 400;
 }
 
-#sidebar .hs-menu-wrapper ul ul li {
+#sidebar ul ul li {
     padding: 16px 0 0
 }
 
@@ -616,7 +603,7 @@ body.sidebar-50 #sidebar {
     font-weight: 400
 }
 
-#sidebar .hs-menu-wrapper .active>a {
+#sidebar .active>a {
     border-left: 3px solid #fac922;
     padding-left: 7px
 }
