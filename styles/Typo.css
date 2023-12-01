@@ -1752,6 +1752,15 @@ form.hs-form .hs-input[type="checkbox"] {
     display: block;
 }
 
+.sidebar-navigation a {
+    color: #0d233e;
+    display: block;
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0 10px;
+    text-decoration: none
+}
+
 .sidebar-navigation ul {
     font-weight: 700;
 }

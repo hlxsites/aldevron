@@ -577,21 +577,8 @@ body.sidebar-50 #sidebar {
     padding: 0
 }
 
-#sidebar li {
-    padding: 8px 0
-}
-
 #sidebar li::before {
     content: none
-}
-
-#sidebar a {
-    color: #0d233e;
-    display: block;
-    font-size: 1em;
-    line-height: 1.2;
-    padding: 0 10px;
-    text-decoration: none
 }
 
 #sidebar .hs-menu-wrapper a:hover {

@@ -76,6 +76,6 @@ export default function buildAutoBlocks(block) {
     attributes: true,
     characterData: true,
   });
-  setSidebarMaxHeight();
+  setTimeout(() => setSidebarMaxHeight(), 1000);
   setSidebarHeight();
 }
