@@ -230,6 +230,11 @@ body {
     background-color: #fac922
 }
 
+#menu li.hs-menu-depth-2:hover>a,#menu ul ul li.active-branch>a,#menu ul ul li>strong>a:hover {
+    background-color: #fac922
+}
+
+
 #menu ul ul ul {
     left: 100%;
     top: 0;

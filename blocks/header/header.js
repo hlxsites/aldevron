@@ -193,21 +193,12 @@ function addClassesToMenuItems(element, depth) {
     const item = childItems[i];
     // Add class to the immediate child element
     item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
-    const strong = item.querySelector('strong');
     const link = item.querySelector('a');
-    if (strong) {
-      link.setAttribute('href', '#');
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-      });
-    }
-
-    const em = item.querySelector('em');
-    // Check if the href matches the current domain
-    if (em) {
+    const { parentElement } = link;
+    if (parentElement.tagName.toLowerCase() === 'strong') {
       link.setAttribute('target', '_blank');
     }
-    if (link && link.href === window.location.href) {
+    if (link && link.href === window.location.pathname) {
       item.classList.add('active');
     }
     const childElement = item.querySelector('ul');
