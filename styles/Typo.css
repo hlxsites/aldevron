@@ -929,7 +929,14 @@ body.mrna input[type="submit"]:hover {
     flex-direction: column;
 }
 
+.no-space p {
+    padding: 0!important;
+}
 
+.text-small p {
+    font-size: 12px!important;
+    line-height: 1.1em!important;
+}
 
 .h-space-10 {
     padding: 0 10px!important;
@@ -1333,6 +1340,13 @@ form.hs-form .hs-input[type="checkbox"] {
     padding: 0;
     color: white;
     font-size: 44px;
+    text-shadow: 0 0 6px rgba(0,0,0,50%);
+}
+
+.hero > div:nth-child(2) h3 {
+    line-height: 1.2;
+    padding: 0;
+    color: white;
     text-shadow: 0 0 6px rgba(0,0,0,50%);
 }
 
@@ -1777,10 +1791,18 @@ form.hs-form .hs-input[type="checkbox"] {
     content: ''!important;
 }
 
+.sidebar-navigation li.active ul li {
+    display: block;
+}
+
 .sidebar-navigation ul li {
-    padding-left: 0.5em 0 0.5em 0!important;
+    padding-left: 0!important;
     font-size: 16px!important;
     color: #0d233e!important;
+}
+
+.sidebar-navigation ul li.active {
+    padding-left: 0!important;
 }
 
 .sidebar-navigation ul li a {
