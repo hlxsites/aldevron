@@ -24,6 +24,13 @@ function createGcseTools() {
   return gcseTools;
 }
 
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.slice(0, maxLength)}...`;
+}
+
 function createGcseBox() {
   const gcseBox = document.createElement('div');
   gcseBox.id = 'mmg-gcse-box';
@@ -54,9 +61,14 @@ function createResultLink(result) {
 
   const spanTitle = document.createElement('span');
   spanTitle.classList.add('title');
-  spanTitle.textContent = result.title;
-
+  spanTitle.textContent = truncateText(result.title, 70);
+  const date = new Date(Number(result.date) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }).toLowerCase();
+  const description = truncateText(result.description, 150);
   link.appendChild(spanTitle);
+  const dateNode = document.createTextNode(date);
+  const descriptionNode = document.createTextNode(description);
+  link.appendChild(dateNode);
+  link.appendChild(descriptionNode);
   link.href = result.path;
 
   return link;
@@ -67,6 +79,71 @@ function removeSearchResult() {
   if (searchResultsBlock1) {
     searchResultsBlock1.remove();
   }
+}
+
+function updateDisplayedItems(currentPage, itemsPerPage, container) {
+  const anchorTags = container.querySelectorAll('a');
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  anchorTags.forEach((element, index) => {
+    element.style.display = (index >= startIndex && index < endIndex) ? '' : 'none';
+  });
+}
+
+function clearExistingPagination(container) {
+  const existingPagination = container.querySelector('.pagination');
+  if (existingPagination) {
+    container.removeChild(existingPagination);
+  }
+}
+
+function createPaginationDiv() {
+  const paginationDiv = document.createElement('div');
+  paginationDiv.className = 'pagination';
+  return paginationDiv;
+}
+
+function updatePagination(currentPage, totalPages, elementsContainer) {
+  const itemsPerPage = 10;
+  updateDisplayedItems(currentPage, itemsPerPage, elementsContainer);
+
+  // Clear existing pagination before appending new one
+  clearExistingPagination(elementsContainer);
+
+  function createNavigationButton(label, isEnabled, targetPage) {
+    const button = document.createElement('span');
+    button.className = `nav-button ${label.toLowerCase()} ${isEnabled ? '' : 'disabled'}`;
+    button.textContent = label;
+    if (isEnabled) {
+      button.addEventListener('click', () => updatePagination(targetPage, totalPages, elementsContainer));
+    }
+    return button;
+  }
+
+  function createPageButton(pageNumber, currentPageValue, totalPagesValue, container) {
+    const pageButton = document.createElement('span');
+    pageButton.className = `page ${pageNumber === currentPageValue ? 'active' : ''}`;
+    pageButton.textContent = pageNumber;
+    pageButton.addEventListener('click', () => {
+      if (pageNumber !== currentPageValue) {
+        updatePagination(pageNumber, totalPagesValue, container);
+      }
+    });
+    return pageButton;
+  }
+
+  const pagination = createPaginationDiv();
+  pagination.appendChild(createNavigationButton('Prev', currentPage > 1, currentPage - 1));
+  for (let i = 1; i <= totalPages; i += 1) {
+    pagination.appendChild(createPageButton(i, currentPage, totalPages, elementsContainer));
+  }
+  pagination.appendChild(createNavigationButton('Next', currentPage < totalPages, currentPage + 1));
+
+  elementsContainer.appendChild(pagination);
+}
+
+function roundToNextTenth(value) {
+  return Math.ceil(value / 10) * 10;
 }
 
 function createSearchResultsBlock(results, input, total) {
@@ -103,7 +180,7 @@ function createSearchResultsBlock(results, input, total) {
     const link = createResultLink(result);
     outer.appendChild(link);
   });
-
+  updatePagination(1, roundToNextTenth(results.length) / 10, outer);
   searchResultsBlock.appendChild(gcseTools);
   searchResultsBlock.appendChild(gcseBox);
 

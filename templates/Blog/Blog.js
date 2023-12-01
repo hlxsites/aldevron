@@ -248,11 +248,15 @@ export default async function buildAutoBlocks(block) {
   }
 
   const data = await fetchBlogData();
-  const filteredResults = data.filter((item) => {
+  let filteredResults = data.filter((item) => {
     const path = item.path.toLowerCase();
     const regex = /^\/blog\/.+/;
     return regex.test(path);
   });
+
+  if (filteredResults.length) {
+    filteredResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
+  }
 
   const contentBlocks = block.querySelectorAll('.section');
 
@@ -332,16 +336,16 @@ export default async function buildAutoBlocks(block) {
     main.appendChild(shareContainer);
   }
 
-  const archiveSidebar = generateArchiveBlock(filteredResults);
-  if (archiveSidebar) {
-    sideBarVisible = true;
-    sidebar.prepend(archiveSidebar);
-  }
-
   const topicSidebar = generateTopicBlock(filteredResults);
   if (topicSidebar) {
     sideBarVisible = true;
     sidebar.prepend(topicSidebar);
+  }
+
+  const archiveSidebar = generateArchiveBlock(filteredResults);
+  if (archiveSidebar) {
+    sideBarVisible = true;
+    sidebar.prepend(archiveSidebar);
   }
 
   if (!sideBarVisible) {
