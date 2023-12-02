@@ -101,6 +101,76 @@ class ModalImageSlider {
         });
       }, 300);
     });
+    document.addEventListener('keydown', (event) => {
+      const key = event;
+      if (key.code === 'ArrowRight') {
+        nextEl.focus();
+      }
+      if (key.code === 'ArrowLeft') {
+        prevEl.focus();
+      }
+      // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
+    });
+    nextEl.addEventListener('keydown', (event) => {
+      event.preventDefault();
+      const key = event;
+      if (key.code === 'Enter') {
+        this.closeModal();
+        setTimeout(() => {
+          this.createModal(items, item.nextElementSibling, idx + 1);
+          this.block.querySelector('.hs-image__grid__lightbox__button--prev').focus();
+        }, 200);
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            this.block
+              .querySelector('.basicLightbox')
+              .classList.add('basicLightbox--visible');
+          });
+        }, 300);
+      }
+      if (key.code === 'Tab') {
+        closeEl.focus();
+      }
+    });
+    prevEl.addEventListener('keydown', (event) => {
+      event.preventDefault();
+      const key = event;
+      if (key.code === 'Enter') {
+        this.closeModal();
+        setTimeout(() => {
+          this.createModal(items, item.previousElementSibling, idx - 1);
+          this.block.querySelector('.hs-image__grid__lightbox__button--next').focus();
+        }, 200);
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            this.block
+              .querySelector('.basicLightbox')
+              .classList.add('basicLightbox--visible');
+          });
+        }, 300);
+      }
+      if (key.code === 'Tab') {
+        if (nextEl.classList.contains('hs-image__grid__lightbox__button--hide')) {
+          closeEl.focus();
+        } else {
+          nextEl.focus();
+        }
+      }
+    });
+    closeEl.addEventListener('keydown', (event) => {
+      event.preventDefault();
+      const key = event;
+      if (key.code === 'Enter') {
+        this.closeModal();
+      }
+      if (key.code === 'Tab') {
+        if (prevEl.classList.contains('hs-image__grid__lightbox__button--hide')) {
+          nextEl.focus();
+        } else {
+          prevEl.focus();
+        }
+      }
+    });
   }
 
   closeModal() {
@@ -133,7 +203,7 @@ class ModalImageSlider {
         itemChild.classList.add('hs-image__grid__item__overlay__content--fit');
         itemChild.setAttribute(
           'style',
-          'white-space: normal;display: inline-block;font-size: 12px;font-weight: bold;',
+          'white-space: normal;display: inline-block;font-size: 16px;font-weight: bold;',
         );
         const overlayEl = div(
           { class: 'hs-image__grid__item__overlay' },

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons } from '../../scripts/aem.js';
-import { div, p, span } from '../../scripts/dom-builder.js';
+import { div, p } from '../../scripts/dom-builder.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -353,7 +353,18 @@ class ImageSlider {
         left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
       });
     };
-    setTimeout(scrollToSelectedItem, 700);
+    setTimeout(scrollToSelectedItem, 10);
+  }
+
+  setInitialScrollingPositionMain() {
+    const scrollToSelectedItemMain = () => {
+      const item = this.block.parentElement.firstChild.querySelector('.imageslider-item.selected');
+      item.parentNode.scrollTo({
+        top: 0,
+        left: item.offsetLeft - this.getMainBlockPadding() - this.block.offsetLeft,
+      });
+    };
+    setTimeout(scrollToSelectedItemMain, 10);
   }
 
   createDotButtons() {
@@ -418,12 +429,11 @@ class ImageSlider {
       this.block.querySelectorAll('.imageslider-item').forEach((item) => {
         item.setAttribute('style', `width:${imgWidth}px;`);
       });
+    } else {
+      this.block.querySelectorAll('.imageslider-item').forEach((item) => {
+        item.setAttribute('style', 'width:250px;');
+      });
     }
-  }
-
-  setInitialImage() {
-    const selectedItemMain = this.block.parentElement.firstChild.querySelector('.imageslider-item.selected');
-    selectedItemMain.previousElementSibling && selectedItemMain.previousElementSibling.setAttribute('style', 'display:none');
   }
 
   createCounter() {
@@ -515,7 +525,12 @@ class ImageSlider {
     this.infiniteScroll && this.setInitialScrollingPosition();
     this.clickthumbnails();
     this.setSliderWidth();
-    this.setInitialImage();
+    this.setInitialScrollingPositionMain();
+    window.addEventListener('resize', () => {
+      this.setSliderWidth();
+      this.setInitialScrollingPositionMain();
+      this.setInitialScrollingPosition();
+    });
   }
 }
 
@@ -535,47 +550,7 @@ export async function createimageslider(block, data, config) {
   return imageslider;
 }
 
-/**
- * Custom card style config and rendering of imageslider items.
- */
-export function renderCardItem(item) {
-  item.classList.add('card');
-  item
-    .querySelectorAll('.button-container a')
-    .forEach((a) => a.append(span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true })));
-  decorateIcons(item);
-  return item;
-}
-
-const cardStyleConfig = {
-  cssFiles: ['/blocks/imageslider/imageslider-cards.css'],
-  navButtons: true,
-  dotButtons: false,
-  infiniteScroll: true,
-  autoScroll: false,
-  visibleItems: [
-    {
-      items: 1,
-      condition: () => window.innerWidth < 768,
-    },
-    {
-      items: 2,
-      condition: () => window.innerWidth < 1200,
-    }, {
-      items: 3,
-    },
-  ],
-  renderItem: renderCardItem,
-};
-
 export default async function decorate(block) {
-  // cards style imageslider
-  const useCardsStyle = block.classList.contains('cards');
-  if (useCardsStyle) {
-    await createimageslider(block, [...block.children], cardStyleConfig);
-    return;
-  }
-
   // use the default imageslider
   await createimageslider(block);
 }

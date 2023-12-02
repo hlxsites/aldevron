@@ -7,43 +7,17 @@ export default function decorate(block) {
   const col3El = div({ class: 'module mmg-rich-cols cols3-row' });
   const col2El = div({ class: 'module mmg-rich-cols cols2-row half' });
   const col3wrap = div(
-    { id: 'content-wrapper', style: 'overflow:auto' },
-    div(
-      { id: 'content' },
-      div(
-        { class: 'outer' },
-        div(
-          { id: 'main' },
-          div(
-            {
-              class:
-                                'hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget',
-            },
-            col3El,
-          ),
-        ),
-      ),
-    ),
+    {
+      class: 'hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget',
+    },
+    col3El,
   );
 
   const col2wrap = div(
-    { id: 'content-wrapper', style: 'overflow:auto' },
-    div(
-      { id: 'content' },
-      div(
-        { class: 'outer' },
-        div(
-          { id: 'main' },
-          div(
-            {
-              class:
-                                'hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget',
-            },
-            col2El,
-          ),
-        ),
-      ),
-    ),
+    {
+      class: 'hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget',
+    },
+    col2El,
   );
 
   [...block.children].forEach((row) => {
