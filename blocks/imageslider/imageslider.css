@@ -79,7 +79,7 @@ main div.imageslider-wrapper {
    main .imageslider-nav-button {
      z-index: 99;
      min-width: unset;
-     padding: 6px 4px 4px 4px;
+     padding: 6px 4px 4px;
      border-radius: 50%;
      position: absolute;
      top: 88%;
