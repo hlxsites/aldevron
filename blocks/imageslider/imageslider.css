@@ -79,7 +79,7 @@ main div.imageslider-wrapper {
    main .imageslider-nav-button {
      z-index: 99;
      min-width: unset;
-     padding: 4px;
+     padding: 6px 4px 4px 4px;
      border-radius: 50%;
      position: absolute;
      top: 88%;
@@ -92,13 +92,16 @@ main div.imageslider-wrapper {
      border: 1.5px solid #adb3b7;  /* default - same as .products */
      background-color: #adb3b7;      /* default - same as .products */
      font-weight: bolder;
-     height: 20px;
+     height: 15px;
+     width: 17px;
+     text-decoration: none;
+     transition: 0.2s all ease-in-out;
+     cursor: pointer;
    }
  
    main .imageslider-nav-button:hover {
      z-index: 99;
      min-width: unset;
-     padding: 4px;
      border-radius: 50%;
      position: absolute;
      top: 88%;
@@ -107,11 +110,12 @@ main div.imageslider-wrapper {
      display: flex;
      justify-content: center;
      align-items: center;
-     color: #fff;               /* default - same as .products */
-     border: 1.5px solid #a3a3a3;  /* default - same as .products */
-     background-color: #a3a3a3;      /* default - same as .products */
+     color: #fff;
+     border: 1.5px solid #a3a3a3;
+     background-color: #a3a3a3;
      font-weight: bolder;
-     height: 20px;
+     text-decoration: none;
+     transition: 0.2s all ease-in-out;
    }
    
    main .imageslider-nav-button.disabled {

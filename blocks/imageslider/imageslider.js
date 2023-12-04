@@ -276,7 +276,7 @@ class ImageSlider {
   * Create left and right arrow navigation buttons
   */
   createNavButtons(parentElement) {
-    const buttonLeft = document.createElement('button');
+    const buttonLeft = document.createElement('a');
     buttonLeft.classList.add('imageslider-nav-left');
     buttonLeft.classList.add('imageslider-nav-button');
     buttonLeft.ariaLabel = 'Scroll to previous item';
@@ -290,7 +290,7 @@ class ImageSlider {
       buttonLeft.classList.add('disabled');
     }
 
-    const buttonRight = document.createElement('button');
+    const buttonRight = document.createElement('a');
     buttonRight.classList.add('imageslider-nav-right');
     buttonRight.classList.add('imageslider-nav-button');
     buttonRight.ariaLabel = 'Scroll to next item';
@@ -487,7 +487,7 @@ class ImageSlider {
       ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
 
-    this.block.parentElement.classList.add('outer');
+    // this.block.parentElement.classList.add('outer');
     this.block.innerHTML = '';
     const mainContainer = document.createElement('div');
     mainContainer.classList.add('imageslider-main');
