@@ -157,8 +157,12 @@
   max-height: 80vh;
   overflow: auto;
 
-  @media only screen and (max-width: 860px) {
+  @media (max-width: 860px) {
     width: calc(100vw - 100px);
+  }
+
+  @media (max-width: 768px) {
+    width: calc(100vw - 40px);
   }
 
 }

@@ -107,7 +107,7 @@ export default function decorate(block) {
   });
   pictureTagForZoom.addEventListener('click', (e) => {
     e.stopPropagation();
-    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': 'unset' });
+    addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': 'unset', width: 'auto' });
   });
   block.querySelector('.button.icon-search').addEventListener('click', (e) => {
     e.stopPropagation();
