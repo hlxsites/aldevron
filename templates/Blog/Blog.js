@@ -65,10 +65,10 @@ function generateTopicBlock(results) {
   const tagCounts = {};
   results.forEach((arc) => {
     JSON.parse(arc.tags).forEach((tag) => {
-      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      tagCounts[tag.trim()] = (tagCounts[tag.trim()] || 0) + 1;
     });
   });
-  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag, count }));
+  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag.trim(), count }));
   return createSidebar('Topic', tagCountArray, 10);
 }
 

@@ -64,10 +64,10 @@ function generateTopicBlock(results) {
   const tagCounts = {};
   results.forEach((arc) => {
     JSON.parse(arc.tags).forEach((tag) => {
-      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      tagCounts[tag.trim()] = (tagCounts[tag.trim()] || 0) + 1;
     });
   });
-  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag, count }));
+  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag.trim(), count }));
   return createSidebar('Topic', tagCountArray, 10);
 }
 
@@ -246,12 +246,13 @@ export default async function buildAutoBlocks(block) {
   }
 
   const data = await fetchNewsData();
+  console.log(data);
   let filteredResults = data.filter((item) => {
     const path = item.path.toLowerCase();
     const regex = /^\/about-us\/news\/.*$/;
     return regex.test(path);
   });
-
+  console.log(filteredResults);
   if (filteredResults.length) {
     filteredResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
   }

@@ -56,7 +56,7 @@ export default async function decorate(block) {
     const title = blogTitles.children[0];
     const blogsContainer = div({ class: 'col recent-posts' });
     let sortedResults = [];
-    const filteredResults = postData.filter((item) => item.path.includes('/news/') && (topic ? JSON.parse(item.tags).filter((tag) => tag.toLowerCase() === topic.toLowerCase()).length > 0 : true));
+    const filteredResults = postData.filter((item) => item.path.includes('/news/') && (topic ? JSON.parse(item.tags).filter((tag) => tag.toLowerCase().trim() === topic.toLowerCase().trim()).length > 0 : true));
     if (filteredResults.length) {
       sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
     }
@@ -70,7 +70,7 @@ export default async function decorate(block) {
     const title = newsTitles.children[1];
     const blogsContainer = div({ class: 'col recent-posts' });
     let sortedResults = [];
-    const filteredResults = postData.filter((item) => item.path.includes('/blog/') && (topic ? JSON.parse(item.tags).filter((tag) => tag.toLowerCase() === topic.toLowerCase()).length > 0 : true));
+    const filteredResults = postData.filter((item) => item.path.includes('/blog/') && (topic ? JSON.parse(item.tags).filter((tag) => tag.toLowerCase().trim() === topic.toLowerCase().trim()).length > 0 : true));
     if (filteredResults.length) {
       sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
     }
