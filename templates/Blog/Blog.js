@@ -68,8 +68,8 @@ function generateTopicBlock(results) {
       tagCounts[tag.trim()] = (tagCounts[tag.trim()] || 0) + 1;
     });
   });
-  const tagCountArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag.trim(), count }));
-  return createSidebar('Topic', tagCountArray, 10);
+  const tagCArray = Object.entries(tagCounts).map(([tag, count]) => ({ title: tag.trim(), count }));
+  return createSidebar('Topic', tagCArray, 10);
 }
 
 function generateResultsBlock(articles, currentPage, totalArticles) {

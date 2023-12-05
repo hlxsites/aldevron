@@ -123,7 +123,7 @@ async function decorateNavigation(main) {
   if (getMetadata('navigation')) {
     const sidebarElement = main.querySelector('#sidebar');
     const navigation = await getSubNavigation(window.location.pathname);
-    if(navigation) {
+    if (navigation) {
       const block = await buildBlock('sidebar-navigation', navigation);
       sidebarElement.prepend(block);
       if (document.body.classList.contains('full-width')) {

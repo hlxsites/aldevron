@@ -415,7 +415,7 @@ hr {
     clear: both;
     display: block;
     height: 1px;
-    padding: 1em 0;
+    margin: 1em 0;
 }
 
 pre {
