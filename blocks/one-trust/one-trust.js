@@ -85,7 +85,6 @@ export default function decorate(block) {
 
     containerDiv.appendChild(innerDiv);
     block.appendChild(containerDiv);
-    block.classList.add('outer');
   };
 
   const addOneTrustScript = () => { // eslint-disable-line
