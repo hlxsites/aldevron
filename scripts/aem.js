@@ -273,7 +273,7 @@ function readExactBlockConfig(block) {
           } else {
             value = ps.map((p) => p.textContent);
           }
-        } else value = row.children[1].textContent;
+        } else value = row.children[1].innerHTML;
         config[name] = value;
       }
     }

@@ -34,7 +34,7 @@ export default function decorate(block) {
       const opcoEmailElements = document.getElementsByClassName('OpCoEmail');
       Array.from(opcoEmailElements).forEach((el) => {
         el.innerHTML = opCoDetails.OpCoEmail;
-        el.href = 'mailto:someone@example.com';
+        el.href = `mailto:${opCoDetails.OpCoEmail}`;
       });
     }
 

@@ -31,7 +31,7 @@ export default function decorate(block) {
     if (opCoDetails.OpCoAddressMultiLine) {
       const opcoAddrElements = document.getElementsByClassName('OpCoAddressMultiLine');
       Array.from(opcoAddrElements).forEach((el) => {
-        el.innerHTML = opCoDetails.OpCoAddressMultiLine.replace(/,/g, '<br/>');
+        el.innerHTML = opCoDetails.OpCoAddressMultiLine;
       });
     }
 
@@ -39,7 +39,7 @@ export default function decorate(block) {
       const opcoEmailElements = document.getElementsByClassName('OpCoEmail');
       Array.from(opcoEmailElements).forEach((el) => {
         el.innerHTML = opCoDetails.OpCoEmail;
-        el.href = 'mailto:someone@example.com';
+        el.href = `mailto:${opCoDetails.OpCoEmail}`;
       });
     }
 
