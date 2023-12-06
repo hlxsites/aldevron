@@ -9,7 +9,7 @@ export default function decorate(block) {
   const anchorLink = block.querySelector('a');
   const bodytext = block.children[1].textContent.trim();
   const container = div(
-    { class: 'linkedin-bottom wide-section padding-btm' },
+    { class: 'linkedin-bottom padding-btm' },
     div(
       { class: 'outer' },
       a(

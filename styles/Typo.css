@@ -933,6 +933,10 @@ body.mrna input[type="submit"]:hover {
     padding: 0!important;
 }
 
+.no-space a {
+    width: auto!important;
+}
+
 .text-small p {
     font-size: 12px!important;
     line-height: 1.1em!important;
@@ -1014,6 +1018,19 @@ body.mrna input[type="submit"]:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
+}
+
+.shadow {
+    padding: 10%;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    display: block;
+}
+
+.no-shadow {
+    box-shadow: none!important;
 }
 
 .text-normal {
