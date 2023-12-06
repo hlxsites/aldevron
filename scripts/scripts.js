@@ -35,6 +35,7 @@ const TEMPLATE_LIST = [
   'default',
   'blog',
   'news',
+  'anniversary',
 ];
 
 const CATEGORY_LIST = [

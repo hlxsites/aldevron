@@ -1,0 +1,9 @@
+/* connet css */
+.linkedin-bottom {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.linkedin-bottom .outer {
+    display: block;
+}

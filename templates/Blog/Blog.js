@@ -231,7 +231,7 @@ function setSidebarMaxHeight() {
   [...sidebar.children].forEach((element) => {
     height += element.offsetHeight;
   });
-  sidebar.style.maxHeight = `${height}px`;
+  sidebar.style.maxHeight = `${height + 50}px`;
 }
 
 function setSidebarHeight() {
