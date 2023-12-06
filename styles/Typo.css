@@ -1020,6 +1020,19 @@ body.mrna input[type="submit"]:hover {
     grid-gap: 2%;
 }
 
+.shadow {
+    padding: 10%;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    display: block;
+}
+
+.no-shadow {
+    box-shadow: none!important;
+}
+
 .text-normal {
     font-weight: normal;
 }

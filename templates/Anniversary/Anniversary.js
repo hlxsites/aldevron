@@ -52,9 +52,10 @@ export default function buildAutoBlocks(block) {
         sidebar.appendChild(sidebarItem);
       });
     }
-    sidebarSections.style.display = null;
-    main.appendChild(sidebarSections.cloneNode(true));
-    sidebarSections.outerHTML = defaultTemplate.outerHTML;
+    Array.from(sidebarSections.cloneNode(true).children).forEach((child) => {
+      main.appendChild(child);
+    });
+    sidebarSections.innerHTML = defaultTemplate.outerHTML;
   }
   setTimeout(() => setSidebarMaxHeight(), 1000);
   setSidebarHeight();

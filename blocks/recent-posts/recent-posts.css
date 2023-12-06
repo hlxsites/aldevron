@@ -12,6 +12,10 @@
     text-align: left;
 }
 
+.recent-posts h1:first-child, .recent-posts h2:first-child {
+    padding-top: 0!important;
+} 
+
 .recent-posts .post .image img {
     width: 100%;
     height: auto;

@@ -3,6 +3,26 @@
   flex-direction: column;
 }
 
+.columns picture {
+  display: block;
+  float: none;
+  max-width: none;
+  overflow: hidden;
+  padding-bottom: 56%;
+  position: relative;
+  width: 100%;
+}
+
+.columns picture img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: all .3s;
+  width: 100%;
+}
+
 .columns img {
   width: 100%;
 }
