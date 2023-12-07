@@ -24,6 +24,10 @@ input, select {
 }
 
 input[type="submit"] {
+    color: var(--text-color)!important;
+}
+
+input[type="submit"]:hover {
     color: var(--primary-color)!important;
 }
 
