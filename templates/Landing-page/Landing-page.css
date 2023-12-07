@@ -23,6 +23,10 @@ input, select {
     margin: 5px 0!important;
 }
 
+input[type="submit"] {
+    color: var(--primary-color)!important;
+}
+
 @media (max-width: 950px) {
     .landing-section .float-left {
         width: 100%;
