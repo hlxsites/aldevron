@@ -36,6 +36,7 @@ const TEMPLATE_LIST = [
   'blog',
   'news',
   'anniversary',
+  'landing-page',
 ];
 
 const CATEGORY_LIST = [
