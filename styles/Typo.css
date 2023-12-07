@@ -639,7 +639,7 @@ input[type="submit"] {
 
 .button.secondary {
     background-color: transparent;
-    padding: 0;
+    padding: 0!important;
     border: none;
     color: #ec8f2d;
     text-transform: none;
