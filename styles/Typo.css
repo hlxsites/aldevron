@@ -618,9 +618,9 @@ input[type="reset"],
 input[type="submit"] {
     background-color: var(--primary-color);
     border-radius: 5px!important;
-    border: 1px solid var(--primary-color)!important;
+    border: 1px solid var(--primary-color);
     box-sizing: border-box;
-    color: var(--text-color)!important;
+    color: var(--text-color);
     cursor: pointer;
     display: inline-block;
     font-family: Brown-Ald, Helvetica, Arial, sans-serif;
