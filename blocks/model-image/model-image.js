@@ -94,6 +94,7 @@ export default function decorate(block) {
       display: 'none',
     });
     addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '100%' });
+    addStyles(cboxWrapperSecondChildCboxbtnIconSearch, { display: 'block' });
   });
   overlayDiv.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -104,13 +105,16 @@ export default function decorate(block) {
       display: 'none',
     });
     addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '100%' });
+    addStyles(cboxWrapperSecondChildCboxbtnIconSearch, { display: 'block' });
   });
   pictureTagForZoom.addEventListener('click', (e) => {
     e.stopPropagation();
     addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '200%' });
+    addStyles(cboxWrapperSecondChildCboxbtnIconSearch, { display: 'none' });
   });
   block.querySelector('.button.icon-search').addEventListener('click', (e) => {
     e.stopPropagation();
     addStyles(pictureTagForZoom.querySelector('img'), { 'max-width': '200%' });
+    addStyles(cboxWrapperSecondChildCboxbtnIconSearch, { display: 'none' });
   });
 }
