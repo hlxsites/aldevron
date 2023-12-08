@@ -914,6 +914,11 @@ body.mrna input[type="submit"]:hover {
     display: flex;
 }
 
+.width-flex {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 .flex-row {
     flex-direction: row;
 }
