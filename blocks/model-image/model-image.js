@@ -25,11 +25,11 @@ const setAttributes = (ele, attributes) => {
 export default function decorate(block) {
   const imgWrap = creteEleAddCls({ targetEle: 'div', classes: ['img-colorbox-popup', 'cboxElement'] });
   const pictureTag = block.querySelector('picture');
+  pictureTag.parentElement.remove();
   const pictureTagForZoom = pictureTag.cloneNode(true);
   addStyles(pictureTagForZoom, { cursor: 'pointer' });
   imgWrap.append(pictureTag);
   imgWrap.classList.add('image-wrapper');
-  block.textContent = '';
   block.append(imgWrap);
   const overlayDiv = creteEleAddCls({ targetEle: 'div', classes: [] });
   addStyles(overlayDiv, {
