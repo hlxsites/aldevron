@@ -8,7 +8,17 @@
     width: 48%;
 }
 
-input, select {
+.landing-section ul li::before {
+    color: var(--primary-color);
+    content: "\25A0";
+    font-size: 1em;
+    left: 0;
+    line-height: 100%;
+    position: absolute;
+    top: 0.45em;
+}
+
+.landing-section input, select {
     /* -webkit-appearance: none; */
     /* appearance: none; */
     /* width: 100% !important; */
