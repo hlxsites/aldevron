@@ -1,4 +1,4 @@
-export default function decorate(block) {
+export default function buildAutoBlocks(block) {
   const para = block.innerText;
   block.innerHTML = para;
   const forms = block.querySelectorAll('form');
@@ -9,10 +9,12 @@ export default function decorate(block) {
     form.action = originalUrl.replace(/(\?|&)continue=([^&]*)/, `$1continue=${continueUrl}`);
   });
   const accordions = block.querySelectorAll('.mmg-collapsible');
-  accordions.forEach((accordion) => {
-    accordion.children[0].addEventListener('click', () => {
-      const content = accordion.querySelector('.content');
-      content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  if (accordions.length > 0) {
+    accordions.forEach((accordion) => {
+      accordion.children[0].addEventListener('click', () => {
+        const content = accordion.querySelector('.content');
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+      });
     });
-  });
+  }
 }
