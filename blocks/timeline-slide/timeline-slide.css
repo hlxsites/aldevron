@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 70px;
+    padding-bottom: 80px;
     overflow: hidden;
   }
 
@@ -172,7 +173,7 @@
   }
 
   @media (max-width: 767px) {
-    .timeline-slide .timeline-slide {
+    .timeline-slide {
       padding: 60px 0;
     }
 
