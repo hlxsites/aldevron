@@ -171,8 +171,14 @@
     height: 20px;
   }
 
+  @media (min-width: 767px) and (max-width: 860px) {
+    .timeline-slide #content-slider {
+      padding: 0 80px;
+    }
+  }
+
   @media (max-width: 767px) {
-    .timeline-slide .timeline-slide {
+    .timeline-slide {
       padding: 60px 0;
     }
 
