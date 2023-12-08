@@ -67,20 +67,20 @@
   outline: 0
 }
 
-#cboxClose {
+#cboxOverlay #colorbox #cboxClose {
   position: absolute;
   top: 0;
   right: 0;
   display: block;
   width: 32px;
   height: 32px;
-  padding: 0;
-  font-size: 28px;
+  padding: 0 !important;
+  font-size: 28px !important;
   font-family: Arial,Helvetica;
   line-height: 32px;
   background-color: #ec8f2d;
   color: #fff;
-  border-radius: 0;
+  border-radius: 0 !important;
   border: 0;
   margin: 0;
   overflow: visible;
@@ -90,21 +90,21 @@
   background-color: #00000050 !important
 }
 
-.model-image .icon-search {
+#cboxOverlay #colorbox .button.icon-search {
   position: absolute;
   bottom: 0;
   right: 0;
   display: block;
   width: 32px;
   height: 32px;
-  padding: 0;
+  padding: 0 !important;
   margin: 0;
   border: 0;
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 32px;
   background-color: #ec8f2d;
   color: #fff;
-  border-radius: 0
+  border-radius: 0 !important;
 }
 
 .model-image .icon-search:hover {
