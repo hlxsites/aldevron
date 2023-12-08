@@ -8,6 +8,10 @@
     display: block;
 }
 
+.sidebar-rte h1:first-child, .sidebar-rte h2:first-child, .sidebar-rte h3:first-child {
+    padding-top: 0!important;
+}
+
 .sidebar-rte ul li::before {
     content: ''!important;
 }

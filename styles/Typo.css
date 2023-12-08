@@ -415,7 +415,7 @@ hr {
     clear: both;
     display: block;
     height: 1px;
-    padding: 1em 0;
+    margin: 1em 0;
 }
 
 pre {
@@ -553,19 +553,9 @@ fieldset {
     background-color: rgba(0 0 0 / 5%);
     margin: 1em 0;
     padding: 1em;
-}
-
-fieldset,
-legend {
     border: 1px solid #fff;
 }
 
-legend {
-    background-color: #00ace5;
-    color: #fff;
-    margin: 0;
-    padding: 2px 6px;
-}
 
 optgroup {
     font-weight: 700;
@@ -597,7 +587,7 @@ textarea {
 }
 
 select {
-    padding: 0.4em 0.6em;
+    padding: 0.6em;
 }
 
 #hs-pwd-widget-password {
@@ -616,13 +606,6 @@ input[type="text"]:focus
     outline: none
 }
 
-select,select:focus,
-textarea:focus  {
-    padding: .4em .6em;
-    border-color: var(--primary-color);
-    outline: none
-}
-
 .blog-pagination a,
 .button,
 .cta_button,
@@ -634,18 +617,18 @@ input[type="reset"],
 .hs-form input[type="submit"],
 input[type="submit"] {
     background-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 5px!important;
     border: 1px solid var(--primary-color);
     box-sizing: border-box;
     color: var(--text-color);
     cursor: pointer;
     display: inline-block;
     font-family: Brown-Ald, Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 18px!important;
     font-weight: 400;
     line-height: 100%;
     margin: 0;
-    padding: .8em 1.3em;
+    padding: .8em 1.3em!important;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -656,7 +639,7 @@ input[type="submit"] {
 
 .button.secondary {
     background-color: transparent;
-    padding: 0;
+    padding: 0!important;
     border: none;
     color: #ec8f2d;
     text-transform: none;
@@ -699,7 +682,7 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
     background-color: #fff;
-    color: var(--primary-color);
+    color: var(--primary-color)!important;
     text-decoration: none;
     border: 1px solid var(--primary-color);
 }
@@ -933,6 +916,10 @@ body.mrna input[type="submit"]:hover {
     padding: 0!important;
 }
 
+.no-space a {
+    width: auto!important;
+}
+
 .text-small p {
     font-size: 12px!important;
     line-height: 1.1em!important;
@@ -1014,6 +1001,23 @@ body.mrna input[type="submit"]:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
+}
+
+.shadow {
+    padding: 0!important;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    display: block;
+}
+
+.shadow > div {
+    padding: 20px!important;
+}
+
+.no-shadow {
+    box-shadow: none!important;
 }
 
 .text-normal {
@@ -1245,6 +1249,24 @@ body.mrna input[type="submit"]:hover {
     background: none;
     max-width: none !important;
     width: 100%
+}
+
+.hs-form .hs-form-checkbox {
+    padding:0;
+    margin: 0;
+}
+
+.hs-form .hs-form-checkbox input {
+    margin-right: 8px!important;
+}
+
+.hs-form .hs-form-radio {
+    padding:0;
+    margin: 0;
+}
+
+.hs-form .hs-form-radio input {
+    margin-right: 8px!important;
 }
 
 .hs-form .hsformerror {
@@ -1711,48 +1733,11 @@ form.hs-form .hs-input[type="checkbox"] {
 }
 
 /* landing section */
-
 .landing-section {
-    box-sizing: border-box;
-    margin: 0 auto;
-    width: 980px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 5px;
     padding: 50px 0;
-}
-
-.landing-section > div {
-    flex-grow: 1;
-    flex-basis: 0;
-    padding: 0 20px;
-}
-
-.landing-section .forms {
-    padding: 30px;
-    background-color: #fff;;
-    border: 1px solid #cbd6e2;
-}
-
-@media (max-width: 1024px) {
-    .landing-section {
-        padding: 40px 20px;
-        width: auto;
-        flex-direction: column;
-    }
-    
-    .landing-section > div {
-        padding: 0;
-        width: 100%;
-    }
-}
-
-@media (max-width: 479px) {
-    .landing-section {
-        padding: 30px 10px;
-        width: auto;
-    }
+    float: none !important;
+    max-width: 1145px !important;
+    margin: 0 auto !important;
 }
 
 /* sidebar-navigation css */
