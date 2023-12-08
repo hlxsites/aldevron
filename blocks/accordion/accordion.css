@@ -71,6 +71,7 @@ main .section.green .accordion.faq-accordion a {
 
 main .accordion.faq-accordion .faq-answer {
     padding: 0 20px;
+    padding-bottom: 0.6em;
     display: none;
     overflow: hidden;
     font-size: 16px;

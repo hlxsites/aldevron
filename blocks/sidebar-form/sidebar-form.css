@@ -7,3 +7,21 @@
   border-radius: 4px;
   display: block;
 }
+
+.sidebar-form h2:first-child {
+  padding-top: 0!important;
+}
+
+.sidebar-form h3:first-child {
+  padding-top: 0!important;
+}
+
+.grey-forms {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  background-color: #eee;
+}
+
+.hs_submit .actions .hs-button {
+  width: 100%;
+} 

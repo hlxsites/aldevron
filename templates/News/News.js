@@ -16,7 +16,7 @@ function createSidebar(head, items, displayLimit) {
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${title} (${count})`;
-    link.setAttribute('href', `${window.location.pathname}?${head.toLowerCase()}=${title.replace(' ', '-')}`);
+    link.setAttribute('href', `/about-us/news/?${head.toLowerCase()}=${title.replace(' ', '-')}`);
     li.appendChild(link);
     ul.appendChild(li);
     itemCount += 1;
