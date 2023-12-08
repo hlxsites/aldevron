@@ -33,6 +33,9 @@ input[type="submit"]:hover {
 }
 
 @media (max-width: 950px) {
+    .landing-section {
+        padding: 50px 20px;
+    }
     .landing-section .float-left {
         width: 100%;
         float: none;

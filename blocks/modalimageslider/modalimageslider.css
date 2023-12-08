@@ -19,10 +19,14 @@
 
 .hs-image__grid__list__item {
     flex-basis: calc(30%);
-    margin: 0;
+    margin: 0!important;
     overflow: hidden;
     position: relative;
-    padding: 0
+    padding: 0!important;
+}
+
+.hs-image__grid__list .hs-image__grid__list__item::before {
+    content: ''!important;
 }
 
 button.hs-image__grid__list__item__button {
