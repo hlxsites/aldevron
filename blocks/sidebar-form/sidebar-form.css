@@ -25,3 +25,7 @@
 .hs_submit .actions .hs-button {
   width: 100%;
 } 
+
+.sidebar-form ul li::before {
+  content: ""!important;
+}
