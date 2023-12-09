@@ -13,3 +13,7 @@
     padding: 10px 15px;
     background-color: #eee;
 }
+
+.forms ul li::before {
+    content: ""!important;
+}

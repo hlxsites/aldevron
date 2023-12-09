@@ -57,6 +57,16 @@ export default function buildAutoBlocks(block) {
     });
     sidebarSections.innerHTML = defaultTemplate.outerHTML;
   }
-  setTimeout(() => setSidebarMaxHeight(), 1000);
+  const observer = new MutationObserver(() => {
+    setSidebarMaxHeight();
+  });
+
+  observer.observe(sidebarSections, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+  });
+  setSidebarMaxHeight();
   setSidebarHeight();
 }
