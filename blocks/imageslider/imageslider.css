@@ -10,6 +10,7 @@ main div.imageslider-wrapper {
     /* width: 100%; */
      position: relative;
      max-width: unset;
+     margin-bottom: 70px;
    }
    
    main div.imageslider-wrapper:last-child {

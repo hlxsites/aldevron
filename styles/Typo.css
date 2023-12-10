@@ -608,6 +608,7 @@ input[type="text"]:focus
 
 .blog-pagination a,
 .button,
+button.primary,
 .cta_button,
 .hs-button,
 .readmore,
@@ -1116,6 +1117,11 @@ body.mrna input[type="submit"]:hover {
 
 .text-normal {
     font-weight: normal;
+}
+
+.style-normal {
+    font-weight: normal;
+    font-style: normal;
 }
 
 .cols-row,

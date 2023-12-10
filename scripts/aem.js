@@ -533,7 +533,7 @@ function decorateButtons(element) {
           && twoup.tagName === 'STRONG'
         ) {
           a.setAttribute('target', '_blank');
-          a.classList.add('text-normal');
+          a.classList.add('style-normal');
         }
       }
     }
