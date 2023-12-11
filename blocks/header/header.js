@@ -198,7 +198,7 @@ function addClassesToMenuItems(element, depth) {
     if (parentElement.tagName.toLowerCase() === 'strong') {
       link.setAttribute('target', '_blank');
     }
-    if (link && link.href === window.location.pathname) {
+    if (link && link.pathname === window.location.pathname) {
       item.classList.add('active');
     }
     const childElement = item.querySelector('ul');
