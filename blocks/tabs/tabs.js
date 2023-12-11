@@ -17,15 +17,15 @@ function activeFirstElements(content) {
 }
 
 function removeEmptyTableRows(tables) {
-  tables.forEach(table => {
+  tables.forEach((table) => {
     const trs = table.querySelectorAll('tr');
     if (trs.length === 0) return; // No rows in this table, continue to the next one
 
-    trs.forEach(tr => {
+    trs.forEach((tr) => {
       const tds = tr.querySelectorAll('td');
       if (tds.length === 0) return; // No cells in this row, continue to the next row
 
-      const isEmptyRow = Array.from(tds).every(td => td.innerText.trim() === '');
+      const isEmptyRow = Array.from(tds).every((td) => td.innerText.trim() === '');
 
       if (isEmptyRow) {
         tr.style.display = 'none';
