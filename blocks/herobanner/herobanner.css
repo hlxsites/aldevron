@@ -19,6 +19,9 @@
     color: #fff;
 }
 
+.herobanner .content .button:hover {
+    background: #fff;
+}
 
 .herobanner button{
     font: normal 16px/1.45 'Proxima Nova A',Helvetica,sans-serif;
