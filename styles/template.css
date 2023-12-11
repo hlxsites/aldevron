@@ -160,6 +160,15 @@ body {
     z-index: 2
 }
 
+#menu li.hs-menu-depth-1.active>a::after {
+    border-bottom: 2px solid #ec8f2d;
+    content: "";
+    display: block;
+    margin-top: -6px;
+    transition: all .2s ease;
+    width: 100%
+}
+
 #menu li.hs-menu-depth-1>a::after {
     border-bottom: 2px solid #fff;
     content: "";
@@ -170,7 +179,7 @@ body {
 }
 
 #menu li.hs-menu-depth-1.active-branch>a::after,#menu li.hs-menu-depth-1:hover>a::after {
-    border-color: var(--primary-color);
+    border-color: #ec8f2d;
     width: 100%
 }
 
@@ -1385,7 +1394,7 @@ table.table_orderNested .info_label {
     background: #dbdbdb!important;
     border: 1px solid #dbdbdb!important;
     border-bottom: 0!important;
-    border-radius: 0 10px 0 0;
+    border-radius: 0 10px 0 0!important;
     box-shadow: none;
     box-sizing: border-box;
     color: inherit!important;
