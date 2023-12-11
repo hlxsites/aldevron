@@ -931,6 +931,11 @@ body.mrna input[type="submit"]:hover {
     line-height: 1.1em!important;
 }
 
+.block-small {
+    font-size: 12px!important;
+    line-height: 1.1em!important;
+}
+
 .no-inner-space {
     padding: 0!important;
 }
