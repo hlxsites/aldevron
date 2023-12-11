@@ -659,10 +659,6 @@ body.sidebar-50 #sidebar {
     padding: 0
 }
 
-#footer-orange li.hs-menu-depth-1.menu-num-1,#footer-orange li.hs-menu-depth-1:first-child {
-    display: none!important
-}
-
 #footer-orange li {
     padding: 0
 }
