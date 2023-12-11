@@ -25,7 +25,7 @@ function removeEmptyTableRows(tables) {
       const tds = tr.querySelectorAll('td');
       if (tds.length === 0) return; // No cells in this row, continue to the next row
 
-      const isEmptyRow = Array.from(tds).every((td) => td.innerText.trim() === '');
+      const isEmptyRow = Array.from(tds).every((td) => td.innerHTML.trim() === '');
 
       if (isEmptyRow) {
         tr.style.display = 'none';
