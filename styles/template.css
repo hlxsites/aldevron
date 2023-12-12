@@ -658,15 +658,11 @@ body.sidebar-50 #sidebar {
     width: 100%
 }
 
-#footer-orange .hs-menu-wrapper {
-    float: left;
-    padding: 0;
-    width: 80%
-}
-
 #footer-orange .hs-menu-wrapper ul {
+    display: flex;
     padding: 0
 }
+
 
 #footer-orange li {
     padding: 0
@@ -674,12 +670,14 @@ body.sidebar-50 #sidebar {
 
 #footer-orange li.hs-menu-depth-1 {
     float: left;
-    margin-left: 1%;
-    width: 25%
+    margin-right: 1%;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-#footer-orange li.hs-menu-depth-1.menu-num-3,#footer-orange li.hs-menu-depth-1:nth-child(3) {
-    width: 21%
+
+#footer-orange li.hs-menu-depth-1 ul{
+    flex-direction: column;
 }
 
 #footer-orange li.hs-menu-depth-1.menu-num-2,#footer-orange li.hs-menu-depth-1:nth-child(2) {
@@ -689,9 +687,10 @@ body.sidebar-50 #sidebar {
 #footer-orange li.hs-menu-depth-1>a {
     display: block;
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.2
+    line-height: 1.2;
+    min-height: 44px;
 }
 
 #footer-orange li.hs-menu-depth-2>a {
@@ -1215,12 +1214,12 @@ h2 span.hs_cos_wrapper_widget {
 }
 
 .table_order button {
-    font-size: 12px;
-    padding: .8em .9em
+    font-size: 12px!important;
+    padding: .8em .9em!important;
 }
 
 .table_order .button {
-    font-size: 12px;
+    font-size: 12px!important;
     margin: 1px 0;
     padding: .4em .8em
 }

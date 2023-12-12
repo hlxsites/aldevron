@@ -8,6 +8,9 @@ export default function decorate(block) {
       if (nextNextSibling) {
         const link = nextNextSibling.querySelector('a');
         if (link.href === link.innerText.trim()) {
+          if (link.parentElement.tagName === 'STRONG') {
+            link.setAttribute('target', '_blank');
+          }
           link.innerHTML = '';
           link.appendChild(image.cloneNode(true));
           if (image.parentElement.tagName === 'P') {

@@ -8,7 +8,8 @@
 
 .footer-wrapper div#footer-orange .outer {
   display: grid;
-  grid-template-columns: 3fr 20%;
+  width: 85%;
+  grid-template-columns: 1fr;
 }
 
 .footer-wrapper div#footer-orange .hs-menu-wrapper {
@@ -36,12 +37,14 @@
 }
 
 @media (max-width: 1024px){
-  .footer-wrapper div#footer-black div {
-    padding: 0 20px;
+  .footer-wrapper div#footer-orange .outer {
+    padding-left: 0!important;
+    padding-right: 0!important;
+    grid-template-columns: 1fr;
   }
 
-  .footer-wrapper div#footer-orange .outer{
-    grid-template-columns: 1fr;
+  .footer-wrapper div#footer-black div {
+    padding: 0 20px;
   }
 
   .footer-wrapper div#footer-orange .outer .social-icons{

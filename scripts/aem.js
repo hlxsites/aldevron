@@ -534,6 +534,7 @@ function decorateButtons(element) {
         ) {
           a.setAttribute('target', '_blank');
           a.classList.add('style-normal');
+          a.classList.add('button');
         }
       }
     }
