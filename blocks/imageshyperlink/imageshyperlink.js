@@ -5,6 +5,9 @@
 export default async function decorate(block) {
   const anchorEl = document.createElement('a');
   const refAnchorEl = block.querySelector('a');
+  if(refAnchorEl.parentElement.tagName === 'STRONG') {
+    anchorEl.setAttribute('target', 'blank');
+  }
   const pic = block.querySelector('picture');
   if (refAnchorEl) {
     if (refAnchorEl.hasAttribute('href')) {

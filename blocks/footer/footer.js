@@ -67,6 +67,13 @@ export default async function decorate(block) {
 
     footerUl.children[0].children[1].replaceWith(footLogo);
     topContainer.append(footerUl);
+    const links = footerWapper.querySelectorAll('a');
+    links.forEach((link) => {
+      if (link.parentElement.tagName === 'STRONG') {
+        link.setAttribute('target', '_blank');
+        link.classList.add('text-normal');
+      }
+    })
     decorateIcons(footerWapper);
     block.append(topContainer);
   }
