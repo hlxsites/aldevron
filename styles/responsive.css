@@ -1,3 +1,7 @@
+.tabs-wrapper .tabs .tabpanels .tabpanel table tr {
+    vertical-align: initial;
+}
+
 @media (max-width: 1280px) {
     #home-hero {
         height: auto;
@@ -11,7 +15,7 @@
 
     #menu li.hs-menu-depth-1>a {
         padding: 0 18px !important;
-    }  
+    }
 }
 
 @media (max-width: 1024px) {
@@ -820,6 +824,16 @@
     table.table_order {
         font-size: 14px;
         line-height: 1.4
+    }
+
+    .tabs-wrapper .tabs .tabpanels .tabpanel table {
+        font-size: 10px;
+        line-height: 1.2;
+        word-break: break-word;
+    }
+
+    .tabs-wrapper .tabs .tabpanels .tabpanel table tr td {
+        padding: 6px 4px;
     }
 
     #table_citations {
