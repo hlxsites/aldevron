@@ -658,12 +658,6 @@ body.sidebar-50 #sidebar {
     width: 100%
 }
 
-#footer-orange .hs-menu-wrapper {
-    /* float: left; */
-    /* padding: 0; */
-    /* width: 80% */
-}
-
 #footer-orange .hs-menu-wrapper ul {
     display: flex;
     padding: 0

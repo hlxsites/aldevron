@@ -73,7 +73,7 @@ export default async function decorate(block) {
         link.setAttribute('target', '_blank');
         link.classList.add('text-normal');
       }
-    })
+    });
     decorateIcons(footerWapper);
     block.append(topContainer);
   }
