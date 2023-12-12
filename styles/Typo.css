@@ -1680,7 +1680,8 @@ form.hs-form .hs-input[type="checkbox"] {
 
 @media (max-width: 767px) {
     .grid-2{
-        display: block;
+        grid-template-columns: 1fr;
+        grid-gap: 0;
     }
 
     .hero-carousel {
