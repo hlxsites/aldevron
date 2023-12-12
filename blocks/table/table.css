@@ -9,10 +9,6 @@
     text-align: left;
 }
 
-.table-plain tr:nth-child(2n) {
-    background-color: #fff;
-}
-
 .table table table {
     margin : 0;
 }

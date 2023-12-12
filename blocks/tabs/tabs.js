@@ -16,6 +16,24 @@ function activeFirstElements(content) {
   listElement.classList.add('active');
 }
 
+function removeEmptyTableRows(tables) {
+  tables.forEach((table) => {
+    const trs = table.querySelectorAll('tr');
+    if (trs.length === 0) return; // No rows in this table, continue to the next one
+
+    trs.forEach((tr) => {
+      const tds = tr.querySelectorAll('td');
+      if (tds.length === 0) return; // No cells in this row, continue to the next row
+
+      const isEmptyRow = Array.from(tds).every((td) => td.innerHTML.trim() === '');
+
+      if (isEmptyRow) {
+        tr.style.display = 'none';
+      }
+    });
+  });
+}
+
 export default function decorate(block) {
   const tabComponent = document.createElement('div');
   tabComponent.className = 'mmg-tabs';
@@ -47,4 +65,6 @@ export default function decorate(block) {
   tabComponent.appendChild(tabContent);
   block.appendChild(tabComponent);
   activeFirstElements(tabComponent);
+  const tables = block.querySelectorAll('table');
+  removeEmptyTableRows(tables);
 }
