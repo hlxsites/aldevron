@@ -880,7 +880,6 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 #careers .location-selector select {
-    background: url("https://www.aldevron.com/hubfs/aldevron_template/select-arrow-down.svg") 97% 50% no-repeat;
     background-size: 12px 6px;
     border-radius: 4px;
     padding-right: 24px
