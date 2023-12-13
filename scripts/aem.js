@@ -486,10 +486,17 @@ function decorateButtons(element) {
     if (a.href !== a.textContent) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
+      const threeup = twoup.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.className = 'button'; // default
           up.classList.add('button-container');
+        }
+        if (a.children[0]) {
+          if (a.children[0].tagName === 'STRONG') {
+            a.setAttribute('target','_blank');
+            a.children[0].classList.add('text-normal');
+          }
         }
         if (
           up.childNodes.length === 1
@@ -531,6 +538,7 @@ function decorateButtons(element) {
           && up.tagName === 'EM'
           && twoup.childNodes.length === 1
           && twoup.tagName === 'STRONG'
+          && threeup.tagName === 'DIV'
         ) {
           a.setAttribute('target', '_blank');
           a.classList.add('style-normal');
