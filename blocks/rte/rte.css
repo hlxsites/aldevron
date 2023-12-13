@@ -2,3 +2,7 @@
     padding-top: 16px;
     padding-bottom: 16px;
 }
+
+.rte h2:first-child {
+    padding-top: 0!important;
+}
