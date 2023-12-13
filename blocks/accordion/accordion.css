@@ -124,7 +124,7 @@ main .expand-btn, .collapse-btn {
 /* Tablet */
 @media only screen and (min-width: 768px) {
     main .accordion {
-        padding: 14px 0 25px 0;
+        padding: 14px 0 25px;
     }
 
     main .accordion.faq-accordion .faq-question {
