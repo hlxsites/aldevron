@@ -54,6 +54,9 @@
 
 .columns > div > div {
   order: 1;
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 .columns > div > .columns-img-col {
@@ -62,6 +65,13 @@
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+.columns.action-buttons .button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 @media (min-width: 900px) {

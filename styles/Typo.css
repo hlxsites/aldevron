@@ -634,7 +634,7 @@ input[type="submit"] {
     text-transform: uppercase;
     transition: background .3s;
     vertical-align: middle;
-    width: auto
+    width: auto;
 }
 
 .button.secondary {
@@ -642,7 +642,9 @@ input[type="submit"] {
     padding: 0!important;
     border: none;
     color: var(--primary-color);
+    font-family: inherit;
     text-transform: none;
+    font-size: 16px!important;
     font-style: normal;
     transition: all .3s ease-in-out;
 }
@@ -658,6 +660,8 @@ input[type="submit"] {
     background-color: transparent;
     padding: 0;
     border: none;
+    font-size: 16px!important;
+    font-family: inherit;
     color: var(--primary-color);
     text-transform: none;
     font-style: normal;
@@ -1095,6 +1099,29 @@ body.mrna input[type="submit"]:hover {
     align-items: center;
     padding-top: 70px;
     padding-bottom: 70px;
+}
+
+.thank-you-layout a {
+    background-color: var(--primary-color);
+    border-radius: 5px!important;
+    border: 1px solid var(--primary-color);
+    box-sizing: border-box;
+    color: var(--text-color);
+    cursor: pointer;
+    display: inline-block;
+    font-family: Brown-Ald, Helvetica, Arial, sans-serif;
+    font-size: 18px!important;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 100%;
+    margin: 0;
+    padding: .8em 1.3em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background .3s;
+    vertical-align: middle;
+    width: auto;
 }
 
 @media (max-width: 767px) {

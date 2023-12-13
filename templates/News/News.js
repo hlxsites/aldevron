@@ -83,7 +83,7 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
       )) : '',
     div(
       { class: 'post-content' },
-      h1({ class: 'post-title' }, a({ href: art.path }, capitalizeWords(art.title.replace(/[\W]+/g, ' ')))),
+      h1({ class: 'post-title' }, a({ href: art.path }, capitalizeWords(art['page-title']))),
       div(
         { class: 'post-meta' },
         p({ class: 'post-date' }, new Date(Number(art.date) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })),
@@ -96,7 +96,7 @@ function generateResultsBlock(articles, currentPage, totalArticles) {
       div(
         { class: 'post-body clearfix' },
         h4(art['sub-title']),
-        p(art.description),
+        p(art['page-description']),
       ),
       a({ href: art.path, 'aria-label': 'Read More', class: 'readmore' }, 'Read More'),
     ),
