@@ -153,7 +153,7 @@ th {
 
 td,
 th {
-    border: 1px solid #f1f1f1;
+    border: 2px solid #f1f1f1;
     padding: 12px 10px;
 }
 
@@ -1454,6 +1454,7 @@ form.hs-form .hs-input[type="checkbox"] {
 
 .bg-transparent {
     background-color: transparent!important;
+    border: none;
 }
 
 .cursor {

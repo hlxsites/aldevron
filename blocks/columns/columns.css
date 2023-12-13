@@ -74,6 +74,10 @@
   right: 0;
 }
 
+.columns.action-buttons .button-container .button {
+  margin-bottom: -30px;
+}
+
 @media (min-width: 900px) {
   .columns > div {
     flex-direction: unset;
