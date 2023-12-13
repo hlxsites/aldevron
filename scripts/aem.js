@@ -494,7 +494,7 @@ function decorateButtons(element) {
         }
         if (a.children[0]) {
           if (a.children[0].tagName === 'STRONG') {
-            a.setAttribute('target','_blank');
+            a.setAttribute('target', '_blank');
             a.children[0].classList.add('text-normal');
           }
         }
