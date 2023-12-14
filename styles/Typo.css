@@ -1,6 +1,7 @@
 :root {
     --primary-color: #ec8f2d; /* Default primary color */
     --text-color: #fff;
+    --link-color: #005796;
 }
 
 html {
@@ -278,7 +279,7 @@ body {
 
 a {
     background: transparent;
-    color: var(--primary-color);
+    color: var(--link-color);
     text-decoration: none;
 }
 
@@ -641,7 +642,7 @@ input[type="submit"] {
     background-color: transparent;
     padding: 0!important;
     border: none;
-    color: var(--primary-color);
+    color: var(--link-color);
     font-family: inherit;
     text-transform: none;
     font-size: 16px!important;
@@ -651,7 +652,7 @@ input[type="submit"] {
 
 .button.secondary:hover {
     border: none;
-    color: var(--primary-color);
+    color: var(--link-color)!important;
     text-decoration: underline;
     transition: all .3s ease-in-out;
 }
@@ -662,7 +663,7 @@ input[type="submit"] {
     border: none;
     font-size: 16px!important;
     font-family: inherit;
-    color: var(--primary-color);
+    color: var(--link-color);
     text-transform: none;
     font-style: normal;
     transition: all .3s ease-in-out;
@@ -670,7 +671,7 @@ input[type="submit"] {
 
 .button.primary:hover {
     border: none;
-    color: var(--primary-color);
+    color: var(--link-color)!important;
     text-decoration: underline;
     transition: all .3s ease-in-out;
 }

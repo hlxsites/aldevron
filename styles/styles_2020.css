@@ -180,8 +180,8 @@
 }
 
 .recent-posts .post .entry-title a {
-  color: inherit;
-  text-decoration: none
+  text-decoration: none;
+  color: var(--link-color);
 }
 
 .recent-posts .post .entry-title a:hover {

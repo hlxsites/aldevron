@@ -44,6 +44,10 @@
     padding-top: 0
 }
 
+.author .author-info h4 a:hover{
+    color: var(--link-color);
+}
+
 .author #author-profile {
     display: flex;
     gap: 20px;
