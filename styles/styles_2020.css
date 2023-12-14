@@ -180,7 +180,6 @@
 }
 
 .recent-posts .post .entry-title a {
-  color: inherit;
   text-decoration: none;
   color: var(--link-color);
 }
