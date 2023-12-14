@@ -954,7 +954,7 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 .post-title a:hover {
-    color: var(--primary-color)
+    color: var(--link-color);
 }
 
 .post-meta,.post-topics {
@@ -1011,11 +1011,13 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
     display: inline-block;
     font-weight: 400;
     padding: 3px 8px;
-    text-decoration: none
+    text-decoration: none;
+    margin-bottom: 5px;
+    transition: 0.2s all ease-in-out;
 }
 
 .post-topics .topic-link:hover {
-    background: #dda307;
+    background: var(--link-color);
     color: #fff
 }
 
