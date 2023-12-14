@@ -401,11 +401,14 @@ h3 em {
 
 h1 a:hover,
 h2 a:hover,
-h3 a:hover,
+h3 a:hover {
+    color: var(--primary-color);
+}
+
 h4 a:hover,
 h5 a:hover,
 h6 a:hover {
-    color: var(--primary-color);
+    color: var(--link-color);
 }
 
 hr {
