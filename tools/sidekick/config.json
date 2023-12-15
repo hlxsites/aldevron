@@ -8,5 +8,6 @@
         "url": "/tools/sidekick/library.html",
         "includePaths": ["**.docx**"]
       }
-    ]
+    ],
+   "host": "www.aldevron.com" 
   }
