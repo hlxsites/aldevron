@@ -126,6 +126,12 @@ async function decorateNavigation(main) {
     const sidebarElement = main.querySelector('#sidebar');
     const navigation = await getSubNavigation(window.location.pathname);
     if (navigation) {
+      const links = navigation.querySelectorAll('a');
+      links.forEach((link) => {
+        if (link.parentElement.tagName === 'STRONG') {
+          link.setAttribute('target', '_blank');
+        }
+      });
       const block = await buildBlock('sidebar-navigation', navigation);
       sidebarElement.prepend(block);
       if (document.body.classList.contains('full-width')) {

@@ -23,11 +23,14 @@ export default function decorate(block) {
   }
 
   const tableRows = block.querySelectorAll('.table[data-block-name="table"] tr');
-  tableRows.forEach((row) => {
+  tableRows.forEach((row, index) => {
     const cells = row.querySelectorAll('td');
     cells.forEach((cell) => {
       if (cell.innerText.trim() === '') {
         cell.classList.add('bg-transparent');
+      }
+      if (cell.innerText.trim() === '' && index === 0) {
+        cell.classList.add('no-border');
       }
     });
   });
