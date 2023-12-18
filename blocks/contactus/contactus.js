@@ -13,18 +13,19 @@ export default function decorate() {
   let phone = '';
   for (let i = 0; i < pTags.length; i += 1) {
     if (i === 0) {
-      const ContactUsTitle = pTags[i].outerHTML.replace(/<p>/g, '<h2>');
-      innerElements += ContactUsTitle.replace(/<\/p>/g, '</h2>');
+      const contactUsTitle = pTags[i].outerHTML.replace(/<p>/g, '<h2>');
+      innerElements += contactUsTitle.replace(/<\/p>/g, '</h2>');
     } else if (i === 1) {
       innerElements += pTags[i].outerHTML;
-    } else if (i === 3) {
-      const contactNumber = pTags[2].innerHTML.trim();
-      const contactNumberReplace = contactNumber.replace(/[()-\s]/g, '');
-      phone = pTags[2].outerHTML.replace(/<p>/g, `<a class='phone' href="tel:${contactNumberReplace}">`);
-      phone.replace(/<\/p>/g, '</a>');
-      pTags[i].innerHTML = `<br><div class="buttons"> ${phone + pTags[i].innerHTML} </div>`;
-      const button = pTags[i].outerHTML.replace(/<p>/g, '');
-      innerElements += button.replace(/<\/p>/g, '');
+    } else if (i === 2) {
+      phone = pTags[i].innerText;
+      const anchor = document.createElement('a');
+      anchor.classList.add('phone');
+      anchor.setAttribute('href', `tel:${phone}`);
+      anchor.innerText = phone;
+      innerElements += anchor.outerHTML; // Use anchor.outerHTML here
+    } else {
+      innerElements += pTags[i].outerHTML;
     }
   }
   contactUsDiv.innerHTML = innerElements;
