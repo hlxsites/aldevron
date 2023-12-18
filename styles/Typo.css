@@ -1458,6 +1458,9 @@ form.hs-form .hs-input[type="checkbox"] {
 
 .bg-transparent {
     background-color: transparent!important;
+}
+
+.no-border {
     border: none;
 }
 

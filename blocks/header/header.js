@@ -392,6 +392,9 @@ export default async function decorate(block) {
     elements.forEach((li) => {
       const anchor = li.querySelector('a');
       if (anchor) {
+        if (anchor.parentElement.tagName === 'STRONG') {
+          anchor.setAttribute('target', '_blank');
+        }
         // Get the first word of the anchor's inner text
         const firstWord = anchor.innerText.split(' ')[0].toLocaleLowerCase();
         // Set the first word as a class name

@@ -14,7 +14,7 @@ export default function decorate(block) {
       { class: 'outer' },
       a(
         {
-          class: 'text-link', href: anchorLink.href, title: anchorLink.title, 'aria-label': anchorLink.title,
+          class: 'text-link', href: anchorLink.href, title: anchorLink.title, 'aria-label': anchorLink.title, target: '_blank',
         },
         image,
         span({ class: 'text' }, bodytext),
