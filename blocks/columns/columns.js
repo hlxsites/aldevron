@@ -16,11 +16,11 @@ export default function decorate(block) {
     });
   });
 
-  //set images hyperlink here
+  // set images hyperlink here
   const images = block.querySelectorAll('picture');
   images.forEach((image) => {
-    const { parentElement, nextSibling } = image;
-    if(nextSibling.tagName === 'A' && nextSibling.href === nextSibling.innerText.trim()) {
+    const { nextSibling } = image;
+    if (nextSibling.tagName === 'A' && nextSibling.href === nextSibling.innerText.trim()) {
       nextSibling.innerText = '';
       nextSibling.appendChild(image);
     }

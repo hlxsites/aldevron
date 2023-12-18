@@ -23,6 +23,10 @@
   transition: all 0.3s ease 0s;
 }
 
+.full-images picture {
+  padding-bottom: 100%!important;
+}
+
 .cover-images picture img {
   position: absolute;
   top: 0;

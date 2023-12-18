@@ -23,7 +23,7 @@ export default function decorate(block) {
   }
 
   const tableRows = block.querySelectorAll('.table[data-block-name="table"] tr');
-  tableRows.forEach((row,index) => {
+  tableRows.forEach((row, index) => {
     const cells = row.querySelectorAll('td');
     cells.forEach((cell) => {
       if (cell.innerText.trim() === '') {
