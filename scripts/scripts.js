@@ -1,23 +1,23 @@
 import {
-  sampleRUM,
   buildBlock,
-  loadHeader,
-  loadFooter,
+  capitalizeWords,
+  decorateBlock,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
-  decorateBlock,
   decorateTemplateAndTheme,
-  waitForLCP,
+  getMetadata,
   loadBlocks,
   loadCSS,
+  loadFooter,
+  loadHeader,
+  sampleRUM,
   toClassName,
-  getMetadata,
-  capitalizeWords,
+  waitForLCP,
 } from './aem.js';
 
-const LCP_BLOCKS = ['forms']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero-carousel', 'forms']; // add your LCP blocks to the list
 
 /**
  * load fonts.css and set a session storage flag
@@ -52,8 +52,7 @@ const CATEGORY_LIST = [
 async function decorateTemplates(main) {
   try {
     const template = toClassName(getMetadata('template'));
-    const templates = TEMPLATE_LIST;
-    if (templates.includes(template)) {
+    if (TEMPLATE_LIST.includes(template)) {
       const templateName = capitalizeWords(template);
       const mod = await import(`../templates/${templateName}/${templateName}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
@@ -74,8 +73,7 @@ async function decorateTemplates(main) {
 async function decorateCategory(main) {
   try {
     const category = toClassName(getMetadata('category'));
-    const categories = CATEGORY_LIST;
-    if (categories.includes(category)) {
+    if (CATEGORY_LIST.includes(category)) {
       const categoryName = capitalizeWords(category);
       const mod = await import(`../category/${categoryName}/${categoryName}.js`);
       loadCSS(`${window.hlx.codeBasePath}/category/${categoryName}/${categoryName}.css`);
@@ -115,8 +113,7 @@ async function getSubNavigation(pathname) {
     const headerElement = document.createElement('div');
     headerElement.innerHTML = html;
     const lastUlElement = headerElement.querySelector('div > div > ul:last-child');
-    const parentListItem = findParentListItem(lastUlElement, pathname);
-    return parentListItem;
+    return findParentListItem(lastUlElement, pathname);
   }
   return '';
 }
@@ -226,11 +223,11 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  await loadHeader(doc.querySelector('header'));
+  await loadFooter(doc.querySelector('footer'));
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadFonts();
+  await loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  await loadFonts();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
