@@ -1596,7 +1596,7 @@ form.hs-form .hs-input[type="checkbox"] {
     flex-direction: column;
     position: relative;
     height: 450px;
-    background-color: var(--primary-color);
+    background-color: #ededed;
 }
 
 .hero.large > div:nth-child(1) picture > img {
@@ -1607,7 +1607,8 @@ form.hs-form .hs-input[type="checkbox"] {
     bottom: 0;
     overflow: hidden;
     height: 450px;
-    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
     object-fit: cover;
 }
 
