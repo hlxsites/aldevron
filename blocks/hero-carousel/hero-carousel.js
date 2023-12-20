@@ -61,7 +61,7 @@ export default function decorate(block) {
   // Touch event handling
   block.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   block.addEventListener('touchend', (e) => {
     const touchEndX = e.changedTouches[0].clientX;
