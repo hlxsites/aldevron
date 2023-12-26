@@ -556,11 +556,16 @@ function decorateButtons(element) {
           a.classList.add('style-normal');
           a.classList.add('button');
         }
-        if (a && a.href.includes('tel:')) {
-          console.log('Added phone content');
-          console.log('Number converted to phone');
-          a.class = '';
-          a.classList.add('phone');
+        if (
+          a && a.href.includes('tel:') 
+          && up.tagName === 'P' 
+          && up.childNodes.length === 1
+        ) {
+          while (a.classList.length > 0) {
+            a.classList.remove(a.classList.item(0));
+          }
+          a.href = '';
+          a.classList.add('normal-text');
         }
       }
     }
