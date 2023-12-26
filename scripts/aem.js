@@ -561,7 +561,7 @@ function decorateButtons(element) {
           while (a.classList.length > 0) {
             a.classList.remove(a.classList.item(0));
           }
-          a.href = '';
+          a.removeAttribute('href');
           a.classList.add('normal-text');
         }
       }
