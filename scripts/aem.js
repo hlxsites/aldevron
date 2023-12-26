@@ -559,6 +559,8 @@ function decorateButtons(element) {
         if (a && a.href.includes('tel:')) {
           console.log('Added phone content');
           console.log('Number converted to phone');
+          a.class = '';
+          a.classList.add('phone');
         }
       }
     }
