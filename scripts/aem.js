@@ -357,6 +357,16 @@ function buildForm(hbspt) {
       config.redirectUrl = formData.redirecturl;
     }
     hbspt.forms.create(config);
+    const TargetElement = document.querySelector(config.target);
+    if (TargetElement) {
+      console.log(TargetElement);
+      setTimeout(() => {
+        const submitButtons = TargetElement.querySelector('input[type="submit"]');
+        submitButtons.addEventListener('click', () => {
+          TargetElement.scrollIntoView({ behavior: 'smooth' });
+        })
+      }, 1000)
+    }
   });
 }
 
@@ -483,12 +493,14 @@ function capitalizeWords(str) {
  */
 function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
+    debugger;
     if (a.href !== a.textContent) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       const threeup = twoup.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
+          debugger;
           a.className = 'button'; // default
           up.classList.add('button-container');
         }
@@ -543,6 +555,10 @@ function decorateButtons(element) {
           a.setAttribute('target', '_blank');
           a.classList.add('style-normal');
           a.classList.add('button');
+        }
+        if(a.href.contains(`tel:(${a.textContent})`)) {
+          console.log('added phone content');
+          console.log('number converted to phone');
         }
       }
     }
