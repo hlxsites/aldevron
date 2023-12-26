@@ -2081,3 +2081,10 @@ form.hs-form .hs-input[type="checkbox"] {
     }
 }
 
+.normal-text {
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: inherit;
+}
+
