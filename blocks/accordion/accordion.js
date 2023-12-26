@@ -53,9 +53,10 @@ export default function decorate(block) {
       ele.remove();
     }
   });
-  faqRows.forEach((row) => {
+  faqRows.forEach((row, index) => {
     const faqQuestion = [...row.children][0];
     faqQuestion.classList.add('faq-question');
+    faqQuestion.id = `faq-question-${index}`;
     faqQuestion.addEventListener('click', (e) => {
       const currentFaq = e.currentTarget.classList.contains('active');
       const openfaq = block.querySelector('.faq-question.active');
@@ -64,6 +65,7 @@ export default function decorate(block) {
         openfaq.nextElementSibling.style.maxHeight = 0;
         setTimeout(() => {
           openfaq.nextElementSibling.classList.toggle('active');
+          faqQuestion.scrollIntoView({ behavior: 'smooth' });
         }, 300);
       }
       setTimeout(() => {
