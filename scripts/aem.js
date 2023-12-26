@@ -556,9 +556,9 @@ function decorateButtons(element) {
           a.classList.add('style-normal');
           a.classList.add('button');
         }
-        if(a.href.contains(`tel:(${a.textContent})`)) {
-          console.log('added phone content');
-          console.log('number converted to phone');
+        if (a && a.href.includes('tel:')) {
+          console.log('Added phone content');
+          console.log('Number converted to phone');
         }
       }
     }
