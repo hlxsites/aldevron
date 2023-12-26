@@ -33,7 +33,7 @@ function createRecentPosts(results) {
     const articleDescription = p({ class: 'intro' }, truncateText(post.description, 180));
     articleCardBody.appendChild(articleHeading);
     articleCardBody.appendChild(articleDescription);
-    if(post.image) {
+    if (post.image) {
       showcaseBanner.appendChild(articleCardImage);
     } else {
       showcaseBanner.classList.add('full-post');
