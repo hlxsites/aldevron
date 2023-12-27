@@ -121,6 +121,20 @@ main .expand-btn, .collapse-btn {
     text-decoration: none;
 }
 
+/* Mobile */ 
+@media (max-width: 380px) {
+    main .accordion.faq-accordion .faq-answer.active {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 540px) {
+    main .accordion.faq-accordion .faq-answer.active table td{
+        font-size: 11px!important;
+        padding: 7px 6px;
+    }
+}
+
 /* Tablet */
 @media only screen and (min-width: 768px) {
     main .accordion {
