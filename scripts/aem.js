@@ -357,6 +357,15 @@ function buildForm(hbspt) {
       config.redirectUrl = formData.redirecturl;
     }
     hbspt.forms.create(config);
+    const TargetElement = document.querySelector(config.target);
+    if (TargetElement) {
+      setTimeout(() => {
+        const submitButtons = TargetElement.querySelector('input[type="submit"]');
+        submitButtons.addEventListener('click', () => {
+          TargetElement.scrollIntoView({ behavior: 'smooth' });
+        });
+      }, 1000);
+    }
   });
 }
 
@@ -543,6 +552,17 @@ function decorateButtons(element) {
           a.setAttribute('target', '_blank');
           a.classList.add('style-normal');
           a.classList.add('button');
+        }
+        if (
+          a && a.href.includes('tel:')
+          && up.tagName === 'P'
+          && up.childNodes.length === 1
+        ) {
+          while (a.classList.length > 0) {
+            a.classList.remove(a.classList.item(0));
+          }
+          a.removeAttribute('href');
+          a.classList.add('normal-text');
         }
       }
     }

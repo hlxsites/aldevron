@@ -21,6 +21,10 @@
     height: auto;
 }
 
+.full-post .text {
+    padding-left: 0!important;
+}
+
 @media (max-width: 1024px) {
     .grey-article-outer {
         padding-left: 20px;

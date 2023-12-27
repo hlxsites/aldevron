@@ -6,7 +6,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 120px;
+    scroll-padding-top: 150px;
 }
 
 .img-colorbox-popup::after,
@@ -2079,5 +2079,19 @@ form.hs-form .hs-input[type="checkbox"] {
     .mobile-center {
         text-align: center!important;
     }
+}
+
+.normal-text {
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: inherit;
+}
+
+.normal-text:hover {
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: inherit;
 }
 
