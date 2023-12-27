@@ -565,6 +565,15 @@ function decorateButtons(element) {
           a.classList.add('normal-text');
         }
       }
+    } else {
+      const up = a.parentElement;
+      if (
+        up.childNodes.length === 1
+        && up.tagName === 'STRONG'
+      ) {
+        a.setAttribute('target', '_blank');
+        a.classList.add('text-normal');
+      }
     }
   });
 }
