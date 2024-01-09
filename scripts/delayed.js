@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import {
-  sampleRUM, buildForm, isForm, loadFormDelayed, getFormMeetingConfig,
+  sampleRUM, buildForm, isForm, loadFormDelayed, getFormMeetingConfig, loadScript,
 } from './aem.js';
 
 // Core Web Vitals RUM collection
@@ -42,6 +42,10 @@ if (
 ) {
   loadGTM();
 }
+
+// Fathom Analytics Code
+const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
+loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
 function loadHubSpot() {
   const hsScriptEl = document.createElement('script');
