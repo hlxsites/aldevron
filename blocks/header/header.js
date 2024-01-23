@@ -48,6 +48,13 @@ function createHeadingElement(input) {
   return heading;
 }
 
+function createUnifiedElement(input) {
+  const unified = document.createElement('span');
+  unified.innerHTML = `Want to Search across all Life Sciences Companies of Danaher? <a href="https://lifesciences.danaher.com/us/en/danahersearch.html#q=${input}" target="_blank">Explore Danaher Unified Search</a>`;
+  unified.classList.add('search-unified');
+  return unified;
+}
+
 function createCountElement(resultsLength, total) {
   const count = document.createElement('p');
   count.className = 'search-info';
@@ -164,6 +171,9 @@ function createSearchResultsBlock(results, input, total) {
   // Create GCSE box container
   const gcseBox = createGcseBox();
 
+  // Create Unified Search element
+  const unified = createUnifiedElement(input);
+
   // Create heading element
   const heading = createHeadingElement(input);
 
@@ -173,6 +183,7 @@ function createSearchResultsBlock(results, input, total) {
   // Append elements to the searchResultsBlock
   const outer = gcseBox.querySelector('.mmg-gcse-outer');
   outer.appendChild(heading);
+  outer.appendChild(unified);
   outer.appendChild(count);
 
   // Create individual result elements
