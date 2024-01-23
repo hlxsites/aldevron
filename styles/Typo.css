@@ -1599,6 +1599,22 @@ form.hs-form .hs-input[type="checkbox"] {
     background-color: #ededed;
 }
 
+.hero.large.background-orange{
+    background-color: #e47031;
+}
+
+.hero.large.background-green{
+    background-color: #78a12e;
+}
+
+.hero.large.background-red{
+    background-color: #d1222b;
+}
+
+.hero.large.background-blue{
+    background-color: #005796;
+}
+
 .hero.large > div:nth-child(1) picture > img {
     position: absolute;
     top: 0;
