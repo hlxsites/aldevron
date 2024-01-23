@@ -10,7 +10,7 @@ sampleRUM('cwv');
 function loadGTM() {
   const scriptTag = document.createElement('script');
   scriptTag.innerHTML = `
-        let gtmId = 'GTM-W93WJWB9';
+        let gtmId = 'GTM-MLWV3QQ';
         // googleTagManager
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -29,7 +29,7 @@ function loadGTM() {
   document.head.prepend(scriptTag);
   const noScriptTag = document.createElement('noscript');
   noScriptTag.innerHTML = `
-  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W93WJWB9"
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLWV3QQ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe>
   `;
   document.body.prepend(noScriptTag);
