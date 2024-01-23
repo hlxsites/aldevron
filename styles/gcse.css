@@ -140,6 +140,18 @@ body.mmg-search-active {
     padding: 40px 0
 }
 
+#mmg-gcse .search-unified {
+    display: block;
+    padding: 0 0 15px;
+    font-size: 16px;
+    color: white
+}
+
+#mmg-gcse .search-unified a {
+    font-size: 16px;
+    color: yellow
+}
+
 #mmg-gcse .search-title {
     padding: 0 0 5px;
     font-size: 32px;
