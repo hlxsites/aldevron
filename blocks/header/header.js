@@ -185,7 +185,7 @@ function createSearchResultsBlock(results, input, total) {
   outer.appendChild(heading);
   outer.appendChild(unified);
   outer.appendChild(count);
-  
+
   // Create individual result elements
   results.forEach((result) => {
     const link = createResultLink(result);
