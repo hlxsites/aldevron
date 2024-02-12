@@ -329,22 +329,27 @@ function addUTMParametersToURL() {
   }
 }
 
-// Example usage:
-if (checkUTMParametersExist()) {
-  console.log('UTM parameters exist in the URL.');
-  // Call the function to store UTM parameters when the page loads
-  storeUTMParameters();
+function correctUTMFlow(){
+  if (checkUTMParametersExist()) {
+    console.log('UTM parameters exist in the URL.');
+    // Call the function to store UTM parameters when the page loads
+    storeUTMParameters();
 
-} else if(checkUTMParametersInLocalStorage()){
-  console.log('UTM parameters do not exist in the URL but present in Local storage');
-  addUTMParametersToURL();
+  } else if(checkUTMParametersInLocalStorage()){
+    console.log('UTM parameters do not exist in the URL but present in Local storage');
+    addUTMParametersToURL();
 
+  }else{
+    console.log('No UTMs No Worry!');
+    
+  }
 }
 
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  correctUTMFlow();
 }
 
 loadPage();
