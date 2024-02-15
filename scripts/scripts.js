@@ -260,9 +260,8 @@ function checkUTMParametersExist() {
   // Check if any of the UTM parameters exist
   if (utmSource || utmMedium || utmCampaign || utmTerm || utmContent) {
     return true; // UTM parameters exist
-  } else {
-    return false; // UTM parameters do not exist
   }
+  return false; // UTM parameters do not exist
 }
 
 // Get UTM parameters from the URL
@@ -292,7 +291,7 @@ function storeUTMParameters() {
   const utmData = getUTMParameters();
 
   // Check if UTM parameters exist
-  if (Object.values(utmData).some(param => (param !== null && param !== undefined))) {
+  if (Object.values(utmData).some((param) => param !== null && param !== undefined)) {
     // Convert the object to a JSON string and store it in local storage
     sessionStorage.setItem('utm_data', JSON.stringify(utmData));
   }
@@ -308,9 +307,8 @@ function getUTMDataFromLocalStorage() {
   const utmDataString = sessionStorage.getItem('utm_data');
   if (utmDataString) {
     return JSON.parse(utmDataString);
-  } else {
-    return null;
   }
+  return null;
 }
 
 // To add UTM parameters to the browser's URL
@@ -318,7 +316,7 @@ function addUTMParametersToURL() {
   const utmData = getUTMDataFromLocalStorage();
   if (utmData) {
     const urlParams = new URLSearchParams(window.location.search);
-    Object.keys(utmData).forEach(key => {
+    Object.keys(utmData).forEach((key) => {
       if (!urlParams.has(key) && utmData[key]) {
         urlParams.append(key, utmData[key]);
       }
