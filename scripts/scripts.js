@@ -321,7 +321,7 @@ function addUTMParametersToURL() {
         urlParams.append(key, utmData[key]);
       }
     });
-    const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`
+    const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
     window.history.replaceState({}, document.title, newURL);
   }
 }
