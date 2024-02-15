@@ -244,7 +244,6 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-
 /*
 To Continue Smoother flow of UTMs across the pages user visits in same session.
 */
@@ -293,7 +292,7 @@ function storeUTMParameters() {
   const utmData = getUTMParameters();
 
   // Check if UTM parameters exist
-  if (Object.values(utmData).some(param => param !== null && param !== undefined)) {
+  if (Object.values(utmData).some(param => (param !== null && param !== undefined))) {
     // Convert the object to a JSON string and store it in local storage
     sessionStorage.setItem('utm_data', JSON.stringify(utmData));
   }
@@ -309,6 +308,8 @@ function getUTMDataFromLocalStorage() {
   const utmDataString = sessionStorage.getItem('utm_data');
   if (utmDataString) {
     return JSON.parse(utmDataString);
+  } else {
+    return null;
   }
 }
 
@@ -336,7 +337,7 @@ function correctUTMFlow() {
     // console.log('UTM parameters do not exist in the URL but present in Local storage');
     addUTMParametersToURL();
   } else {
-    //console.log('No UTMs Found!');
+    // console.log('No UTMs Found!');
   }
 }
 
