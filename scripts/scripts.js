@@ -244,10 +244,106 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+/*
+To Continue Smoother flow of UTMs across the pages user visits in same session.
+*/
+
+// check if UTM parameters exist in the URL
+function checkUTMParametersExist() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = urlParams.get('utm_source');
+  const utmMedium = urlParams.get('utm_medium');
+  const utmCampaign = urlParams.get('utm_campaign');
+  const utmTerm = urlParams.get('utm_term');
+  const utmContent = urlParams.get('utm_content');
+
+  // Check if any of the UTM parameters exist
+  if (utmSource || utmMedium || utmCampaign || utmTerm || utmContent) {
+    return true; // UTM parameters exist
+  }
+  return false; // UTM parameters do not exist
+}
+
+// Get UTM parameters from the URL
+function getUTMParameters() {
+  const urlParams = new URLSearchParams(window.location.search);
+  // Define UTM parameter names
+  const utmSource = urlParams.get('utm_source');
+  const utmMedium = urlParams.get('utm_medium');
+  const utmCampaign = urlParams.get('utm_campaign');
+  const utmTerm = urlParams.get('utm_term');
+  const utmContent = urlParams.get('utm_content');
+
+  // Create an object to store UTM parameters
+  const utmData = {
+    utm_source: utmSource,
+    utm_medium: utmMedium,
+    utm_campaign: utmCampaign,
+    utm_term: utmTerm,
+    utm_content: utmContent,
+  };
+
+  return utmData;
+}
+
+// To store UTM parameters in local storage
+function storeUTMParameters() {
+  const utmData = getUTMParameters();
+
+  // Check if UTM parameters exist
+  if (Object.values(utmData).some((param) => param !== null && param !== undefined)) {
+    // Convert the object to a JSON string and store it in local storage
+    sessionStorage.setItem('utm_data', JSON.stringify(utmData));
+  }
+}
+
+function checkUTMParametersInLocalStorage() {
+  const utmDataString = sessionStorage.getItem('utm_data');
+  return utmDataString !== null && utmDataString !== undefined;
+}
+
+// Retrive UTM parameters from storage.
+function getUTMDataFromLocalStorage() {
+  const utmDataString = sessionStorage.getItem('utm_data');
+  if (utmDataString) {
+    return JSON.parse(utmDataString);
+  }
+  return null;
+}
+
+// To add UTM parameters to the browser's URL
+function addUTMParametersToURL() {
+  const utmData = getUTMDataFromLocalStorage();
+  if (utmData) {
+    const urlParams = new URLSearchParams(window.location.search);
+    Object.keys(utmData).forEach((key) => {
+      if (!urlParams.has(key) && utmData[key]) {
+        urlParams.append(key, utmData[key]);
+      }
+    });
+    const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+    window.history.replaceState({}, document.title, newURL);
+  }
+}
+
+function correctUTMFlow() {
+  if (checkUTMParametersExist()) {
+    /* console.log('UTM parameters exist in the URL.');
+    Call the function to store UTM parameters when the page loads */
+    storeUTMParameters();
+  } else if (checkUTMParametersInLocalStorage()) {
+    // console.log('UTM parameters do not exist in the URL but present in Local storage');
+    addUTMParametersToURL();
+  } else {
+    // console.log('No UTMs Found!');
+  }
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  correctUTMFlow();
 }
 
 loadPage();
