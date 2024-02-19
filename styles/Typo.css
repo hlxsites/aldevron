@@ -1603,6 +1603,10 @@ form.hs-form .hs-input[type="checkbox"] {
     background-color: #e47031;
 }
 
+.hero.large.background-yellow{
+    background-color: #ec8f2d;
+}
+
 .hero.large.background-green{
     background-color: #78a12e;
 }
@@ -1613,6 +1617,14 @@ form.hs-form .hs-input[type="checkbox"] {
 
 .hero.large.background-blue{
     background-color: #005796;
+}
+
+.hero.large.background-black{
+    background-color: #0d233e;
+}
+
+.hero.large.background-purple{
+    background-color: #6f2a8e;
 }
 
 .hero.large > div:nth-child(1) picture > img {
