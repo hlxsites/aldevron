@@ -38,7 +38,7 @@ function loadGTM() {
 
 if (
   !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx.page')
+    && !document.location.hostname.includes('.hlx')
 ) {
   loadGTM();
 }
