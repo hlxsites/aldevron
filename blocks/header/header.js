@@ -249,7 +249,6 @@ function handleSearchFormSubmit(formElement) {
         const results = jsonData.data.filter((item) => {
           // Customize this condition to match your search criteria
           const it = item.description.toLowerCase().includes(inputValue);
-          const 
           return it;
         });
         const resultBlock = document.querySelector('.search-results');
