@@ -248,7 +248,9 @@ function handleSearchFormSubmit(formElement) {
         // Perform a search based on the fetched JSON data
         const results = jsonData.data.filter((item) => {
           // Customize this condition to match your search criteria
-          const it = item.title.toLowerCase().includes(inputValue);
+          const it = (item.title.toLowerCase()
+          + item['sub-title'].toLowerCase()
+          + item.description.toLowerCase()).includes(inputValue);
           return it;
         });
         const resultBlock = document.querySelector('.search-results');
