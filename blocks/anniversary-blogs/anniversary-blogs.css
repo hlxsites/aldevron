@@ -1,0 +1,91 @@
+.grey-article-outer {
+    background-color: #ededed;
+    padding: 80px 0;
+}
+
+.grey-article-outer > div {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.anniversary-blogs  {
+    text-align: left;
+}
+
+.anniversary-blogs h1:first-child, .anniversary-blogs h2:first-child {
+    padding-top: 0!important;
+} 
+
+.anniversary-blogs .post .image img {
+    width: 100%;
+    height: auto;
+}
+
+.full-post .text {
+    padding-left: 0!important;
+}
+
+.anniversary-blogs .post {
+    padding-bottom: 30px
+  }
+  
+  .anniversary-blogs .post::after {
+    clear: both;
+    content: "";
+    display: block;
+    font-size: 0
+  }
+  
+  .anniversary-blogs .image {
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    display: block;
+    float: none;
+    position: relative;
+    width: 50%;
+  }
+  
+  .anniversary-blogs .text {
+    font-size: 1em;
+    padding-left: 0;
+    width:50%;
+    text-align: justify;
+  }
+  
+  .anniversary-blogs .post .entry-title {
+    color: #000;
+    font-size: 18px;
+    padding-top: 20px;
+  }
+  
+  .anniversary-blogs .post .entry-title a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .anniversary-blogs .post p {
+    padding: .5em 0 0
+  }
+  
+  .anniversary-blogs .post .tags a {
+    color: #ec8f2d
+  }
+
+@media (max-width: 1024px) {
+    .grey-article-outer {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .grey-article-outer {
+        padding: 60px 20px;
+    }
+
+    .anniversary-blogs .content .col {
+        width: 100%;
+        margin: 0!important;
+    }
+}
