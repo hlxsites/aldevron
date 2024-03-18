@@ -852,7 +852,6 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 .mmg-collapsible .module-title::before {
-    
     content: "\e905";
     float: right;
     font-family: ald-icons!important;
