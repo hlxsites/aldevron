@@ -852,7 +852,6 @@ body.purple .mmg-collapsible.open>.module-title,body.purple .mmg-collapsible>.mo
 }
 
 .mmg-collapsible .module-title::before {
-    speak: none;
     content: "\e905";
     float: right;
     font-family: ald-icons!important;
@@ -1499,4 +1498,30 @@ body.purple .mmg-tabs .tab.active,body.purple .mmg-tabs .tab:focus,body.purple .
 
 .alt-text-img {
     display: none
+}
+
+/* Fixing footer disclaimer style issue */
+#footer-black h6 {
+    font-size: 12px;
+    text-align: right;
+    max-width: 920px;
+    font-weight: 400;
+    width: 70%;
+}
+
+#footer-black h6 a {
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+@media (max-width:767px){
+    #footer-black h6 {
+        text-align: left;
+        max-width: 100%;
+        width: 100%;
+        padding-top:30px;
+    }
+
 }
