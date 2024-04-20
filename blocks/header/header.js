@@ -1,5 +1,5 @@
-import { getMetadata } from "../../scripts/aem.js";
-import { button, input, div, ul, li } from "../../scripts/dom-builder.js";
+import { debounce, getMetadata } from "../../scripts/aem.js";
+import { input, div, ul, li } from "../../scripts/dom-builder.js";
 
 const windowWidth = document.body.offsetWidth;
 
@@ -299,11 +299,10 @@ function handleSearchFormSubmit(formElement) {
   return searchFormHandler;
 }
 
-function submitSearchPage(){
-    const inputtext = document.querySelectorAll('#coveo-search').value;
-    console.log("inputtext", inputtext);
-    window.location = `${window.location.origin}/drafts/search#q=${inputtext}`;
-
+function submitSearchPage(target) {
+  if (target.parentElement.id === 'coveo-searchbox') {
+    window.location = `${window.location.origin}/drafts/search#q=${target.previousElementSibling.value}`;
+  }
 }
 
 function toggleSearchDropdown(event, mode) {
@@ -315,37 +314,58 @@ function toggleSearchDropdown(event, mode) {
 }
 
 async function fetchSuggestions(value) {
-  const payload = {
-    q: value,
-  };
-  const accessToken = "xx36c41356-a0e5-4071-bcae-d27539d778e2";
-  const resp = await fetch(
-    `https://danahernonproduction1892f3fhz.org.coveo.com/rest/search/v2/querySuggest`,
-    {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    }
-  );
-  const jsonData = await resp.json();
-  console.log("JSON data from makeCoveoApiRequest", jsonData);
-  buildSearchSuggestions();
+  try {
+    const payload = {
+      locale: 'en',
+      pipeline: 'Aldevron Marketplace',
+      searchHub: 'AldevronMainSearch',
+      timezone: 'America/New_York',
+      q: value,
+      count: 8,
+      referrer: ''
+    };
+    const accessToken = 'xx36c41356-a0e5-4071-bcae-d27539d778e2';
+    const resp = await fetch(
+      `https://danahernonproduction1892f3fhz.org.coveo.com/rest/search/v2/querySuggest`,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+    const response = await resp.json();
+    buildSearchSuggestions(response);
+  } catch (error) {
+    console.log("Error", error);
+  }
 }
 
-async function buildSearchSuggestions() {
-    const parentEl = document.querySelector(
-      "div#coveo-search-dropdown-menu ul"
-    );
-    console.log("parent element UL", parentEl);
-    console.log("Request Completion1",  Request.completions);
-    Request?.completions.forEach((el) => {
-      console.log("element", el);
-      parentEl.push(li(el.expression));
-      console.log("Search Suggestion data" , el.expression);
-    });
+async function buildSearchSuggestions(response) {
+    const parentEls = document.querySelectorAll('div#coveo-search-dropdown-menu ul');
+    console.log(response);
+    if (parentEls.length > 0) {
+      parentEls.forEach(parentEl => {
+        parentEl.innerHTML = '';
+        if (response && response.completions && response.completions.length > 0) {
+          response?.completions?.forEach((el) => {
+            if (el && el.expression) {
+              parentEl.append(li({
+                onclick: (event) => {
+                  console.log(event.target, event.target.textContent);
+                  document.querySelectorAll('#coveo-search').forEach(inpEl => {
+                    console.log(inpEl);
+                    inpEl.value = event.target.textContent;
+                  })
+                }
+              }, el.expression));
+            }
+          });
+        } else parentEl.append(li('No search results!'));
+      });
+    }
 }
 
 /**
@@ -401,8 +421,7 @@ export default async function decorate(block) {
     headerInfo.id = "header-info";
 
     // Create a div element with id, class, and inline style
-    const searchIcon = div({ onclick: submitSearchPage}); 
-    console.log("Search Icon click", searchIcon);
+    const searchIcon = div({ onclick: (event) => submitSearchPage(event.target) }); 
     searchIcon.innerHTML =
       '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
     const customSearchDiv = div(
@@ -427,10 +446,6 @@ export default async function decorate(block) {
         { id: "coveo-search-dropdown-menu" },
         ul(
           { "aria-labelledby": "coveo-searchbox" },
-          li(""),
-          li(""),
-          li(""),
-          li("")
         )
       )
     );
@@ -500,8 +515,7 @@ export default async function decorate(block) {
 
     block.append(nav);
 
-   // fetchSuggestions();
-    //buildSearchSuggestions();
-
+    fetchSuggestions();
+    // buildSearchSuggestions();
   }
 }
