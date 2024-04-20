@@ -299,20 +299,12 @@ function handleSearchFormSubmit(formElement) {
   return searchFormHandler;
 }
 
-function debounce(func, timeout = 300) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
-  };
+function submitSearchPage(){
+    const inputtext = document.querySelectorAll('#coveo-search').value;
+    console.log("inputtext", inputtext);
+    window.location = `${window.location.origin}/drafts/search#q=${inputtext}`;
+
 }
-
-// function submitSearchPage(){
-//     const inputtext = document.querySelectorAll('#coveo-search').value;
-//     console.log("inputtext", inputtext);
-//     window.location = `${window.location.origin}/drafts/search#q=${inputtext}`;
-
-// }
 
 function toggleSearchDropdown(event, mode) {
   console.log("toggleSearchDropdown", mode);
@@ -409,7 +401,7 @@ export default async function decorate(block) {
     headerInfo.id = "header-info";
 
     // Create a div element with id, class, and inline style
-    const searchIcon = div({}); 
+    const searchIcon = div({ onclick: submitSearchPage}); 
     console.log("Search Icon click", searchIcon);
     searchIcon.innerHTML =
       '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
