@@ -149,7 +149,7 @@ const searchBody = `
               </atomic-field-condition>
             </atomic-result-section-badges>
             <atomic-result-section-title
-              ><atomic-result-link></atomic-result-link
+              ><atomic-result-link field='clickUri'><button class="btn-view">View</button></atomic-result-link
             ></atomic-result-section-title>
             <atomic-result-section-title-metadata>
               <atomic-field-condition class="field" if-defined="snrating">
@@ -273,11 +273,9 @@ const searchBody = `
       <atomic-no-results></atomic-no-results>
     </atomic-layout-section>
     <atomic-layout-section section="pagination">
-      <atomic-load-more-results></atomic-load-more-results>
-      <!-- Alternative pagination
+      <!--<atomic-load-more-results></atomic-load-more-results>-->
         <atomic-pager></atomic-pager>
-        <atomic-results-per-page></atomic-results-per-page>
-        -->
+        <!--<atomic-results-per-page></atomic-results-per-page>-->
     </atomic-layout-section>
   </atomic-layout-section>
 </atomic-search-layout>
@@ -293,6 +291,7 @@ export default async function decorate(block) {
    
    await import('https://static.cloud.coveo.com/atomic/v2/atomic.esm.js');
    await customElements.whenDefined('atomic-search-interface');
+   
    const searchInterface = document.querySelector(
     
      'atomic-search-interface'

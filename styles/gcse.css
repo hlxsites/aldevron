@@ -438,3 +438,17 @@ body.mmg-search-active {
 .coveo-search-dropdown > div#coveo-search-dropdown-menu ul li:hover {
   background-color: rgb(243 244 246);
 }
+
+.recent-searches{
+    font-weight: 700;
+    padding: 10px;
+}
+
+.all-recent-searches{
+    justify-content: space-between;
+    display: flex;
+}
+
+.clear-recent-searches{
+    padding: 10px;
+}

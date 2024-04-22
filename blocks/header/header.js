@@ -1,5 +1,5 @@
 import { debounce, getMetadata } from "../../scripts/aem.js";
-import { input, div, ul, li } from "../../scripts/dom-builder.js";
+import { button, input, div, ul, li } from "../../scripts/dom-builder.js";
 
 const windowWidth = document.body.offsetWidth;
 
@@ -299,18 +299,53 @@ function handleSearchFormSubmit(formElement) {
   return searchFormHandler;
 }
 
-function submitSearchPage(target) {
-  if (target.parentElement.id === 'coveo-searchbox') {
-    window.location = `${window.location.origin}/drafts/search#q=${target.previousElementSibling.value}`;
+function submitSearchPage() {
+  setRecentSearches();
+  const inputBoxValue = document.querySelector('#coveo-search').value;
+  if (inputBoxValue) {
+    window.location = `${window.location.origin}/drafts/search#q=${inputBoxValue}`;
   }
 }
 
+function inputPressEnter(event){
+    if(event.key === "Enter"){
+      const inputBoxValue = document.querySelector('#coveo-search').value;
+      if (inputBoxValue) {
+        window.location = `${window.location.origin}/drafts/search#q=${inputBoxValue}`;
+      }
+    }
+}
+
+//when focus is there in the input elemnt the drop-down click events are not working is not working
+
 function toggleSearchDropdown(event, mode) {
   console.log("toggleSearchDropdown", mode);
-  if (mode === "focus")
+  if (mode === "focus"){
     event.target.parentElement.nextSibling.classList.add("show");
+    console.log(event.target , event.target.parentElement.nextSibling);
+  }
   else if (mode === "blur")
-    event.target.parentElement.nextSibling.classList.remove("show");
+    event.target.parentElement.nextSibling.classList.add("show");
+}
+
+async function addRecentSearch() {
+  const recentSearches = getRecentSearches();
+  const parentEls = document.querySelectorAll('div#coveo-search-dropdown-menu ul');
+  parentEls.forEach(parentEl => {
+    console.log("parent elements", parentEl);
+    recentSearches.forEach((el) => {
+        console.log("elemet recent",el);
+        parentEl.append(li({
+          onclick: (event) => {
+            console.log(event.target, event.target.textContent);
+            document.querySelectorAll('#coveo-search').forEach(inpEl => {
+              console.log(inpEl);
+              inpEl.value = event.target.textContent;
+            })
+          }
+        }, el));
+    });
+  }); 
 }
 
 async function fetchSuggestions(value) {
@@ -338,34 +373,52 @@ async function fetchSuggestions(value) {
     );
     const response = await resp.json();
     buildSearchSuggestions(response);
+    addRecentSearch();
   } catch (error) {
     console.log("Error", error);
   }
 }
 
+function getRecentSearches() {
+  const recentSearchesString = localStorage.getItem('coveo-recent-queries');
+  const recentSearches = recentSearchesString ? JSON.parse(recentSearchesString) : [];
+  console.log("Recent Searches", recentSearches);
+  return recentSearches;
+}
+
+function setRecentSearches() {
+  ("Inside Set Recent search")
+  const value = document.querySelector('#coveo-search').value;
+  const recentSearches = getRecentSearches();
+  const searchValueIndex = recentSearches.findIndex((search) => search === value);
+  if (searchValueIndex > -1) recentSearches.splice(searchValueIndex, 1);
+  recentSearches.unshift(value);
+  localStorage.setItem('coveo-recent-queries', JSON.stringify(recentSearches.slice(0, 3)));
+}
+
 async function buildSearchSuggestions(response) {
-    const parentEls = document.querySelectorAll('div#coveo-search-dropdown-menu ul');
-    console.log(response);
-    if (parentEls.length > 0) {
-      parentEls.forEach(parentEl => {
-        parentEl.innerHTML = '';
-        if (response && response.completions && response.completions.length > 0) {
-          response?.completions?.forEach((el) => {
-            if (el && el.expression) {
-              parentEl.append(li({
-                onclick: (event) => {
-                  console.log(event.target, event.target.textContent);
-                  document.querySelectorAll('#coveo-search').forEach(inpEl => {
-                    console.log(inpEl);
-                    inpEl.value = event.target.textContent;
-                  })
-                }
-              }, el.expression));
-            }
-          });
-        } else parentEl.append(li('No search results!'));
-      });
-    }
+  const parentEls = document.querySelectorAll('div#coveo-search-dropdown-menu ul');
+  console.log(response);
+  if (parentEls.length > 0) {
+    parentEls.forEach(parentEl => {
+      parentEl.innerHTML = '';
+      if (response && response.completions && response.completions.length > 0) {
+        response?.completions?.forEach((el) => {
+          if (el && el.expression) {
+            parentEl.append(li({
+              onclick: (event) => {
+                console.log(event.target, event.target.textContent);
+                document.querySelectorAll('#coveo-search').forEach(inpEl => {
+                  console.log(inpEl);
+                  inpEl.value = event.target.textContent;
+                })
+              }
+            }, el.expression));
+          }
+        });
+      } else parentEl.append(li('No search results!'));
+    });
+  }
 }
 
 /**
@@ -421,7 +474,21 @@ export default async function decorate(block) {
     headerInfo.id = "header-info";
 
     // Create a div element with id, class, and inline style
-    const searchIcon = div({ onclick: (event) => submitSearchPage(event.target) }); 
+    const recentSearchesHeading = div(
+      { class: 'all-recent-searches' },
+      div({ class: 'recent-searches' }, 'Recent Searches'),
+      div({
+        class: 'clear-recent-searches',
+        onclick: () => {
+          console.log("On click fired");
+          setRecentSearches();
+          localStorage.removeItem('coveo-recent-queries');
+          fetchSuggestions();
+        },
+      }, 'Clear'),
+    );
+
+    const searchIcon = div({ onclick: (event) => submitSearchPage() }); 
     searchIcon.innerHTML =
       '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
     const customSearchDiv = div(
@@ -437,13 +504,16 @@ export default async function decorate(block) {
           onfocus: (event) => toggleSearchDropdown(event, "focus"),
           onblur: (event) => toggleSearchDropdown(event, "blur"),
           onkeyup: debounce((event) => {
+            addRecentSearch();
             fetchSuggestions(event.target.value)
+            inputPressEnter(event);
           }, 1000),
         }),
         searchIcon
       ),
       div(
         { id: "coveo-search-dropdown-menu" },
+        recentSearchesHeading,
         ul(
           { "aria-labelledby": "coveo-searchbox" },
         )
@@ -453,10 +523,11 @@ export default async function decorate(block) {
     const clonedCustomSearchDiv = customSearchDiv.cloneNode(true);
     clonedCustomSearchDiv.classList.add("mobile-search");
     // Append the custom search div to the document body or any other parent element
-    outer.appendChild(clonedCustomSearchDiv);
+    //outer.appendChild(clonedCustomSearchDiv);
     customSearchDiv.classList.add("desktop-search");
-    headerInfo.appendChild(customSearchDiv);
-
+    if (!window.location.pathname.includes("/drafts/search")) {
+      headerInfo.appendChild(customSearchDiv);
+    }
     const listElements = document.createElement("div");
 
     listElements.innerHTML = childElements.children[1].innerHTML;
