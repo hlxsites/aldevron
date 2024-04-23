@@ -16,6 +16,17 @@ atomic-search-box::part(submit-button) {
     line-height: 1em;
 }
 
+.display-list {
+    position: relative;
+    padding-right: 20%;
+}
+
+.btn-right-view {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+}
+
 .btn-view {
     background-color: #dc6016;
     border: 1px solid #dc6016;
