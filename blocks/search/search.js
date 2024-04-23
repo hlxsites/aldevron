@@ -151,31 +151,33 @@ const searchBody = `
                 class="thumbnail"
               />
             </atomic-result-section-visual>-->
-            <atomic-result-section-badges>
-              <atomic-field-condition must-match-sourcetype="Salesforce">
+            <div>
+              <atomic-result-section-badges>
+                <atomic-field-condition must-match-sourcetype="Salesforce">
+                  <atomic-result-badge
+                    label="Salesforce"
+                    class="salesforce-badge"
+                  ></atomic-result-badge>
+                </atomic-field-condition>
                 <atomic-result-badge
-                  label="Salesforce"
-                  class="salesforce-badge"
-                ></atomic-result-badge>
-              </atomic-field-condition>
-              <atomic-result-badge
-                icon="https://raw.githubusercontent.com/Rush/Font-Awesome-SVG-PNG/master/black/svg/language.svg"
-              >
-                <atomic-result-multi-value-text
-                  field="language"
-                ></atomic-result-multi-value-text>
-              </atomic-result-badge>
-              <atomic-field-condition must-match-is-recommendation="true">
-                <atomic-result-badge
-                  label="Recommended"
-                ></atomic-result-badge>
-              </atomic-field-condition>
-              <atomic-field-condition must-match-is-top-result="true">
-                <atomic-result-badge
-                  label="Top Result"
-                ></atomic-result-badge>
-              </atomic-field-condition>
-            </atomic-result-section-badges>
+                  icon="https://raw.githubusercontent.com/Rush/Font-Awesome-SVG-PNG/master/black/svg/language.svg"
+                >
+                  <atomic-result-multi-value-text
+                    field="language"
+                  ></atomic-result-multi-value-text>
+                </atomic-result-badge>
+                <atomic-field-condition must-match-is-recommendation="true">
+                  <atomic-result-badge
+                    label="Recommended"
+                  ></atomic-result-badge>
+                </atomic-field-condition>
+                <atomic-field-condition must-match-is-top-result="true">
+                  <atomic-result-badge
+                    label="Top Result"
+                  ></atomic-result-badge>
+                </atomic-field-condition>
+              </atomic-result-section-badges>
+            </div>
             <atomic-result-section-title 
               ><atomic-result-link class="search-title"></atomic-result-link
             ></atomic-result-section-title>
@@ -297,7 +299,7 @@ const searchBody = `
               <atomic-result-text field="filetype"></atomic-result-text>
             </atomic-table-element>
             <div>
-              <button class="btn-atomic-link">View</button>
+              <button class="btn-atomic-link btn-primary">View</button>
             </div>
           </template>
         </atomic-result-template>
