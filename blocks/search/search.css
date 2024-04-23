@@ -16,12 +16,12 @@ atomic-search-box::part(submit-button) {
     line-height: 1em;
 }
 
-.display-list {
+atomic-result .display-list {
     position: relative;
     padding-right: 20%;
 }
 
-.btn-right-view {
+atomic-result .btn-right-view {
     position: absolute;
     top: 50%;
     right: 0%;
