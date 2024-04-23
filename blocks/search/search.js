@@ -74,117 +74,197 @@ const searchBody = `
         </atomic-result-template>
 
         <atomic-result-template>
-          <div>
-            <template>
-              <style>
+          <template>
+            <style>
 
-                .atomic-pagination {
-                  margin-top: 3rem;
-                  margin-bottom: 3rem;
-                }
+              .atomic-pagination {
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+              }
 
-                .btn-atomic-link {
-                  width: 7rem;
-                  padding: .5rem 0;
-                  border-radius: .375rem;
-                  font-weight: 600;
-                }
+              .btn-atomic-link {
+                width: 7rem;
+                padding: .5rem 0;
+                border-radius: .375rem;
+                font-weight: 600;
+              }
 
-                .search-title {
-                  width: 100%;
-                  display: block;
-                  padding: 0;
-                  margin-bottom: .5rem;
-                  font-size: 1.5rem;
-                  font-weight: 600;
-                }
+              .search-title {
+                width: 100%;
+                display: block;
+                padding: 0;
+                margin-bottom: .5rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+              }
 
-                .description {
-                  color: #333;
-                  font-size: .875;
-                  font-weight: 400;
-                }
+              .description {
+                color: #333;
+                font-size: .875;
+                font-weight: 400;
+              }
 
-                .field {
-                  display: inline-flex;
-                  align-items: center;
-                }
+              .field {
+                display: inline-flex;
+                align-items: center;
+              }
 
-                .field-label {
-                  font-weight: bold;
-                  margin-right: 0.25rem;
-                }
+              .field-label {
+                font-weight: bold;
+                margin-right: 0.25rem;
+              }
 
-                .thumbnail {
-                  display: none;
-                  width: 100%;
-                  height: 100%;
-                }
+              .thumbnail {
+                display: none;
+                width: 100%;
+                height: 100%;
+              }
 
-                .icon {
-                  display: none;
-                }
+              .icon {
+                display: none;
+              }
 
-                .result-root.image-small .thumbnail,
-                .result-root.image-large .thumbnail {
-                  display: inline-block;
-                }
+              .result-root.image-small .thumbnail,
+              .result-root.image-large .thumbnail {
+                display: inline-block;
+              }
 
-                .result-root.image-icon .icon {
-                  display: inline-block;
-                }
+              .result-root.image-icon .icon {
+                display: inline-block;
+              }
 
-                .result-root.image-small atomic-result-section-visual,
-                .result-root.image-large atomic-result-section-visual {
-                  border-radius: var(--atomic-border-radius-xl);
-                }
+              .result-root.image-small atomic-result-section-visual,
+              .result-root.image-large atomic-result-section-visual {
+                border-radius: var(--atomic-border-radius-xl);
+              }
 
-                .salesforce-badge::part(result-badge-element) {
-                  background-color: #44a1da;
-                  color: white;
-                }
-              </style>
-              <!--<atomic-result-section-visual>
-                <atomic-result-icon class="icon"></atomic-result-icon>
-                <img
-                  loading="lazy"
-                  src="https://picsum.photos/350"
-                  class="thumbnail"
-                />
-              </atomic-result-section-visual>-->
-              <atomic-result-section-badges>
-                <atomic-field-condition must-match-sourcetype="Salesforce">
-                  <atomic-result-badge
-                    label="Salesforce"
-                    class="salesforce-badge"
-                  ></atomic-result-badge>
-                </atomic-field-condition>
+              .salesforce-badge::part(result-badge-element) {
+                background-color: #44a1da;
+                color: white;
+              }
+            </style>
+            <!--<atomic-result-section-visual>
+              <atomic-result-icon class="icon"></atomic-result-icon>
+              <img
+                loading="lazy"
+                src="https://picsum.photos/350"
+                class="thumbnail"
+              />
+            </atomic-result-section-visual>-->
+            <atomic-result-section-badges>
+              <atomic-field-condition must-match-sourcetype="Salesforce">
                 <atomic-result-badge
-                  icon="https://raw.githubusercontent.com/Rush/Font-Awesome-SVG-PNG/master/black/svg/language.svg"
+                  label="Salesforce"
+                  class="salesforce-badge"
+                ></atomic-result-badge>
+              </atomic-field-condition>
+              <atomic-result-badge
+                icon="https://raw.githubusercontent.com/Rush/Font-Awesome-SVG-PNG/master/black/svg/language.svg"
+              >
+                <atomic-result-multi-value-text
+                  field="language"
+                ></atomic-result-multi-value-text>
+              </atomic-result-badge>
+              <atomic-field-condition must-match-is-recommendation="true">
+                <atomic-result-badge
+                  label="Recommended"
+                ></atomic-result-badge>
+              </atomic-field-condition>
+              <atomic-field-condition must-match-is-top-result="true">
+                <atomic-result-badge
+                  label="Top Result"
+                ></atomic-result-badge>
+              </atomic-field-condition>
+            </atomic-result-section-badges>
+            <atomic-result-section-title 
+              ><atomic-result-link class="search-title"></atomic-result-link
+            ></atomic-result-section-title>
+            <div class="f-col"><atomic-result-link>
+            </atomic-result-link></div>
+            <atomic-result-section-title-metadata>
+              <atomic-field-condition class="field" if-defined="snrating">
+                <atomic-result-rating
+                  field="snrating"
+                ></atomic-result-rating>
+              </atomic-field-condition>
+              <atomic-field-condition
+                class="field"
+                if-not-defined="snrating"
+              >
+                <atomic-result-printable-uri
+                  max-number-of-parts="3"
+                ></atomic-result-printable-uri>
+              </atomic-field-condition>
+            </atomic-result-section-title-metadata>
+            <atomic-result-section-excerpt
+              ><atomic-result-text field="excerpt" class="description"></atomic-result-text
+            ></atomic-result-section-excerpt>
+            <!--<atomic-result-section-bottom-metadata>
+              <atomic-result-fields-list>
+                <atomic-field-condition class="field" if-defined="author">
+                  <span class="field-label"
+                    ><atomic-text value="author"></atomic-text>:</span
+                  >
+                  <atomic-result-text field="author"></atomic-result-text>
+                </atomic-field-condition>
+
+                <atomic-field-condition class="field" if-defined="source">
+                  <span class="field-label"
+                    ><atomic-text value="source"></atomic-text>:</span
+                  >
+                  <atomic-result-text field="source"></atomic-result-text>
+                </atomic-field-condition>
+
+                <atomic-field-condition
+                  class="field"
+                  if-defined="language"
                 >
+                  <span class="field-label"
+                    ><atomic-text value="language"></atomic-text>:</span
+                  >
                   <atomic-result-multi-value-text
                     field="language"
                   ></atomic-result-multi-value-text>
-                </atomic-result-badge>
-                <atomic-field-condition must-match-is-recommendation="true">
-                  <atomic-result-badge
-                    label="Recommended"
-                  ></atomic-result-badge>
                 </atomic-field-condition>
-                <atomic-field-condition must-match-is-top-result="true">
-                  <atomic-result-badge
-                    label="Top Result"
-                  ></atomic-result-badge>
+
+                <atomic-field-condition
+                  class="field"
+                  if-defined="filetype"
+                >
+                  <span class="field-label"
+                    ><atomic-text value="fileType"></atomic-text>:</span
+                  >
+                  <atomic-result-text
+                    field="filetype"
+                  ></atomic-result-text>
                 </atomic-field-condition>
-              </atomic-result-section-badges>
-              <atomic-result-section-title 
-                ><atomic-result-link class="search-title"></atomic-result-link
+
+                <atomic-field-condition class="field" if-defined="sncost">
+                  <span class="field-label">Cost:</span>
+                  <atomic-result-number field="sncost">
+                    <atomic-format-currency
+                      currency="CAD"
+                    ></atomic-format-currency>
+                  </atomic-result-number>
+                </atomic-field-condition>
+
+                <span class="field">
+                  <span class="field-label">Date:</span>
+                  <atomic-result-date
+                    format="ddd MMM D YYYY"
+                  ></atomic-result-date>
+                </span>
+              </atomic-result-fields-list>
+            </atomic-result-section-bottom-metadata>-->
+            <atomic-table-element label="Description">
+              <atomic-result-section-title
+                ><atomic-result-link></atomic-result-link
               ></atomic-result-section-title>
-              <div class="f-col"><atomic-result-link>
-              
-              </atomic-result-link></div>
               <atomic-result-section-title-metadata>
-                <atomic-field-condition class="field" if-defined="snrating">
+                <atomic-field-condition
+                  class="field"
+                  if-defined="snrating"
+                >
                   <atomic-result-rating
                     field="snrating"
                   ></atomic-result-rating>
@@ -198,114 +278,28 @@ const searchBody = `
                   ></atomic-result-printable-uri>
                 </atomic-field-condition>
               </atomic-result-section-title-metadata>
-              <atomic-result-section-excerpt
-                ><atomic-result-text field="excerpt" class="description"></atomic-result-text
-              ></atomic-result-section-excerpt>
-              <!--<atomic-result-section-bottom-metadata>
-                <atomic-result-fields-list>
-                  <atomic-field-condition class="field" if-defined="author">
-                    <span class="field-label"
-                      ><atomic-text value="author"></atomic-text>:</span
-                    >
-                    <atomic-result-text field="author"></atomic-result-text>
-                  </atomic-field-condition>
-
-                  <atomic-field-condition class="field" if-defined="source">
-                    <span class="field-label"
-                      ><atomic-text value="source"></atomic-text>:</span
-                    >
-                    <atomic-result-text field="source"></atomic-result-text>
-                  </atomic-field-condition>
-
-                  <atomic-field-condition
-                    class="field"
-                    if-defined="language"
-                  >
-                    <span class="field-label"
-                      ><atomic-text value="language"></atomic-text>:</span
-                    >
-                    <atomic-result-multi-value-text
-                      field="language"
-                    ></atomic-result-multi-value-text>
-                  </atomic-field-condition>
-
-                  <atomic-field-condition
-                    class="field"
-                    if-defined="filetype"
-                  >
-                    <span class="field-label"
-                      ><atomic-text value="fileType"></atomic-text>:</span
-                    >
-                    <atomic-result-text
-                      field="filetype"
-                    ></atomic-result-text>
-                  </atomic-field-condition>
-
-                  <atomic-field-condition class="field" if-defined="sncost">
-                    <span class="field-label">Cost:</span>
-                    <atomic-result-number field="sncost">
-                      <atomic-format-currency
-                        currency="CAD"
-                      ></atomic-format-currency>
-                    </atomic-result-number>
-                  </atomic-field-condition>
-
-                  <span class="field">
-                    <span class="field-label">Date:</span>
-                    <atomic-result-date
-                      format="ddd MMM D YYYY"
-                    ></atomic-result-date>
-                  </span>
-                </atomic-result-fields-list>
-              </atomic-result-section-bottom-metadata>-->
-              <atomic-table-element label="Description">
-                <atomic-result-section-title
-                  ><atomic-result-link></atomic-result-link
-                ></atomic-result-section-title>
-                <atomic-result-section-title-metadata>
-                  <atomic-field-condition
-                    class="field"
-                    if-defined="snrating"
-                  >
-                    <atomic-result-rating
-                      field="snrating"
-                    ></atomic-result-rating>
-                  </atomic-field-condition>
-                  <atomic-field-condition
-                    class="field"
-                    if-not-defined="snrating"
-                  >
-                    <atomic-result-printable-uri
-                      max-number-of-parts="3"
-                    ></atomic-result-printable-uri>
-                  </atomic-field-condition>
-                </atomic-result-section-title-metadata>
-                <atomic-result-section-excerpt>
-                  <atomic-result-text field="excerpt"></atomic-result-text>
-                </atomic-result-section-excerpt>
-              </atomic-table-element>
-              <atomic-table-element label="author">
-                <atomic-result-text field="author"></atomic-result-text>
-              </atomic-table-element>
-              <atomic-table-element label="source">
-                <atomic-result-text field="source"></atomic-result-text>
-              </atomic-table-element>
-              <atomic-table-element label="language">
-                <atomic-result-multi-value-text
-                  field="language"
-                ></atomic-result-multi-value-text>
-              </atomic-table-element>
-              <atomic-table-element label="file-type">
-                <atomic-result-text field="filetype"></atomic-result-text>
-              </atomic-table-element>
-              <div>
-                <button class="btn-atomic-link">View</button>
-              </div>
-            </template>
+              <atomic-result-section-excerpt>
+                <atomic-result-text field="excerpt"></atomic-result-text>
+              </atomic-result-section-excerpt>
+            </atomic-table-element>
+            <atomic-table-element label="author">
+              <atomic-result-text field="author"></atomic-result-text>
+            </atomic-table-element>
+            <atomic-table-element label="source">
+              <atomic-result-text field="source"></atomic-result-text>
+            </atomic-table-element>
+            <atomic-table-element label="language">
+              <atomic-result-multi-value-text
+                field="language"
+              ></atomic-result-multi-value-text>
+            </atomic-table-element>
+            <atomic-table-element label="file-type">
+              <atomic-result-text field="filetype"></atomic-result-text>
+            </atomic-table-element>
             <div>
               <button class="btn-atomic-link">View</button>
             </div>
-          </div>
+          </template>
         </atomic-result-template>
       </atomic-result-list>
       <atomic-query-error></atomic-query-error>
