@@ -80,7 +80,7 @@ const searchBody = `
                 display: inline-flex;
                 align-items: center;
               }
-
+              
               .field-label {
                 font-weight: bold;
                 margin-right: 0.25rem;
@@ -115,14 +115,14 @@ const searchBody = `
                 color: white;
               }
             </style>
-            <atomic-result-section-visual>
+            <!--<atomic-result-section-visual>
               <atomic-result-icon class="icon"></atomic-result-icon>
               <img
                 loading="lazy"
                 src="https://picsum.photos/350"
                 class="thumbnail"
               />
-            </atomic-result-section-visual>
+            </atomic-result-section-visual>-->
             <atomic-result-section-badges>
               <atomic-field-condition must-match-sourcetype="Salesforce">
                 <atomic-result-badge
@@ -148,8 +148,8 @@ const searchBody = `
                 ></atomic-result-badge>
               </atomic-field-condition>
             </atomic-result-section-badges>
-            <atomic-result-section-title
-              ><atomic-result-link field='clickUri'><button class="btn-view">View</button></atomic-result-link
+            <atomic-result-section-title 
+              ><atomic-result-link class="search-title"></atomic-result-link
             ></atomic-result-section-title>
             <atomic-result-section-title-metadata>
               <atomic-field-condition class="field" if-defined="snrating">
@@ -169,7 +169,7 @@ const searchBody = `
             <atomic-result-section-excerpt
               ><atomic-result-text field="excerpt"></atomic-result-text
             ></atomic-result-section-excerpt>
-            <atomic-result-section-bottom-metadata>
+            <!--<atomic-result-section-bottom-metadata>
               <atomic-result-fields-list>
                 <atomic-field-condition class="field" if-defined="author">
                   <span class="field-label"
@@ -225,7 +225,7 @@ const searchBody = `
                   ></atomic-result-date>
                 </span>
               </atomic-result-fields-list>
-            </atomic-result-section-bottom-metadata>
+            </atomic-result-section-bottom-metadata>-->
             <atomic-table-element label="Description">
               <atomic-result-section-title
                 ><atomic-result-link></atomic-result-link

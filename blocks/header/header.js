@@ -300,6 +300,7 @@ function handleSearchFormSubmit(formElement) {
 }
 
 function submitSearchPage() {
+  console.log("Submit Search Page event called!!!");
   setRecentSearches();
   const inputBoxValue = document.querySelector('#coveo-search').value;
   if (inputBoxValue) {
@@ -323,9 +324,9 @@ function toggleSearchDropdown(event, mode) {
   if (mode === "focus"){
     event.target.parentElement.nextSibling.classList.add("show");
     console.log(event.target , event.target.parentElement.nextSibling);
-  }
-  else if (mode === "blur")
-    event.target.parentElement.nextSibling.classList.add("show");
+   }
+  // else if (mode === "blur")
+  //   event.target.parentElement.nextSibling.classList.remove("show");
 }
 
 async function addRecentSearch() {
@@ -333,18 +334,21 @@ async function addRecentSearch() {
   const parentEls = document.querySelectorAll('div#coveo-search-dropdown-menu ul');
   parentEls.forEach(parentEl => {
     console.log("parent elements", parentEl);
-    recentSearches.forEach((el) => {
-        console.log("elemet recent",el);
-        parentEl.append(li({
-          onclick: (event) => {
-            console.log(event.target, event.target.textContent);
-            document.querySelectorAll('#coveo-search').forEach(inpEl => {
-              console.log(inpEl);
-              inpEl.value = event.target.textContent;
-            })
-          }
-        }, el));
-    });
+    if (recentSearches.length > 0) {
+      recentSearches.forEach((el) => {
+          console.log("elements in recent search ", el);
+          parentEl.append(li({
+            onclick: (event) => {
+              console.log(event.target, event.target.textContent);
+              document.querySelectorAll('#coveo-search').forEach(inpEl => {
+                console.log(inpEl);
+                inpEl.value = event.target.textContent;
+                submitSearchPage();
+              })
+            }
+          }, el));
+      });
+     }
   }); 
 }
 
@@ -387,7 +391,6 @@ function getRecentSearches() {
 }
 
 function setRecentSearches() {
-  ("Inside Set Recent search")
   const value = document.querySelector('#coveo-search').value;
   const recentSearches = getRecentSearches();
   const searchValueIndex = recentSearches.findIndex((search) => search === value);
@@ -411,12 +414,13 @@ async function buildSearchSuggestions(response) {
                 document.querySelectorAll('#coveo-search').forEach(inpEl => {
                   console.log(inpEl);
                   inpEl.value = event.target.textContent;
+                  //submitSearchPage();
                 })
               }
             }, el.expression));
           }
         });
-      } else parentEl.append(li('No search results!'));
+      } //else parentEl.append(li('No search results!'));
     });
   }
 }
@@ -492,27 +496,29 @@ export default async function decorate(block) {
     searchIcon.innerHTML =
       '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
     const customSearchDiv = div(
-      { id: "custom-search", class: "coveo-search-dropdown" },
+      {  class: "coveo-search-dropdown custom-search" },
       div(
         {
-          id: "coveo-searchbox",
+          class: "coveo-searchbox",
         },
         input({
           type: "text",
-          id: "coveo-search",
+          class: "coveo-search",
           placeholder: "Search here...",
           onfocus: (event) => toggleSearchDropdown(event, "focus"),
           onblur: (event) => toggleSearchDropdown(event, "blur"),
           onkeyup: debounce((event) => {
-            addRecentSearch();
+            console.log("Onkeup Fired!!!");
             fetchSuggestions(event.target.value)
+            //addRecentSearch();
             inputPressEnter(event);
-          }, 1000),
+          }, 300),
         }),
         searchIcon
       ),
       div(
-        { id: "coveo-search-dropdown-menu" },
+        { class: "coveo-search-dropdown-menu",
+          onclick: (event) => buildSearchSuggestions()},
         recentSearchesHeading,
         ul(
           { "aria-labelledby": "coveo-searchbox" },
@@ -523,7 +529,7 @@ export default async function decorate(block) {
     const clonedCustomSearchDiv = customSearchDiv.cloneNode(true);
     clonedCustomSearchDiv.classList.add("mobile-search");
     // Append the custom search div to the document body or any other parent element
-    //outer.appendChild(clonedCustomSearchDiv);
+    outer.appendChild(clonedCustomSearchDiv);
     customSearchDiv.classList.add("desktop-search");
     if (!window.location.pathname.includes("/drafts/search")) {
       headerInfo.appendChild(customSearchDiv);
