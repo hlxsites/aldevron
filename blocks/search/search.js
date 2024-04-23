@@ -76,11 +76,39 @@ const searchBody = `
         <atomic-result-template>
           <template>
             <style>
+
+              .atomic-pagination {
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+              }
+
+              .btn-atomic-link {
+                width: 7rem;
+                padding: .5rem 0;
+                border-radius: .375rem;
+                font-weight: 600;
+              }
+
+              .search-title {
+                width: 100%;
+                display: block;
+                padding: 0;
+                margin-bottom: .5rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+              }
+
+              .description {
+                color: #333;
+                font-size: .875;
+                font-weight: 400;
+              }
+
               .field {
                 display: inline-flex;
                 align-items: center;
               }
-              
+
               .field-label {
                 font-weight: bold;
                 margin-right: 0.25rem;
@@ -151,6 +179,9 @@ const searchBody = `
             <atomic-result-section-title 
               ><atomic-result-link class="search-title"></atomic-result-link
             ></atomic-result-section-title>
+            <div class="f-col"><atomic-result-link>
+            <button class="btn-atomic-link">View</button>
+            </atomic-result-link></div>
             <atomic-result-section-title-metadata>
               <atomic-field-condition class="field" if-defined="snrating">
                 <atomic-result-rating
@@ -167,7 +198,7 @@ const searchBody = `
               </atomic-field-condition>
             </atomic-result-section-title-metadata>
             <atomic-result-section-excerpt
-              ><atomic-result-text field="excerpt"></atomic-result-text
+              ><atomic-result-text field="excerpt" class="description"></atomic-result-text
             ></atomic-result-section-excerpt>
             <!--<atomic-result-section-bottom-metadata>
               <atomic-result-fields-list>
@@ -272,7 +303,7 @@ const searchBody = `
       <atomic-query-error></atomic-query-error>
       <atomic-no-results></atomic-no-results>
     </atomic-layout-section>
-    <atomic-layout-section section="pagination">
+    <atomic-layout-section section="pagination" class="atomic-pagination">
       <!--<atomic-load-more-results></atomic-load-more-results>-->
         <atomic-pager></atomic-pager>
         <!--<atomic-results-per-page></atomic-results-per-page>-->
