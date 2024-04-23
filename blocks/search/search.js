@@ -142,6 +142,15 @@ const searchBody = `
                 background-color: #44a1da;
                 color: white;
               }
+              .display-list {
+                position: relative;
+                padding-right: 20%;
+              }
+              .btn-right-view {
+                  position: absolute;
+                  top: 50%;
+                  right: 0%;
+              }
             </style>
             <!--<atomic-result-section-visual>
               <atomic-result-icon class="icon"></atomic-result-icon>
