@@ -298,10 +298,13 @@ const searchBody = `
               <atomic-table-element label="file-type">
                 <atomic-result-text field="filetype"></atomic-result-text>
               </atomic-table-element>
+              <div>
+                <button class="btn-atomic-link">View</button>
+              </div>
             </template>
-          </div>
-          <div>
-            <button class="btn-atomic-link">View</button>
+            <div>
+              <button class="btn-atomic-link">View</button>
+            </div>
           </div>
         </atomic-result-template>
       </atomic-result-list>
