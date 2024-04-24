@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container to hold side panel and content */
+
+/* Side panel */
+.side-panel {
+  width: 25%;
+  flex: 0 0 300px; /* Adjust width as needed */
+  margin-right: 20px; /* Add spacing between side panel and content */
+  text-align: left;
+}
+
+.container {
+  background-color: #f8f9fa;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/* Content area */
+.event-wrapper {
+  display: flex;
+  flex: 1;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.event-title {
+  font-size: 36px;
+  padding-top: 6px;
+  margin-top: 0;
+  border-bottom: 1px solid #ccc;
+  line-height: 1;
+  font-weight: 100;
+  padding-bottom: 40px;
+  width: 100%;
+  text-align: left;
+
+}
+
+.items {
+  width: 75%;
+}
+
+/* Article listing */
+.post-listing {
+  list-style: none;
+  padding: 37px 0 20px;
+}
+
+/* Individual article item */
+.post-item {
+  padding-top: 20px;
+  margin-left: 6px;
+  border-bottom: 2px solid #ddd; /* Add border between articles */
+  padding-bottom: 20px; /* Add padding at the bottom of each article */
+  text-align: left;
+}
+
+.post-image {
+  flex: 33.33%;
+  margin-bottom: 20px;
+  width: 35%;
+  padding-right: 15px;
+}
+/* Post image */
+.post-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Post title */
+.post-title {
+  font-size: var(--list-font-size-l) !important;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-top: 15px;
+  margin-bottom: 12px;
+  color: unset;
+  text-decoration: none;
+  padding-top: 0 !important;
+}
+
+/* Post meta information */
+.post-meta {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.post-content {
+  padding-top: 0 !important;
+}
+
+.post-date {
+  padding-top: 0 !important;
+}
+
+ul li {
+  padding: 0 !important;
+}
+/* Post type, address, region */
+ul .post-type {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.post-body {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px;
+  position: relative;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.post-body:not(:last-of-type)::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0 !important;
+}
+/* Pagination */
+.blog-pagination {
+  border-top: none;
+  margin-top: 20px;
+}
+
+/* Pagination buttons */
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.prev-posts {
+  margin-right: 10px;
+}
+
+.next-posts {
+  margin-left: 10px;
+}
+
+/* Filter options */
+.filter-option {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Filter panel title */
+.panel-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Archived events link */
+.archivedEvents {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.archivedEvents:hover {
+  text-decoration: underline;
+}
+
+/* Additional styles as needed */

@@ -86,3 +86,9 @@ export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
 export function th(...items) { return domEl('th', ...items); }
 export function time(...items) { return domEl('time', ...items); }
+
+export function checkbox(attributes, labelContent) {
+  const checkboxInput = input({ type: 'checkbox', ...attributes });
+  const labelElement = label(labelContent, checkboxInput);
+  return div(labelElement);
+}
