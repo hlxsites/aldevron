@@ -1,7 +1,7 @@
 import { loadCSS } from '../../scripts/aem.js';
 
 const searchBody = `
-<atomic-search-interface fields-to-include='["snrating", "sncost"]'> 
+<atomic-search-interface fields-to-include='["snrating", "sncost", "pagetype", "contenttype", "title", "description"]' pipeline="Aldevron Marketplace" search-hub="AldevronMainSearch"> 
 <atomic-search-layout>
   <div class="header-bg"></div>
   <atomic-layout-section section="search">
@@ -76,10 +76,63 @@ const searchBody = `
         <atomic-result-template>
           <template>
             <style>
+            .description-excerpt{
+              margin-top: 0.5rem !important;
+            }
+            
+            .display-list {
+              position: relative;
+              padding-right: 125px;
+            }
 
-              .atomic-pagination {
-                margin-top: 3rem;
-                margin-bottom: 3rem;
+            @media (max-width: 768px) { 
+                .display-list {
+                  position: relative;
+                  padding-bottom: 60px;
+                  padding-right: 0px;
+              }
+            }
+
+            @media (max-width: 540px) { 
+                .display-list {
+                  position: relative;
+                  padding-bottom: 60px;
+                  padding-right: 0px;
+              }
+            }
+
+            @media (max-width: 786px) { 
+              .btn-right-view {
+                position: absolute;
+                bottom: 0%;
+                left: 0;
+            }
+          }
+              .btn-right-view {
+                  position: absolute;
+                  right: 0%;
+              }
+
+              .btn-right-view .button{
+                background-color: #ec8f2d;
+                border-radius: 5px !important;
+                border: 1px solid #ec8f2d;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-family: Brown-Ald, Helvetica, Arial, sans-serif;
+                font-size: 18px !important;
+                font-weight: 400;
+                line-height: 100%;
+                margin: 0;
+                padding: .6em 1.3em;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: background .3s;
+                vertical-align: middle;
+                width: auto;
               }
 
               .btn-atomic-link {
@@ -151,20 +204,20 @@ const searchBody = `
                 class="thumbnail"
               />
             </atomic-result-section-visual>-->
-            <atomic-result-section-badges>
-              <atomic-field-condition must-match-sourcetype="Salesforce">
+           <!--<atomic-result-section-badges>
+              <!--<atomic-field-condition must-match-sourcetype="Salesforce">
                 <atomic-result-badge
                   label="Salesforce"
                   class="salesforce-badge"
                 ></atomic-result-badge>
-              </atomic-field-condition>
-              <atomic-result-badge
+              </atomic-field-condition>-->
+              <!--<atomic-result-badge
                 icon="https://raw.githubusercontent.com/Rush/Font-Awesome-SVG-PNG/master/black/svg/language.svg"
               >
                 <atomic-result-multi-value-text
                   field="language"
                 ></atomic-result-multi-value-text>
-              </atomic-result-badge>
+              </atomic-result-badge>-->
               <atomic-field-condition must-match-is-recommendation="true">
                 <atomic-result-badge
                   label="Recommended"
@@ -175,13 +228,11 @@ const searchBody = `
                   label="Top Result"
                 ></atomic-result-badge>
               </atomic-field-condition>
-            </atomic-result-section-badges>
+            </atomic-result-section-badges>-->
             <atomic-result-section-title 
               ><atomic-result-link class="search-title"></atomic-result-link
             ></atomic-result-section-title>
-            <atomic-result-link>
-            </atomic-result-link>
-            <atomic-result-section-title-metadata>
+            <!--<atomic-result-section-title-metadata>
               <atomic-field-condition class="field" if-defined="snrating">
                 <atomic-result-rating
                   field="snrating"
@@ -191,14 +242,23 @@ const searchBody = `
                 class="field"
                 if-not-defined="snrating"
               >
-                <atomic-result-printable-uri
+                <!--<atomic-result-printable-uri
                   max-number-of-parts="3"
-                ></atomic-result-printable-uri>
+                ></atomic-result-printable-uri>-->
               </atomic-field-condition>
-            </atomic-result-section-title-metadata>
-            <atomic-result-section-excerpt
+            </atomic-result-section-title-metadata>-->
+            <atomic-result-section-excerpt class="description-excerpt"
               ><atomic-result-text field="excerpt" class="description"></atomic-result-text
             ></atomic-result-section-excerpt>
+            <atomic-result-section-badges><atomic-field-condition if-defined="pagetype" class="hydrated">
+            <atomic-result-badge class="badge hydrated" field="pagetype">
+            </atomic-result-badge> </atomic-field-condition>  
+            </atomic-result-section-badges>
+            <atomic-result-link data-atomic-rendered="true" data-atomic-loaded="true" class="hydrated">
+            <div class="btn-right-view">
+                 <button class="btn-atomic-link button">View</button>
+             </div>
+            </atomic-result-link>
             <!--<atomic-result-section-bottom-metadata>
               <atomic-result-fields-list>
                 <atomic-field-condition class="field" if-defined="author">
@@ -256,7 +316,7 @@ const searchBody = `
                 </span>
               </atomic-result-fields-list>
             </atomic-result-section-bottom-metadata>-->
-            <atomic-table-element label="Description">
+            <!--<atomic-table-element label="Description">
               <atomic-result-section-title
                 ><atomic-result-link></atomic-result-link
               ></atomic-result-section-title>
@@ -295,10 +355,7 @@ const searchBody = `
             </atomic-table-element>
             <atomic-table-element label="file-type">
               <atomic-result-text field="filetype"></atomic-result-text>
-            </atomic-table-element>
-            <div class="btn-right-view">
-              <button class="btn-atomic-link btn-primary">View</button>
-            </div>
+            </atomic-table-element>-->
           </template>
         </atomic-result-template>
       </atomic-result-list>

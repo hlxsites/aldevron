@@ -73,3 +73,24 @@ atomic-search-layout{
     border-radius: .375rem;
     font-weight: 600;
 }
+
+atomic-layout-section.atomic-pagination{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.search{
+    margin: auto 6% ;
+}
+
+@media (max-width: 540px) { 
+    .search{
+        margin: 0% ;
+    }
+}
+
+@media (max-width: 786px) { 
+    .search{
+        margin: 0% ;
+    }
+}
