@@ -3,6 +3,7 @@
     padding: 5px;
     float: right;
     margin: -7px 0 0 15px;
+    order: 1;
 }
 
 #custom-search.active {
@@ -340,18 +341,20 @@ body.mmg-search-active {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
-    max-width: 12rem;
+    max-width: 10rem;
     margin-bottom: 11rem;
     position: relative;
+    margin: 0;
+    order: 1;
 } 
  
 .coveo-search-dropdown:focus-within {
-  max-width: 16rem;
+    max-width: 16rem;
 }
  
 .coveo-search-dropdown > div.coveo-searchbox {
-  position: relative;
-  width: 100%;
+    width: 100%;
+    position: relative;
 }
  
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search {
@@ -382,73 +385,95 @@ body.mmg-search-active {
 }
  
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search + div {
-  padding-inline-end: 0.75rem;
-    align-items: center;
     display: flex;
-    inset-inline-end: 0px;
+    align-items: center;
+    position: absolute;
     top: 0px;
     bottom: 0px;
-    position: absolute;
+    inset-inline-end: 0px;
+    padding-inline-end: 0.75rem;
     cursor: pointer;
 }
  
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search + div svg {
-  width: 1rem;
-  height: 1rem;
-  fill: none;
+    width: 1rem;
+    height: 1rem;
+    fill: none;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu {
-  position: relative;
-  width: 100%;
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  border-radius: 0.5rem;
-  z-index: 10;
+    position: absolute;
+    width: 100%;
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    border-radius: 0.5rem;
+    z-index: 10;
+    padding: 0.5rem;
+}
+
+.coveo-search-dropdown > div.coveo-search-dropdown-menu > * + * {
+    margin-top: 0.375rem;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu:not(.show) {
-  display: none;
+    display: none;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu.show {
-  display: block;
+    display: block;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu ul {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: rgb(55 65 81);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(55 65 81);
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu ul li {
-  display: block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding-top: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-bottom: 0.25rem;
+    text-transform: capitalize;
+    cursor: pointer;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu ul li:hover {
-  background-color: rgb(243 244 246);
+    background-color: rgb(243 244 246);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
-.recent-searches{
-    font-weight: 700;
-    padding: 10px;
+.coveo-search-dropdown > div.coveo-search-dropdown-menu ul li svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    fill: currentColor;
 }
 
-.all-recent-searches{
-    justify-content: space-between;
+.all-recent-searches {
     display: flex;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+    align-items: center;
 }
 
-.clear-recent-searches{
-    padding: 10px;
+.recent-searches {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    line-height: .75rem;
+}
+
+.clear-recent-searches {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: pointer;
 }
