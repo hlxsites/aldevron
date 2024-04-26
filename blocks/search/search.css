@@ -16,6 +16,24 @@ atomic-search-box::part(submit-button) {
     line-height: 1em;
 }
 
+atomic-pager::part(next-button) {
+    border: none;
+    color: var(--atomic-primary-dark)
+}
+
+atomic-pager::part(previous-button) {
+    border: none;
+    color: var(--atomic-primary-dark)
+}
+
+atomic-pager::part(buttons) {
+    border: none;
+}
+
+atomic-pager::part(active-page-button) {
+    color: var(--atomic-primary-dark)
+}
+
 atomic-result .display-list {
     position: relative;
     padding-right: 20%;
