@@ -63,6 +63,13 @@ function setRecentSearches(value) {
   localStorage.setItem('coveo-recent-queries', JSON.stringify(recentSearches.slice(0, 3)));
 }
 
+function submitSearchPage() {
+  const inputValue = document.querySelector('.mobile-search .coveo-search')?.value?.trim();
+  if (inputValue && inputValue !== '') {
+    window.location = `${window.location.origin}/drafts/search#q=${inputValue}`;
+  }
+}
+
 function onClickOfitems(value) {
   setRecentSearches(value);
   document.querySelectorAll('.coveo-search').forEach((inpEl) => {
@@ -73,16 +80,7 @@ function onClickOfitems(value) {
   });
 }
 
-function submitSearchPage() {
-  console.log('Submit Search Page');
-  const inputValue = document.querySelector('.mobile-search .coveo-search')?.value?.trim();
-  if (inputValue && inputValue !== '') {
-    window.location = `${window.location.origin}/drafts/search#q=${inputValue}`;
-  }
-}
-
 function toggleSearchDropdown(event, mode) {
-  console.log("toggleSearchDropdown called");
   if (mode === 'focus') {
     event.target.parentElement.nextSibling.classList.add('show');
   } else if (mode === 'blur') {
@@ -105,7 +103,7 @@ async function addRecentSearch() {
         parentEl.prepend(item);
       });
     });
-   }
+  }
 }
 
 async function buildSearchSuggestions(response) {
@@ -153,8 +151,74 @@ async function fetchSuggestions(value) {
     buildSearchSuggestions(response);
     coveoSearchValue = value;
   } catch (error) {
+    /* eslint-disable no-console */
     console.log('Error', error);
   }
+}
+
+function customCoveoSearch() {
+  const searchIcon = div({
+    onclick: () => {
+      const mobileValue = document.querySelector('.mobile-search .coveo-search')?.value;
+      if (mobileValue && mobileValue !== '') {
+        setRecentSearches(mobileValue);
+        submitSearchPage();
+      }
+    },
+  });
+  searchIcon.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
+  const customSearchDiv = div(
+    { class: 'coveo-search-dropdown custom-search', onclick: (event) => event.stopPropagation() },
+    div(
+      { class: 'coveo-searchbox' },
+      input({
+        type: 'text',
+        class: 'coveo-search',
+        placeholder: 'Search here...',
+        onfocus: (event) => toggleSearchDropdown(event, 'focus'),
+        onblur: (event) => toggleSearchDropdown(event, 'blur'),
+        onkeyup: debounce((event) => {
+          const { value } = event.target;
+          if (event.keyCode === 13) {
+            submitSearchPage();
+            if (value !== '') setRecentSearches(value);
+          } else {
+            document.querySelector('.mobile-search .coveo-search').value = value;
+            if (value === '') {
+              addRecentSearch();
+              if (coveoSearchValue !== value) fetchSuggestions(value);
+            } else {
+              fetchSuggestions(value);
+              document.querySelectorAll('.all-recent-searches ul').forEach((recentEl) => {
+                recentEl.innerHTML = '';
+              });
+              document.querySelectorAll('.recent-search-item').forEach((recentItemEl) => {
+                recentItemEl.remove();
+              });
+            }
+          }
+        }, 300),
+      }),
+      searchIcon,
+    ),
+    div(
+      { class: 'coveo-search-dropdown-menu' },
+      div(
+        { class: 'all-recent-searches' },
+        ul(),
+        span({ class: 'recent-searches' }, 'Recent Searches'),
+        span({
+          class: 'clear-recent-searches',
+          onclick: () => {
+            localStorage.removeItem('coveo-recent-queries');
+            document.querySelectorAll('.recent-search-item').forEach((event) => event.parentNode.removeChild(event));
+          },
+        }, 'Clear'),
+      ),
+      ul({ 'aria-labelledby': 'coveo-searchbox', class: 'suggestions' }),
+    ),
+  );
+  return customSearchDiv;
 }
 
 /**
@@ -198,80 +262,19 @@ export default async function decorate(block) {
     const headerNavIn = div({ id: 'header-nav-in' });
     const headerInfo = div({ id: 'header-info' });
 
-    const searchIcon = div({
-      onclick: () => {
-        const mobileValue = document.querySelector('.mobile-search .coveo-search')?.value;
-        if (mobileValue && mobileValue !== '') {
-          setRecentSearches(mobileValue);
-          submitSearchPage();
-        }
-      }
-    });
-    searchIcon.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" /><span class="sr-only">Search</span>';
-    const customSearchDiv = div(
-      { class: 'coveo-search-dropdown custom-search', onclick: (event) => event.stopPropagation() },
-      div(
-        { class: 'coveo-searchbox' },
-        input({
-          type: 'text',
-          class: 'coveo-search',
-          placeholder: 'Search here...',
-          onfocus: (event) => toggleSearchDropdown(event, 'focus'),
-          onblur: (event) => toggleSearchDropdown(event, 'blur'),
-          onkeyup: debounce((event) => {
-            const value = event.target.value;
-            if (event.keyCode === 13) {
-              console.log("Enter pressed");
-              submitSearchPage();
-              if (value !== '') setRecentSearches(value);
-            } else {
-              document.querySelector('.mobile-search .coveo-search').value = value;
-              if (value === '') {
-                console.log("KeyUp Event");
-                addRecentSearch();
-                if (coveoSearchValue !== value) fetchSuggestions(value);
-              } else {
-                fetchSuggestions(value);
-                document.querySelectorAll('.all-recent-searches ul').forEach(recentEl => recentEl.innerHTML = '');
-                document.querySelectorAll('.recent-search-item').forEach(recentItemEl => {
-                  console.log(recentItemEl);
-                  recentItemEl.remove();
-                });
-              }
-            }
-          }, 300),
-        }),
-        searchIcon,
-      ),
-      div(
-        { class: 'coveo-search-dropdown-menu' },
-        div(
-          { class: 'all-recent-searches' },
-          ul(),
-          span({ class: 'recent-searches' }, 'Recent Searches'),
-          span({
-            class: 'clear-recent-searches',
-            onclick: (event) => {
-              console.log("clear event called");
-              localStorage.removeItem('coveo-recent-queries');
-              document.querySelectorAll(".recent-search-item").forEach(e => e.parentNode.removeChild(e)
-              );
-            },
-          }, 'Clear'),
-        ),
-        ul({ 'aria-labelledby': 'coveo-searchbox', class: 'suggestions' }),
-      ),
-    );
-
-    const clonedCustomSearchDiv = customSearchDiv.cloneNode(true);
+    // Desktop Coveo Search
+    const coveoSearch = customCoveoSearch();
+    // Mobile Coveo Search
+    const clonedCustomSearchDiv = customCoveoSearch();
     clonedCustomSearchDiv.classList.add('mobile-search');
-    // Append the custom search div to the document body or any other parent element
-    outer.appendChild(clonedCustomSearchDiv);
-    customSearchDiv.classList.add('desktop-search');
+    coveoSearch.classList.add('desktop-search');
+
     if (!window.location.pathname.includes('/drafts/search')) {
-      headerInfo.appendChild(customSearchDiv);
+      headerInfo.appendChild(coveoSearch);
+      // Append the custom search div to the document body or any other parent element
+      outer.appendChild(clonedCustomSearchDiv);
     }
-    const listElements = document.createElement('div');
+    const listElements = div();
 
     listElements.innerHTML = childElements.children[1].innerHTML;
 
@@ -326,6 +329,5 @@ export default async function decorate(block) {
 
     addRecentSearch();
     fetchSuggestions('');
-   
   }
 }

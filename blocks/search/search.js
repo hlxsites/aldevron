@@ -1,4 +1,4 @@
-import { loadCSS } from "../../scripts/aem.js";
+import { loadCSS } from '../../scripts/aem.js';
 
 const searchBody = `
 <atomic-search-interface fields-to-include='["snrating", "sncost", "pagetype", "contenttype", "title", "description"]' pipeline="Aldevron Marketplace" search-hub="AldevronMainSearch"> 
