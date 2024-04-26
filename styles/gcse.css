@@ -319,11 +319,10 @@ body.mmg-search-active {
     }
 }
 
-/* @media(max-width: 374px) {
-    #custom-search input {
-        width: 166px
-    }
-} */
+.mobile-search {
+    position: absolute !important;
+    right: 3rem;
+}
 
 .sr-only {
     position: absolute;
@@ -338,26 +337,27 @@ body.mmg-search-active {
 }
 
 .coveo-search-dropdown {
+    max-width: 16rem;
+    height: 100%;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
-    max-width: 10rem;
     margin-bottom: 11rem;
     position: relative;
     margin: 0;
     order: 1;
-} 
- 
-.coveo-search-dropdown:focus-within {
-    max-width: 16rem;
 }
- 
+
 .coveo-search-dropdown > div.coveo-searchbox {
     width: 100%;
+    height: inherit;
     position: relative;
 }
  
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search {
+    width: 16rem;
+    height: 100%;
+    display: block;
     --tw-text-opacity: 1;
     color: rgb(17 24 39 / var(--tw-text-opacity));
     font-size: 0.875rem;
@@ -372,18 +372,19 @@ body.mmg-search-active {
     border-color: rgb(209 213 219 / var(--tw-border-opacity));
     border-width: 1px;
     border-radius: 0.25rem;
-    /* width: 12rem; */
-    display: block;
 }
-/*  
+
+.coveo-search-dropdown.mobile-search > div.coveo-searchbox input.coveo-search {
+    width: 12rem !important;
+}
+
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search:focus {
-    width: 16rem;
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
     --tw-border-opacity: 1;
     border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
-  */
+
 .coveo-search-dropdown > div.coveo-searchbox input.coveo-search + div {
     display: flex;
     align-items: center;
@@ -403,7 +404,7 @@ body.mmg-search-active {
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu {
     position: absolute;
-    width: 100%;
+    width: auto;
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -427,10 +428,12 @@ body.mmg-search-active {
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu ul {
+    width: 100%;
     font-size: 0.875rem;
     line-height: 1.25rem;
     color: rgb(55 65 81);
     padding: 0;
+    user-select: none;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu ul li {
