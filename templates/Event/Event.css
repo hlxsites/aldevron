@@ -1,183 +1,80 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Main container to hold side panel and content */
-
-/* Side panel */
-.side-panel {
-  width: 25%;
-  flex: 0 0 300px; /* Adjust width as needed */
-  margin-right: 20px; /* Add spacing between side panel and content */
+main .section {
+  padding-top: 50px;
+  padding-bottom: 50px;
   text-align: left;
+  margin: 50px 50px;
 }
 
-.container {
-  background-color: #f8f9fa;
-  padding-top: 50px;
-  padding-bottom: 50px;
+.event main .section > div,
+.event main .section div + .default-content-wrapper {
+  padding-top: 0 !important;
 }
 
-/* Content area */
-.event-wrapper {
-  display: flex;
-  flex: 1;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  width: 1170px;
+.event main .section .default-content-wrapper {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.event .event-title {
+  font-size: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 30px;
+}
+
+.event .find-out-more {
+  padding: 30px 0;
+  margin-right: 8px;
+}
+
+.event main .event-container p:last-of-type {
+  padding-bottom: 100px;
+}
+
+
+main .section > div {
   margin: 0 auto;
   padding: 0 15px;
 }
 
-.event-title {
-  font-size: 36px;
-  padding-top: 6px;
-  margin-top: 0;
-  border-bottom: 1px solid #ccc;
-  line-height: 1;
-  font-weight: 100;
-  padding-bottom: 40px;
-  width: 100%;
-  text-align: left;
-
-}
-
-.items {
-  width: 75%;
-}
-
-/* Article listing */
-.post-listing {
-  list-style: none;
-  padding: 37px 0 20px;
-}
-
-/* Individual article item */
-.post-item {
-  padding-top: 20px;
-  margin-left: 6px;
-  border-bottom: 2px solid #ddd; /* Add border between articles */
-  padding-bottom: 20px; /* Add padding at the bottom of each article */
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
   text-align: left;
 }
 
-.post-image {
-  flex: 33.33%;
-  margin-bottom: 20px;
-  width: 35%;
-  padding-right: 15px;
-}
-/* Post image */
-.post-image img {
-  width: 100%;
-  height: auto;
-}
-
-/* Post title */
-.post-title {
-  font-size: var(--list-font-size-l) !important;
+.popup-message p{
+  font-size: 20px;
   font-weight: bold;
-  line-height: 1.1;
-  margin-top: 15px;
-  margin-bottom: 12px;
-  color: unset;
-  text-decoration: none;
-  padding-top: 0 !important;
 }
 
-/* Post meta information */
-.post-meta {
-  color: #666;
-  font-size: 0.8rem;
+.popup-message .proceed{
+  float: left;
 }
 
-.post-content {
-  padding-top: 0 !important;
+.popup-message .cancel{
+  float: right;
 }
 
-.post-date {
-  padding-top: 0 !important;
+.button-container a {
+  background-color: var(--primary-color) !important;
+  padding: 10px !important;
+  text-decoration: none !important;
+  border: 1px solid var(--primary-color) !important;
+  font-size: 20px !important;
+  color: #fff !important;
+  font-weight: bold !important;
 }
 
-ul li {
-  padding: 0 !important;
+.button-container a :hover {
+  background-color: #fff !important;
+  text-decoration: none !important;
+  color: var(--primary-color) !important;
 }
-/* Post type, address, region */
-ul .post-type {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  margin-bottom: 5px;
-}
-
-.post-body {
-  display: inline-block;
-  width: auto;
-  margin-right: 10px;
-  position: relative;
-  font-size: 18px;
-  vertical-align: middle;
-}
-
-.post-body:not(:last-of-type)::after {
-  content: '|';
-  display: inline-block;
-  margin-left: 10px;
-  padding: 0 !important;
-}
-/* Pagination */
-.blog-pagination {
-  border-top: none;
-  margin-top: 20px;
-}
-
-/* Pagination buttons */
-.button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.prev-posts {
-  margin-right: 10px;
-}
-
-.next-posts {
-  margin-left: 10px;
-}
-
-/* Filter options */
-.filter-option {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Filter panel title */
-.panel-title {
-  font-weight: bold;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Archived events link */
-.archivedEvents {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.archivedEvents:hover {
-  text-decoration: underline;
-}
-
-/* Additional styles as needed */
