@@ -186,7 +186,7 @@ export default async function decorate(block) {
   loadCSS('https://static.cloud.coveo.com/atomic/v2/themes/coveo.css');
 
   (async () => {
-    await import('https://static.cloud.coveo.com/atomic/v2/atomic.esm.js');
+    await import('https://static.cloud.coveo.com/atomic/v2/atomic.esm.js');// eslint-disable-line
     await customElements.whenDefined('atomic-search-interface');
 
     const searchInterface = document.querySelector('atomic-search-interface');

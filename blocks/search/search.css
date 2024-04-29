@@ -56,14 +56,6 @@ atomic-result .btn-right-view {
     font-weight: 600;
 }
 
-.f-col {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-    margin-left: 1rem;
-}
-
 atomic-search-layout{
     text-align: left;
 }
@@ -75,14 +67,6 @@ atomic-search-layout{
     margin-bottom: .5rem;
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-.f-col{
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-    margin-left: 1rem;
 }
 
 .btn-atomic-link{
