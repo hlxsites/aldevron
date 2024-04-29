@@ -107,7 +107,7 @@ atomic-layout-section.atomic-pagination{
     }
 }
 
-@media (max-width: 786px) { 
+@media (max-width: 820px) { 
     .search{
         margin: 0% ;
     }

@@ -241,11 +241,10 @@ export default async function decorate(block) {
     const nav = document.createElement('header');
     nav.id = 'header';
 
-    const outer = document.createElement('div');
-    outer.classList.add('outer');
+    const outer = div({ class: 'outer' });
     nav.appendChild(outer);
 
-    const logo = a({ id: 'logo', href: '/', ariaLabel: 'Aldevron Logo' });
+    const logo = a({ id: 'logo', href: '/', 'aria-label': 'Aldevron Logo' });
     logo.innerHTML = childElements.children[0].innerHTML;
     outer.appendChild(logo);
 

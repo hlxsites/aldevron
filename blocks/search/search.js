@@ -34,7 +34,13 @@ const searchBody = `
       <atomic-result-list>
         <atomic-result-template>
           <template>
-            <style>
+            <style> 
+              @media (min-width: 1024px) {
+                .badge{
+                    margin-left: 1rem;
+                }
+              }
+
               .description-excerpt{
                 margin-top: 0.5rem !important;
               }
@@ -148,13 +154,13 @@ const searchBody = `
             ></atomic-result-section-title>
             <atomic-result-section-excerpt class='description-excerpt'
               ><atomic-result-text field='excerpt' class='description'></atomic-result-text
-            ></atomic-result-section-excerpt>
-            <atomic-result-section-badges><atomic-field-condition if-defined="pagetype" class="hydrated">
-            <atomic-result-badge class="badge hydrated" field="pagetype">
+            ></atomic-result-section-excerpt>           
+            <atomic-result-section-badges class="badge"><atomic-field-condition if-not-defined="contenttype" class="hydrated">
+            <atomic-result-badge class="hydrated" field="pagetype">
             </atomic-result-badge> </atomic-field-condition>  
             </atomic-result-section-badges>
-            <atomic-result-section-badges><atomic-field-condition if-defined="contenttype" class="hydrated">
-            <atomic-result-badge class="badge hydrated" field="contenttype">
+            <atomic-result-section-badges class="badge"><atomic-field-condition if-defined="pagetype" class="hydrated">
+            <atomic-result-badge class="hydrated" field="pagetype">
             </atomic-result-badge> </atomic-field-condition>  
             </atomic-result-section-badges>
             <atomic-result-link data-atomic-rendered="true" data-atomic-loaded="true" class="hydrated">
