@@ -75,6 +75,9 @@ body {
 }
 
 #header-info {
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
     color: #767a7f;
     font-family: Brown-Ald,Helvetica,Arial,sans-serif;
     font-size: 15px;
@@ -82,12 +85,11 @@ body {
     line-height: normal;
     position: absolute;
     right: 0;
-    top: 16px
+    top: 16px;
 }
 
 #header-info a {
     color: #1a1919;
-    padding-left: 10px;
     text-decoration: none
 }
 
