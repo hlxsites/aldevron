@@ -13,7 +13,11 @@ export default async function decorate(block) {
   const endDate = new Date(endDateParts[2], endDateParts[0], endDateParts[1]);
   const formattedStartDate = startDate.toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
   const formattedEndDate = endDate.toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
-  const date = `${formattedStartDate.split(',')[0]} - ${formattedEndDate}`;
+  let date;
+  if (formattedEndDate !== formattedStartDate) {
+    date = `${formattedStartDate.split(',')[0]} - ${formattedEndDate}`;
+  } else { date = `${formattedEndDate}`; }
+
   const image = getMetadata('og:image');
   const description = getMetadata('og:description');
   const registerButton = getMetadata('register-button');
@@ -33,12 +37,16 @@ export default async function decorate(block) {
   const keywordList = ul(
     { class: 'keyword-list' },
     li({ class: 'item type' }, type),
-    li({ class: 'item region' }, region),
-    li({ class: 'item address' }, address),
+    li({ class: 'item address' }, address !== region ? address : region),
+    (address !== region ? li({ class: 'item region' }, region) : ''),
   );
-
+  let registerButtonLink;
   const eventDescription = p(description);
-  const registerButtonLink = a({ href: registerButton, title }, 'Register Today');
+  if (type === 'Conference') {
+    registerButtonLink = a({ href: registerButton, title }, 'Visit the Event Website');
+  } else {
+    registerButtonLink = a({ href: registerButton, title }, 'Register Today');
+  }
   const registerButtonContainer = p({ class: 'button-container find-out-more' }, strong(registerButtonLink));
 
   // Append elements to block
