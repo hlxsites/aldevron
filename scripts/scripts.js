@@ -340,6 +340,22 @@ function correctUTMFlow() {
   }
 }
 
+export function formatDateRange(startDate, endDate) {
+  const options = {month: 'short', day : 'numeric', year: 'numeric'};
+  const formattedStartDate = new Date(Number(startDate) * 1000).toLocaleDateString('en-us', options);
+  const formattedEndDate = new Date(Number(endDate) * 1000).toLocaleDateString('en-us', options);
+  const startYear = new Date(formattedStartDate).getFullYear();
+  const endYear = new Date(formattedEndDate).getFullYear();
+  const differentYear = startYear !== endYear;
+  let dateRangeString;
+  if(differentYear) {
+    dateRangeString = formattedStartDate + ' - ' + formattedEndDate;
+  } else {
+    dateRangeString = (formattedStartDate).split(',')[0] + ' - ' + formattedEndDate;
+  }
+  return dateRangeString;
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
