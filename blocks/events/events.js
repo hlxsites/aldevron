@@ -189,7 +189,7 @@ function createEventsDropdown(eventName, options) {
 }
 
 function createLink(text, currentPage) {
-  const linkHref = currentPage === true ? '/drafts/archived-events' : '/drafts/events-calendar';
+  const linkHref = currentPage === 'events-calendar' ? '/drafts/archived-events' : '/drafts/events-calendar';
   const link = p(a({ href: linkHref, title: text }, text));
   return link;
 }
@@ -205,7 +205,7 @@ async function buildSidePanel(currentPage, eventData) {
   const regionDropdown = createEventsDropdown('Region', region);
 
   // Append dropdowns to filter div
-  const linkText = currentPage === true ? 'Archived Events' : 'Upcoming Events';
+  const linkText = currentPage === 'events-calendar' ? 'Archived Events' : 'Upcoming Events';
   const link = createLink(linkText, currentPage);
 
   // Append filter div to side panel
