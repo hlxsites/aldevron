@@ -51,17 +51,17 @@ ul li {
 }
 
 .image-container {
-  flex: 0 0 50%;
+  flex: 1;
   max-width: 50%;
   margin-right: 30px;
   overflow: hidden;
   position: relative;
 }
 
-.image-container .img {
+.image-container img {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+
 }
 
 @media only screen and (max-width: 768px) {

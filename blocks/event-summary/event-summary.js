@@ -7,10 +7,11 @@ import {
 export default async function decorate(block) {
   const startDatestr = getMetadata('startdate');
   const endDatestr = getMetadata('enddate');
-  const startDateParts = startDatestr.split('/');
-  const endDateParts = endDatestr.split('/');
-  const startDate = new Date(startDateParts[2], startDateParts[0], startDateParts[1]);
-  const endDate = new Date(endDateParts[2], endDateParts[0], endDateParts[1]);
+  const eventTime = getMetadata('eventtime');
+  const startDateParts = startDatestr.split(/-|\//);
+  const endDateParts = endDatestr.split(/-|\//);
+  const startDate = new Date(startDateParts[2], startDateParts[0] - 1, startDateParts[1]);
+  const endDate = new Date(endDateParts[2], endDateParts[0] - 1, endDateParts[1]);
   const formattedStartDate = startDate.toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
   const formattedEndDate = endDate.toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
   let date;
@@ -26,13 +27,19 @@ export default async function decorate(block) {
   const region = getMetadata('region');
   const address = getMetadata('address');
 
+  const outerBlock = document.querySelector('.section');
+  outerBlock.classList.add('outer');
+
   // Create elements
   const imageContainer = div(
     { class: 'image-container' },
     createOptimizedPicture(image, title),
   );
 
-  const eventDate = p({ class: 'event-date' }, date);
+  const eventDate = (eventTime !== '' ? p(
+    { class: 'event-date' },
+    `${date} ${eventTime}`,
+  ) : p({ class: 'event-date' }, date));
   const eventSubtitle = h1({ class: 'event-subtitle' }, title);
   const keywordList = ul(
     { class: 'keyword-list' },
