@@ -8,6 +8,10 @@ import {
 } from '../../scripts/dom-builder.js';
 import { formatDateRange } from '../../scripts/scripts.js';
 
+const REGIONS = [
+  'Europe',
+  'North America',
+];
 async function fetchPostData() {
   try {
     const response = await fetch('/drafts/query-index.json');
@@ -64,7 +68,9 @@ async function generateEventDetails(articles) {
     let date = '';
     if (art.startDate && art.endDate) {
       const endDate = new Date(art.endDate * 1000).toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
-      date = art.startDate === art.endDate ? endDate : formatDateRange(art.startDate, art.endDate);
+      const eventDate = art.startDate === art.endDate
+        ? endDate : formatDateRange(art.startDate, art.endDate);
+      date = (art.eventTime !== '') ? `${eventDate} ${art.eventTime}` : eventDate;
     }
     return article(
       { class: 'item' },
@@ -108,7 +114,7 @@ function updateEvents(events) {
     const pageTitle = document.title;
     itemsContainer.appendChild(h2({ class: 'event-title' }, pageTitle));
     if (eventContent.length === 0) {
-      const noEventsMesage = h3({ class: 'no-result' }, 'No Events Found!');
+      const noEventsMesage = h3({ class: 'no-result' }, 'No Events Found');
       itemsContainer.appendChild(noEventsMesage);
     } else {
       eventContent.forEach((element) => {
@@ -196,13 +202,12 @@ function createLink(text, currentPage) {
 
 async function buildSidePanel(currentPage, eventData) {
   const types = [...new Set(eventData.map((item) => item.type))].sort();
-  const region = [...new Set(eventData.map((item) => item.region))].sort();
   const sidePanel = div({ class: 'filter' });
   const panelTitle = p({ class: 'panel-title' }, 'Filter By:');
 
   // Dropdowns
   const eventTypeDropdown = createEventsDropdown('Event Type', types);
-  const regionDropdown = createEventsDropdown('Region', region);
+  const regionDropdown = createEventsDropdown('Region', REGIONS);
 
   // Append dropdowns to filter div
   const linkText = currentPage === 'events-calendar' ? 'Archived Events' : 'Upcoming Events';
@@ -224,18 +229,41 @@ async function buildSidePanel(currentPage, eventData) {
   return sidePanel;
 }
 
+function updatePaginationButtons(currentPage) {
+  document.querySelectorAll('.pagination .pager-item').forEach((data) => {
+    data.classList.remove('active');
+    if (parseInt(data.textContent, 10) === currentPage) {
+      data.classList.add('active');
+    }
+  });
+}
+
 function displayPage(page, events) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentPageEvents = events.slice(startIndex, endIndex);
   updateEvents(currentPageEvents);
-  // Update UI with current page events
 }
 
-// Function to handle pagination navigation
 function handlePagination(page, events) {
   currentPageNumber = page;
   displayPage(currentPageNumber, events); // Update UI with new page
+}
+
+function generatePaginationButtons(totalPages, currentPage, events) {
+  const paginationContainer = nav({ class: 'pagination' });
+  for (let i = 1; i <= totalPages; i += 1) {
+    const pageButton = button({ class: 'pager-item' }, i);
+    if (i === currentPage) {
+      pageButton.classList.add('active');
+    }
+    pageButton.addEventListener('click', () => {
+      handlePagination(i, events);
+      updatePaginationButtons(i);
+    });
+    paginationContainer.appendChild(pageButton);
+  }
+  return paginationContainer;
 }
 
 function getTotalPages(events) {
@@ -243,6 +271,8 @@ function getTotalPages(events) {
 }
 
 export default async function decorate(block) {
+  const outerBlock = document.querySelector('.section');
+  outerBlock.classList.add('outer');
   const postData = await fetchPostData();
   const page = window.location.pathname.includes('events-calendar');
   const currentPage = page ? 'events-calendar' : 'archived-events';
@@ -266,7 +296,7 @@ export default async function decorate(block) {
       itemsContainer.appendChild(element);
     });
   } else {
-    const noEventMessage = currentPage === 'event-calendar' ? 'No Upcoming Events!' : 'No Archived Events!';
+    const noEventMessage = currentPage === 'event-calendar' ? 'No Upcoming Events' : 'No Archived Events';
     const noResults = h3({ class: 'no-result' }, noEventMessage);
     itemsContainer.appendChild(noResults);
     block.appendChild(itemsContainer);
@@ -275,19 +305,8 @@ export default async function decorate(block) {
   wrapper.appendChild(itemsContainer);
   block.appendChild(wrapper);
   if (eventsToshow.length > itemsPerPage) {
-    const paginationContainer = nav({ class: 'pagination' });
-
-    // Assuming you have "Next" and "Previous" buttons for pagination
     const totalPages = getTotalPages(eventsToshow);
-    for (let i = 1; i <= totalPages; i += 1) {
-      const pageButton = button({ class: 'pager-item' });
-      pageButton.textContent = i;
-      pageButton.addEventListener('click', () => handlePagination(i, eventsToshow));
-      paginationContainer.appendChild(pageButton);
-    }
-    wrapper.appendChild(paginationContainer);
-
-    // Initial display of the first page of events
+    wrapper.appendChild(generatePaginationButtons(totalPages, currentPageNumber, eventsToshow));
 
     displayPage(currentPageNumber, eventsToshow);
   }
