@@ -2,6 +2,7 @@ import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 import {
   div, h1, a, li, p, ul,
   strong,
+  button,
 } from '../../scripts/dom-builder.js';
 
 export default async function decorate(block) {
@@ -65,16 +66,9 @@ export default async function decorate(block) {
     event.preventDefault();
 
     const popupMessageBox = div({ class: 'popup-message' });
-    const message = document.createElement('p');
-    message.textContent = 'You are now moving to an external website.';
-
-    const proceedBtn = document.createElement('button');
-    proceedBtn.classList.add('proceed');
-    proceedBtn.textContent = 'Proceed';
-
-    const cancelBtn = document.createElement('button');
-    cancelBtn.classList.add('cancel');
-    cancelBtn.textContent = 'Cancel';
+    const message = p('You are now moving to an external website.');
+    const proceedBtn = button({class: 'proceed'}, 'Proceed');
+    const cancelBtn = button({class: 'cancel'}, 'Cancel');
 
     popupMessageBox.appendChild(message);
     popupMessageBox.appendChild(proceedBtn);

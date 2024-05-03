@@ -13,7 +13,7 @@ export default function decorate($block) {
     link: '/',
   }, {
     text: 'Events',
-    link: '/about-us/events-calendar',
+    link: '/about-us/events',
   }, {
     text: title,
   }];
