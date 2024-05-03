@@ -195,7 +195,7 @@ function createEventsDropdown(eventName, options) {
 }
 
 function createLink(text, currentPage) {
-  const linkHref = currentPage === 'events-calendar' ? '/drafts/archived-events' : '/drafts/events-calendar';
+  const linkHref = currentPage === 'events' ? '/about-us/archived-events' : '/about-us/events';
   const link = p(a({ href: linkHref, title: text }, text));
   return link;
 }
@@ -210,7 +210,7 @@ async function buildSidePanel(currentPage, eventData) {
   const regionDropdown = createEventsDropdown('Region', REGIONS);
 
   // Append dropdowns to filter div
-  const linkText = currentPage === 'events-calendar' ? 'Archived Events' : 'Upcoming Events';
+  const linkText = currentPage === 'events' ? 'Archived Events' : 'Upcoming Events';
   const link = createLink(linkText, currentPage);
 
   // Append filter div to side panel
@@ -274,8 +274,8 @@ export default async function decorate(block) {
   const outerBlock = document.querySelector('.section');
   outerBlock.classList.add('outer');
   const postData = await fetchPostData();
-  const page = window.location.pathname.includes('events-calendar');
-  const currentPage = page ? 'events-calendar' : 'archived-events';
+  const page = window.location.pathname.includes('/events');
+  const currentPage = page ? 'events' : 'archived-events';
   const filteredResults = postData.filter((item) => /events\/.*$/.test(item.path.toLowerCase()));
   const sortedEvents = sortEventsByDate(filteredResults);
   const currentDate = new Date();
@@ -296,7 +296,7 @@ export default async function decorate(block) {
       itemsContainer.appendChild(element);
     });
   } else {
-    const noEventMessage = currentPage === 'event-calendar' ? 'No Upcoming Events' : 'No Archived Events';
+    const noEventMessage = currentPage === 'events' ? 'No Upcoming Events' : 'No Archived Events';
     const noResults = h3({ class: 'no-result' }, noEventMessage);
     itemsContainer.appendChild(noResults);
     block.appendChild(itemsContainer);
