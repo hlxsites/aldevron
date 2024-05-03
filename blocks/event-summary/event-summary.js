@@ -67,8 +67,8 @@ export default async function decorate(block) {
 
     const popupMessageBox = div({ class: 'popup-message' });
     const message = p('You are now moving to an external website.');
-    const proceedBtn = button({class: 'proceed'}, 'Proceed');
-    const cancelBtn = button({class: 'cancel'}, 'Cancel');
+    const proceedBtn = button({ class: 'proceed' }, 'Proceed');
+    const cancelBtn = button({ class: 'cancel' }, 'Cancel');
 
     popupMessageBox.appendChild(message);
     popupMessageBox.appendChild(proceedBtn);
