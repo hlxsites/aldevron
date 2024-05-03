@@ -6,8 +6,8 @@
 
 .event-details {
   flex: 1;
-  max-width: calc(50% -20px);
-  margin: 0 10px 10px 10px;
+  max-width: calc(50% - 20px);
+  margin: 0 10px 10px;
 }
 
 ul.keyword-list {
@@ -31,7 +31,7 @@ ul.keyword-list li {
 }
 
 ul li {
-  padding: 0 0 0 0 !important;
+  padding: 0 !important;
 }
 
 .event-date {
