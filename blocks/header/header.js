@@ -2,6 +2,7 @@ import { debounce, getMetadata } from '../../scripts/aem.js';
 import {
   input, div, ul, li, span, a,
 } from '../../scripts/dom-builder.js';
+import { getCookie } from '../../scripts/scripts.js';
 
 const windowWidth = document.body.offsetWidth;
 
@@ -124,20 +125,43 @@ async function buildSearchSuggestions(response) {
   }
 }
 
+function getCoveoPayload(values) {
+  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const userTimestamp = new Date().toISOString();
+  const clientId = getCookie('coveo_visitorId');
+  const searchHistoryString = localStorage.getItem('__coveo.analytics.history');
+  const searchHistory = searchHistoryString ? JSON.parse(searchHistoryString) : [];
+  const payload = {
+    analytics: {
+      clientId,
+      clientTimestamp: userTimestamp,
+      documentLocation: window.location.href,
+      documentReferrer: document.referrer,
+      originContext: 'Search',
+    },
+    locale: 'en',
+    pipeline: 'Aldevron Marketplace',
+    searchHub: 'AldevronMainSearch',
+    actionsHistory: searchHistory.map(({ time, value, name }) => ({ time, value, name })),
+    timezone: userTimeZone,
+    q: values,
+    count: 8,
+    referrer: document.referrer,
+    visitorId: clientId,
+  };
+  return payload;
+}
+
 async function fetchSuggestions(value) {
   try {
-    const payload = {
-      locale: 'en',
-      pipeline: 'Aldevron Marketplace',
-      searchHub: 'AldevronMainSearch',
-      timezone: 'America/New_York',
-      q: value,
-      count: 4,
-      referrer: '',
-    };
-    const accessToken = 'xx36c41356-a0e5-4071-bcae-d27539d778e2';
+    const payload = getCoveoPayload(value);
+    const organizationId = window.aldevronConfig?.searchOrg;
+    const accessToken = window.aldevronConfig?.searchKey;
+    const domain = window.aldevronConfig?.origin;
+    const path = window.aldevronConfig?.path;
+    const apiURL = `https://${organizationId}${domain}${path}`;
     const resp = await fetch(
-      'https://danahernonproduction1892f3fhz.org.coveo.com/rest/search/v2/querySuggest',
+      apiURL,
       {
         method: 'POST',
         headers: {

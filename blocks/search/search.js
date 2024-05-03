@@ -37,7 +37,8 @@ const searchBody = `
             <style> 
               @media (min-width: 1024px) {
                 .badge{
-                    margin-left: 1rem;
+                    margin-left: 0.75rem;
+                    margin-bottom: 0.75rem !important;
                 }
               }
 
@@ -74,6 +75,12 @@ const searchBody = `
               .btn-right-view {
                   position: absolute;
                   right: 0%;
+              }
+
+              @media (min-width: 1024px) { 
+                .btn-right-view {
+                  margin-top: 42px;
+                }
               }
 
               .btn-right-view .button{
@@ -147,7 +154,16 @@ const searchBody = `
               .result-root.image-icon .icon {
                 display: inline-block;
               }
-              }
+
+              atomic-result-badge::part(result-badge-element) {
+                background: #E0E9EB;
+                padding: .25rem .375rem;
+                border-radius: 5px;
+                margin-top: .25rem;
+                color: black;
+                height: auto !important;
+               }
+
             </style>
             <atomic-result-section-title 
               ><atomic-result-link class='search-title'></atomic-result-link
@@ -155,18 +171,16 @@ const searchBody = `
             <atomic-result-section-excerpt class='description-excerpt'
               ><atomic-result-text field='excerpt' class='description'></atomic-result-text
             ></atomic-result-section-excerpt>           
-            <atomic-result-section-badges class="badge"><atomic-field-condition if-not-defined="contenttype" class="hydrated">
-            <atomic-result-badge class="hydrated" field="pagetype">
-            </atomic-result-badge> </atomic-field-condition>  
+            <atomic-result-section-badges class="badge">
+                <atomic-field-condition if-defined="contenttype" class="hydrated">
+                    <atomic-result-badge class="hydrated" field="contenttype"></atomic-result-badge>
+                </atomic-field-condition>  
+                <atomic-field-condition if-defined="pagetype" class="hydrated">
+                    <atomic-result-badge class="hydrated" field="pagetype"></atomic-result-badge>
+                </atomic-field-condition>  
             </atomic-result-section-badges>
-            <atomic-result-section-badges class="badge"><atomic-field-condition if-defined="pagetype" class="hydrated">
-            <atomic-result-badge class="hydrated" field="pagetype">
-            </atomic-result-badge> </atomic-field-condition>  
-            </atomic-result-section-badges>
-            <atomic-result-link data-atomic-rendered="true" data-atomic-loaded="true" class="hydrated">
-            <div class="btn-right-view">
+            <atomic-result-link data-atomic-rendered="true" data-atomic-loaded="true" class="btn-right-view hydrated">
                  <button class="btn-atomic-link button">View</button>
-             </div>
             </atomic-result-link>
           </template>
         </atomic-result-template>
