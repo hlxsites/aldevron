@@ -60,6 +60,8 @@ ul li {
 
 .image-container img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 16;
 }
 
 @media only screen and (max-width: 768px) {
