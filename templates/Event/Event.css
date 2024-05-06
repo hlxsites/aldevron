@@ -11,11 +11,6 @@ main .section {
   margin: auto;
 }
 
-.event main .section > div,
-.event main .section div + .default-content-wrapper {
-  padding-top: 0 !important;
-}
-
 .event main .section .default-content-wrapper {
   padding-top: 15px;
   padding-bottom: 15px;
