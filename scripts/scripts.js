@@ -37,6 +37,7 @@ const TEMPLATE_LIST = [
   'news',
   'anniversary',
   'landing-page',
+  'event',
 ];
 
 const CATEGORY_LIST = [
