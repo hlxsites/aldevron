@@ -137,6 +137,7 @@ ul.keyword-list li:not(:last-of-type)::after {
   height: 100%;
   vertical-align: middle;
   border: 0;
+  aspect-ratio: 16 / 16;
 }
 
 /* Styles for pagination */
