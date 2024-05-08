@@ -14,7 +14,7 @@ const REGIONS = [
 ];
 async function fetchPostData() {
   try {
-    const response = await fetch('/drafts/query-index.json');
+    const response = await fetch('/query-index.json');
     const jsonData = await response.json();
     return jsonData.data;
   } catch (error) {
