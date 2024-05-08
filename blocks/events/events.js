@@ -16,7 +16,7 @@ const REGIONS = [
 const TYPES = [
   'Conference',
   'Events',
-  'Webinar'
+  'Webinar',
 ];
 
 async function fetchPostData() {
@@ -34,7 +34,6 @@ const itemsPerPage = 10;
 
 // Function to sort events based on their start dates
 function sortEventsByDate(events) {
-  console.log(events);
   // Sort events based on their start dates
   events.sort((dateA, dateB) => {
     // Convert start dates to Date objects for comparison
@@ -60,8 +59,6 @@ function separateEventsByDate(events, currentDate, classParameter) {
   events.forEach((event) => {
     const startDate = new Date(event.startdate * 1000);
     const endDate = new Date(event.enddate * 1000);
-    console.log(formatDateRange(startDate,endDate));
-    console.log(endDate);
 
     if (startDate > currentDate || endDate > currentDate) {
       futureEvents.push(event);
@@ -75,8 +72,6 @@ function separateEventsByDate(events, currentDate, classParameter) {
 
 async function generateEventDetails(articles) {
   const articleElements = articles.map((art) => {
-    console.log(art.startdate);
-    console.log(art.enddate);
     let date = '';
     if (art.startdate && art.enddate) {
       const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
@@ -213,7 +208,7 @@ function createLink(text, currentPage) {
 }
 
 async function buildSidePanel(currentPage, eventData) {
-  const types = [...new Set(eventData.map((item) => item.type))].sort();
+  //const types = [...new Set(eventData.map((item) => item.type))].sort();
   const sidePanel = div({ class: 'filter' });
   const panelTitle = p({ class: 'panel-title' }, 'Filter By:');
 
@@ -290,7 +285,6 @@ export default async function decorate(block) {
   const currentPage = page ? 'events' : 'archived-events';
   const filteredResults = postData.filter((item) => /events\/.*$/.test(item.path.toLowerCase()));
   const sortedEvents = sortEventsByDate(filteredResults);
-  console.log(filteredResults);
   const currentDate = new Date();
   const classParameter = document.querySelector('.events.future') ? 'future' : 'archive';
   const eventsToshow = separateEventsByDate(sortedEvents, currentDate, classParameter);
