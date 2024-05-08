@@ -208,7 +208,6 @@ function createLink(text, currentPage) {
 }
 
 async function buildSidePanel(currentPage, eventData) {
-  //const types = [...new Set(eventData.map((item) => item.type))].sort();
   const sidePanel = div({ class: 'filter' });
   const panelTitle = p({ class: 'panel-title' }, 'Filter By:');
 
