@@ -12,6 +12,13 @@ const REGIONS = [
   'Europe',
   'North America',
 ];
+
+const TYPES = [
+  'Conference',
+  'Events',
+  'Webinar'
+];
+
 async function fetchPostData() {
   try {
     const response = await fetch('/query-index.json');
@@ -27,11 +34,12 @@ const itemsPerPage = 10;
 
 // Function to sort events based on their start dates
 function sortEventsByDate(events) {
+  console.log(events);
   // Sort events based on their start dates
   events.sort((dateA, dateB) => {
     // Convert start dates to Date objects for comparison
-    const dateAnew = new Date(dateA.startDate * 1000);
-    const dateBnew = new Date(dateB.startDate * 1000);
+    const dateAnew = new Date(dateA.startdate * 1000);
+    const dateBnew = new Date(dateB.startdate * 1000);
 
     // Compare dates
     if (dateAnew < dateBnew) {
@@ -50,8 +58,10 @@ function separateEventsByDate(events, currentDate, classParameter) {
   const futureEvents = [];
   const archivedEvents = [];
   events.forEach((event) => {
-    const startDate = new Date(event.startDate * 1000);
-    const endDate = new Date(event.endDate * 1000);
+    const startDate = new Date(event.startdate * 1000);
+    const endDate = new Date(event.enddate * 1000);
+    console.log(formatDateRange(startDate,endDate));
+    console.log(endDate);
 
     if (startDate > currentDate || endDate > currentDate) {
       futureEvents.push(event);
@@ -65,12 +75,14 @@ function separateEventsByDate(events, currentDate, classParameter) {
 
 async function generateEventDetails(articles) {
   const articleElements = articles.map((art) => {
+    console.log(art.startdate);
+    console.log(art.enddate);
     let date = '';
-    if (art.startDate && art.endDate) {
-      const endDate = new Date(art.endDate * 1000).toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
-      const eventDate = art.startDate === art.endDate
-        ? endDate : formatDateRange(art.startDate, art.endDate);
-      date = (art.eventTime !== '') ? `${eventDate} ${art.eventTime}` : eventDate;
+    if (art.startdate && art.enddate) {
+      const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric' });
+      const eventDate = art.startdate === art.enddate
+        ? endDate : formatDateRange(art.startdate, art.enddate);
+      date = (art.eventtime !== '') ? `${eventDate} ${art.eventtime}` : eventDate;
     }
     return article(
       { class: 'item' },
@@ -206,7 +218,7 @@ async function buildSidePanel(currentPage, eventData) {
   const panelTitle = p({ class: 'panel-title' }, 'Filter By:');
 
   // Dropdowns
-  const eventTypeDropdown = createEventsDropdown('Event Type', types);
+  const eventTypeDropdown = createEventsDropdown('Event Type', TYPES);
   const regionDropdown = createEventsDropdown('Region', REGIONS);
 
   // Append dropdowns to filter div
@@ -278,6 +290,7 @@ export default async function decorate(block) {
   const currentPage = page ? 'events' : 'archived-events';
   const filteredResults = postData.filter((item) => /events\/.*$/.test(item.path.toLowerCase()));
   const sortedEvents = sortEventsByDate(filteredResults);
+  console.log(filteredResults);
   const currentDate = new Date();
   const classParameter = document.querySelector('.events.future') ? 'future' : 'archive';
   const eventsToshow = separateEventsByDate(sortedEvents, currentDate, classParameter);

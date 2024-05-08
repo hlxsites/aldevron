@@ -340,10 +340,10 @@ function correctUTMFlow() {
   }
 }
 
-export function formatDateRange(startDate, endDate) {
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
-  const formattedStartDate = new Date(Number(startDate) * 1000).toLocaleDateString('en-us', options);
-  const formattedEndDate = new Date(Number(endDate) * 1000).toLocaleDateString('en-us', options);
+export function formatDateRange(startdate, enddate) {
+  const options = { month: 'short', day: '2-digit', year: 'numeric' };
+  const formattedStartDate = new Date(Number(startdate) * 1000).toLocaleDateString('en-us', options);
+  const formattedEndDate = new Date(Number(enddate) * 1000).toLocaleDateString('en-us', options);
   const startYear = new Date(formattedStartDate).getFullYear();
   const endYear = new Date(formattedEndDate).getFullYear();
   const differentYear = startYear !== endYear;
