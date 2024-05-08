@@ -103,9 +103,6 @@ ul.keyword-list {
 
 ul.keyword-list li {
   padding: 0;
-}
-
-ul.keyword-list li {
   display: inline-block;
   margin-right: 10px;
   position: relative;
