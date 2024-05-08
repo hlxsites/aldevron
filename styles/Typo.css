@@ -279,7 +279,7 @@ body {
 
 a {
     background: transparent;
-    color: var(--link-color);
+    color: #0000EE;
     text-decoration: none;
 }
 
@@ -620,11 +620,11 @@ input[type="button"],
 input[type="reset"],
 .hs-form input[type="submit"],
 input[type="submit"] {
-    background-color: var(--primary-color);
+    background-color: #ffd000;
     border-radius: 5px!important;
-    border: 1px solid var(--primary-color);
+    border: 1px solid #ffd000;
     box-sizing: border-box;
-    color: var(--text-color);
+    color: #221107;
     cursor: pointer;
     display: inline-block;
     font-family: Brown-Ald, Helvetica, Arial, sans-serif;
@@ -689,8 +689,8 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-    background-color: #fff;
-    color: var(--primary-color)!important;
+    background-color: #221107;
+    color: #ffd000 !important;
     text-decoration: none;
     border: 1px solid var(--primary-color);
 }
@@ -1757,11 +1757,14 @@ form.hs-form .hs-input[type="checkbox"] {
     color:  #0d233e;
 }
 
-.hero-carousel a {
-    background-color: #e46b29;
+.hero-carousel a,
+.grey-article-outer a.button,
+.bg-grey a.button,
+.grey-forms .hs-form input[type="submit"] {
+    background-color: #221107;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0 0 0 / 26%);
-    color: #fff;
+    color: #EDEDED;
     display: inline-block;
     font-size: 19px;
     font-weight: 700;
@@ -1772,10 +1775,13 @@ form.hs-form .hs-input[type="checkbox"] {
     transition: all .3s
 }
 
-.hero-carousel a:hover {
-    background-color: #1a1919;
+.hero-carousel a:hover,
+.grey-article-outer a.button:hover,
+.bg-grey a.button:hover,
+.grey-forms .hs-form:hover input[type="submit"] {
+    background-color: #EDEDED;
     border-color: #1a1919;
-    color: #fff;
+    color: #221107 !important;
 }
 
 .hero-carousel h2 {
