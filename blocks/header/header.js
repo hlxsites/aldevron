@@ -222,7 +222,7 @@ function customCoveoSearch() {
               });
             }
           }
-        }, 300),
+        }, 100),
       }),
       searchIcon,
     ),
