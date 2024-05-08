@@ -101,8 +101,8 @@ ul.keyword-list {
   list-style: none;
 }
 
-ul li {
-  padding: 0 !important;
+ul.keyword-list li {
+  padding: 0;
 }
 
 ul.keyword-list li {
