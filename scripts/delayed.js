@@ -69,6 +69,7 @@ if (getFormMeetingConfig()) {
 }
 
 // coveo analytics - start
+/* eslint-disable */
 (function (c, o, v, e, O, u, a) {
   a = 'coveoua';
   c[a] = c[a]
@@ -88,18 +89,18 @@ if (getFormMeetingConfig()) {
   'script',
   'https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js',
 ));
-
+/* eslint-enable */
 function sendCoveoEventPage() {
   const organizationId = window.aldevronConfig?.searchOrg;
   const accessToken = window.aldevronConfig?.searchKey;
 
-  coveoua(
+  coveoua(// eslint-disable-line
     'init',
     accessToken,
     `https://${organizationId}.analytics.org.coveo.com`,
   );
 
-  coveoua('send', 'view', {
+  coveoua('send', 'view', {// eslint-disable-line
     contentIdKey: 'permanentid',
     contentIdValue: window.location.origin + window.location.pathname,
     language: 'en',
