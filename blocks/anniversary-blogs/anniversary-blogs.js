@@ -22,7 +22,8 @@ function truncateText(text, maxLength) {
 
 function createAnniversaryBlogCard(post) {
   const card = div({ class: 'blog-card' });
-  const image = div({ class: 'blog-card-content' },
+  const image = div(
+    { class: 'blog-card-content' },
     a({
       href: post.path,
       title: post.title,
@@ -55,7 +56,6 @@ function createAnniversaryBlogs(results, page = 1, pageSize = 10) {
 }
 
 function getAnniversaryBlogPages(pages, currentPageUrl) {
-  console.log(currentPageUrl);
   const anniversaryBlogPages = [];
   let count = 0;
   for (let i = 0; i < pages.length && count < 3; i += 1) {
