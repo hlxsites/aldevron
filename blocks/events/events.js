@@ -73,9 +73,9 @@ function separateEventsByDate(events, currentDate, classParameter) {
 async function generateEventDetails(articles) {
   const articleElements = articles.map((art) => {
     let date = '';
+    const options = {month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC'};
     if (art.startdate && art.enddate) {
-      const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' });
-      console.log(endDate);
+      const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', options);
       const eventDate = art.startdate === art.enddate
         ? endDate : formatDateRange(art.startdate, art.enddate);
       date = (art.eventtime !== '') ? `${eventDate} ${art.eventtime}` : eventDate;

@@ -341,7 +341,7 @@ function correctUTMFlow() {
 }
 
 export function formatDateRange(startdate, enddate) {
-  const options = { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' };
+  const options = {month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC'};
   const startDate = new Date(Number(startdate) * 1000).toUTCString();
   const endDate = new Date(Number(enddate) * 1000).toUTCString();
   const formattedStartDate = new Date(startDate).toLocaleDateString('en-us', options);
