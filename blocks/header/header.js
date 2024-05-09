@@ -67,7 +67,7 @@ function setRecentSearches(value) {
 function submitSearchPage() {
   const inputValue = document.querySelector('.mobile-search .coveo-search')?.value?.trim();
   if (inputValue && inputValue !== '') {
-    window.location = `${window.location.origin}/drafts/search#q=${inputValue}`;
+    window.location = `${window.location.origin}/search#q=${inputValue}`;
   }
 }
 
@@ -293,7 +293,7 @@ export default async function decorate(block) {
     clonedCustomSearchDiv.classList.add('mobile-search');
     coveoSearch.classList.add('desktop-search');
 
-    if (!window.location.pathname.includes('/drafts/search')) {
+    if (!window.location.pathname.includes('/search')) {
       headerInfo.appendChild(coveoSearch);
       // Append the custom search div to the document body or any other parent element
       outer.appendChild(clonedCustomSearchDiv);
