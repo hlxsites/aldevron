@@ -57,7 +57,7 @@ function separateEventsByDate(events, currentDate, classParameter) {
   const futureEvents = [];
   const archivedEvents = [];
   events.forEach((event) => {
-    const startDate = new Date((event.startdate- 25569) * 24 * 60 * 60 * 1000);
+    const startDate = new Date((event.startdate - 25569) * 24 * 60 * 60 * 1000);
     const endDate = new Date((event.enddate - 25569) * 24 * 60 * 60 * 1000);
 
     if (startDate > currentDate || endDate > currentDate) {
