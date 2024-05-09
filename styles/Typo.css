@@ -1764,6 +1764,7 @@ form.hs-form .hs-input[type="checkbox"] {
     background-color: #221107;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0 0 0 / 26%);
+    border: none;
     color: #EDEDED;
     display: inline-block;
     font-size: 19px;
