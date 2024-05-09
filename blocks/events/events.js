@@ -74,7 +74,7 @@ async function generateEventDetails(articles) {
   const articleElements = articles.map((art) => {
     let date = '';
     const options = {
-      month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC'
+      month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC',
     };
     if (art.startdate && art.enddate) {
       const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', options);
