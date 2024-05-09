@@ -1,6 +1,7 @@
 import {
   div, a, p, h3,
 } from '../../scripts/dom-builder.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 async function fetchPostData() {
   try {
@@ -21,44 +22,21 @@ function truncateText(text, maxLength) {
 
 function createAnniversaryBlogCard(post) {
   const card = div({ class: 'blog-card' });
-
-  const picture = document.createElement('picture');
-  const sourceWebp = document.createElement('source');
-  sourceWebp.setAttribute('type', 'image/webp');
-  sourceWebp.setAttribute('srcset', `${post.image}?width=2000&format=webply&optimize=medium`);
-  sourceWebp.setAttribute('media', '(min-width: 600px)');
-
-  const sourcePng = document.createElement('source');
-  sourcePng.setAttribute('type', 'image/png');
-  sourcePng.setAttribute('srcset', `${post.image}?width=2000&format=png&optimize=medium`);
-  sourcePng.setAttribute('media', '(min-width: 600px)');
-
-  const img = document.createElement('img');
-  img.setAttribute('loading', 'lazy');
-  img.setAttribute('alt', post.title);
-  img.setAttribute('src', `${post.image}?width=750&format=png&optimize=medium`);
-  img.setAttribute('width', '1000');
-  img.setAttribute('height', '562');
-
-  const link = a({ href: post.path });
-  link.appendChild(picture);
-  picture.appendChild(sourceWebp);
-  picture.appendChild(sourcePng);
-  picture.appendChild(img);
-
-  card.appendChild(link);
-
-  const image = div({ class: 'blog-card-content' });
+  const image = div(
+    { class: 'blog-card-content' },
+    a({
+      href: post.path,
+      title: post.title,
+    }, createOptimizedPicture(post.image, post.title)),
+  );
   const title = h3({ class: 'blog-title' }, post.title);
   const description = p({ class: 'blog-description' }, truncateText(post.description, 180));
   const readMore = a({ href: post.path, class: 'read-more' }, 'Read more >>');
 
+  card.appendChild(image);
   card.appendChild(title);
   card.appendChild(description);
   card.appendChild(readMore);
-
-  card.appendChild(image);
-
   return card;
 }
 
@@ -96,7 +74,7 @@ export default async function decorate(block) {
   const wrapper = div({ class: 'content' });
   const blogsContainer = div({ class: 'col recent-blogs' });
   let sortedResults = [];
-  const filteredResults = postData.filter((item) => item.path.includes('/25th-anniversary/'));
+  const filteredResults = postData.filter((item) => item.path.includes('/advancing-every-day/'));
   if (filteredResults.length) {
     sortedResults = filteredResults.sort((ar1, ar2) => ar2.date - ar1.date);
   }
