@@ -87,3 +87,13 @@ main .section > div {
       width: auto
   }
 }
+
+@media (max-width: 600px) {
+  .popup-message button {
+      float: left !important;
+      display: block;
+      width: 90%;
+      margin-bottom: 10px;
+      padding: 10px;
+  }
+}
