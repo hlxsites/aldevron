@@ -57,8 +57,8 @@ function separateEventsByDate(events, currentDate, classParameter) {
   const futureEvents = [];
   const archivedEvents = [];
   events.forEach((event) => {
-    const startDate = new Date(event.startdate * 1000);
-    const endDate = new Date(event.enddate * 1000);
+    const startDate = new Date((event.startdate- 25569) * 24 * 60 * 60 * 1000);
+    const endDate = new Date((event.enddate - 25569) * 24 * 60 * 60 * 1000);
 
     if (startDate > currentDate || endDate > currentDate) {
       futureEvents.push(event);
@@ -77,7 +77,7 @@ async function generateEventDetails(articles) {
       month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC',
     };
     if (art.startdate && art.enddate) {
-      const endDate = new Date(art.enddate * 1000).toLocaleDateString('en-Us', options);
+      const endDate = new Date((art.enddate - 25569) * 24 * 60 * 60 * 1000).toLocaleDateString('en-Us', options);
       const eventDate = art.startdate === art.enddate
         ? endDate : formatDateRange(art.startdate, art.enddate);
       date = (art.eventtime !== '') ? `${eventDate} ${art.eventtime}` : eventDate;
