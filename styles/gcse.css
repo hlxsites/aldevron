@@ -357,6 +357,7 @@ body.mmg-search-active {
 
 .coveo-search-dropdown > div.coveo-search-dropdown-menu:not(.show) {
     display: none;
+    padding: 0 !important;
 }
  
 .coveo-search-dropdown > div.coveo-search-dropdown-menu.show {
@@ -423,4 +424,5 @@ div.all-recent-searches ul:empty ~ * {
 
 .coveo-search-dropdown > div.coveo-search-dropdown-menu:has(ul.suggestions:empty) {
     display: none;
+    padding: 0 !important;
 }

@@ -58,7 +58,9 @@ function getRecentSearches() {
 
 function setRecentSearches(value) {
   const recentSearches = getRecentSearches();
-  const searchValueIndex = recentSearches.findIndex((search) => search === value);
+  const searchValueIndex = recentSearches.findIndex((search) => (
+    search.toLowerCase() === value.toLowerCase()
+  ));
   if (searchValueIndex > -1) recentSearches.splice(searchValueIndex, 1);
   recentSearches.unshift(value);
   localStorage.setItem('coveo-recent-queries', JSON.stringify(recentSearches.slice(0, 3)));
@@ -67,6 +69,9 @@ function setRecentSearches(value) {
 function submitSearchPage() {
   const inputValue = document.querySelector('.mobile-search .coveo-search')?.value?.trim();
   if (inputValue && inputValue !== '') {
+    document.querySelectorAll('.coveo-search').forEach((searchInputEl) => {
+      searchInputEl.blur();
+    });
     window.location = `${window.location.origin}/search#q=${inputValue}`;
   }
 }
@@ -198,12 +203,13 @@ function customCoveoSearch() {
       input({
         type: 'text',
         class: 'coveo-search',
+        value: '',
+        autocomplete: 'off',
         placeholder: 'Search here...',
         onfocus: (event) => toggleSearchDropdown(event, 'focus'),
         onblur: (event) => toggleSearchDropdown(event, 'blur'),
         onkeyup: debounce((event) => {
           const { value } = event.target;
-          console.log(value);
           if (event.keyCode === 13) {
             submitSearchPage();
             if (value !== '') setRecentSearches(value);
@@ -350,7 +356,6 @@ export default async function decorate(block) {
     outer.appendChild(headerNav);
 
     block.append(nav);
-
     addRecentSearch();
     fetchSuggestions('');
   }
