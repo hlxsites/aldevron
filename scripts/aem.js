@@ -860,6 +860,14 @@ async function waitForLCP(lcpBlocks) {
   });
 }
 
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
+
 init();
 
 export {
@@ -895,12 +903,5 @@ export {
   passFormMeetingConfig,
   loadFormDelayed,
   getFormMeetingConfig,
+  debounce,
 };
-
-export function debounce(func, timeout = 300) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
-  };
-}
