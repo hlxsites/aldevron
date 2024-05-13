@@ -340,6 +340,47 @@ function correctUTMFlow() {
   }
 }
 
+function getCookie(e) {
+  let t = decodeURIComponent(
+    document.cookie.replace(
+      new RegExp(
+        `(?:(?:^|.*;)\\s*${
+          encodeURIComponent(e).replace(/[\\-\\.\\+\\*]/g, '\\$&')
+        }\\s*\\=\\s*([^;]*).*$)|^.*$`,
+      ),
+      '$1',
+    ),
+  ) || null;
+  if (
+    t
+    && ((t.substring(0, 1) === '{'
+      && t.substring(t.length - 1, t.length) === '}')
+      || (t.substring(0, 1) === '['
+        && t.substring(t.length - 1, t.length) === ']'))
+  ) {
+    try {
+      t = JSON.parse(t);
+    } catch (error) { /* eslint-disable no-console */ console.log('Error', error); }
+  }
+  return t;
+}
+
+if (window.location.host === 'www.aldevron.com') {
+  window.aldevronConfig = {
+    searchOrg: 'danaherproductionrfl96bkr',
+    searchKey: 'xxf0b61992-52f5-41c5-8b5d-e4770521e916',
+    origin: '.org.coveo.com',
+    path: '/rest/search/v2/querySuggest',
+  };
+} else {
+  window.aldevronConfig = {
+    searchOrg: 'danahernonproduction1892f3fhz',
+    searchKey: 'xx36c41356-a0e5-4071-bcae-d27539d778e2',
+    origin: '.org.coveo.com',
+    path: '/rest/search/v2/querySuggest',
+  };
+}
+
 export function formatDateRange(startdate, enddate) {
   const options = {
     month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC',
@@ -368,3 +409,4 @@ async function loadPage() {
 }
 
 loadPage();
+export { getCookie };
