@@ -895,6 +895,7 @@ export {
   passFormMeetingConfig,
   loadFormDelayed,
   getFormMeetingConfig,
+  debounce,
 };
 
 export function debounce(func, timeout = 300) {
