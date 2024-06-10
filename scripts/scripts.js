@@ -188,7 +188,7 @@ export function decorateMain(main) {
 // Adobe Taget ID
 function targetPageParams() {
   return {
-    'at_property': '7116743c-e3a2-ec5b-d624-96c83ba8b9df'
+    'at_property': '08436c44-3085-b335-a1c4-03f14ae5226a'
   };
 }
 
@@ -255,7 +255,7 @@ async function getAndApplyOffers() {
 let atjsPromise = Promise.resolve();
 if (getMetadata('target')) {
   atjsPromise = initATJS('./at.js', {
-    at_property: '7116743c-e3a2-ec5b-d624-96c83ba8b9df',
+    at_property: '08436c44-3085-b335-a1c4-03f14ae5226a',
     clientCode: 'danaher',
     serverDomain: 'danaher.tt.omtrdc.net',
     imsOrgId: '08333E7B636A2D4D0A495C34@AdobeOrg',
