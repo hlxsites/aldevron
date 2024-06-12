@@ -240,12 +240,14 @@ async function getAndApplyOffers() {
   onDecoratedElement(() => {
     window.adobe.target.applyOffers({ response });
     // keeping track of offers that were already applied
+    // eslint-disable-next-line no-param-reassign
     options.forEach((o) => o.content = o.content.filter((c) => !getElementForOffer(c)));
     // keeping track of metrics that were already applied
+    // eslint-disable-next-line no-param-reassign
     metrics.map((m, i) => getElementForMetric(m) ? i : -1)
-        .filter((i) => i >= 0)
-        .reverse()
-        .map((i) => metrics.splice(i, 1));
+      .filter((i) => i >= 0)
+      .reverse()
+      .map((i) => metrics.splice(i, 1));
   });
 }
 
