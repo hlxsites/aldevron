@@ -276,6 +276,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    await decorateTemplates(main);
+    await decorateCategory(main);
+    await decorateNavigation(main);
     await atjsPromise;
 
     await new Promise((resolve) => {
