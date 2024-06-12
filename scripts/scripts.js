@@ -187,6 +187,11 @@ export function decorateMain(main) {
 
 function initATJS(path, config) {
   window.targetGlobalSettings = config;
+  window.targetPageParams = function getTargetPageParams() {
+    return {
+      at_property: '08436c44-3085-b335-a1c4-03f14ae5226a',
+    };
+  };
   return new Promise((resolve) => {
     import(path).then(resolve);
   });

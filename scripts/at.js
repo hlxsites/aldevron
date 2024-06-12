@@ -1,9 +1,3 @@
-function targetPageParams() {
-    return {
-      "at_property": "08436c44-3085-b335-a1c4-03f14ae5226a"
-    };
-  }
-
 /**
  * @license
  * at.js 2.11.4 | (c) Adobe Systems Incorporated | All rights reserved
