@@ -27,6 +27,7 @@ export default async function decorate(block) {
   const type = getMetadata('type');
   const region = getMetadata('region');
   const address = getMetadata('address');
+  const eventSummary = document.querySelector('.eventsummary.block');
 
   const outerBlock = document.querySelector('.section');
   outerBlock.classList.add('outer');
@@ -60,7 +61,7 @@ export default async function decorate(block) {
 
   // Append elements to block
   block.appendChild(imageContainer);
-  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventDescription, registerButtonContainer, talkButtonContainer)));
+  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary, registerButtonContainer, talkButtonContainer)));
 
   // Add event listener to the 'Register Today' button
   registerButtonLink.addEventListener('click', (event) => {
