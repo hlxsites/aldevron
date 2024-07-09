@@ -21,7 +21,6 @@ export default async function decorate(block) {
   } else { date = `${formattedEndDate}`; }
 
   const image = getMetadata('og:image');
-  const description = getMetadata('og:description');
   const registerButton = getMetadata('register-button');
   const title = getMetadata('og:title');
   const type = getMetadata('type');
