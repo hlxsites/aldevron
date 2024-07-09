@@ -56,10 +56,11 @@ export default async function decorate(block) {
     registerButtonLink = a({ href: registerButton, title }, 'Register Today');
   }
   const registerButtonContainer = p({ class: 'button-container find-out-more' }, strong(registerButtonLink));
+  const talkButtonContainer = p({ class: 'button-container' }, strong(a({ href: '/about-us/contact-us', title }, 'Request a Meeting/Contact Us')));
 
   // Append elements to block
   block.appendChild(imageContainer);
-  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventDescription, registerButtonContainer)));
+  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventDescription, registerButtonContainer, talkButtonContainer)));
 
   // Add event listener to the 'Register Today' button
   registerButtonLink.addEventListener('click', (event) => {
