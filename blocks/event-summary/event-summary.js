@@ -50,7 +50,6 @@ export default async function decorate(block) {
     (address !== region ? li({ class: 'item region' }, region) : ''),
   );
   let registerButtonLink;
-  const eventDescription = p(description);
   if (type === 'Conference') {
     registerButtonLink = a({ href: registerButton, title }, 'Visit the Event Website');
   } else {
