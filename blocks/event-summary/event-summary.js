@@ -21,12 +21,14 @@ export default async function decorate(block) {
   } else { date = `${formattedEndDate}`; }
 
   const image = getMetadata('og:image');
-  const description = getMetadata('og:description');
   const registerButton = getMetadata('register-button');
   const title = getMetadata('og:title');
+  const description = getMetadata('og:description');
   const type = getMetadata('type');
   const region = getMetadata('region');
   const address = getMetadata('address');
+  const eventTitle = document.querySelector('.eventtitle.block');
+  const eventSummary = document.querySelector('.eventsummary.block');
 
   const outerBlock = document.querySelector('.section');
   outerBlock.classList.add('outer');
@@ -41,7 +43,7 @@ export default async function decorate(block) {
     { class: 'event-date' },
     `${date} ${eventTime}`,
   ) : p({ class: 'event-date' }, date));
-  const eventSubtitle = h1({ class: 'event-subtitle' }, title);
+  const eventSubtitle = h1({ class: 'event-subtitle' }, eventTitle || title);
   const keywordList = ul(
     { class: 'keyword-list' },
     li({ class: 'item type' }, type),
@@ -49,17 +51,17 @@ export default async function decorate(block) {
     (address !== region ? li({ class: 'item region' }, region) : ''),
   );
   let registerButtonLink;
-  const eventDescription = p(description);
   if (type === 'Conference') {
     registerButtonLink = a({ href: registerButton, title }, 'Visit the Event Website');
   } else {
     registerButtonLink = a({ href: registerButton, title }, 'Register Today');
   }
   const registerButtonContainer = p({ class: 'button-container find-out-more' }, strong(registerButtonLink));
+  const talkButtonContainer = p({ class: 'button-container' }, strong(a({ href: '/about-us/contact-us', title }, 'Request a Meeting/Contact Us')));
 
   // Append elements to block
   block.appendChild(imageContainer);
-  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventDescription, registerButtonContainer)));
+  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary || description, registerButtonContainer, talkButtonContainer)));
 
   // Add event listener to the 'Register Today' button
   registerButtonLink.addEventListener('click', (event) => {
