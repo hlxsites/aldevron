@@ -43,7 +43,7 @@ export default async function decorate(block) {
     { class: 'event-date' },
     `${date} ${eventTime}`,
   ) : p({ class: 'event-date' }, date));
-  const eventSubtitle = h1({ class: 'event-subtitle' }, eventTitle.textContent ? eventTitle : title);
+  const eventSubtitle = h1({ class: 'event-subtitle' }, eventTitle || title);
   const keywordList = ul(
     { class: 'keyword-list' },
     li({ class: 'item type' }, type),
@@ -61,7 +61,7 @@ export default async function decorate(block) {
 
   // Append elements to block
   block.appendChild(imageContainer);
-  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary.textContent ? eventSummary : description, registerButtonContainer, talkButtonContainer)));
+  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary || description, registerButtonContainer, talkButtonContainer)));
 
   // Add event listener to the 'Register Today' button
   registerButtonLink.addEventListener('click', (event) => {
