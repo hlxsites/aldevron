@@ -37,6 +37,7 @@ export default async function decorate(block) {
     }
     return allAnchorTags;
   }
+
   if (resp.ok) {
     const html = await resp.text();
     const topContainer = createDivElement('top-container', '');
@@ -74,7 +75,41 @@ export default async function decorate(block) {
         link.classList.add('text-normal');
       }
     });
+
+    function footerOpco() {
+      const ulElement = document.createElement('ul');
+      const items = [
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Image 1' },
+      ];
+      items.forEach(item => {
+        const liElement = document.createElement('li');
+        const aElement = document.createElement('a');
+        aElement.href = item.href;
+        aElement.target = '_blank';
+        const imgElement = document.createElement('img');
+        imgElement.src = item.src;
+        imgElement.alt = item.alt;
+        aElement.appendChild(imgElement);
+        liElement.appendChild(aElement);
+        ulElement.appendChild(liElement);
+      });
+    
+      const footerContainer = document.createElement('div');
+      footerContainer.classList.add('footer-opco');
+      footerContainer.appendChild(ulElement);
+      document.body.appendChild(footerContainer);
+    }
+
     decorateIcons(footerWapper);
     block.append(topContainer);
+    footerOpco();
   }
 }
