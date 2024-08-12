@@ -89,7 +89,7 @@ export default async function decorate(block) {
         { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Aldevron' },
         { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_1dfadbb273bd8868ca3659447071c5aeee1525cbf.svg?width=2000&format=webply&optimize=medium', alt: 'IDT' },
       ];
-      items.forEach(item => {
+      items.forEach((item) => {
         const liElement = document.createElement('li');
         const aElement = document.createElement('a');
         aElement.href = item.href;
@@ -101,7 +101,7 @@ export default async function decorate(block) {
         liElement.appendChild(aElement);
         ulElement.appendChild(liElement);
       });
-    
+
       const footerContainer = document.createElement('div');
       footerContainer.classList.add('footer-opco');
       footerContainer.appendChild(ulElement);
