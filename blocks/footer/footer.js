@@ -75,19 +75,19 @@ export default async function decorate(block) {
         link.classList.add('text-normal');
       }
     });
-
+    https://www.idtdna.com/pages?utm_source=dhls_website&utm_medium=referral&utm_content=header&ajs_aid=49525b0f-92aa-40b6-aed8-3bbe4bfca573
     function footerOpco() {
       const ulElement = document.createElement('ul');
       const items = [
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_1b4cb13c1b58a2aa9440c48591885c2d142ef2ad9.svg?width=2000&format=webply&optimize=medium', alt: 'Abcam' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_1bdcd4f292eff7c94564c2edabbe6f2990b7c2771.svg?width=2000&format=webply&optimize=medium', alt: 'Beckman' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_18ce6e6ac9fa86b1e38dd5d5aa2c26739f7699a7a.svg?width=2000&format=webply&optimize=medium', alt: 'IDBS' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_17e0c34915747b51dc4f3b1d6115a354a005f7811.svg?width=2000&format=webply&optimize=medium', alt: 'Leica' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_14551887088f7666163b3db5b7c4563db95aeba9c.svg?width=2000&format=webply&optimize=medium', alt: 'MolDev' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_16925698572ba5cd9b64350134f680855a9896f9f.svg?width=2000&format=webply&optimize=medium', alt: 'Phenomenex' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_190d426a0f0258e8636507a15d8aedfaed8649fc1.svg?width=2000&format=webply&optimize=medium', alt: 'Sciex' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_142f5f1953984f372a389eba53a44db24cebcd3a8.svg?width=2000&format=webply&optimize=medium', alt: 'Aldevron' },
-        { href: 'https://www.aldevron.com/?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: 'https://lifesciences.danaher.com/media_1dfadbb273bd8868ca3659447071c5aeee1525cbf.svg?width=2000&format=webply&optimize=medium', alt: 'IDT' },
+        { href: 'https://www.abcam.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/abcam.svg', alt: 'Abcam' },
+        { href: 'https://www.beckman.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/beckman.svg', alt: 'Beckman' },
+        { href: 'https://www.idbs.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idbs.svg', alt: 'IDBS' },
+        { href: 'https://www.leica-microsystems.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/leica.svg', alt: 'Leica' },
+        { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/moldev.svg', alt: 'MolDev' },
+        { href: 'http://www.phenomenex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/phenomenex.svg', alt: 'Phenomenex' },
+        { href: 'https://sciex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/sciex.svg', alt: 'Sciex' },
+        { href: 'https://www.aldevron.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/aldevron.svg', alt: 'Aldevron' },
+        { href: 'https://www.idtdna.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idt.svg', alt: 'IDT' },
       ];
       items.forEach((item) => {
         const liElement = document.createElement('li');
@@ -97,6 +97,7 @@ export default async function decorate(block) {
         const imgElement = document.createElement('img');
         imgElement.src = item.src;
         imgElement.alt = item.alt;
+        imgElement.loading = 'lazy';
         aElement.appendChild(imgElement);
         liElement.appendChild(aElement);
         ulElement.appendChild(liElement);
