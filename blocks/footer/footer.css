@@ -70,10 +70,9 @@
 .footer-opco {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #1a1919;
   color: #fff;
-  justify-content: center;
 }
 
 .footer-opco ul {
@@ -101,9 +100,8 @@
 
 .footer-opco img {
   max-width: 100%;
-  height: auto;
-  filter: brightness(0) invert(1);
   height: 37px;
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 768px) {
