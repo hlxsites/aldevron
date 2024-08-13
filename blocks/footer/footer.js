@@ -75,7 +75,8 @@ export default async function decorate(block) {
         link.classList.add('text-normal');
       }
     });
-    https://www.idtdna.com/pages?utm_source=dhls_website&utm_medium=referral&utm_content=header&ajs_aid=49525b0f-92aa-40b6-aed8-3bbe4bfca573
+
+    // eslint-disable-next-line
     function footerOpco() {
       const ulElement = document.createElement('ul');
       const items = [
