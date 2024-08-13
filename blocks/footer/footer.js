@@ -37,6 +37,7 @@ export default async function decorate(block) {
     }
     return allAnchorTags;
   }
+
   if (resp.ok) {
     const html = await resp.text();
     const topContainer = createDivElement('top-container', '');
@@ -74,7 +75,43 @@ export default async function decorate(block) {
         link.classList.add('text-normal');
       }
     });
+
+    // eslint-disable-next-line
+    function footerOpco() {
+      const ulElement = document.createElement('ul');
+      const items = [
+        { href: 'https://www.abcam.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/abcam.svg', alt: 'Abcam' },
+        { href: 'https://www.beckman.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/beckman.svg', alt: 'Beckman' },
+        { href: 'https://www.idbs.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idbs.svg', alt: 'IDBS' },
+        { href: 'https://www.leica-microsystems.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/leica.svg', alt: 'Leica' },
+        { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/moldev.svg', alt: 'MolDev' },
+        { href: 'http://www.phenomenex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/phenomenex.svg', alt: 'Phenomenex' },
+        { href: 'https://sciex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/sciex.svg', alt: 'Sciex' },
+        { href: 'https://www.aldevron.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/aldevron.svg', alt: 'Aldevron' },
+        { href: 'https://www.idtdna.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idt.svg', alt: 'IDT' },
+      ];
+      items.forEach((item) => {
+        const liElement = document.createElement('li');
+        const aElement = document.createElement('a');
+        aElement.href = item.href;
+        aElement.target = '_blank';
+        const imgElement = document.createElement('img');
+        imgElement.src = item.src;
+        imgElement.alt = item.alt;
+        imgElement.loading = 'lazy';
+        aElement.appendChild(imgElement);
+        liElement.appendChild(aElement);
+        ulElement.appendChild(liElement);
+      });
+
+      const footerContainer = document.createElement('div');
+      footerContainer.classList.add('footer-opco');
+      footerContainer.appendChild(ulElement);
+      document.body.appendChild(footerContainer);
+    }
+
     decorateIcons(footerWapper);
     block.append(topContainer);
+    footerOpco();
   }
 }
