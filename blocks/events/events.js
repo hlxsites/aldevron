@@ -19,6 +19,31 @@ const TYPES = [
   'Webinar',
 ];
 
+function filterUrl() {
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
+  // Get URL parameters
+  const eventTypeParam = getUrlParameter('type');
+  const regionParam = getUrlParameter('region');
+
+  // Select the checkbox with the ID that matches the region
+  const regionCheckbox = document.getElementById(regionParam);
+  if (regionCheckbox) {
+    regionCheckbox.checked = true;
+  }
+
+  // Select the checkbox with the ID that matches the event type
+  const typeCheckbox = document.getElementById(eventTypeParam);
+  if (typeCheckbox) {
+    typeCheckbox.checked = true;
+  }
+}
+
 async function fetchPostData() {
   try {
     const response = await fetch('/query-index.json');
@@ -231,6 +256,7 @@ async function buildSidePanel(currentPage, eventData) {
   const checkboxes = sidePanel.querySelectorAll('.select .dropdown-menu .filter-item');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', (event) => {
+      console.log(eventData);
       handleCheckboxChange(event, eventData);
     });
   });
@@ -256,7 +282,8 @@ function displayPage(page, events) {
 
 function handlePagination(page, events) {
   currentPageNumber = page;
-  displayPage(currentPageNumber, events); // Update UI with new page
+  const filteredEvents = filterEvents(events, eventType, region);
+  displayPage(currentPageNumber, filteredEvents); // Update UI with new page
 }
 
 function generatePaginationButtons(totalPages, currentPage, events) {
@@ -319,4 +346,7 @@ export default async function decorate(block) {
 
     displayPage(currentPageNumber, eventsToshow);
   }
+
+  filterUrl();
+  //handleCheckboxChange('event', eventData);
 }
