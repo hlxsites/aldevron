@@ -21,9 +21,9 @@ const TYPES = [
 
 function filterUrl() {
   function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    const results = regex.exec(location.search);
+    const newName = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp(`[\\?&]${newName}=([^&#]*)`);
+    const results = regex.exec(window.location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   }
 
@@ -31,17 +31,17 @@ function filterUrl() {
   const eventTypeParam = getUrlParameter('type');
   const regionParam = getUrlParameter('region');
 
-  // Select the checkbox with the ID that matches the region
-  const regionCheckbox = document.getElementById(regionParam);
-  if (regionCheckbox) {
-    regionCheckbox.checked = true;
-  }
+  regionParam.split(',').forEach((region) => {
+    // Select the checkbox with the ID that matches the region
+    const regionCheckbox = document.getElementById(region);
+    if (regionCheckbox) regionCheckbox.checked = true;
+  });
 
-  // Select the checkbox with the ID that matches the event type
-  const typeCheckbox = document.getElementById(eventTypeParam);
-  if (typeCheckbox) {
-    typeCheckbox.checked = true;
-  }
+  eventTypeParam.split(',').forEach((eventType) => {
+    // Select the checkbox with the ID that matches the event type
+    const typeCheckbox = document.getElementById(eventType);
+    if (typeCheckbox) typeCheckbox.checked = true;
+  });
 }
 
 async function fetchPostData() {
@@ -160,42 +160,24 @@ function updateEvents(events) {
 }
 
 // Event listener function to handle checkbox changes
-function handleCheckboxChange(event, eventData) {
+function handleCheckboxChange(eventData) {
   const checkedCheckboxes = document.querySelectorAll('.filter-item:checked');
   const selectedOptions = Array.from(checkedCheckboxes)
     .map((checkbox) => checkbox.nextSibling.textContent);
-  let filteredEvents;
-  // Filter events based on selected options
-  const eventTypes = [];
-  const regions = [];
 
-  if (selectedOptions.length > 0) {
-    selectedOptions.forEach((option) => {
-      if (eventData.some((data) => data.type === option)) {
-        eventTypes.push(option);
-      } else if (eventData.some((data) => data.region === option)) {
-        regions.push(option);
-      }
-    });
+  const filteredEvents = selectedOptions.length === 0 ? eventData : eventData.filter((data) => {
+    const typeIndex = selectedOptions.indexOf(data.type);
+    const regionIndex = selectedOptions.indexOf(data.region);
+    if (
+      (typeIndex > -1 && regionIndex > -1)
+      || (typeIndex > -1 && regionIndex < 0)
+      || (typeIndex < 0 && regionIndex > -1)
+    ) return true;
+  });
 
-    if (eventTypes.length > 0 && regions.length === 0) {
-      filteredEvents = eventData.filter((data) => eventTypes.includes(data.type));
-    } else if (eventTypes.length === 0 && regions.length > 0) {
-      filteredEvents = eventData.filter((data) => regions.includes(data.region));
-    } else {
-      filteredEvents = eventData.filter((data) => eventTypes
-        .includes(data.type) && regions.includes(data.region));
-    }
-  } else {
-    filteredEvents = eventData;
-  }
   updateEvents(filteredEvents);
   const paginationContainer = document.querySelector('.pagination');
-  if (filteredEvents.length <= itemsPerPage) {
-    paginationContainer.style.display = 'none';
-  } else {
-    paginationContainer.style.display = 'block';
-  }
+  if (paginationContainer) paginationContainer.style.display = (filteredEvents.length <= itemsPerPage) ? 'none' : 'block';
 }
 
 function createEventsDropdown(eventName, options) {
@@ -207,7 +189,7 @@ function createEventsDropdown(eventName, options) {
     class: 'dropdown-toggle',
     value: '',
   }, eventName);
-    // btn.addEventListener('click', toggleFilter, false);
+  // btn.addEventListener('click', toggleFilter, false);
   container.append(btn);
 
   const dropDown = div({ class: 'dropdown-menu' });
@@ -255,9 +237,8 @@ async function buildSidePanel(currentPage, eventData) {
 
   const checkboxes = sidePanel.querySelectorAll('.select .dropdown-menu .filter-item');
   checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', (event) => {
-      console.log(eventData);
-      handleCheckboxChange(event, eventData);
+    checkbox.addEventListener('change', () => {
+      handleCheckboxChange(eventData);
     });
   });
 
@@ -348,5 +329,5 @@ export default async function decorate(block) {
   }
 
   filterUrl();
-  //handleCheckboxChange('event', eventData);
+  handleCheckboxChange(eventsToshow);
 }
