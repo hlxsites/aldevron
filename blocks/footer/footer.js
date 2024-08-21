@@ -82,6 +82,7 @@ export default async function decorate(block) {
       const items = [
         { href: 'https://www.abcam.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/abcam.svg', alt: 'Abcam' },
         { href: 'https://www.beckman.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/beckman.svg', alt: 'Beckman' },
+        { href: 'https://www.genedata.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/genedata.svg', alt: 'Genedata' },
         { href: 'https://www.idbs.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idbs.svg', alt: 'IDBS' },
         { href: 'https://www.leica-microsystems.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/leica.svg', alt: 'Leica' },
         { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/moldev.svg', alt: 'MolDev' },
