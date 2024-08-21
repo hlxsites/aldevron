@@ -86,7 +86,7 @@
 }
 
 .footer-opco li {
-  flex: 1 1 calc(11.111% - 10px);
+  flex: 1 1 calc(10% - 10px);
   margin: 5px;
   box-sizing: border-box;
 }
