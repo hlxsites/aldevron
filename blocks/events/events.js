@@ -186,6 +186,25 @@ function handleCheckboxChange(eventData) {
       filteredEvents = eventData.filter((data) => eventTypes
         .includes(data.type) && regions.includes(data.region));
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('types');
+    if (eventTypes.length > 0) {
+      urlParams.set('type', eventTypes.map(type => type.toLowerCase()).join(','));
+    } else {
+      urlParams.delete('types');
+    }
+
+    if (regions.length > 0) {
+      urlParams.delete('region');
+      urlParams.set('region', regions.map(region => region.toLowerCase().replace(/[+\s]/g, '-')).join(','));
+    } else {
+      urlParams.delete('region');
+    }
+
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.replaceState({}, '', newUrl);
+
   } else {
     filteredEvents = eventData;
   }
