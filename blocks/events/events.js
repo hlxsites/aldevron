@@ -164,16 +164,31 @@ function handleCheckboxChange(eventData) {
   const checkedCheckboxes = document.querySelectorAll('.filter-item:checked');
   const selectedOptions = Array.from(checkedCheckboxes)
     .map((checkbox) => checkbox.nextSibling.textContent);
+  let filteredEvents;
+  // Filter events based on selected options
+  const eventTypes = [];
+  const regions = [];
 
-  const filteredEvents = selectedOptions.length === 0 ? eventData : eventData.filter((data) => {
-    const typeIndex = selectedOptions.indexOf(data.type);
-    const regionIndex = selectedOptions.indexOf(data.region);
-    if (
-      (typeIndex > -1 && regionIndex > -1)
-      || (typeIndex > -1 && regionIndex < 0)
-      || (typeIndex < 0 && regionIndex > -1)
-    ) return true;
-  });
+  if (selectedOptions.length > 0) {
+    selectedOptions.forEach((option) => {
+      if (eventData.some((data) => data.type === option)) {
+        eventTypes.push(option);
+      } else if (eventData.some((data) => data.region === option)) {
+        regions.push(option);
+      }
+    });
+
+    if (eventTypes.length > 0 && regions.length === 0) {
+      filteredEvents = eventData.filter((data) => eventTypes.includes(data.type));
+    } else if (eventTypes.length === 0 && regions.length > 0) {
+      filteredEvents = eventData.filter((data) => regions.includes(data.region));
+    } else {
+      filteredEvents = eventData.filter((data) => eventTypes
+        .includes(data.type) && regions.includes(data.region));
+    }
+  } else {
+    filteredEvents = eventData;
+  }
 
   updateEvents(filteredEvents);
   const paginationContainer = document.querySelector('.pagination');
