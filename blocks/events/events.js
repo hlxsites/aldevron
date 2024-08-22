@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createOptimizedPicture, capitalizeWords, toClassName } from '../../scripts/aem.js';
 import {
   div, a, p, ul, li, article, span,
@@ -21,7 +22,7 @@ const TYPES = [
 
 function filterUrl() {
   function getUrlParameter(name) {
-    const newName = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const newName = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp(`[\\?&]${newName}=([^&#]*)`);
     const results = regex.exec(window.location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
@@ -190,21 +191,20 @@ function handleCheckboxChange(eventData) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('types');
     if (eventTypes.length > 0) {
-      urlParams.set('type', eventTypes.map(type => type.toLowerCase()).join(','));
+      urlParams.set('type', eventTypes.map((type) => type.toLowerCase()).join(','));
     } else {
       urlParams.delete('types');
     }
 
     if (regions.length > 0) {
       urlParams.delete('region');
-      urlParams.set('region', regions.map(region => region.toLowerCase().replace(/[+\s]/g, '-')).join(','));
+      urlParams.set('region', regions.map((region) => region.toLowerCase().replace(/[+\s]/g, '-')).join(','));
     } else {
       urlParams.delete('region');
     }
 
     const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
     window.history.replaceState({}, '', newUrl);
-
   } else {
     filteredEvents = eventData;
   }
