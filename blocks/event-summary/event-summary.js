@@ -57,17 +57,25 @@ export default async function decorate(block) {
   } else {
     registerButtonLink = a({ href: registerButton, title }, 'Register Today');
   }
-  const registerButtonContainer = p({ class: 'button-container find-out-more' }, strong(registerButtonLink));
-  const talkButtonContainer = p({ class: 'button-container' }, strong(a({ href: meetingButton, title }, 'Request a Meeting/Contact Us')));
+
+  let registerButtonContainer;
+  if (registerButton) {
+    registerButtonContainer = p({ class: 'button-container find-out-more' }, strong(a({ href: registerButton, title }, 'Register Today')));
+  } else {
+    registerButtonContainer = '';
+  }
+
+  let talkButtonContainer;
+  if (meetingButton) {
+    talkButtonContainer = p({ class: 'button-container' }, strong(a({ href: meetingButton, title }, 'Request a Meeting/Contact Us')));
+  } else {
+    talkButtonContainer = '';
+  }
 
   // Append elements to block
   block.appendChild(imageContainer);
 
-  if (meetingButton) {
-    block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary || description, registerButtonContainer, talkButtonContainer)));
-  } else {
-    block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary || description, registerButtonContainer)));
-  }
+  block.appendChild(div({ class: 'event-details' }, eventDate, eventSubtitle, div({ class: 'event-keywords' }, keywordList), div({ class: 'event-description' }, eventSummary || description, registerButtonContainer, talkButtonContainer)));
 
   // Add event listener to the 'Register Today' button
   registerButtonLink.addEventListener('click', (event) => {
