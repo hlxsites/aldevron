@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createOptimizedPicture, capitalizeWords, toClassName } from '../../scripts/aem.js';
 import {
   div, a, p, ul, li, article, span,
@@ -18,6 +19,31 @@ const TYPES = [
   'Events',
   'Webinar',
 ];
+
+function filterUrl() {
+  function getUrlParameter(name) {
+    const newName = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp(`[\\?&]${newName}=([^&#]*)`);
+    const results = regex.exec(window.location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
+  // Get URL parameters
+  const eventTypeParam = getUrlParameter('type');
+  const regionParam = getUrlParameter('region');
+
+  regionParam.split(',').forEach((region) => {
+    // Select the checkbox with the ID that matches the region
+    const regionCheckbox = document.getElementById(region);
+    if (regionCheckbox) regionCheckbox.checked = true;
+  });
+
+  eventTypeParam.split(',').forEach((eventType) => {
+    // Select the checkbox with the ID that matches the event type
+    const typeCheckbox = document.getElementById(eventType);
+    if (typeCheckbox) typeCheckbox.checked = true;
+  });
+}
 
 async function fetchPostData() {
   try {
@@ -135,7 +161,7 @@ function updateEvents(events) {
 }
 
 // Event listener function to handle checkbox changes
-function handleCheckboxChange(event, eventData) {
+function handleCheckboxChange(eventData) {
   const checkedCheckboxes = document.querySelectorAll('.filter-item:checked');
   const selectedOptions = Array.from(checkedCheckboxes)
     .map((checkbox) => checkbox.nextSibling.textContent);
@@ -161,16 +187,31 @@ function handleCheckboxChange(event, eventData) {
       filteredEvents = eventData.filter((data) => eventTypes
         .includes(data.type) && regions.includes(data.region));
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('types');
+    if (eventTypes.length > 0) {
+      urlParams.set('type', eventTypes.map((type) => type.toLowerCase()).join(','));
+    } else {
+      urlParams.delete('types');
+    }
+
+    if (regions.length > 0) {
+      urlParams.delete('region');
+      urlParams.set('region', regions.map((region) => region.toLowerCase().replace(/[+\s]/g, '-')).join(','));
+    } else {
+      urlParams.delete('region');
+    }
+
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.replaceState({}, '', newUrl);
   } else {
     filteredEvents = eventData;
   }
+
   updateEvents(filteredEvents);
   const paginationContainer = document.querySelector('.pagination');
-  if (filteredEvents.length <= itemsPerPage) {
-    paginationContainer.style.display = 'none';
-  } else {
-    paginationContainer.style.display = 'block';
-  }
+  if (paginationContainer) paginationContainer.style.display = (filteredEvents.length <= itemsPerPage) ? 'none' : 'block';
 }
 
 function createEventsDropdown(eventName, options) {
@@ -182,7 +223,7 @@ function createEventsDropdown(eventName, options) {
     class: 'dropdown-toggle',
     value: '',
   }, eventName);
-    // btn.addEventListener('click', toggleFilter, false);
+  // btn.addEventListener('click', toggleFilter, false);
   container.append(btn);
 
   const dropDown = div({ class: 'dropdown-menu' });
@@ -230,8 +271,8 @@ async function buildSidePanel(currentPage, eventData) {
 
   const checkboxes = sidePanel.querySelectorAll('.select .dropdown-menu .filter-item');
   checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', (event) => {
-      handleCheckboxChange(event, eventData);
+    checkbox.addEventListener('change', () => {
+      handleCheckboxChange(eventData);
     });
   });
 
@@ -256,7 +297,8 @@ function displayPage(page, events) {
 
 function handlePagination(page, events) {
   currentPageNumber = page;
-  displayPage(currentPageNumber, events); // Update UI with new page
+  const filteredEvents = filterEvents(events, eventType, region);
+  displayPage(currentPageNumber, filteredEvents); // Update UI with new page
 }
 
 function generatePaginationButtons(totalPages, currentPage, events) {
@@ -319,4 +361,7 @@ export default async function decorate(block) {
 
     displayPage(currentPageNumber, eventsToshow);
   }
+
+  filterUrl();
+  handleCheckboxChange(eventsToshow);
 }
