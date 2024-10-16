@@ -73,6 +73,7 @@
   justify-content: center;
   background-color: #1a1919;
   color: #fff;
+  padding-bottom: 20px;
 }
 
 .footer-opco ul {
@@ -86,7 +87,7 @@
 }
 
 .footer-opco li {
-  flex: 1 1 calc(10% - 10px);
+  flex: 1 1 calc(11.111% - 10px);
   margin: 5px;
   box-sizing: border-box;
 }
