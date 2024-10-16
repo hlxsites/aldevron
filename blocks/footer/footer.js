@@ -88,7 +88,6 @@ export default async function decorate(block) {
         { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/moldev.svg', alt: 'MolDev' },
         { href: 'http://www.phenomenex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/phenomenex.svg', alt: 'Phenomenex' },
         { href: 'https://sciex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/sciex.svg', alt: 'Sciex' },
-        { href: 'https://www.aldevron.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/aldevron.svg', alt: 'Aldevron' },
         { href: 'https://www.idtdna.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idt.svg', alt: 'IDT' },
       ];
       items.forEach((item) => {
