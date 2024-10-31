@@ -47,6 +47,19 @@ if (
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
+// HubSpot Tracking Code
+function loadHsScript() {
+  const hsScriptEl = document.createElement('script');
+  hsScriptEl.type = 'text/javascript';
+  hsScriptEl.async = true;
+  hsScriptEl.defer = true;
+  hsScriptEl.setAttribute('id', 'hs-script-loader');
+  hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
+  document.querySelector('head').append(hsScriptEl);
+}
+loadHsScript();
+
+// HubSpot Form Code
 function loadHubSpot() {
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
