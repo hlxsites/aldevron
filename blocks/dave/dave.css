@@ -1,0 +1,12 @@
+.dave strong {
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px solid green;
+}
+
+.dave i {
+  color: red;
+  font-size: 1.5rem;
+  font-style: italic;
+}
