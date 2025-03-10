@@ -15,12 +15,12 @@
 .breadcrumbs li {
     display: inline-block;
     padding: 10px 5px;
-    text-transform: uppercase;
 }
 
 .breadcrumbs li a {
     color: #202020;
     text-decoration: none;
+
 }
 
 .breadcrumbs li:first-child {
@@ -32,6 +32,7 @@
 }
 
 .breadcrumbs li::before {
+    content: none !important;
     font-family: arial, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -40,6 +41,7 @@
     line-height: 1;
     font-size: 14px;
     padding-right: 5px;
+    
 }
 
 .breadcrumbs li:first-child::before {
@@ -49,4 +51,16 @@
 .breadcrumbs li:not(:last-child)::after {
     content: ">\00a0";
     padding: 0 2px 0 7px;
+}
+.breadcrumbs ul li {
+    padding: 0 !important;
+}
+
+.home-icon {
+    margin-top: -5px;
+  }
+
+span{
+    font-size: 16px !important;
+
 }
