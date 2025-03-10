@@ -57,8 +57,8 @@
 }
 
 .step-text {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 0.25rem;
     background-color: #ec8f2d;
     align-items: center;
@@ -68,11 +68,12 @@
 }
 .step-text::after {
     content: "";
-    border: 1px solid rgb(209, 213, 219);
-    height: 100%;
+    background-color: rgb(209, 213, 219);
+    width: 1px;
+    height: 105%;
     z-index: -1;
     position: absolute;
-    top: 6rem;
+    top: 5rem;
 }
 .last-step::after {
     content: none;
@@ -132,7 +133,7 @@ p.button-container.desc {
 
 @media (max-width: 546px) {
     .step-text::after {
-        height: 103%;
-        top: 5rem;
+        height: 105%;
+        top: 4rem;
     }
 }
