@@ -21,6 +21,7 @@ export default function decorate(block) {
                 }
                 stepTextDiv.appendChild(content);
             } else if (index === 2) {
+                // Adding class for every p tag
                 const pTags = content.querySelectorAll('p');
                 pTags.forEach(pTag => pTag.classList.add("desc"));
                 rightDiv.appendChild(content);
