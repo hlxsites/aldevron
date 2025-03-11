@@ -80,7 +80,7 @@
 }
 
 .right-div {
-    text-align: justify;
+    text-align: left;
     width: 47%;
     padding: 2rem 1rem 2rem 1rem;
     position: relative;
@@ -126,14 +126,14 @@ p.button-container.desc {
     }
     .step-text::after {
         left: 20px;
-        height: 105%;
+        height: 108%;
         top: 5rem;
     }
 }
 
 @media (max-width: 546px) {
     .step-text::after {
-        height: 105%;
+        height: 112%;
         top: 4rem;
     }
 }
