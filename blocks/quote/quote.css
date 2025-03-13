@@ -1,0 +1,19 @@
+.quote {
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+ 
+  main > .section > div {
+    max-width: 1491px;
+    margin: auto;
+    padding: 0 24px;
+}
+  @media (min-width: 768px) {
+    .quote {
+      margin: 2rem auto;
+      padding: 2rem;
+      font-size: 1.8rem;
+      max-width: 97%;
+    }
+  }
