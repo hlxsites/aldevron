@@ -90,6 +90,9 @@ p.button-container.desc {
 .title {
     margin-right: 2rem;
 }
+.title h2 {
+    border-left: 3px solid #ec8f2d !important;
+}
 
 @media (max-width: 1023px) {
     .timeline-img {
