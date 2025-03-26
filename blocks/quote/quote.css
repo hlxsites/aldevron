@@ -15,4 +15,14 @@ main > .section > div {
     font-size: 1.8rem;
     max-width: 97%;
   }
+
+ .quote-wrapper{
+ width: calc(100vw - 20px);
+margin-left: calc(-50vw + 50% + 10px);
+ }
+ 
+ .quote-title{
+    border-left: unset;
+    padding: 0 0 0 100px;
 }
+ }
