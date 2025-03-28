@@ -259,7 +259,7 @@ function customCoveoSearch() {
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  const navPath = navMeta ? new URL(navMeta).pathname : '/drafts/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
