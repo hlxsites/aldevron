@@ -12,6 +12,8 @@
   position: relative;
   margin-left: -50vw;
   left: 50%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
  }
 
  @media (max-width: 1024px) {
