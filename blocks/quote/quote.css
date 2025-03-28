@@ -1,28 +1,30 @@
-.quote {
-  background-color: #f5f5f5;
-  line-height: 1.6;
-  font-weight: 500;
-}
+ .quote-container {
+    position: relative;
+    margin: 0 auto;
+    width: 980px;
 
-main > .section > div {
-  max-width: 1491px;
-  margin: auto;
-}
-@media (min-width: 768px) {
-  .quote {
-    margin: 2rem auto;
-    padding: 2rem;
-    font-size: 1.8rem;
-    max-width: 97%;
+ }
+
+ .background-color {
+  background-color: grey;
+  padding: 4.5rem;
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+ }
+
+ @media (max-width: 1024px) {
+  .background-color {
+    width: auto;
+    left: auto;
   }
+ }
 
- .quote-wrapper{
- width: calc(100vw - 20px);
-margin-left: calc(-50vw + 50% + 10px);
- }
- 
- .quote-title{
-    border-left: unset;
-    padding: 0 0 0 100px;
+.title h2 {
+  color: #fff !important;
+  border-left: none !important;
+  position: absolute;
+  top: 28px;
+  padding-left: 0px !important;
 }
- }
