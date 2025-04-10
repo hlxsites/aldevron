@@ -20,7 +20,7 @@ export default function decorate(block) {
             bgColorDiv.style.backgroundColor = '#989898';
           }            
           const row1Column1 = row.children[0];
-          row1Column1.classList.add('title');
+          row1Column1.classList.add('quote-title');
           const h2Element = row1Column1.querySelector('h2');
             row1Column2.style.display = 'none';
             container.appendChild(row1Column1);
