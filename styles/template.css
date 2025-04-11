@@ -191,19 +191,6 @@ body {
     padding: 0
 }
 
-#menu li.hs-menu-depth-2:hover>a,
-#menu ul ul li.active-branch>a,
-#menu ul ul li>a:hover {
-    background-color: #fac922
-}
-
-#menu li.hs-menu-depth-2:hover>a,
-#menu ul ul li.active-branch>a,
-#menu ul ul li>strong>a:hover {
-    background-color: #fac922
-}
-
-
 #menu ul ul ul {
     left: 100%;
     top: 0;
@@ -287,7 +274,7 @@ body {
 #menu .ul-childs>ul {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 236px;
 }
 
 #menu .ul-childs ul>li {
@@ -326,6 +313,11 @@ body {
 #menu .ul-childs>ul>li>ul {
     transition: transform 0.2s ease, opacity 0.2s ease;
     opacity: 0;
+}
+
+#menu .ul-childs ul ul li>a:hover {
+    border-bottom: 2px solid #ec8f2d;
+    display: inline-block;
 }
 
 #menu .ul-childs>ul>li.active-child {
@@ -396,8 +388,7 @@ body {
 #menu li .hs-menu-depth-3>a,
 #menu li .hs-menu-depth-4>a {
     text-align: center;
-    padding: 6px 0 10px 10px !important;
-    margin-top: 6px;
+    padding: 6px 0 10px 0px !important;
 }
 
 #menu .parent-menu li.hs-menu-depth-1.hover>a::after {
