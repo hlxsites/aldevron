@@ -135,7 +135,7 @@ function setupMenuHoverListeners() {
   const content = document.querySelectorAll('.ul-childs');
 
   let activeParent = null;
-  let isDropdownHovered = false;
+  let dropdownTimeout = null; // Timer for closing dropdown
 
   // Reset dropdown height to auto
   const resetDropdownHeight = () => {
@@ -144,7 +144,12 @@ function setupMenuHoverListeners() {
 
   navItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      isDropdownHovered = true;
+      // Clear any pending timeout
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout);
+        dropdownTimeout = null;
+      }
+
       // Reset all menu states
       navItems.forEach(navItem => {
         navItem.classList.remove('hover', 'active');
@@ -194,13 +199,34 @@ function setupMenuHoverListeners() {
     });
 
     item.addEventListener('mouseleave', (e) => {
-      item.classList.remove('active');
+      // Set timeout to close dropdown if mouse doesn't enter dropdown
+      dropdownTimeout = setTimeout(() => {
+        fixedDropdown.style.display = 'none';
+        resetDropdownHeight();
+        
+        // Remove highlight from active parent
+        if (activeParent) {
+          activeParent.classList.remove('active', 'hover');
+          activeParent = null;
+        }
+        
+        // Remove all active child classes
+        document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
+          child.classList.remove('active-child');
+        });
+      }, 100); // 100ms delay
     });
   });
 
   // Handle child item hover effects
   document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
     child.addEventListener('mouseenter', () => {
+      // Clear any pending timeout
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout);
+        dropdownTimeout = null;
+      }
+
       // Remove active class from all siblings
       const parentList = child.closest('ul');
       if (parentList) {
@@ -224,14 +250,18 @@ function setupMenuHoverListeners() {
         )}px`;
       }
     });
-
-
   });
 
-
+  // Keep dropdown open when mouse enters it
+  fixedDropdown.addEventListener('mouseenter', () => {
+    // Clear any pending timeout
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      dropdownTimeout = null;
+    }
+  });
 
   fixedDropdown.addEventListener('mouseleave', () => {
-    isDropdownHovered = false;
     fixedDropdown.style.display = 'none';
     resetDropdownHeight();
 
@@ -242,11 +272,10 @@ function setupMenuHoverListeners() {
 
     // Remove highlight from active parent
     if (activeParent) {
-      activeParent.classList.remove('hover');
+      activeParent.classList.remove('hover', 'active');
       activeParent = null;
     }
   });
-
 }
 function getRecentSearches() {
   const recentSearchesString = localStorage.getItem('coveo-recent-queries');
@@ -566,29 +595,5 @@ export default async function decorate(block) {
     fetchSuggestions('');
     setupMenuHoverListeners();
 
-    // Add resize listener to handle viewport changes
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 961) {
-        // Remove desktop classes and add mobile classes
-        const menuItems = menuListWrapper.querySelectorAll('.hs-menu-item');
-        menuItems.forEach(item => {
-          item.classList.remove('open');
-          const arrow = item.querySelector('.arrow');
-          if (arrow) arrow.remove();
-        });
-        addMobileClassesToMenuItems(menuListWrapper, 1);
-      } else {
-        // Remove mobile classes and add desktop classes
-        const menuItems = menuListWrapper.querySelectorAll('.hs-menu-item');
-        menuItems.forEach(item => {
-          item.classList.remove('open');
-          const arrow = item.querySelector('.arrow');
-          if (arrow) arrow.remove();
-          const childUl = item.querySelector('ul');
-          if (childUl) childUl.style.display = '';
-        });
-        addDesktopClassesToMenuItems(menuListWrapper, 1, true, fixedDropdown);
-      }
-    });
   }
 }
