@@ -7,9 +7,6 @@ import { div, a, img, li, ul, p, span} from '../../scripts/dom-builder.js';
  */
 function formatBreadcrumbText(text) {
   return text
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
 }
  
 /**
