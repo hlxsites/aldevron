@@ -129,53 +129,219 @@ function addMobileClassesToMenuItems(element, depth) {
   }
 }
 
+// function setupMenuHoverListeners() {
+//   const navItems = document.querySelectorAll('.parent-menu > li > a');
+//   const fixedDropdown = document.querySelector('.dropdown-content');
+//   const content = document.querySelectorAll('.ul-childs');
+
+//   let activeParent = null;
+
+//   const resetDropdownHeight = () => {
+//     fixedDropdown.style.height = 'auto';
+//   };
+
+//   navItems.forEach(item => {
+//     item.addEventListener('click', (e) => {
+//       e.preventDefault();
+//       const parentItem = item.parentElement;
+//       const target = item.getAttribute('data-target');
+//       const targetContent = document.getElementById(target);
+
+//          // If clicking the same parent that's already active, do nothing (let the link navigate)
+//          if (activeParent === parentItem) {
+//           return;
+//         }
+
+//         // Hide all content first
+//         content.forEach(cont => cont.style.display = 'none');
+//         navItems.forEach(navItem => navItem.classList.remove('hover', 'active'));
+
+//         // Show dropdown and target content
+//         fixedDropdown.style.display = 'block';
+//         resetDropdownHeight();
+
+//         if (targetContent) {
+//           targetContent.style.display = 'block';
+
+//           const firstChild = targetContent.querySelector('.ul-childs ul li:first-child');
+//           if (firstChild) {
+//             targetContent.querySelectorAll('.ul-childs ul li').forEach(childItem => {
+//               childItem.classList.remove('active-child');
+//             });
+//             firstChild.classList.add('active-child');
+
+//             const subMenu = firstChild.querySelector('ul');
+//             if (subMenu) {
+//               fixedDropdown.style.height = `${Math.max(
+//                 fixedDropdown.scrollHeight,
+//                 subMenu.scrollHeight
+//               )}px`;
+//             }
+//           }
+        
+
+//         // Remove active classes from previously active parent
+//         if (activeParent) {
+//           activeParent.classList.remove('hover', 'active');
+//         }
+
+//         // Set active classes
+//         parentItem.classList.add('hover', 'active');
+//         activeParent = parentItem;
+    
+
+//         // Listen for outside click to reset
+//         document.addEventListener('click', function handleOutsideClick(event) {
+//           if (!parentItem.contains(event.target) && !fixedDropdown.contains(event.target)) {
+//             fixedDropdown.style.display = 'none';
+//             resetDropdownHeight();
+//             content.forEach(cont => cont.style.display = 'none');
+
+//             if (activeParent) {
+//               activeParent.classList.remove('hover', 'active');
+//             }
+//             document.querySelectorAll('.ul-childs ul li').forEach(child => {
+//               child.classList.remove('active-child');
+//             });
+
+//             activeParent = null;
+//             document.removeEventListener('click', handleOutsideClick);
+//           }
+//         });
+//       } else {
+//         // Second click – let the link navigate
+//       }
+//     });
+//   });
+
+//   // Child hover effects
+//   // document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
+//   //   child.addEventListener('click', () => {
+//   //     document.querySelectorAll('.ul-childs ul li').forEach(sibling => {
+//   //       sibling.classList.remove('active-child');
+//   //     });
+//   //     child.classList.add('active-child');
+
+//   //     const subMenu = child.querySelector('ul');
+//   //     if (subMenu) {
+//   //       const menuContainer = child.closest('.dropdown-content');
+//   //       menuContainer.style.height = 'auto';
+//   //       menuContainer.style.height = `${Math.max(
+//   //         menuContainer.scrollHeight,
+//   //         subMenu.scrollHeight
+//   //       )}px`;
+//   //     }
+//   //   });
+//   // });
+//   document.querySelectorAll('.dropdown-content .ul-childs ul li > a').forEach(childLink => {
+//     let clickedOnce = false;
+  
+//     childLink.addEventListener('click', function (e) {
+//       const childItem = this.parentElement; // <li>
+//       const subMenu = childItem.querySelector('ul');
+  
+//       if (!clickedOnce && subMenu) {
+//         e.preventDefault(); // First click: prevent navigation
+  
+//         // Remove active-child from all siblings
+//         const siblingItems = childItem.closest('ul').querySelectorAll('li');
+//         siblingItems.forEach(sibling => sibling.classList.remove('active-child'));
+  
+//         // Add active-child to this one
+//         childItem.classList.add('active-child');
+  
+//         // Adjust height of dropdown to fit submenu
+//         const menuContainer = childItem.closest('.dropdown-content');
+//         menuContainer.style.height = 'auto';
+//         menuContainer.style.height = `${Math.max(
+//           menuContainer.scrollHeight,
+//           subMenu.scrollHeight
+//         )}px`;
+  
+//         clickedOnce = true;
+  
+//         // Reset click after clicking elsewhere
+//         document.addEventListener('click', function handleOutsideClick(event) {
+//           if (!childItem.contains(event.target)) {
+//             clickedOnce = false;
+//             document.removeEventListener('click', handleOutsideClick);
+//           }
+//         });
+//       } else {
+//         // Second click: allow normal link navigation
+//       }
+//     });
+//   });
+
+//   // Optional: if you want to hide dropdown on dropdown mouse leave
+//   fixedDropdown.addEventListener('mouseleave', () => {
+//     // Keep this only if you want to auto-close on leave
+//     // Otherwise, remove this event completely for click-only behavior
+//   });
+// }
 function setupMenuHoverListeners() {
-  const navItems = document.querySelectorAll('.parent-menu > li');
+  const navItems = document.querySelectorAll('.parent-menu > li > a');
   const fixedDropdown = document.querySelector('.dropdown-content');
   const content = document.querySelectorAll('.ul-childs');
 
   let activeParent = null;
-  let dropdownTimeout = null; // Timer for closing dropdown
+  let outsideClickListener = null;
 
-  // Reset dropdown height to auto
   const resetDropdownHeight = () => {
     fixedDropdown.style.height = 'auto';
   };
 
+  const cleanupPreviousState = () => {
+    if (outsideClickListener) {
+      document.removeEventListener('click', outsideClickListener);
+      outsideClickListener = null;
+    }
+    
+    fixedDropdown.style.display = 'none';
+    resetDropdownHeight();
+    content.forEach(cont => cont.style.display = 'none');
+    
+    if (activeParent) {
+      activeParent.classList.remove('hover', 'active');
+    }
+    
+    document.querySelectorAll('.ul-childs ul li').forEach(child => {
+      child.classList.remove('active-child');
+    });
+    
+    activeParent = null;
+  };
+
   navItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      // Clear any pending timeout
-      if (dropdownTimeout) {
-        clearTimeout(dropdownTimeout);
-        dropdownTimeout = null;
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentItem = item.parentElement;
+      const target = item.getAttribute('data-target');
+      const targetContent = document.getElementById(target);
+
+      // If clicking the same parent that's already active, cleanup and let the link navigate
+      if (activeParent === parentItem) {
+        cleanupPreviousState();
+        return;
       }
 
-      // Reset all menu states
-      navItems.forEach(navItem => {
-        navItem.classList.remove('hover', 'active');
-      });
-      content.forEach(cont => {
-        cont.style.display = 'none';
-      });
-      fixedDropdown.style.display = 'block';
-      resetDropdownHeight(); // Reset height before showing new content
+      // Cleanup previous state first
+      cleanupPreviousState();
 
-      // Show the target content
-      const target = item.querySelector('a').getAttribute('data-target');
-      const targetContent = document.getElementById(target);
+      // Show dropdown and target content
+      fixedDropdown.style.display = 'block';
+      resetDropdownHeight();
 
       if (targetContent) {
         targetContent.style.display = 'block';
 
-        // Set first child as active
         const firstChild = targetContent.querySelector('.ul-childs ul li:first-child');
         if (firstChild) {
           targetContent.querySelectorAll('.ul-childs ul li').forEach(childItem => {
             childItem.classList.remove('active-child');
           });
           firstChild.classList.add('active-child');
-          
-          // Adjust height for the active first child's content
+
           const subMenu = firstChild.querySelector('ul');
           if (subMenu) {
             fixedDropdown.style.height = `${Math.max(
@@ -186,97 +352,74 @@ function setupMenuHoverListeners() {
         }
       }
 
-      item.classList.add('hover');
+      // Set active classes
+      parentItem.classList.add('hover', 'active');
+      activeParent = parentItem;
 
-      // Remove highlight from previously active parent
-      if (activeParent && activeParent !== item) {
-        activeParent.classList.remove('active');
-      }
-
-      // Highlight the hovered menu item and set as active parent
-      item.classList.add('active');
-      activeParent = item;
-    });
-
-    item.addEventListener('mouseleave', (e) => {
-      // Set timeout to close dropdown if mouse doesn't enter dropdown
-      dropdownTimeout = setTimeout(() => {
-        fixedDropdown.style.display = 'none';
-        resetDropdownHeight();
-        
-        // Remove highlight from active parent
-        if (activeParent) {
-          activeParent.classList.remove('active', 'hover');
-          activeParent = null;
+      // Listen for outside click to reset
+      outsideClickListener = function handleOutsideClick(event) {
+        if (!parentItem.contains(event.target) && !fixedDropdown.contains(event.target)) {
+          cleanupPreviousState();
         }
-        
-        // Remove all active child classes
-        document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
-          child.classList.remove('active-child');
-        });
-      }, 100); // 100ms delay
+      };
+      document.addEventListener('click', outsideClickListener);
     });
   });
 
-  // Handle child item hover effects
-  document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
-    child.addEventListener('mouseenter', () => {
-      // Clear any pending timeout
-      if (dropdownTimeout) {
-        clearTimeout(dropdownTimeout);
-        dropdownTimeout = null;
-      }
-
-      // Remove active class from all siblings
-      const parentList = child.closest('ul');
-      if (parentList) {
-        parentList.querySelectorAll('li').forEach(sibling => {
-          sibling.classList.remove('active-child');
-        });
-      }
-      // Add to current hovered item
-      child.classList.add('active-child');
-
-      // Dynamic height adjustment for submenus
-      const subMenu = child.querySelector('ul');
-      if (subMenu) {
-        const menuContainer = child.closest('.dropdown-content');
-        // Reset to auto first to get accurate measurements
+  // Child click handling
+  document.querySelectorAll('.dropdown-content .ul-childs ul li > a').forEach(childLink => {
+    let clickedOnce = false;
+    let childOutsideClickListener = null;
+  
+    childLink.addEventListener('click', function (e) {
+      const childItem = this.parentElement;
+      const subMenu = childItem.querySelector('ul');
+  
+      if (!clickedOnce && subMenu) {
+        e.preventDefault();
+  
+        // Remove active-child from all siblings
+        const siblingItems = childItem.closest('ul').querySelectorAll('li');
+        siblingItems.forEach(sibling => sibling.classList.remove('active-child'));
+  
+        // Add active-child to this one
+        childItem.classList.add('active-child');
+  
+        // Adjust height of dropdown
+        const menuContainer = childItem.closest('.dropdown-content');
         menuContainer.style.height = 'auto';
-        // Then set to the max height
         menuContainer.style.height = `${Math.max(
           menuContainer.scrollHeight,
           subMenu.scrollHeight
         )}px`;
+  
+        clickedOnce = true;
+  
+        // Cleanup previous listener if exists
+        if (childOutsideClickListener) {
+          document.removeEventListener('click', childOutsideClickListener);
+        }
+        
+        // Reset click after clicking elsewhere
+        childOutsideClickListener = function handleChildOutsideClick(event) {
+          if (!childItem.contains(event.target)) {
+            clickedOnce = false;
+            document.removeEventListener('click', childOutsideClickListener);
+            childOutsideClickListener = null;
+          }
+        };
+        document.addEventListener('click', childOutsideClickListener);
       }
+      // Else case: allow normal navigation (no action needed)
     });
   });
 
-  // Keep dropdown open when mouse enters it
-  fixedDropdown.addEventListener('mouseenter', () => {
-    // Clear any pending timeout
-    if (dropdownTimeout) {
-      clearTimeout(dropdownTimeout);
-      dropdownTimeout = null;
-    }
-  });
-
+  // Optional mouseleave handler
   fixedDropdown.addEventListener('mouseleave', () => {
-    fixedDropdown.style.display = 'none';
-    resetDropdownHeight();
-
-    // Remove all active child classes
-    document.querySelectorAll('.dropdown-content .ul-childs ul li').forEach(child => {
-      child.classList.remove('active-child');
-    });
-
-    // Remove highlight from active parent
-    if (activeParent) {
-      activeParent.classList.remove('hover', 'active');
-      activeParent = null;
-    }
+    // Implementation if needed
   });
 }
+
 function getRecentSearches() {
   const recentSearchesString = localStorage.getItem('coveo-recent-queries');
   const recentSearches = recentSearchesString ? JSON.parse(recentSearchesString) : [];

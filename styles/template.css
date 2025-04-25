@@ -282,6 +282,10 @@ body {
     padding: 0 !important;
 }
 
+#menu .hs-menu-depth-2:hover {
+ background-color: #fac922;
+}
+
 #menu .ul-childs>ul>li>ul {
     position: absolute;
     left: 250px;
