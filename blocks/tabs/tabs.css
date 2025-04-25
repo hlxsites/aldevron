@@ -12,3 +12,11 @@
     margin-left: 18px;
     display: block;
 }
+
+.tabpanel tr td:nth-child(1) {
+    width: 25%;
+}
+
+.tabpanel tr td:nth-child(2) {
+    width: 75%;
+}
