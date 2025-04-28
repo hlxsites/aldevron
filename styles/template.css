@@ -283,7 +283,8 @@ body {
 }
 
 #menu .hs-menu-depth-2:hover {
- background-color: #fac922;
+ background-color: #fade7f
+ /* opacity: 0.75; */
 }
 
 #menu .ul-childs>ul>li>ul {
