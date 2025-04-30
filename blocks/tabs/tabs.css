@@ -7,10 +7,22 @@
     display: block;
 }
 
-.tabpanel .two-column-table tr td:nth-child(1) {
+.tabs-column .two-column-table tr td:nth-child(1) {
     width: 25%;
 }
 
-.tabpanel .two-column-table tr td:nth-child(2) {
+.tabs-column .two-column-table tr td:nth-child(2) {
     width: 75%;
+}
+
+.tabs-column .three-column-table tr td:nth-child(1) {
+    width: 33%;
+}
+
+.tabs-column .three-column-table tr td:nth-child(2) {
+    width: 33%;
+}
+
+.tabs-column .three-column-table tr td:nth-child(3) {
+    width: 33%;
 }
