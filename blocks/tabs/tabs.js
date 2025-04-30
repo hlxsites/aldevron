@@ -16,14 +16,25 @@ function activeFirstElements(content) {
   listElement.classList.add('active');
 }
 
-function removeEmptyTableRows(tables) {
+function styleTablesBasedOnColumns(tables) {
   tables.forEach((table) => {
     const trs = table.querySelectorAll('tr');
-    if (trs.length === 0) return; // No rows in this table, continue to the next one
+    if (trs.length === 0) return;
+
+    // Check the first row to determine column count
+    const firstRow = trs[0];
+    const columns = firstRow.querySelectorAll('td, th').length;
+
+    // Add specific class based on column count
+    if (columns === 2) {
+      table.classList.add('two-column-table');
+    } else if (columns === 3) {
+      table.classList.add('three-column-table');
+    }
 
     trs.forEach((tr) => {
       const tds = tr.querySelectorAll('td');
-      if (tds.length === 0) return; // No cells in this row, continue to the next row
+      if (tds.length === 0) return;
 
       const isEmptyRow = Array.from(tds).every((td) => td.innerHTML.trim() === '');
 
@@ -65,6 +76,7 @@ export default function decorate(block) {
   tabComponent.appendChild(tabContent);
   block.appendChild(tabComponent);
   activeFirstElements(tabComponent);
+  
   const tables = block.querySelectorAll('table');
-  removeEmptyTableRows(tables);
+  styleTablesBasedOnColumns(tables);
 }

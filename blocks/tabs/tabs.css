@@ -7,10 +7,10 @@
     display: block;
 }
 
-.tabpanel tr td:nth-child(1) {
+.tabpanel .two-column-table tr td:nth-child(1) {
     width: 25%;
 }
 
-.tabpanel tr td:nth-child(2) {
+.tabpanel .two-column-table tr td:nth-child(2) {
     width: 75%;
 }
