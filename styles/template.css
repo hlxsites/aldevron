@@ -284,7 +284,6 @@ body {
 
 #menu .hs-menu-depth-2:hover {
  background-color: #fade7f
- /* opacity: 0.75; */
 }
 
 #menu .ul-childs>ul>li>ul {
@@ -298,7 +297,6 @@ body {
     padding: 15px;
     z-index: 100;
     margin: 0;
-
 }
 
 #menu li.hs-menu-depth-1>a {
