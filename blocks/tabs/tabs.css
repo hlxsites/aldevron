@@ -1,22 +1,33 @@
 .mmg-tabs {
     padding: 20px 0;
 }
- 
-/* .tabpanel table tr:first-child td {
-    background-color: var(--primary-color)!important;
-    color: var(--text-color);
-} */
- 
- 
-.tabs .tabpanel ul + p > em {
+
+.tabs .tabpanel ul+p>em {
     margin-left: 18px;
     display: block;
 }
 
-.tabpanel tr td:nth-child(1) {
+.tabs-column .two-column-table tr td:nth-child(1) {
     width: 25%;
 }
 
-.tabpanel tr td:nth-child(2) {
+.tabs-column .two-column-table tr td:nth-child(2) {
     width: 75%;
+}
+
+.tabs-column .three-column-table tr td:nth-child(1),
+.tabs-column .three-column-table tr td:nth-child(2),
+.tabs-column .three-column-table tr td:nth-child(3){
+    width: 33%;
+}
+
+.two-column-table td:nth-child(1),
+.two-column-table td:nth-child(2) {
+    width: 50%;
+}
+
+.three-column-table tr td:nth-child(1),
+.three-column-table tr td:nth-child(2),
+.three-column-table tr td:nth-child(3){
+    width: 33%;
 }
