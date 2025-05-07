@@ -13,7 +13,6 @@ function formatBreadcrumbText(text) {
  * @param {HTMLElement} $block The main element
  */
 export default async function decorate($block) {
-  console.log("inside decorate breadcrumb");
   const jsonData = await fetchData();
   if (!jsonData || !jsonData.length) return;
  const url = window.location.href;

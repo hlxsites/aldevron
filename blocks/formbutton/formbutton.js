@@ -7,7 +7,7 @@ export default async function decorate(block) {
   passFormConfig(formConfig);
   const { buttonlabel: buttonLabel, target: targetId } = formConfig;
   if (!buttonLabel || !targetId)
-  {     console.log(buttonLabel);
+  {     
      block.style.display = 'none';
     return;
   }
