@@ -1,0 +1,31 @@
+.quote-container {
+  position: relative;
+  margin: 0 auto;
+
+}
+
+.background-color {
+  background-color: grey;
+  padding: 5.2rem;
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.quote-title h2 {
+  color: #fff !important;
+  border-left: none !important;
+  position: absolute;
+  top: 28px;
+  padding-left: 0px !important;
+}
+
+@media (max-width: 1023px) {
+  .background-color {
+    width: auto;
+    left: 6%;
+  }
+}

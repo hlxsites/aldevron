@@ -284,11 +284,24 @@
         color: #1a1919;
         font-family: inherit;
         font-size: 15px;
+        font-weight: 700;
         line-height: normal !important;
         padding: 11px 40px 11px 25px !important;
         text-decoration: none;
         z-index: 100
     }
+
+    #menu li .hs-menu-depth-3>a,
+    #menu li .hs-menu-depth-4>a {
+        background: none !important;
+        color: #1a1919;
+        font-family: inherit;
+        font-size: 15px;
+        line-height: normal !important;
+        padding: 11px 40px 11px 25px !important;
+        /* text-decoration: none; */
+        text-align: unset;
+}
 
     #menu ul ul li .arrow {
         right: 0

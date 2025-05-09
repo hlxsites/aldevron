@@ -8,7 +8,88 @@ const windowWidth = document.body.offsetWidth;
 
 let coveoSearchValue = '';
 
-function addClassesToMenuItems(element, depth) {
+function addDesktopClassesToMenuItems(element, depth, isTopLevel = false, fixedDropdown = null) {
+  const childItems = element.children;
+
+  if (isTopLevel && depth === 1) {
+    // Create main structural wrappers
+    const parentDiv = div({ class: 'parent-menu' });
+    const parentChildsDiv = div({ class: 'dropdown-content' });
+
+    // Process all top-level items
+    while (childItems.length > 0) {
+      const item = childItems[0];
+      item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
+      parentDiv.appendChild(item);
+
+      // Handle anchor tags for top-level items
+      const link = item.querySelector('a');
+      let targetId = '';
+      if (link) {
+        // Add data-target attribute based on link text or href
+        targetId = link.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        link.setAttribute('data-target', targetId);
+
+        // Existing link handling
+        if (link.parentElement.tagName.toLowerCase() === 'strong') {
+          link.setAttribute('target', '_blank');
+        }
+        if (link.pathname === window.location.pathname) {
+          item.classList.add('active');
+        }
+      }
+
+      // Handle child menus
+      const childElement = item.querySelector('ul');
+      if (childElement) {
+        item.removeChild(childElement);
+        const subParentDiv = div({ class: 'ul-childs' });
+
+        if (targetId) {
+          subParentDiv.id = targetId;
+        }
+
+        subParentDiv.appendChild(childElement)
+        parentChildsDiv.appendChild(subParentDiv);
+        addDesktopClassesToMenuItems(childElement, depth + 1, false, fixedDropdown);
+      }
+    }
+
+    element.appendChild(parentDiv);
+    // Move parent-childs div under dropdown-content if it exists
+    if (fixedDropdown) {
+      fixedDropdown.appendChild(parentChildsDiv);
+    } else {
+      element.appendChild(parentChildsDiv);
+    }
+    return;
+  }
+
+
+  for (let i = 0; i < childItems.length; i += 1) {
+    const item = childItems[i];
+    // Add class to the immediate child element
+    item.classList.add('hs-menu-item', `hs-menu-depth-${depth}`);
+    const link = item.querySelector('a');
+    const { parentElement } = link;
+    if (parentElement.tagName.toLowerCase() === 'strong') {
+      link.setAttribute('target', '_blank');
+    }
+    if (link && link.pathname === window.location.pathname) {
+      item.classList.add('active');
+    }
+
+    const childElement = item.querySelector('ul');
+
+    if (childElement?.children?.length > 0) {
+      item.appendChild(link);
+      item.appendChild(childElement);
+      addDesktopClassesToMenuItems(childElement, depth + 1, false, fixedDropdown);
+    }
+  }
+}
+
+function addMobileClassesToMenuItems(element, depth) {
   const childItems = element.children;
   for (let i = 0; i < childItems.length; i += 1) {
     const item = childItems[i];
@@ -25,29 +106,177 @@ function addClassesToMenuItems(element, depth) {
     const childElement = item.querySelector('ul');
 
     if (childElement?.children?.length > 0) {
-      if (windowWidth < 961) {
-        const spanElement = span({ class: 'arrow' });
-        childElement.style.display = 'none';
-        spanElement.addEventListener('click', () => {
-          if (
-            childElement.style.display === 'block'
-            || childElement.style.display === ''
-          ) {
-            childElement.style.display = 'none';
-            item.classList.remove('open');
-          } else {
-            childElement.style.display = 'block';
-            item.classList.add('open');
-          }
-        });
-        item.prepend(spanElement);
-      }
+      const spanElement = span({ class: 'arrow' });
+      childElement.style.display = 'none';
+      spanElement.addEventListener('click', () => {
+        if (
+          childElement.style.display === 'block' ||
+          childElement.style.display === ''
+        ) {
+          childElement.style.display = 'none';
+          item.classList.remove('open');
+        } else {
+          childElement.style.display = 'block';
+          item.classList.add('open');
+        }
+      });
+      item.prepend(spanElement);
       item.appendChild(link);
       item.appendChild(childElement);
       const nextDepth = depth + 1;
-      addClassesToMenuItems(childElement, nextDepth);
+      addMobileClassesToMenuItems(childElement, nextDepth);
     }
   }
+}
+
+function setupMenuHoverListeners() {
+  const navItems = document.querySelectorAll('.parent-menu > li > a');
+  const fixedDropdown = document.querySelector('.dropdown-content');
+  const content = document.querySelectorAll('.ul-childs');
+
+  let activeParent = null;
+  let outsideClickListener = null;
+  let clickCount = 0; // Track click count on active parent
+
+  const resetDropdownHeight = () => {
+    fixedDropdown.style.height = 'auto';
+  };
+
+  const cleanupPreviousState = () => {
+    if (outsideClickListener) {
+      document.removeEventListener('click', outsideClickListener);
+      outsideClickListener = null;
+    }
+    
+    fixedDropdown.style.display = 'none';
+    resetDropdownHeight();
+    content.forEach(cont => cont.style.display = 'none');
+    
+    if (activeParent) {
+      activeParent.classList.remove('hover', 'active');
+    }
+    
+    document.querySelectorAll('.ul-childs ul li').forEach(child => {
+      child.classList.remove('active-child');
+    });
+    
+    activeParent = null;
+    clickCount = 0; // Reset click count when cleaning up
+  };
+
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentItem = item.parentElement;
+      const target = item.getAttribute('data-target');
+      const targetContent = document.getElementById(target);
+      const href = item.getAttribute('href');
+
+      // If clicking the same parent that's already active
+      if (activeParent === parentItem) {
+        clickCount++;
+        
+        // On second click, navigate to href
+        if (clickCount >= 2) {
+          cleanupPreviousState();
+          window.location.href = href;
+          return;
+        }
+      } else {
+        // If clicking a different parent, reset state
+        cleanupPreviousState();
+        clickCount = 1;
+      }
+
+      // Show dropdown and target content
+      fixedDropdown.style.display = 'block';
+      resetDropdownHeight();
+
+      if (targetContent) {
+        targetContent.style.display = 'block';
+
+        const firstChild = targetContent.querySelector('.ul-childs ul li:first-child');
+        if (firstChild) {
+          targetContent.querySelectorAll('.ul-childs ul li').forEach(childItem => {
+            childItem.classList.remove('active-child');
+          });
+          firstChild.classList.add('active-child');
+
+          const subMenu = firstChild.querySelector('ul');
+          if (subMenu) {
+            fixedDropdown.style.height = `${Math.max(
+              fixedDropdown.scrollHeight,
+              subMenu.scrollHeight
+            )}px`;
+          }
+        }
+      }
+
+      // Set active classes
+      parentItem.classList.add('hover', 'active');
+      activeParent = parentItem;
+
+      // Listen for outside click to reset
+      outsideClickListener = function handleOutsideClick(event) {
+        if (!parentItem.contains(event.target) && !fixedDropdown.contains(event.target)) {
+          cleanupPreviousState();
+        }
+      };
+      document.addEventListener('click', outsideClickListener);
+    });
+  });
+
+  // Child click handling
+  document.querySelectorAll('.dropdown-content .ul-childs ul li > a').forEach(childLink => {
+    let clickedOnce = false;
+    let childOutsideClickListener = null;
+  
+    childLink.addEventListener('click', function (e) {
+      const childItem = this.parentElement;
+      const subMenu = childItem.querySelector('ul');
+  
+      if (!clickedOnce && subMenu) {
+        e.preventDefault();
+  
+        // Remove active-child from all siblings
+        const siblingItems = childItem.closest('ul').querySelectorAll('li');
+        siblingItems.forEach(sibling => sibling.classList.remove('active-child'));
+  
+        // Add active-child to this one
+        childItem.classList.add('active-child');
+  
+        // Adjust height of dropdown
+        const menuContainer = childItem.closest('.dropdown-content');
+        menuContainer.style.height = 'auto';
+        menuContainer.style.height = `${Math.max(
+          menuContainer.scrollHeight,
+          subMenu.scrollHeight
+        )}px`;
+  
+        clickedOnce = true;
+  
+        // Cleanup previous listener if exists
+        if (childOutsideClickListener) {
+          document.removeEventListener('click', childOutsideClickListener);
+        }
+        
+        // Reset click after clicking elsewhere
+        childOutsideClickListener = function handleChildOutsideClick(event) {
+          if (!childItem.contains(event.target)) {
+            clickedOnce = false;
+            document.removeEventListener('click', childOutsideClickListener);
+            childOutsideClickListener = null;
+          }
+        };
+        document.addEventListener('click', childOutsideClickListener);
+      }
+    });
+  });
+
+  // Optional mouseleave handler
+  fixedDropdown.addEventListener('mouseleave', () => {
+    // Implementation if needed
+  });
 }
 
 function getRecentSearches() {
@@ -334,6 +563,9 @@ export default async function decorate(block) {
 
     // Create a temporary div element
     const tempDiv = document.createElement('ul');
+    tempDiv.classList.add('nav-list')
+
+    const fixedDropdown = div({ class: 'fixed-dropdown' });
 
     // Set the innerHTML of the temporary div
     tempDiv.innerHTML = menuList;
@@ -343,10 +575,15 @@ export default async function decorate(block) {
 
     // Append menuListWrapper to headerMenu
     menuWrapper.appendChild(menuListWrapper);
+    menuWrapper.appendChild(fixedDropdown);
     headerMenu.appendChild(menuWrapper);
 
     // Add classes to menu items
-    addClassesToMenuItems(menuListWrapper, 1);
+    if (window.innerWidth < 961) {
+      addMobileClassesToMenuItems(menuListWrapper, 1);
+    } else {
+      addDesktopClassesToMenuItems(menuListWrapper, 1, true, fixedDropdown);
+    }
 
     headerNavIn.appendChild(headerInfo);
     headerNavIn.appendChild(headerMenu);
@@ -358,5 +595,7 @@ export default async function decorate(block) {
     block.append(nav);
     addRecentSearch();
     fetchSuggestions('');
+    setupMenuHoverListeners();
+
   }
 }

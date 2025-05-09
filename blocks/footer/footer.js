@@ -80,15 +80,15 @@ export default async function decorate(block) {
     function footerOpco() {
       const ulElement = document.createElement('ul');
       const items = [
-        { href: 'https://www.abcam.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/abcam.svg', alt: 'Abcam' },
-        { href: 'https://www.beckman.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/beckman.svg', alt: 'Beckman' },
-        { href: 'https://www.genedata.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/genedata.svg', alt: 'Genedata' },
-        { href: 'https://www.idbs.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idbs.svg', alt: 'IDBS' },
-        { href: 'https://www.leica-microsystems.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/leica.svg', alt: 'Leica' },
-        { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/moldev.svg', alt: 'MolDev' },
-        { href: 'http://www.phenomenex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/phenomenex.svg', alt: 'Phenomenex' },
-        { href: 'https://sciex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/sciex.svg', alt: 'Sciex' },
-        { href: 'https://www.idtdna.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../icons/opcos/idt.svg', alt: 'IDT' },
+        { href: 'https://www.abcam.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/abcam.svg', alt: 'Abcam' },
+        { href: 'https://www.beckman.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/beckman.svg', alt: 'Beckman' },
+        { href: 'https://www.genedata.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/genedata.svg', alt: 'Genedata' },
+        { href: 'https://www.idbs.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/idbs.svg', alt: 'IDBS' },
+        { href: 'https://www.leica-microsystems.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/leica.svg', alt: 'Leica' },
+        { href: 'http://www.moleculardevices.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/moldev.svg', alt: 'MolDev' },
+        { href: 'http://www.phenomenex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/phenomenex.svg', alt: 'Phenomenex' },
+        { href: 'https://sciex.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/sciex.svg', alt: 'Sciex' },
+        { href: 'https://www.idtdna.com?utm_source=aldevron_website&utm_medium=referral&utm_content=footer', src: '../../../../icons/opcos/idt.svg', alt: 'IDT' },
       ];
       items.forEach((item) => {
         const liElement = document.createElement('li');

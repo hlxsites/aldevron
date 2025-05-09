@@ -1,0 +1,145 @@
+.section.timeline-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem;
+    padding-bottom: 2rem;
+}
+
+.timeline-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+    max-width: 86rem !important;
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.parent-reverse {
+    flex-direction: row-reverse;
+}
+
+.timeline-img {
+    display: block;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 50%;
+    position: relative;
+    top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.timeline-img img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.timeline-step {
+    width: 6% !important;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    position: relative;
+    bottom: 2rem;
+}
+
+.step-text {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    background-color: #ec8f2d;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
+}
+.step-text::after {
+    content: "";
+    background-color: rgb(209, 213, 219);
+    width: 1px;
+    height: 103%;
+    position: absolute;
+    top: 88px;
+}
+.last-step::after {
+    content: none;
+}
+
+.right-div {
+    text-align: left;
+    width: 50%;
+    padding: 2rem 1rem 2rem 1rem;
+    position: relative;
+    top: 3rem;
+}
+
+p.button-container.desc {
+    margin-top: 16px;
+}
+
+.title {
+    margin-right: 2rem;
+}
+.title h2 {
+    border-left: 3px solid #ec8f2d !important;
+}
+
+@media (max-width: 1023px) {
+    .timeline-img {
+        display: none;
+
+    }
+    .parent-reverse {
+        flex-direction: row;
+    }
+    .desc {
+        font-size: 18px;
+    }
+    .right-div {
+        top: 12px;
+        width: 70%;
+        left: 4rem;
+        padding-bottom: 0;
+        padding-left: 0;
+    }
+    .title {
+        font-size: 32px;
+        margin-right: 0;
+    }
+    .timeline-btn {
+        padding: 12px 22px;
+    }
+    .step-text {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+    .step-text::after {
+        left: 20px;
+        height: 104%;
+        top: 90px;
+    }
+}
+
+@media (max-width: 546px) {
+    .step-text::after {
+        height: 102%;
+        top: 90px;
+    }
+}
+
+@media (max-width: 312px) {
+    .step-text::after {
+        height:101%;
+        top: 90px;
+    }
+}
