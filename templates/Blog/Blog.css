@@ -16,7 +16,6 @@
     position: sticky;
     top: 130px;
     float: none;
-    background-color: #fff;
 }
 
 @media (max-width: 960px) {
