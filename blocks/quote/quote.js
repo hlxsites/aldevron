@@ -61,8 +61,7 @@ export default function decorate(block) {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 500); // 300ms delay for initial load
-    }
+      }, 500);
 
     // Handle clicks on links pointing to this block
     document.addEventListener('click', (e) => {
