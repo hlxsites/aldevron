@@ -62,6 +62,7 @@ export default function decorate(block) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 500);
+    }
 
     // Handle clicks on links pointing to this block
     document.addEventListener('click', (e) => {
