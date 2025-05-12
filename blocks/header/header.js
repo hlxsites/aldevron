@@ -147,19 +147,19 @@ function setupMenuHoverListeners() {
       document.removeEventListener('click', outsideClickListener);
       outsideClickListener = null;
     }
-    
+
     fixedDropdown.style.display = 'none';
     resetDropdownHeight();
     content.forEach(cont => cont.style.display = 'none');
-    
+
     if (activeParent) {
       activeParent.classList.remove('hover', 'active');
     }
-    
+
     document.querySelectorAll('.ul-childs ul li').forEach(child => {
       child.classList.remove('active-child');
     });
-    
+
     activeParent = null;
     clickCount = 0; // Reset click count when cleaning up
   };
@@ -175,7 +175,7 @@ function setupMenuHoverListeners() {
       // If clicking the same parent that's already active
       if (activeParent === parentItem) {
         clickCount++;
-        
+
         // On second click, navigate to href
         if (clickCount >= 2) {
           cleanupPreviousState();
@@ -230,45 +230,65 @@ function setupMenuHoverListeners() {
   document.querySelectorAll('.dropdown-content .ul-childs ul li > a').forEach(childLink => {
     let clickedOnce = false;
     let childOutsideClickListener = null;
-  
+    const childItem = childLink.parentElement;
+    const isFirstLevel = childItem.classList.contains('hs-menu-depth-2');
+    const subMenu = childItem.querySelector('ul');
+
     childLink.addEventListener('click', function (e) {
-      const childItem = this.parentElement;
-      const subMenu = childItem.querySelector('ul');
-  
-      if (!clickedOnce && subMenu) {
-        e.preventDefault();
-  
-        // Remove active-child from all siblings
-        const siblingItems = childItem.closest('ul').querySelectorAll('li');
-        siblingItems.forEach(sibling => sibling.classList.remove('active-child'));
-  
-        // Add active-child to this one
-        childItem.classList.add('active-child');
-  
-        // Adjust height of dropdown
-        const menuContainer = childItem.closest('.dropdown-content');
-        menuContainer.style.height = 'auto';
-        menuContainer.style.height = `${Math.max(
-          menuContainer.scrollHeight,
-          subMenu.scrollHeight
-        )}px`;
-  
-        clickedOnce = true;
-  
-        // Cleanup previous listener if exists
-        if (childOutsideClickListener) {
-          document.removeEventListener('click', childOutsideClickListener);
-        }
-        
-        // Reset click after clicking elsewhere
-        childOutsideClickListener = function handleChildOutsideClick(event) {
-          if (!childItem.contains(event.target)) {
-            clickedOnce = false;
+      // First click - show submenu
+      if (isFirstLevel) {
+        if (!clickedOnce && subMenu) {
+          e.preventDefault();
+
+          // Remove active-child from all siblings
+          const siblingItems = childItem.closest('ul').querySelectorAll('li');
+          siblingItems.forEach(sibling => sibling.classList.remove('active-child'));
+
+          // Add active-child to this one
+          childItem.classList.add('active-child');
+
+          // Adjust height of dropdown
+          const menuContainer = childItem.closest('.dropdown-content');
+          menuContainer.style.height = 'auto';
+          menuContainer.style.height = `${Math.max(
+            menuContainer.scrollHeight,
+            subMenu.scrollHeight
+          )}px`;
+
+          clickedOnce = true;
+
+          // Cleanup previous listener if exists
+          if (childOutsideClickListener) {
             document.removeEventListener('click', childOutsideClickListener);
-            childOutsideClickListener = null;
           }
-        };
-        document.addEventListener('click', childOutsideClickListener);
+
+          // Reset click after clicking elsewhere
+          childOutsideClickListener = function handleChildOutsideClick(event) {
+            if (!childItem.contains(event.target)) {
+              clickedOnce = false;
+              document.removeEventListener('click', childOutsideClickListener);
+              childOutsideClickListener = null;
+            }
+          };
+          document.addEventListener('click', childOutsideClickListener);
+        }
+        // Second click - navigate
+        else if (clickedOnce) {
+          const href = childLink.getAttribute('href');
+          if (href && href !== '#') {
+            cleanupPreviousState();
+            window.location.href = href;
+          }
+        }
+      }
+      // For all deeper-level items
+      else {
+        const href = childLink.getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          cleanupPreviousState();
+          window.location.href = href;
+        }
       }
     });
   });
