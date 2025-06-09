@@ -185,18 +185,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
-function initATJS(path, config) {
-  window.targetGlobalSettings = config;
-  window.targetPageParams = function getTargetPageParams() {
-    return {
-      at_property: '08436c44-3085-b335-a1c4-03f14ae5226a',
-    };
-  };
-  return new Promise((resolve) => {
-    import(path).then(resolve);
-  });
-}
-
 function onDecoratedElement(fn) {
   // Apply propositions to all already decorated blocks/sections
   if (document.querySelector('[data-block-status="loaded"],[data-section-status="loaded"]')) {
@@ -234,40 +222,6 @@ async function getElementForMetric(metric) {
   return document.querySelector(selector);
 }
 
-async function getAndApplyOffers() {
-  const response = await window.adobe.target.getOffers({ request: { execute: { pageLoad: {} } } });
-  const { options = [], metrics = [] } = response.execute.pageLoad;
-  onDecoratedElement(() => {
-    window.adobe.target.applyOffers({ response });
-    // keeping track of offers that were already applied
-    // eslint-disable-next-line no-return-assign
-    options.forEach((o) => o.content = o.content.filter((c) => !getElementForOffer(c)));
-    // keeping track of metrics that were already applied
-    // eslint-disable-next-line no-confusing-arrow
-    metrics.map((m, i) => getElementForMetric(m) ? i : -1)
-      .filter((i) => i >= 0)
-      .reverse()
-      .map((i) => metrics.splice(i, 1));
-  });
-}
-
-let atjsPromise = Promise.resolve();
-atjsPromise = initATJS('./at.js', {
-  clientCode: 'danaher',
-  serverDomain: 'danaher.tt.omtrdc.net',
-  imsOrgId: '08333E7B636A2D4D0A495C34@AdobeOrg',
-  bodyHidingEnabled: false,
-  cookieDomain: window.location.hostname,
-  pageLoadEnabled: false,
-  secureOnly: true,
-  viewsEnabled: false,
-  withWebGLRenderer: false,
-}).catch((e) => {
-  // eslint-disable-next-line no-console
-  console.error('Error loading at.js', e);
-});
-document.addEventListener('at-library-loaded', () => getAndApplyOffers());
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -281,7 +235,6 @@ async function loadEager(doc) {
     await decorateTemplates(main);
     await decorateCategory(main);
     await decorateNavigation(main);
-    await atjsPromise;
 
     await new Promise((resolve) => {
       window.requestAnimationFrame(async () => {
