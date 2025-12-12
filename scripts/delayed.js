@@ -37,10 +37,16 @@ function loadGTM() {
 // google tag manager -end
 
 if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
+  !window.location.hostname.includes('localhost') &&
+  !document.location.hostname.includes('.hlx')
 ) {
-  loadGTM();
+  // Get the active consent groups from OneTrust
+  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+  // Then check if the user has given consent for the "C0004" category
+  if (Array.isArray(otGroups) && (otGroups.includes('C0004') || otGroups.includes('C0002'))) {
+  // If the user has accepted this category, load the tracking script
+    loadGTM();
+  }
 }
 
 // Fathom Analytics Code
@@ -57,7 +63,18 @@ function loadHsScript() {
   hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
   document.querySelector('head').append(hsScriptEl);
 }
-loadHsScript();
+
+// Get the active consent groups from OneTrust
+// OneTrustActiveGroups is an array of category IDs that the user has accepted
+// OnetrustActiveGroups is used as a fallback in case of different casing
+const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+// Check if the active groups exist and are an array
+// Then check if the user has given consent for the "C0004" category
+if (Array.isArray(otGroups) && otGroups.includes('C0004')) {  
+  // If the user has accepted this category, load the HubSpot tracking script
+  loadHsScript();
+}
+
 
 // HubSpot Form Code
 function loadHubSpot() {
