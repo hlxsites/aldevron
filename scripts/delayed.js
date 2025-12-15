@@ -39,15 +39,19 @@ function loadGTM() {
 // Load GTM if user has given Analytics (C0004) or Functional (C0002) consent
 // Only for non-localhost and non-HLX environments
 if (
-  !window.location.hostname.includes('localhost') &&
-  !document.location.hostname.includes('.hlx')
+  !window.location.hostname.includes('localhost')
+  && !document.location.hostname.includes('.hlx')
 ) {
   const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
 
-  if (Array.isArray(otGroupsGTM) && (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0002'))) {
+  if (
+    Array.isArray(otGroupsGTM)
+    && (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0002'))
+  ) {
     loadGTM();
   }
 }
+
 
 
 // Fathom Analytics Code
@@ -71,7 +75,7 @@ function loadHsScript() {
 const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
 
 // Check if the active groups exist and include the "C0004" category (Analytics)
-if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {  
+if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
   // User has given consent; load the HubSpot tracking script
   loadHsScript();
 }
