@@ -52,8 +52,6 @@ if (
   }
 }
 
-
-
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
@@ -79,8 +77,6 @@ if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
   // User has given consent; load the HubSpot tracking script
   loadHsScript();
 }
-
-
 
 // HubSpot Form Code
 function loadHubSpot() {

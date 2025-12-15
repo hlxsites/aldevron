@@ -454,8 +454,6 @@ if (Array.isArray(otGroups) && otGroups.includes('C0004')) {
   loadEvergageScript();
 }
 
-
- 
 // SalesForce MCP - end
 
 function getCookie(e) {
