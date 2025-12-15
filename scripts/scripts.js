@@ -447,11 +447,13 @@ function loadEvergageScript() {
 }
 // Get the active consent groups from OneTrust
 const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-// Then check if the user has given consent for the "C0004" category
-if (Array.isArray(otGroups) && otGroups.includes('C0004')) {  // Analytics
- // If the user has accepted this category, load the tracking script
-    loadEvergageScript();
+
+// Check if the user has given consent for the "C0004" category (Analytics)
+if (Array.isArray(otGroups) && otGroups.includes('C0004')) {
+  // User accepted this category, load the Evergage tracking script
+  loadEvergageScript();
 }
+
 
 
 // SalesForce MCP - end

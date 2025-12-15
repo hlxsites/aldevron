@@ -36,18 +36,19 @@ function loadGTM() {
 }
 // google tag manager -end
 
+// Load GTM if user has given Analytics (C0004) or Functional (C0002) consent
+// Only for non-localhost and non-HLX environments
 if (
   !window.location.hostname.includes('localhost') &&
   !document.location.hostname.includes('.hlx')
 ) {
-  // Get the active consent groups from OneTrust
-  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-  // Then check if the user has given consent for the "C0004" category
-  if (Array.isArray(otGroups) && (otGroups.includes('C0004') || otGroups.includes('C0002'))) {
-  // If the user has accepted this category, load the tracking script
+  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+
+  if (Array.isArray(otGroupsGTM) && (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0002'))) {
     loadGTM();
   }
 }
+
 
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
@@ -67,13 +68,14 @@ function loadHsScript() {
 // Get the active consent groups from OneTrust
 // OneTrustActiveGroups is an array of category IDs that the user has accepted
 // OnetrustActiveGroups is used as a fallback in case of different casing
-const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-// Check if the active groups exist and are an array
-// Then check if the user has given consent for the "C0004" category
-if (Array.isArray(otGroups) && otGroups.includes('C0004')) {  
-  // If the user has accepted this category, load the HubSpot tracking script
+const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+
+// Check if the active groups exist and include the "C0004" category (Analytics)
+if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {  
+  // User has given consent; load the HubSpot tracking script
   loadHsScript();
 }
+
 
 
 // HubSpot Form Code
