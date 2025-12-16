@@ -40,16 +40,9 @@ function loadGTM() {
 // Only for non-localhost and non-HLX environments
 if (
   !window.location.hostname.includes('localhost')
-  && !document.location.hostname.includes('.hlx')
+    && !document.location.hostname.includes('.hlx')
 ) {
-  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-
-  if (
-    Array.isArray(otGroupsGTM)
-    && (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0002'))
-  ) {
-    loadGTM();
-  }
+  loadGTM();
 }
 
 // Fathom Analytics Code
