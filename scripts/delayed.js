@@ -37,13 +37,18 @@ function loadGTM() {
 
 // google tag manager -end
 /* OneTrust + GTM consent handling */
-
 function loadGtmAfterConsent() {
   const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  console.log('[OneTrust] Active Groups:', otGroups);
 
-  if (otGroups.includes('C0002') || otGroups.includes('C0004')) {
-    console.log('OT Groups:', window.OnetrustActiveGroups);
+  if (
+    typeof otGroups === 'string'
+    && (otGroups.includes(',C0002,') || otGroups.includes(',C0004,'))
+  ) {
+    console.log('[GTM] Consent granted. Loading GTM');
     loadGTM();
+  } else {
+    console.log('[GTM] Consent NOT granted yet');
   }
 }
 
@@ -51,15 +56,19 @@ if (
   window.location.hostname.includes('localhost')
   || window.location.hostname.includes('.hlx')
 ) {
-  // Called when OneTrust is ready
   window.OptanonWrapper = function OptanonWrapper() {
-    loadGtmAfterConsent();
+    console.log('[OneTrust] OptanonWrapper fired');
+    setTimeout(loadGtmAfterConsent, 0);
   };
 
-  // Called AFTER user clicks Accept / Save Preferences
-  if (window.OneTrust && typeof window.OneTrust.OnConsentChanged === 'function'
+  if (
+    window.OneTrust
+    && typeof window.OneTrust.OnConsentChanged === 'function'
   ) {
-    window.OneTrust.OnConsentChanged(loadGtmAfterConsent);
+    window.OneTrust.OnConsentChanged(() => {
+      console.log('[OneTrust] Consent changed');
+      setTimeout(loadGtmAfterConsent, 100);
+    });
   }
 }
 
