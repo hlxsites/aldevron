@@ -38,30 +38,30 @@ function loadGTM() {
 // google tag manager -end
 /* OneTrust + GTM consent handling */
 
-function handleConsent() {
+function loadGtmAfterConsent() {
   const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
 
   if (otGroups.includes('C0002') || otGroups.includes('C0004')) {
+    console.log('OT Groups:', window.OnetrustActiveGroups);
     loadGTM();
   }
 }
 
 if (
-  !window.location.hostname.includes('localhost')
- && !window.location.hostname.includes('.hlx')
+  window.location.hostname.includes('localhost')
+  || window.location.hostname.includes('.hlx')
 ) {
-  // Run on page load
+  // Called when OneTrust is ready
   window.OptanonWrapper = function OptanonWrapper() {
-    handleConsent();
+    loadGtmAfterConsent();
   };
 
-  // Run after user accepts / updates consent
-  if (window.OneTrust && typeof window.OneTrust.OnConsentChanged === 'function') {
-    window.OneTrust.OnConsentChanged(handleConsent);
+  // Called AFTER user clicks Accept / Save Preferences
+  if (window.OneTrust && typeof window.OneTrust.OnConsentChanged === 'function'
+  ) {
+    window.OneTrust.OnConsentChanged(loadGtmAfterConsent);
   }
 }
-
-console.log('OT Groups:', window.OnetrustActiveGroups);
 
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
