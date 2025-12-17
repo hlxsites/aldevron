@@ -34,29 +34,32 @@ function loadGTM() {
   `;
   document.body.prepend(noScriptTag);
 }
+
 // google tag manager -end
+/* OneTrust + GTM consent handling */
 
-window.OptanonWrapper = function () {
-  // Do not run on localhost or .hlx
-  if (
-    window.location.hostname.includes('localhost') ||
-    document.location.hostname.includes('.hlx')
-  ) {
-    return;
-  }
+function handleConsent() {
+  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
 
-  // OneTrust returns a STRING, not an array
-  const otGroupsGTM =
-    window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-
-  // Load GTM ONLY after consent
-  if (
-    otGroupsGTM.includes('C0004') || // Marketing
-    otGroupsGTM.includes('C0002')    // Performance
-  ) {
+  if (otGroups.includes('C0002') || otGroups.includes('C0004')) {
     loadGTM();
   }
-};
+}
+
+if (
+  !window.location.hostname.includes('localhost')
+ && !window.location.hostname.includes('.hlx')
+) {
+  // Run on page load
+  window.OptanonWrapper = function OptanonWrapper() {
+    handleConsent();
+  };
+
+  // Run after user accepts / updates consent
+  if (window.OneTrust && typeof window.OneTrust.OnConsentChanged === 'function') {
+    window.OneTrust.OnConsentChanged(handleConsent);
+  }
+}
 
 console.log('OT Groups:', window.OnetrustActiveGroups);
 
