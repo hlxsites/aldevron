@@ -45,6 +45,18 @@ if (
   loadGTM();
 }
 
+window.OptanonWrapper = function () {
+  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+  if (!Array.isArray(otGroupsGTM)) return;
+  // Load GTM ONLY after consent
+  // Use ONE category only (recommended: Marketing)
+  if (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0001')) {
+    loadGTM();
+  }
+};
+
+console.log('OT Groups:', window.OnetrustActiveGroups);
+
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
