@@ -36,21 +36,24 @@ function loadGTM() {
 }
 // google tag manager -end
 
-// Load GTM if user has given Analytics (C0004) or Functional (C0002) consent
-// Only for non-localhost and non-HLX environments
-if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
-) {
-  loadGTM();
-}
-
 window.OptanonWrapper = function () {
-  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-  if (!Array.isArray(otGroupsGTM)) return;
+  // Do not run on localhost or .hlx
+  if (
+    window.location.hostname.includes('localhost') ||
+    document.location.hostname.includes('.hlx')
+  ) {
+    return;
+  }
+
+  // OneTrust returns a STRING, not an array
+  const otGroupsGTM =
+    window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+
   // Load GTM ONLY after consent
-  // Use ONE category only (recommended: Marketing)
-  if (otGroupsGTM.includes('C0004') || otGroupsGTM.includes('C0001')) {
+  if (
+    otGroupsGTM.includes('C0004') || // Marketing
+    otGroupsGTM.includes('C0002')    // Performance
+  ) {
     loadGTM();
   }
 };
