@@ -37,38 +37,41 @@ function loadGTM() {
 
 // google tag manager -end
 /* OneTrust + GTM consent handling */
+let gtmLoaded = false;
+
 function loadGtmAfterConsent() {
   const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-  console.log('[OneTrust] Active Groups:', otGroups);
 
   if (
     typeof otGroups === 'string'
     && (otGroups.includes(',C0002,') || otGroups.includes(',C0004,'))
   ) {
-    console.log('[GTM] Consent granted. Loading GTM');
-    loadGTM();
-  } else {
-    console.log('[GTM] Consent NOT granted yet');
+    if (!gtmLoaded) {
+      loadGTM();
+      gtmLoaded = true;
+    }
   }
 }
 
+function onConsentChanged() {
+  setTimeout(loadGtmAfterConsent, 100);
+}
+
+function onOneTrustReady() {
+  setTimeout(loadGtmAfterConsent, 100);
+}
+
 if (
-  window.location.hostname.includes('localhost')
-  || window.location.hostname.includes('.hlx')
+  !window.location.hostname.includes('localhost')
+  && !window.location.hostname.includes('.hlx')
 ) {
-  window.OptanonWrapper = function OptanonWrapper() {
-    console.log('[OneTrust] OptanonWrapper fired');
-    setTimeout(loadGtmAfterConsent, 0);
-  };
+  window.OptanonWrapper = onOneTrustReady;
 
   if (
     window.OneTrust
     && typeof window.OneTrust.OnConsentChanged === 'function'
   ) {
-    window.OneTrust.OnConsentChanged(() => {
-      console.log('[OneTrust] Consent changed');
-      setTimeout(loadGtmAfterConsent, 100);
-    });
+    window.OneTrust.OnConsentChanged(onConsentChanged);
   }
 }
 
