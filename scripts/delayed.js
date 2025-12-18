@@ -37,17 +37,26 @@ function loadGTM() {
 
 // google tag manager -end
 // Do NOT run GTM on localhost or .hlx environments
-if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
-) {
-  window.OptanonWrapper = function OptanonWrapper() {
-    const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-    // Load GTM ONLY after consent
-    if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
-      loadGTM();
-    }
-  };
+// ---------- ENVIRONMENT CHECK ----------
+const isProd = window.location.hostname.includes('localhost')
+|| document.location.hostname.includes('.hlx');
+
+// ---------- HELPERS ----------
+function hasConsent(groups, category) {
+  return typeof groups === 'string' && groups.includes(`,${category},`);
+}
+
+// ---------- GTM ----------
+function loadGtmAfterConsent() {
+  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  console.log('[OneTrust] Active Groups:', otGroups);
+  if (
+    isProd
+    && (hasConsent(otGroups, 'C0002') || hasConsent(otGroups, 'C0004'))
+  ) {
+    console.log('[GTM] Loading GTM');
+    loadGTM();
+  }
 }
 
 // Fathom Analytics Code
@@ -65,16 +74,21 @@ function loadHsScript() {
   document.querySelector('head').append(hsScriptEl);
 }
 
-// Get the active consent groups from OneTrust
-// OneTrustActiveGroups is an array of category IDs that the user has accepted
-// OnetrustActiveGroups is used as a fallback in case of different casing
-const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
+// ---------- ONETRUST HOOK ----------
+window.OptanonWrapper = function () {
+  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
 
-// Check if the active groups exist and include the "C0004" category (Analytics)
-if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
-  // User has given consent; load the HubSpot tracking script
-  loadHsScript();
-}
+  console.log('[OneTrust] Wrapper fired:', otGroups);
+
+  // GTM
+  loadGtmAfterConsent();
+
+  // Analytics consent → HubSpot + Fathom
+  if (isProd && hasConsent(otGroups, 'C0004')) {
+    console.log('[Analytics] Consent granted');
+    loadHsScript();
+  }
+};
 
 // HubSpot Form Code
 function loadHubSpot() {
