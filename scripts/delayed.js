@@ -37,26 +37,17 @@ function loadGTM() {
 
 // google tag manager -end
 // Do NOT run GTM on localhost or .hlx environments
-// ---------- ENVIRONMENT CHECK ----------
-const isProd = window.location.hostname.includes('localhost')
-|| document.location.hostname.includes('.hlx');
-
-// ---------- HELPERS ----------
-function hasConsent(groups, category) {
-  return typeof groups === 'string' && groups.includes(`,${category},`);
-}
-
-// ---------- GTM ----------
-function loadGtmAfterConsent() {
-  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-  console.log('[OneTrust] Active Groups:', otGroups);
-  if (
-    isProd
-    && (hasConsent(otGroups, 'C0002') || hasConsent(otGroups, 'C0004'))
-  ) {
-    console.log('[GTM] Loading GTM');
-    loadGTM();
-  }
+if (
+  !window.location.hostname.includes('localhost')
+    && !document.location.hostname.includes('.hlx')
+) {
+  window.OptanonWrapper = function OptanonWrapper() {
+    const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+    // Load GTM ONLY after consent
+    if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
+      loadGTM();
+    }
+  };
 }
 
 // Fathom Analytics Code
@@ -74,21 +65,14 @@ function loadHsScript() {
   document.querySelector('head').append(hsScriptEl);
 }
 
-// ---------- ONETRUST HOOK ----------
-window.OptanonWrapper = function () {
-  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+// Get the active consent groups from OneTrust
+const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
 
-  console.log('[OneTrust] Wrapper fired:', otGroups);
-
-  // GTM
-  loadGtmAfterConsent();
-
-  // Analytics consent → HubSpot + Fathom
-  if (isProd && hasConsent(otGroups, 'C0004')) {
-    console.log('[Analytics] Consent granted');
-    loadHsScript();
-  }
-};
+// Check if the active groups exist and include the "C0004" category (Analytics)
+if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
+  // User has given consent; load the HubSpot tracking script
+  loadHsScript();
+}
 
 // HubSpot Form Code
 function loadHubSpot() {
