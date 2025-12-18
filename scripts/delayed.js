@@ -36,43 +36,18 @@ function loadGTM() {
 }
 
 // google tag manager -end
-/* OneTrust + GTM consent handling */
-let gtmLoaded = false;
-
-function loadGtmAfterConsent() {
-  const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-
-  if (
-    typeof otGroups === 'string'
-    && (otGroups.includes(',C0002,') || otGroups.includes(',C0004,'))
-  ) {
-    if (!gtmLoaded) {
-      loadGTM();
-      gtmLoaded = true;
-    }
-  }
-}
-
-function onConsentChanged() {
-  setTimeout(loadGtmAfterConsent, 100);
-}
-
-function onOneTrustReady() {
-  setTimeout(loadGtmAfterConsent, 100);
-}
-
+// Do NOT run GTM on localhost or .hlx environments
 if (
   !window.location.hostname.includes('localhost')
-  && !window.location.hostname.includes('.hlx')
+   && !window.location.hostname.includes('.hlx')
 ) {
-  window.OptanonWrapper = onOneTrustReady;
-
-  if (
-    window.OneTrust
-    && typeof window.OneTrust.OnConsentChanged === 'function'
-  ) {
-    window.OneTrust.OnConsentChanged(onConsentChanged);
-  }
+  window.OptanonWrapper = function OptanonWrapper() {
+    const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+    // Load GTM ONLY after consent
+    if (otGroups.includes('C0002') || otGroups.includes('C0004')) {
+      loadGTM();
+    }
+  };
 }
 
 // Fathom Analytics Code
