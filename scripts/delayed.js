@@ -39,12 +39,12 @@ function loadGTM() {
 // Do NOT run GTM on localhost or .hlx environments
 if (
   !window.location.hostname.includes('localhost')
-   && !window.location.hostname.includes('.hlx')
+    && !document.location.hostname.includes('.hlx')
 ) {
   window.OptanonWrapper = function OptanonWrapper() {
-    const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+    const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
     // Load GTM ONLY after consent
-    if (otGroups.includes('C0002') || otGroups.includes('C0004')) {
+    if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
       loadGTM();
     }
   };
