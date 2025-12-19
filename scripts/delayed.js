@@ -11,7 +11,7 @@ function loadGTM() {
   const scriptTag = document.createElement('script');
 
   // OneTrust attributes
-  scriptTag.type = 'text/javascript';
+  scriptTag.type = 'text/plain';
   scriptTag.className = 'optanon-category-C0002';
 
   scriptTag.innerHTML = `
@@ -59,7 +59,7 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 // HubSpot Tracking Code
 function loadHsScript() {
   const hsScriptEl = document.createElement('script');
-  hsScriptEl.type = 'text/javascript';
+  hsScriptEl.type = 'text/plain';
   hsScriptEl.className = 'optanon-category-C0002';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
