@@ -46,6 +46,14 @@ if (
     }
   };
 }
+window.OptanonWrapper = function OptanonWrapper() {
+  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  console.log(indow.OneTrustActiveGroups);
+  // Load GTM ONLY after consent
+  if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
+  loadGTM();
+  }
+};
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
