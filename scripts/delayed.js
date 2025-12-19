@@ -42,7 +42,7 @@ if (
     const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
     // Load GTM ONLY after consent
     if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
-      //loadGTM();
+      loadGTM();
     }
   };
 }
@@ -65,7 +65,7 @@ const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
 // Check if the active groups exist and include the "C0004" category (Analytics)
 if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
   // User has given consent; load the HubSpot tracking script
-  //loadHsScript();
+  loadHsScript();
 }
 // HubSpot Form Code
 function loadHubSpot() {
