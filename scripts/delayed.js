@@ -48,9 +48,9 @@ if (
 }
 window.OptanonWrapper = function OptanonWrapper() {
   const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-  console.log(indow.OneTrustActiveGroups);
+  console.log(window.OneTrustActiveGroups);
   // Load GTM ONLY after consent
-  if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
+ if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
   loadGTM();
   }
 };
