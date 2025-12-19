@@ -34,21 +34,15 @@ function loadGTM() {
   `;
   document.body.prepend(noScriptTag);
 }
-
 // google tag manager -end
 // Do NOT run GTM on localhost or .hlx environments
-if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
-) {
-  window.OptanonWrapper = function OptanonWrapper() {
-    const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-    // Load GTM ONLY after consent
-    if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
-      loadGTM();
-    }
-  };
-}
+window.OptanonWrapper = function OptanonWrapper() {
+  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  // Load GTM ONLY after consent
+  if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
+    loadGTM();
+  }
+};
 
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
