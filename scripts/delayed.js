@@ -5,55 +5,53 @@ import {
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
-// google tag manager -start
+
+// google tag manager - start
 function loadGTM() {
   const scriptTag = document.createElement('script');
+
+  // OneTrust attributes
+  scriptTag.type = 'text/javascript';
+  scriptTag.className = 'optanon-category-C0002';
+
   scriptTag.innerHTML = `
-        let gtmId = 'GTM-MLWV3QQ';
-        // googleTagManager
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', gtmId);
-        `;
+    let gtmId = 'GTM-MLWV3QQ';
+    // googleTagManager
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', gtmId);
+  `;
+
   document.head.prepend(scriptTag);
+
   const noScriptTag = document.createElement('noscript');
   noScriptTag.innerHTML = `
-  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLWV3QQ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLWV3QQ"
+      height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
   `;
   document.body.prepend(noScriptTag);
 }
-// google tag manager -end
+// google tag manager - end
+
 if (
   !window.location.hostname.includes('localhost')
     && !document.location.hostname.includes('.hlx')
 ) {
-  window.OptanonWrapper = function OptanonWrapper() {
-    const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-    // Load GTM ONLY after consent
-    if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
-      loadGTM();
-    }
-  };
+// loadGTM();
 }
-window.OptanonWrapper = function OptanonWrapper() {
-  const otGroupsGTM = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-  console.log(window.OneTrustActiveGroups);
-  // Load GTM ONLY after consent
- if (otGroupsGTM.includes('C0002') || otGroupsGTM.includes('C0004')) {
-  loadGTM();
-  }
-};
+loadGTM();
+
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
@@ -62,19 +60,15 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 function loadHsScript() {
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
+  hsScriptEl.className = 'optanon-category-C0002';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
   hsScriptEl.setAttribute('id', 'hs-script-loader');
   hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
   document.querySelector('head').append(hsScriptEl);
 }
-// Get the active consent groups from OneTrust
-const otGroupsHs = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-// Check if the active groups exist and include the "C0004" category (Analytics)
-if (Array.isArray(otGroupsHs) && otGroupsHs.includes('C0004')) {
-  // User has given consent; load the HubSpot tracking script
-  loadHsScript();
-}
+loadHsScript();
+
 // HubSpot Form Code
 function loadHubSpot() {
   const hsScriptEl = document.createElement('script');
