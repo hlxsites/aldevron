@@ -6,51 +6,35 @@ import {
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
-// google tag manager - start
+// google tag manager -start
 function loadGTM() {
   const scriptTag = document.createElement('script');
-
-  // OneTrust attributes
-  scriptTag.type = 'text/plain';
-  scriptTag.className = 'optanon-category-C0002';
-
   scriptTag.innerHTML = `
-    let gtmId = 'GTM-MLWV3QQ';
-    // googleTagManager
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', gtmId);
-  `;
-
+        let gtmId = 'GTM-MLWV3QQ';
+        // googleTagManager
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', gtmId);
+        `;
   document.head.prepend(scriptTag);
-
   const noScriptTag = document.createElement('noscript');
   noScriptTag.innerHTML = `
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLWV3QQ"
-      height="0" width="0" style="display:none;visibility:hidden">
-    </iframe>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLWV3QQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
   `;
   document.body.prepend(noScriptTag);
 }
-// google tag manager - end
-
-if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
-) {
-// loadGTM();
-}
-loadGTM();
+// google tag manager -end
 
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
@@ -59,15 +43,53 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 // HubSpot Tracking Code
 function loadHsScript() {
   const hsScriptEl = document.createElement('script');
-  hsScriptEl.type = 'text/plain';
-  hsScriptEl.className = 'optanon-category-C0002';
+  hsScriptEl.type = 'text/javascript';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
   hsScriptEl.setAttribute('id', 'hs-script-loader');
   hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
   document.querySelector('head').append(hsScriptEl);
 }
-loadHsScript();
+
+// SalesForce MCP - start
+function loadEvergageScript() {
+  const script = document.createElement('script');
+  if (window.location.host === 'www.aldevron.com') {
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_prod/scripts/evergage.min.js';
+  } else {
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_staging/scripts/evergage.min.js';
+  }
+  script.onload = function onEvergageLoad() {
+  };
+  script.onerror = function onEvergageError() {
+  };
+  document.head.appendChild(script);
+}
+
+// =====================
+// OneTrust Hook (SINGLE)
+// =====================
+window.OptanonWrapper = function OptanonWrapper() {
+  const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  console.log('[OneTrust] Active groups:', groups);
+
+  // Analytics OR Marketing
+  if (groups.includes('C0004') || groups.includes('C0002')) {
+    console.log('[Consent] Granted → loading tools');
+
+    // Block on localhost / hlx
+    if (
+      !window.location.hostname.includes('localhost')
+      && !document.location.hostname.includes('.hlx')
+    ) {
+      loadGTM();
+    }
+    loadHsScript();
+    loadEvergageScript();
+  } else {
+    console.log('[Consent] Not granted → all tools blocked');
+  }
+};
 
 // HubSpot Form Code
 function loadHubSpot() {

@@ -430,30 +430,6 @@ function correctUTMFlow() {
   }
 }
 
-// SalesForce MCP - start
-
-function loadEvergageScript() {
-  const script = document.createElement('script');
-  if (window.location.host === 'www.aldevron.com') {
-    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_prod/scripts/evergage.min.js';
-  } else {
-    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_staging/scripts/evergage.min.js';
-  }
-  script.onload = function onEvergageLoad() {
-  };
-  script.onerror = function onEvergageError() {
-  };
-  document.head.appendChild(script);
-}
-// Get the active consent groups from OneTrust
-const otGroups = window.OneTrustActiveGroups || window.OnetrustActiveGroups;
-
-// Check if the user has given consent for the "C0004" category (Analytics)
-if (Array.isArray(otGroups) && otGroups.includes('C0004')) {
-  // User accepted this category, load the Evergage tracking script
-  loadEvergageScript();
-}
-
 // SalesForce MCP - end
 
 function getCookie(e) {
