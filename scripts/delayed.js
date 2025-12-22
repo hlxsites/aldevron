@@ -70,13 +70,6 @@ function loadEvergageScript() {
 // OneTrust Hook (SINGLE)
 // =====================
 
-if (
-    !window.location.hostname.includes('localhost')
-      && !document.location.hostname.includes('.hlx')
-    ) {
-      console.log('[Consent] Granted → loading');
-      loadGTM();
-    }
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
   // console.log('[OneTrust] Active groups:', groups);
