@@ -86,7 +86,7 @@ window.OptanonWrapper = function OptanonWrapper() {
     loadHsScript();
     loadEvergageScript();
   } else {
-    // console.log('[Consent] Not granted → blocked');
+    console.log('[Consent] Not granted → blocked');
   }
 };
 
