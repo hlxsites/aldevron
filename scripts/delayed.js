@@ -75,19 +75,19 @@ window.OptanonWrapper = function OptanonWrapper() {
 
   // Analytics OR Marketing
   if (groups.includes('C0004') || groups.includes('C0002')) {
-    console.log('[Consent] Granted → loading tools');
-
+    console.log('[Consent] Granted → loading');
     // Block on localhost / hlx
     if (
       !window.location.hostname.includes('localhost')
       && !document.location.hostname.includes('.hlx')
+      && !document.location.hostname.includes('.aem')
     ) {
       loadGTM();
     }
     loadHsScript();
     loadEvergageScript();
   } else {
-    console.log('[Consent] Not granted → all tools blocked');
+    console.log('[Consent] Not granted → blocked');
   }
 };
 
