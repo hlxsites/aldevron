@@ -76,7 +76,8 @@ if (
   console.log('GTM → loading');
   // loadGTM();
 }
-
+ loadHsScript();
+ loadEvergageScript();
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
   // console.log('[OneTrust] Active groups:', groups);
