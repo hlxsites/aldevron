@@ -69,24 +69,34 @@ function loadEvergageScript() {
 // =====================
 // OneTrust Hook (SINGLE)
 // =====================
+
+if (
+    !window.location.hostname.includes('localhost')
+      && !document.location.hostname.includes('.hlx')
+    ) {
+      console.log('[Consent] Granted → loading');
+      loadGTM();
+    }
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
   // console.log('[OneTrust] Active groups:', groups);
 
   // Analytics OR Marketing
-  
-   console.log('[Consent] Granted → loading');
+  if (groups.includes('C0004') || groups.includes('C0002')) {
+    console.log('[Consent] Granted → loading');
     // Check on localhost / hlx /aem
     if (
       !window.location.hostname.includes('localhost')
       && !document.location.hostname.includes('.hlx')
     ) {
-      console.log('GTM → loading');
+      console.log('[Consent] Granted → loading');
       loadGTM();
     }
     loadHsScript();
     loadEvergageScript();
-
+  } else {
+    // console.log('[Consent] Not granted → blocked');
+  }
 };
 
 // HubSpot Form Code
