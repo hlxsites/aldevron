@@ -36,13 +36,6 @@ function loadGTM() {
 }
 // google tag manager -end
 
-if (
-  !window.location.hostname.includes('localhost')
-    && !document.location.hostname.includes('.hlx')
-) {
-  loadGTM();
-}
-
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
@@ -57,7 +50,46 @@ function loadHsScript() {
   hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
   document.querySelector('head').append(hsScriptEl);
 }
-loadHsScript();
+
+// SalesForce MCP - start
+function loadEvergageScript() {
+  const script = document.createElement('script');
+  if (window.location.host === 'www.aldevron.com') {
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_prod/scripts/evergage.min.js';
+  } else {
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/aldevron_staging/scripts/evergage.min.js';
+  }
+  script.onload = function onEvergageLoad() {
+  };
+  script.onerror = function onEvergageError() {
+  };
+  document.head.appendChild(script);
+}
+
+// =====================
+// OneTrust Hook (SINGLE)
+// =====================
+window.OptanonWrapper = function OptanonWrapper() {
+  const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
+  // console.log('[OneTrust] Active groups:', groups);
+
+  // Analytics OR Marketing
+  if (groups.includes('C0004') || groups.includes('C0002')) {
+    // console.log('[Consent] Granted → loading');
+    // Check on localhost / hlx /aem
+    if (
+      !window.location.hostname.includes('localhost')
+      && !document.location.hostname.includes('.hlx')
+      && !document.location.hostname.includes('.aem')
+    ) {
+      loadGTM();
+    }
+    loadHsScript();
+    loadEvergageScript();
+  } else {
+    // console.log('[Consent] Not granted → blocked');
+  }
+};
 
 // HubSpot Form Code
 function loadHubSpot() {
