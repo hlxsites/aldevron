@@ -71,12 +71,12 @@ function loadEvergageScript() {
 // =====================
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
-  console.log('[OneTrust] Active groups:', groups);
+  // console.log('[OneTrust] Active groups:', groups);
 
   // Analytics OR Marketing
   if (groups.includes('C0004') || groups.includes('C0002')) {
-    console.log('[Consent] Granted → loading');
-    // Block on localhost / hlx
+    // console.log('[Consent] Granted → loading');
+    // Check on localhost / hlx /aem
     if (
       !window.location.hostname.includes('localhost')
       && !document.location.hostname.includes('.hlx')
@@ -87,7 +87,7 @@ window.OptanonWrapper = function OptanonWrapper() {
     loadHsScript();
     loadEvergageScript();
   } else {
-    console.log('[Consent] Not granted → blocked');
+    // console.log('[Consent] Not granted → blocked');
   }
 };
 
