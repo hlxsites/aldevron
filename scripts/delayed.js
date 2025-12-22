@@ -75,12 +75,11 @@ window.OptanonWrapper = function OptanonWrapper() {
 
   // Analytics OR Marketing
   if (groups.includes('C0004') || groups.includes('C0002')) {
-    // console.log('[Consent] Granted → loading');
+    console.log('[Consent] Granted → loading');
     // Check on localhost / hlx /aem
     if (
       !window.location.hostname.includes('localhost')
       && !document.location.hostname.includes('.hlx')
-      && !document.location.hostname.includes('.aem')
     ) {
       loadGTM();
     }
