@@ -63,26 +63,15 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 // UPDATED HubSpot Code(safe)
 // =====================
 // eslint-disable-next-line no-underscore-dangle
-window._hsq = window._hsq || []; // HubSpot required global
+window._hsq = window._hsq || [];
 function loadHsScript() {
-  console.log('[HubSpot] loadHsScript() called');
-  if (document.getElementById('hs-script-loader')) {
-    console.log('[HubSpot] Script already exists');
-    return;
-  }
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
-  hsScriptEl.id = 'hs-script-loader';
+  hsScriptEl.setAttribute('id', 'hs-script-loader');
   hsScriptEl.src = 'https://js.hs-scripts.com/1769030.js';
-  hsScriptEl.onload = () => {
-    console.log('[HubSpot] Script loaded');
-  };
-  hsScriptEl.onerror = () => {
-    console.error('[HubSpot] Script failed to load');
-  };
-  document.head.appendChild(hsScriptEl);
+  document.querySelector('head').append(hsScriptEl);
 }
 
 // SalesForce MCP - start
