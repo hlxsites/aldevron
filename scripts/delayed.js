@@ -35,7 +35,13 @@ function loadGTM() {
   document.body.prepend(noScriptTag);
 }
 // google tag manager -end
-
+if (
+  !window.location.hostname.includes('localhost')
+  && !document.location.hostname.includes('.hlx')
+) {
+  console.log('GTM → loading');
+  loadGTM();
+}
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
@@ -69,21 +75,12 @@ function loadEvergageScript() {
 // =====================
 // OneTrust Hook (SINGLE)
 // =====================
-if (
-  !window.location.hostname.includes('localhost')
-  && !document.location.hostname.includes('.hlx')
-) {
-  console.log('GTM → loading');
-  // loadGTM();
-}
- loadHsScript();
- loadEvergageScript();
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
   // console.log('[OneTrust] Active groups:', groups);
-  // Analytics OR Marketing
-  if (groups.includes('C0004') || groups.includes('C0002')) {
-    console.log('[Consent] hubspot → loading');
+  // Analytics OR Marketing hubspot C0002
+  if (groups.includes('C0002')) {
+    console.log('[Consent] hubspot C0002 → loading');
     loadHsScript();
     loadEvergageScript();
   } else {
