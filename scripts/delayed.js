@@ -65,14 +65,23 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 // eslint-disable-next-line no-underscore-dangle
 window._hsq = window._hsq || []; // HubSpot required global
 function loadHsScript() {
-  // Prevent multiple loads
-  if (document.getElementById('hs-script-loader')) return;
+  console.log('[HubSpot] loadHsScript() called');
+  if (document.getElementById('hs-script-loader')) {
+    console.log('[HubSpot] Script already exists');
+    return;
+  }
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
   hsScriptEl.id = 'hs-script-loader';
-  hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
+  hsScriptEl.src = 'https://js.hs-scripts.com/1769030.js';
+  hsScriptEl.onload = () => {
+    console.log('[HubSpot] Script loaded');
+  };
+  hsScriptEl.onerror = () => {
+    console.error('[HubSpot] Script failed to load');
+  };
   document.head.appendChild(hsScriptEl);
 }
 
