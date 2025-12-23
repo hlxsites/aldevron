@@ -84,7 +84,7 @@ window.OptanonWrapper = function OptanonWrapper() {
   // console.log('[OneTrust] Active groups:', groups);
   // Marketing consent (C0002)
   if (groups.includes('C0002')) {
-    console.log('[Consent] hubspot C0002 → loading');
+    console.log('[Consent] hsp → loading');
     loadHsScript();
     loadEvergageScript();
   } else {
