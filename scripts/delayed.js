@@ -46,14 +46,18 @@ if (
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
-// HubSpot Tracking Code
+// =====================
+// UPDATED HubSpot Code(safe)
+// =====================
+// eslint-disable-next-line no-underscore-dangle
+window._hsq = window._hsq || []; // HubSpot required global
 function loadHsScript() {
   const hsScriptEl = document.createElement('script');
   hsScriptEl.type = 'text/javascript';
   hsScriptEl.async = true;
   hsScriptEl.defer = true;
   hsScriptEl.setAttribute('id', 'hs-script-loader');
-  hsScriptEl.src = '//js.hs-scripts.com/1769030.js';
+  hsScriptEl.src = 'https://js.hs-scripts.com/1769030.js';
   document.querySelector('head').append(hsScriptEl);
 }
 
@@ -78,16 +82,16 @@ function loadEvergageScript() {
 window.OptanonWrapper = function OptanonWrapper() {
   const groups = window.OneTrustActiveGroups || window.OnetrustActiveGroups || '';
   // console.log('[OneTrust] Active groups:', groups);
-  // Analytics OR Marketing hubspot C0002
+  // Marketing consent (C0002)
   if (groups.includes('C0002')) {
-    console.log('[Consent] hubspot C0002 → loading');
+    console.log('[Consent] hsp → loading');
     loadHsScript();
     loadEvergageScript();
   } else {
     // console.log('[Consent] Not granted → blocked');
   }
 };
-console.log(' End Script → loading');
+
 // HubSpot Form Code
 function loadHubSpot() {
   const hsScriptEl = document.createElement('script');
