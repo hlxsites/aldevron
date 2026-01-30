@@ -84,5 +84,50 @@ export default function decorate(block) {
     });
     const faqAnswer = [...row.children][1];
     faqAnswer.classList.add('faq-answer');
+    faqQuestion.classList.add('active');
+    faqAnswer.classList.add('active');
+    faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
+  });
+  // TOOLTIP FROM 2-LINE <th> USING <br> (FRANKLIN SAFE)
+  // CLICK POPUP FOR FIRST TABLE ROW (FRANKLIN SAFE)
+  block.querySelectorAll('table tr:first-child td').forEach((cell) => {
+    const text = cell.textContent;
+
+    // Match [ ... ] including multiline content
+    const match = text.match(/\[(.*)\]/s);
+    if (!match) return;
+
+    const popupText = match[1].trim();
+    const labelText = text.replace(/\[(.*)\]/s, '').trim();
+
+    const wrapper = document.createElement('span');
+    wrapper.className = 'popup-wrapper';
+
+    const label = document.createElement('span');
+    label.className = 'popup-label';
+    label.textContent = labelText;
+
+    const icon = document.createElement('span');
+    icon.className = 'popup-icon';
+    icon.innerHTML = 'ⓘ';
+
+    const popup = document.createElement('div');
+    popup.className = 'popup-content';
+    popup.innerText = popupText;
+
+    icon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.popup-content.show')
+        .forEach((p) => p.classList.remove('show'));
+      popup.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+      popup.classList.remove('show');
+    });
+
+    wrapper.append(label, icon, popup);
+    cell.innerHTML = '';
+    cell.appendChild(wrapper);
   });
 }
