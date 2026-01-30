@@ -162,9 +162,11 @@ main .expand-btn,
   }
 }
 
+/* =========================================================
+   POPUP / TOOLTIP (TABLE + ACCORDION SAFE)
+   Ultra-compact, Franklin-safe, Production ready
+   ========================================================= */
 
-
-/* ===== POPUP / TOOLTIP (TABLE + ACCORDION SAFE) ===== */
 .popup-wrapper {
   position: relative;
   display: inline-flex;
@@ -180,7 +182,7 @@ main .expand-btn,
   line-height: 1;
 }
 
-/* popup box */
+/* popup container */
 .popup-content {
   display: none;
   position: absolute;
@@ -189,17 +191,16 @@ main .expand-btn,
   transform: translateX(-50%);
   background: #222;
   color: #fff;
-  padding: 12px 14px;
-  font-size: 12px;
-  line-height: 1.5;
+  padding: 6px 8px;
+  /* reduced padding */
   border-radius: 8px;
-  min-width: 260px;
-  max-width: 380px;
-  max-height: 320px;
+  min-width: 220px;
+  max-width: 330px;
+  max-height: 260px;
   overflow-y: auto;
   white-space: normal;
-  z-index: 9999;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 99;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -210,7 +211,7 @@ main .expand-btn,
   opacity: 1;
 }
 
-/* ===== EDGE COLUMN FIX (RIGHT SIDE) ===== */
+/* ===== EDGE COLUMN FIX ===== */
 td:last-child .popup-content,
 th:last-child .popup-content,
 td:nth-last-child(2) .popup-content,
@@ -225,34 +226,57 @@ th:nth-last-child(2) .popup-content {
   overflow: visible !important;
 }
 
-/* ===== MOBILE RESPONSIVE ===== */
+/* =========================================================
+   FORCE TYPOGRAPHY (OVERRIDE FRANKLIN)
+   ========================================================= */
+
+.popup-content,
+.popup-content * {
+  font-size: 10.5px !important;
+  line-height: 1.25 !important;
+}
+
+/* remove empty paragraphs */
+.popup-content p:empty {
+  display: none !important;
+}
+
+/* ultra-tight paragraph spacing */
+.popup-content p {
+  margin: 0 0 2px !important;
+  padding: 0.4em 0;
+}
+
+/* headings / quantity */
+.popup-content strong {
+  display: block;
+  font-weight: 700;
+  font-size: 11px !important;
+  margin-bottom: 2px !important;
+  color: #ff7a00;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE (slightly larger)
+   ========================================================= */
+
 @media (max-width: 768px) {
+
+  .popup-content,
+  .popup-content * {
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+  }
+
   .popup-content {
-    position: absolute;
-    /* keep near icon */
-    top: 130%;
-    left: 50%;
-    transform: translateX(-50%);
     width: calc(100% - 32px);
     max-width: 95%;
     max-height: 60vh;
-    font-size: 13px;
-    padding: 14px 16px;
+    padding: 8px 10px;
     border-radius: 12px;
-    overflow-y: auto;
   }
 
-  /* mobile tap target */
   .popup-icon {
     font-size: 14px;
   }
-}
-
-/* Optional: smooth fade-in */
-.popup-content {
-  transition: opacity 0.2s ease;
-}
-
-.popup-content.show {
-  opacity: 1;
 }

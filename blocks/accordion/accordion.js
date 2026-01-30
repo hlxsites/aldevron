@@ -88,11 +88,12 @@ export default function decorate(block) {
     faqAnswer.classList.add('active');
     faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
   });
+
   // TOOLTIP / CLICK POPUP FOR FIRST TABLE ROW (FRANKLIN SAFE)
   block.querySelectorAll('table tr:first-child td').forEach((cell) => {
-    const text = cell.textContent;
+    const text = cell.innerHTML; // preserve formatting (strong, p, br)
 
-    // Match [ ... ] including multiline content
+    // Match [ ... ] including multiline + HTML
     const match = text.match(/\[(.*)\]/s);
     if (!match) return;
 
@@ -104,7 +105,7 @@ export default function decorate(block) {
 
     const label = document.createElement('span');
     label.className = 'popup-label';
-    label.innerHTML = labelText.replace(/\n/g, '<br>'); // preserve line breaks
+    label.innerHTML = labelText.replace(/\n/g, '<br>');
 
     const icon = document.createElement('span');
     icon.className = 'popup-icon';
@@ -112,23 +113,26 @@ export default function decorate(block) {
 
     const popup = document.createElement('div');
     popup.className = 'popup-content';
-    popup.innerText = popupText;
+    popup.innerHTML = popupText;
+
+    // REMOVE EMPTY <p> TAGS (EXTRA SPACE FIX)
+    popup.querySelectorAll('p').forEach((p) => {
+      if (!p.textContent.trim()) p.remove();
+    });
 
     wrapper.append(label, icon, popup);
     cell.innerHTML = '';
     cell.appendChild(wrapper);
   });
 
-  // GLOBAL CLICK HANDLER FOR POPUPS
+  // GLOBAL CLICK HANDLER
   document.addEventListener('click', (e) => {
     const icon = e.target.closest('.popup-icon');
 
-    // Close all popups that are not the current one
     document.querySelectorAll('.popup-content.show').forEach((p) => {
       if (!p.contains(e.target)) p.classList.remove('show');
     });
 
-    // Toggle the clicked popup
     if (icon) {
       const popup = icon.nextElementSibling;
       if (popup) popup.classList.toggle('show');
