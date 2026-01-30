@@ -88,8 +88,7 @@ export default function decorate(block) {
     faqAnswer.classList.add('active');
     faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
   });
-  // TOOLTIP FROM 2-LINE <th> USING <br> (FRANKLIN SAFE)
-  // CLICK POPUP FOR FIRST TABLE ROW (FRANKLIN SAFE)
+  // TOOLTIP / CLICK POPUP FOR FIRST TABLE ROW (FRANKLIN SAFE)
   block.querySelectorAll('table tr:first-child td').forEach((cell) => {
     const text = cell.textContent;
 
@@ -105,7 +104,7 @@ export default function decorate(block) {
 
     const label = document.createElement('span');
     label.className = 'popup-label';
-    label.textContent = labelText;
+    label.innerHTML = labelText.replace(/\n/g, '<br>'); // preserve line breaks
 
     const icon = document.createElement('span');
     icon.className = 'popup-icon';
@@ -115,19 +114,25 @@ export default function decorate(block) {
     popup.className = 'popup-content';
     popup.innerText = popupText;
 
-    icon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      document.querySelectorAll('.popup-content.show')
-        .forEach((p) => p.classList.remove('show'));
-      popup.classList.toggle('show');
-    });
-
-    document.addEventListener('click', () => {
-      popup.classList.remove('show');
-    });
-
     wrapper.append(label, icon, popup);
     cell.innerHTML = '';
     cell.appendChild(wrapper);
+  });
+
+  // GLOBAL CLICK HANDLER FOR POPUPS
+  document.addEventListener('click', (e) => {
+    const icon = e.target.closest('.popup-icon');
+
+    // Close all popups that are not the current one
+    document.querySelectorAll('.popup-content.show').forEach((p) => {
+      if (!p.contains(e.target)) p.classList.remove('show');
+    });
+
+    // Toggle the clicked popup
+    if (icon) {
+      const popup = icon.nextElementSibling;
+      if (popup) popup.classList.toggle('show');
+      e.stopPropagation();
+    }
   });
 }

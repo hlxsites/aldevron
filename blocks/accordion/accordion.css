@@ -164,25 +164,30 @@ main .expand-btn,
 
 
 
-/* ===== TOOLTIP (TABLE + ACCORDION SAFE) ===== */
+/* ===== POPUP / TOOLTIP (TABLE + ACCORDION SAFE) ===== */
+
 
 .popup-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
 }
 
+/* column title text */
 .popup-label {
-  font-weight: 600;
+  /*font-weight: 600;*/
 }
 
+/* info icon */
 .popup-icon {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   color: #ff7a00;
+  line-height: 1;
 }
 
+/* popup box */
 .popup-content {
   display: none;
   position: absolute;
@@ -195,17 +200,65 @@ main .expand-btn,
   font-size: 12px;
   line-height: 1.5;
   border-radius: 8px;
-  min-width: 280px;
+  min-width: 260px;
   max-width: 380px;
-  white-space: pre-line;
+  max-height: 320px;
+  overflow-y: auto;
+  white-space: normal;
   z-index: 9999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* show popup */
 .popup-content.show {
   display: block;
 }
 
-/* accordion fix */
+/* ===== EDGE COLUMN FIX (RIGHT SIDE) ===== */
+td:last-child .popup-content,
+th:last-child .popup-content,
+td:nth-last-child(2) .popup-content,
+th:nth-last-child(2) .popup-content {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+/* ===== ACCORDION FIX ===== */
 .accordion .faq-answer {
-  overflow: visible;
+  overflow: visible !important;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .popup-content {
+    position: fixed;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 20px;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 95%;
+    max-height: 60vh;
+    font-size: 13px;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  /* mobile tap target */
+  .popup-icon {
+    font-size: 14px;
+  }
+}
+
+/* ===== OPTIONAL: FADE-IN EFFECT ===== */
+.popup-content {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.popup-content.show {
+  opacity: 1;
 }
