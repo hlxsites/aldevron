@@ -84,9 +84,12 @@ export default function decorate(block) {
     });
     const faqAnswer = [...row.children][1];
     faqAnswer.classList.add('faq-answer');
-    faqQuestion.classList.add('active');
-    faqAnswer.classList.add('active');
-    faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
+    // open ONLY first row by default
+    if (index === 0) {
+      faqQuestion.classList.add('active');
+      faqAnswer.classList.add('active');
+      faqAnswer.style.maxHeight = `${faqAnswer.scrollHeight}px`;
+    }
   });
 
   // TOOLTIP / CLICK POPUP FOR FIRST TABLE ROW (FRANKLIN SAFE)

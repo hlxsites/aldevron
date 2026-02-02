@@ -162,6 +162,14 @@ main .expand-btn,
   }
 }
 
+/* ===== FAQ ANSWER – CSS ONLY FIX FOR CUTTING TEXT ===== */
+main .accordion.faq-accordion .faq-answer.active {
+  max-height: none !important;
+  /* remove height restriction */
+  overflow: visible !important;
+  /* allow full content */
+}
+
 /* =========================================================
    POPUP / TOOLTIP (TABLE + ACCORDION SAFE)
    Ultra-compact, Franklin-safe, Production ready
