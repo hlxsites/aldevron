@@ -252,7 +252,7 @@ th:nth-last-child(2) .popup-content {
 /* ultra-tight paragraph spacing */
 .popup-content p {
   margin: 0 0 2px !important;
-  padding: 0.4em 0;
+  padding: 0.2em 0;
 }
 
 /* headings / quantity */
