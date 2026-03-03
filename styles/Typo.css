@@ -1603,6 +1603,7 @@ form.hs-form .hs-input[type="checkbox"] {
     /* remove fixed height */
     overflow: visible;
     /* prevent cutting */
+
   }
 
   .hero>div:nth-child(1) picture>img {
@@ -1615,7 +1616,7 @@ form.hs-form .hs-input[type="checkbox"] {
   }
 
   .hero h1 {
-    font-size: 28px !important;
+    font-size: clamp(20px, 4.5vw, 40px) !important;
     /* prevent overflow */
     line-height: 1.3;
   }
