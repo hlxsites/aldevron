@@ -350,7 +350,7 @@
     font-size: 13px;
     line-height: normal;
     margin: 0;
-    padding: 13px 15px !important;
+    padding: 13px 10px !important;
     text-align: center;
     width: 33.3%
   }
@@ -363,7 +363,7 @@
   }
 
   #header-info a.careers,
-  #header-info a.news {
+  #header-info a.contact {
     border-left: 1px solid #f1f1f1
   }
 
@@ -377,7 +377,7 @@
     font-weight: bold;
     color: #FFF !important;
     background-color: #221107;
-    padding: 13px 3px !important;
+    padding: 13px 9px !important;
     margin-left: 5px;
     display: inline-block;
     white-space: nowrap;
