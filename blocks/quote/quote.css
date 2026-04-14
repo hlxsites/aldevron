@@ -1,3 +1,10 @@
+/* Prevent any element from breaking layout */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .quote-container {
   position: relative;
   margin: 0 auto;
