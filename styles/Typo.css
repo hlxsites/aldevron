@@ -608,7 +608,15 @@ input[type="text"]:focus {
   border-color: var(--primary-color);
   outline: none
 }
-
+.button{
+    background-color: var(--primary-color) !important;
+    padding: 10px !important;
+    text-decoration: none !important;
+    border: 1px solid var(--primary-color) !important;
+    font-size: 20px !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
 .blog-pagination a,
 .button,
 button.primary,
