@@ -616,6 +616,7 @@ input[type="text"]:focus {
     font-size: 20px !important;
     color: #fff !important;
     font-weight: bold !important;
+	text-transform: none;
 }
 .blog-pagination a,
 .button,
