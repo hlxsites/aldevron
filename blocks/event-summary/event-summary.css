@@ -30,7 +30,7 @@ ul.keyword-list li {
   vertical-align: middle;
 }
 
-ul li {
+.event-summary ul li {
   padding: 0 !important;
 }
 
