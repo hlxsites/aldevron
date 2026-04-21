@@ -9,5 +9,11 @@
         "includePaths": ["**.docx**"]
       }
     ],
+	"styles": [
+    {
+      "name": "Button",
+      "class": "button"
+    }
+  ],
    "host": "www.aldevron.com" 
   }
