@@ -180,16 +180,18 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // ✅ FINAL FIX
-  main.querySelectorAll('p').forEach((p) => {
-    const link = p.querySelector('a');
 
-    if (link && p.textContent.includes('{.btn}')) {
-      // ✅ FIRST: add class
+  // Link to Button FIX
+  main.querySelectorAll('a').forEach((link) => {
+    const parent = link.parentElement;
+    // Case 1: {.btn} inside <a>
+    if (link.innerHTML.includes('{.btn}')) {
       link.classList.add('button', 'custom-btn');
-
-      // ✅ THEN: remove marker
-      p.innerHTML = p.innerHTML.replace(/\{\.btn\}/g, '');
+      link.innerHTML = link.innerHTML.replace(/\{\.btn\}/g, '');
+    } else if (parent && parent.innerHTML.includes('{.btn}')) {
+      // Case 2: {.btn} outside <a> (in parent)
+      link.classList.add('button', 'custom-btn');
+      parent.innerHTML = parent.innerHTML.replace(/\{\.btn\}/g, '');
     }
   });
 
