@@ -180,6 +180,19 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  // ✅ FINAL FIX
+  main.querySelectorAll('p').forEach((p) => {
+    const link = p.querySelector('a');
+
+    if (link && p.textContent.includes('{.btn}')) {
+      // ✅ FIRST: add class
+      link.classList.add('button', 'custom-btn');
+
+      // ✅ THEN: remove marker
+      p.innerHTML = p.innerHTML.replace(/\{\.btn\}/g, '');
+    }
+  });
+
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -436,8 +449,7 @@ function getCookie(e) {
   let t = decodeURIComponent(
     document.cookie.replace(
       new RegExp(
-        `(?:(?:^|.*;)\\s*${
-          encodeURIComponent(e).replace(/[\\-\\.\\+\\*]/g, '\\$&')
+        `(?:(?:^|.*;)\\s*${encodeURIComponent(e).replace(/[\\-\\.\\+\\*]/g, '\\$&')
         }\\s*\\=\\s*([^;]*).*$)|^.*$`,
       ),
       '$1',

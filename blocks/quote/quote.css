@@ -1,3 +1,8 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
 .quote-container {
   position: relative;
   margin: 0 auto;
