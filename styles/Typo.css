@@ -1235,10 +1235,11 @@ body.mrna input[type="submit"]:hover {
 
 .thank-you-layout .rte-wrapper:has(.rte.full-width-block) {
   grid-column: 1 / -1;
-}
-
-.thank-you-layout .rte-wrapper:has(.rte.full-width-block) {
-  width: 980px;
+  width: 100%;
+  max-width: 980px;
+  /* same width limit */
+  margin: 0 auto;
+  /* center it */
 }
 
 @media (max-width: 767px) {
