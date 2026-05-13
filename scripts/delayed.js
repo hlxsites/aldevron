@@ -103,7 +103,7 @@ function loadHubSpot() {
 
 // only load this if there is a form block
 if (isForm()) {
-  loadHubSpot();
+  //loadHubSpot();
 }
 
 if (getFormMeetingConfig()) {
