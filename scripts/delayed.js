@@ -81,7 +81,7 @@ window.OptanonWrapper = function OptanonWrapper() {
   // Analytics OR Marketing hubspot C0002
   if (groups.includes('C0002')) {
     console.log('[Consent] hubspot C0002 → loading');
-    loadHsScript();
+    //loadHsScript();
     //loadEvergageScript();
   } else {
     // console.log('[Consent] Not granted → blocked');
