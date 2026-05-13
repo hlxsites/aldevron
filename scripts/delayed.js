@@ -40,7 +40,7 @@ if (
   && !document.location.hostname.includes('.hlx')
 ) {
   console.log('GTM → loading');
-  //loadGTM();
+  loadGTM();
 }
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
@@ -103,7 +103,7 @@ function loadHubSpot() {
 
 // only load this if there is a form block
 if (isForm()) {
-  //loadHubSpot();
+  loadHubSpot();
 }
 
 if (getFormMeetingConfig()) {
