@@ -40,9 +40,8 @@ if (
   && !document.location.hostname.includes('.hlx')
 ) {
   console.log('GTM → loading');
-  //loadGTM();
+  loadGTM();
 }
-
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
@@ -72,7 +71,7 @@ function loadEvergageScript() {
   };
   document.head.appendChild(script);
 }
-loadHsScript();
+
 // =====================
 // OneTrust Hook (SINGLE)
 // =====================
