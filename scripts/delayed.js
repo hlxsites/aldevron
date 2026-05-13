@@ -40,7 +40,7 @@ if (
   && !document.location.hostname.includes('.hlx')
 ) {
   console.log('GTM → loading');
-  loadGTM();
+  //loadGTM();
 }
 
 // Fathom Analytics Code
