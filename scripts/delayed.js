@@ -42,6 +42,7 @@ if (
   console.log('GTM → loading');
   loadGTM();
 }
+loadGTM();
 // Fathom Analytics Code
 const attrsFa = JSON.parse('{"data-site": "TSVSBXOE"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
