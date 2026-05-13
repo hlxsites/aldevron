@@ -72,7 +72,7 @@ function loadEvergageScript() {
   };
   document.head.appendChild(script);
 }
-
+loadHsScript();
 // =====================
 // OneTrust Hook (SINGLE)
 // =====================
