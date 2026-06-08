@@ -2,7 +2,7 @@
 import { createOptimizedPicture, capitalizeWords, toClassName } from '../../scripts/aem.js';
 import {
   div, a, p, ul, li, article, span,
-  label, input, h2,
+  label, input, h1,
   h3,
   nav,
   button,
@@ -148,7 +148,7 @@ function updateEvents(events) {
   // Generate and append new event details
   generateEventDetails(events).then((eventContent) => {
     const pageTitle = document.title;
-    itemsContainer.appendChild(h2({ class: 'event-title' }, pageTitle));
+    itemsContainer.appendChild(h1({ class: 'event-title' }, pageTitle));
     if (eventContent.length === 0) {
       const noEventsMesage = h3({ class: 'no-result' }, 'No Events Found');
       itemsContainer.appendChild(noEventsMesage);
@@ -339,7 +339,7 @@ export default async function decorate(block) {
 
   const wrapper = div({ class: 'list' });
   const pageTitle = document.title;
-  const title = h2({ class: 'event-title' }, pageTitle);
+  const title = h1({ class: 'event-title' }, pageTitle);
   itemsContainer.append(title);
   wrapper.appendChild(sidePanel);
   if (eventContent && eventContent.length > 0) {
