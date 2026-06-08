@@ -2,21 +2,21 @@
   padding-top: 67px;
 }
 
-.list > * {
+.list>* {
   font-size: 18px;
   text-align: left;
 }
 
 .list .event-title {
   font-size: 36px;
-  padding-top: 6px;
   margin-top: 0;
   line-height: 1;
   border-bottom: 2px solid #ccc;
+  padding: 0.15em 0 0.5em;
 }
 
 /* panel */
-.list > .filter > .panel-title {
+.list>.filter>.panel-title {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
@@ -25,12 +25,12 @@
 }
 
 /* filters */
-.list > .filter > .select {
+.list>.filter>.select {
   border-bottom: 2px solid #ccc;
   padding: 10px 0 16px;
 }
 
-.list > .filter > .select > .dropdown-toggle {
+.list>.filter>.select>.dropdown-toggle {
   cursor: pointer;
   position: relative;
   padding: 15px 35px 16px 1px;
@@ -44,53 +44,53 @@
   transition-duration: 0.3s;
 }
 
-.list > .filter > .select.open > .dropdown-toggle,
-.list > .filter > .select > .dropdown-toggle:hover {
+.list>.filter>.select.open>.dropdown-toggle,
+.list>.filter>.select>.dropdown-toggle:hover {
   color: #adb3b7;
 }
 
 
-.list > .filter > .select > .dropdown-menu > p > a {
+.list>.filter>.select>.dropdown-menu>p>a {
   color: unset;
   text-decoration: none;
 }
 
-.list > .filter > p > a {
+.list>.filter>p>a {
   font-weight: bold;
 }
 
-.list > .filter > p > a:hover {
+.list>.filter>p>a:hover {
   text-decoration: none;
 }
 
 /* entries */
-.list > .items > .item {
+.list>.items>.item {
   height: auto;
   max-width: 100%;
   border-bottom: 2px solid #ccc;
   padding: 37px 0 40px;
 }
 
-.list > .items > .item:last-of-type {
+.list>.items>.item:last-of-type {
   padding-bottom: 22px;
 }
 
-.list > .items > .item > .content,
-.list > .items > .item > .image {
+.list>.items>.item>.content,
+.list>.items>.item>.image {
   width: 100%;
   height: auto;
 }
 
-.list > .items > .item > .content {
+.list>.items>.item>.content {
   padding-left: 30px;
 }
 
-.list > .items > .item > .content > p > .title {
+.list>.items>.item>.content>p>.title {
   font-size: 20px;
   font-weight: bold;
   line-height: 1.1;
   margin-top: 15px;
-  margin-bottom:12px;
+  margin-bottom: 12px;
   color: unset;
   text-decoration: none;
 }
@@ -116,8 +116,8 @@ ul.keyword-list li:not(:last-of-type)::after {
   margin-left: 10px;
 }
 
- 
-.list > .items > .item > .content > .cite {
+
+.list>.items>.item>.content>.cite {
   padding: 0 !important;
   font-size: 14px;
   font-style: normal;
@@ -125,11 +125,11 @@ ul.keyword-list li:not(:last-of-type)::after {
   color: #333;
 }
 
-.list > .items > .item > .image {
+.list>.items>.item>.image {
   padding-right: 15px;
 }
 
-.list > .items > .item > .image img {
+.list>.items>.item>.image img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -138,50 +138,50 @@ ul.keyword-list li:not(:last-of-type)::after {
 }
 
 /* Styles for pagination */
-.list > .pagination {
-flex: 100%;
-margin-top: 30px;
-text-align: center;
+.list>.pagination {
+  flex: 100%;
+  margin-top: 30px;
+  text-align: center;
 }
 
-.list > .pagination button {
-padding: 5px 10px;
-margin: 0 3px;
-background-color: #fff;
-color: black;
-border: none;
-cursor: pointer;
+.list>.pagination button {
+  padding: 5px 10px;
+  margin: 0 3px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  cursor: pointer;
 }
 
-.list > .pagination button:hover {
-background-color: #fff;
+.list>.pagination button:hover {
+  background-color: #fff;
 }
 
-.list > .pagination > .pager-item.active {
-border: 2px solid #007bff;
-color: #007bff;
-background-color: #fff;
+.list>.pagination>.pager-item.active {
+  border: 2px solid #007bff;
+  color: #007bff;
+  background-color: #fff;
 
 }
 
-.list > .pagination > .pager-item:disabled {
-opacity: 0.5;
-cursor: not-allowed;
+.list>.pagination>.pager-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 991px) {
   .main.section.events-container {
-      padding-top: 20px;
-      padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .list > .items > .item > .content {
+  .list>.items>.item>.content {
     margin-top: 15px;
   }
 
-  .list > .items > .item > .image {
+  .list>.items>.item>.image {
     padding-left: 15px;
   }
 }
@@ -193,63 +193,63 @@ cursor: not-allowed;
     flex-direction: row;
   }
 
-  .list > .items > .item {
+  .list>.items>.item {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     padding: 37px 0 20px;
   }
 
-  .list > .items > .item > .content {
+  .list>.items>.item>.content {
     flex: 66.67%;
     margin-bottom: 20px;
   }
 
-  .list > .items > .item > .content > .cite {
+  .list>.items>.item>.content>.cite {
     margin-top: 1px;
   }
 
-  .list > .items > .item > .image {
+  .list>.items>.item>.image {
     flex: 40%;
     margin-bottom: 20px;
   }
 
-  .list > .filter {
+  .list>.filter {
     width: 100%;
   }
 
-  .list > .filter > .select {
+  .list>.filter>.select {
     max-width: 259px;
   }
 }
 
 @media (min-width: 992px) {
-  .list > .filter {
+  .list>.filter {
     width: 25%;
     padding-right: 15px;
   }
 
-  .list > .items {
+  .list>.items {
     width: 75%;
   }
 
-  .list > .items > .item {
+  .list>.items>.item {
     margin-left: 6px;
   }
 
-  .list > .items > .item:first-of-type {
+  .list>.items>.item:first-of-type {
     padding-top: 20px;
   }
 
-  .list > .items > .item > .content {
+  .list>.items>.item>.content {
     width: 66.67%;
     padding-left: 15px;
   }
 
-  .list > .items > .item > image {
+  .list>.items>.item>image {
     width: 33.33%;
   }
 
-  .list > .filter > .panel-title {
+  .list>.filter>.panel-title {
     max-width: 259px;
   }
 }
