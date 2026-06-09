@@ -58,7 +58,7 @@ export default async function decorate($block) {
   }
   // Last item: Current page (non-clickable and use the title from getMetadata)
   // const lastBreadcrumbTitle = getMetadata('og:title');
-  const lastBreadcrumbTitle = (getMetadata('page-title')?.trim() || getMetadata('og:title')?.trim() || '').toLowerCase();
+  const lastBreadcrumbTitle = (getMetadata('page-title')?.trim() || getMetadata('og:title')?.trim() || '');
   if (lastBreadcrumbTitle) {
     const constantTitleItem = li({});
     const spanTitle = span({});
