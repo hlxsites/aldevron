@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import {
-  a, img, li, ul, span,
+  div, a, img, li, ul, p, span,
 } from '../../scripts/dom-builder.js';
 
 /**
@@ -58,8 +58,7 @@ export default async function decorate($block) {
   }
   // Last item: Current page (non-clickable and use the title from getMetadata)
   // const lastBreadcrumbTitle = getMetadata('og:title');
-  const lastBreadcrumbTitle = (getMetadata('page-title')?.trim() || getMetadata('og:title')?.trim() || '');
-
+  const lastBreadcrumbTitle = (getMetadata('page-title')?.trim() || getMetadata('og:title')?.trim() || '').toLowerCase();
   if (lastBreadcrumbTitle) {
     const constantTitleItem = li({});
     const spanTitle = span({});
