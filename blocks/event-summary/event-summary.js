@@ -23,8 +23,10 @@ export default async function decorate(block) {
   const image = getMetadata('og:image');
   const registerButton = getMetadata('register-button');
   const meetingButton = getMetadata('meeting-button');
-  const title = getMetadata('og:title');
-  const description = getMetadata('og:description');
+  // const title = getMetadata('og:title');
+  // const description = getMetadata('og:description');
+  const title = (getMetadata('page-title')?.trim() || getMetadata('og:title')?.trim() || '');
+  const description = (getMetadata('page-description')?.trim() || getMetadata('og:description')?.trim() || '');
   const type = getMetadata('type');
   const region = getMetadata('region');
   const address = getMetadata('address');
