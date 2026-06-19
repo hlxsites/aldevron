@@ -1204,7 +1204,7 @@ body.mrna input[type="submit"]:hover {
 .thank-you-layout {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-gap: 4%;
+  grid-gap: 3%;
   align-items: center;
   padding-top: 70px;
   padding-bottom: 70px;
@@ -1233,6 +1233,7 @@ body.mrna input[type="submit"]:hover {
   width: auto;
 }
 
+/* full-width-block Start */
 .thank-you-layout .rte-wrapper:has(.rte.full-width-block) {
   grid-column: 1 / -1;
   width: 100%;
@@ -1241,6 +1242,39 @@ body.mrna input[type="submit"]:hover {
   margin: 0 auto;
   /* center it */
 }
+
+/* Desktop */
+.forms-wrapper .full-width-block {
+  width: calc(100% + 800px) !important;
+  max-width: 980px !important;
+  margin-bottom: 180px !important;
+}
+
+/* Large tablet */
+@media (max-width: 1200px) {
+  .forms-wrapper .full-width-block {
+    width: calc(100% + 400px) !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .forms-wrapper .full-width-block {
+    width: calc(100% + 300px) !important;
+    margin-bottom: 140px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .forms-wrapper .full-width-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+/* full-width-block End */
 
 @media (max-width: 767px) {
   .thank-you-layout {
