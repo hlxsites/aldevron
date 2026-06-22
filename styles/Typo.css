@@ -1238,6 +1238,7 @@ body.mrna input[type="submit"]:hover {
   background: none !important;
   border: none !important;
   padding: 0 !important;
+  font-size: inherit !important;
   color: #007bff !important;
   /* link color */
   text-decoration: underline;
