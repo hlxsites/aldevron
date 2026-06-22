@@ -1238,10 +1238,17 @@ body.mrna input[type="submit"]:hover {
   background: none !important;
   border: none !important;
   padding: 0 !important;
+  display: inline !important;
+
   font-size: inherit !important;
+  font-weight: inherit !important;
+  font-family: inherit !important;
+
   color: #007bff !important;
-  /* link color */
-  text-decoration: underline;
+  text-decoration: underline !important;
+
+  text-transform: none !important;
+  letter-spacing: normal !important;
 }
 
 /* full-width-block Start */
