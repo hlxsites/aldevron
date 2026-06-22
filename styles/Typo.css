@@ -1233,6 +1233,16 @@ body.mrna input[type="submit"]:hover {
   width: auto;
 }
 
+/* Avoid button styles for links inside forms */
+.thank-you-layout form a {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #007bff !important;
+  /* link color */
+  text-decoration: underline;
+}
+
 /* full-width-block Start */
 .thank-you-layout .rte-wrapper:has(.rte.full-width-block) {
   grid-column: 1 / -1;
