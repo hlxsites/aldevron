@@ -1,0 +1,61 @@
+# Aldevron
+
+> Aldevron manufactures high-quality plasmid DNA, mRNA, proteins, enzymes, and gene-editing reagents for the life sciences industry, supporting partners from early discovery through clinical trials and commercial-scale production. Facilities are located in Fargo, ND; Madison, WI; and Waltham, MA, with GMP, GMP-Source, and cGMP-grade manufacturing available.
+
+Aldevron is part of Danaher and supports gene therapy, gene-modified cell therapy, gene editing, and RNA vaccine/therapeutic programs with both custom manufacturing and standardized catalog products. Many catalog products are royalty-free.
+
+## Modalities
+
+- [Gene Therapy](https://www.aldevron.com/modalities/gene-therapy): Plasmid design (including Nanoplasmid), process development, and QC for viral and non-viral gene therapy.
+- [Gene-Modified Cell Therapy](https://www.aldevron.com/modalities/gene-modified-cell-therapy): Custom lentiviral plasmids and the standardized ALD-Lenti System.
+- [Gene Editing](https://www.aldevron.com/modalities/gene-editing): Custom and catalog nucleases and gRNA for ex vivo and in vivo editing programs.
+- [RNA Vaccines & Therapeutics](https://www.aldevron.com/modalities/rna-vaccine-therapeutics): RNA design, drug substance manufacturing, LNP encapsulation, fill/finish, and analytics.
+
+## Custom Manufacturing
+
+- [mRNA Custom Manufacturing](https://www.aldevron.com/custom-manufacturing/rna): RNA design, drug substance manufacturing, and analytics, with LNP encapsulation and fill/finish.
+- [RNA Drug Product (LNP Encapsulation & Fill/Finish)](https://www.aldevron.com/custom-manufacturing/rna/drug-product): LNP encapsulation with Precision Nanosystems and sterile fill/finish capabilities.
+- [Alchemy Cell-Free DNA Technology](https://www.aldevron.com/custom-manufacturing/alchemy-cell-free-dna-technology): Cell-free enzymatic synthesis and rolling circle amplification for rapid linear DNA templates.
+
+## Quality Grades
+
+- [Quality Grades Overview](https://www.aldevron.com/quality-grades): Explanation of Aldevron's phase-appropriate quality levels — Research, GMP-Source, and cGMP.
+- [Research Grade](https://www.aldevron.com/quality-grades/research-grade): Affordable, high-quality DNA, RNA, and protein for research and pre-clinical use.
+- [GMP-Source Grade](https://www.aldevron.com/quality-grades/gmp-source-grade): Faster, cost-effective alternative to full cGMP, with traceability, document control, and materials segregation.
+- [cGMP Manufacturing](https://www.aldevron.com/quality-grades/gmp): Full cGMP production in ISO-classified suites for clinical and commercial-stage materials.
+- [Small-Scale cGMP Plasmid DNA](https://www.aldevron.com/quality-grades/gmp/small-scale): cGMP plasmid DNA service for early-phase trials, deliverables up to 500mg.
+
+## Catalog Products
+
+- [CRISPR Nucleases](https://www.aldevron.com/catalog-products/nucleases): High-fidelity and wild-type nucleases, research grade and cGMP.
+- [In Vitro Transcription & Capping Enzymes](https://www.aldevron.com/catalog-products/ivt-enzymes): Enzymes for research through commercialization, including Codex HiCap RNA Polymerase.
+- [Viral Vector Plasmids (AAV & Lentiviral)](https://www.aldevron.com/catalog-products/viral-vector-plasmids): Expression and helper plasmids for high-titer viral vector production.
+- [Cloning Backbones](https://www.aldevron.com/catalog-products/pald-cloning-backbones): Royalty-free empty vectors.
+- [DNA/RNA Reporters](https://www.aldevron.com/catalog-products/reporters): Constructs expressing fluorescent proteins for transfection controls.
+- [Online Store](https://store.aldevron.com/): Direct ordering, including Basic Plasmid Preps (Maxi, Mega, Giga) with 48-hour turnaround.
+
+## Facilities
+
+- [Breakthrough Campus, Fargo, ND](https://www.aldevron.com/facilities/breakthrough-campus-fargo): Plasmid DNA, RNA, and protein manufacturing at cGMP and GMP-Source quality.
+- [Advance Campus, Fargo, ND](https://www.aldevron.com/facilities/advance-campus-fargo): R&D and process development for early-stage research.
+- [Aldevron Madison, WI](https://www.aldevron.com/facilities/aldevron-madison): R&D and manufacturing for early-stage research.
+- [Discovery Center, Waltham, MA](https://www.aldevron.com/facilities/discovery-center-waltham): R&D and partnership development.
+
+## About Us
+
+- [About Aldevron](https://www.aldevron.com/about-us): Company overview — high-quality plasmid DNA, proteins, enzymes, and biologicals for life science partners.
+- [Mission, Vision and Values](https://www.aldevron.com/about-us/mission-vision-and-values): Aldevron's guiding principles on quality, safety, and client partnership.
+- [Contact Us](https://www.aldevron.com/about-us/contact-us): Contact information and inquiries.
+- [Careers](https://jobs.danaher.com/global/en/aldevron): Open roles at Aldevron.
+
+## News
+
+- [World-First mRNA-Based Personalized CRISPR Gene Editing Therapy](https://www.aldevron.com/about-us/news/world-first-personalized-crispr-gene-editing-drug-product): Aldevron and IDT manufactured a personalized CRISPR therapy for an infant with urea cycle disorder, published in the New England Journal of Medicine.
+- [Breakthrough Blog](https://www.aldevron.com/blog/): Ongoing company and industry articles, including manufacturing insights and thought leadership.
+- [Achieving GMP Quality in Protein Manufacturing](https://www.aldevron.com/blog/achieving-gmp-quality-in-protein-manufacturing): Blog interview on key considerations for GMP protein manufacturing.
+- [Capacity Versus Capability](https://www.aldevron.com/blog/capacity-versus-capability): Blog post on evaluating CDMO capacity and capability for mRNA programs.
+
+
+## Sitemap
+
+- [XML Sitemap](https://www.aldevron.com/sitemap.xml): Full sitemap of all pages on aldevron.com for comprehensive crawling.
