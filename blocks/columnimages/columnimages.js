@@ -48,6 +48,17 @@ export default function decorate(block) {
             pEl.append(ahrefEl);
             coltextEl.append(pEl);
             col3El.append(coltextEl);
+          } else if (cName.includes('3col-img-text-bottom')) {
+            const ahrefEl = a(
+              { href: aEl.getAttribute('href'), target: '_blank' },
+              pic,
+            );
+            pEl.append(ahrefEl);
+            // Image first
+            coltextEl.append(pEl);
+            // Title below image
+            coltextEl.append(h4El);
+            col3El.append(coltextEl);
           } else if (cName.includes('2col-img-text-bottom')) {
             const ahrefEl = a(
               { href: aEl.getAttribute('href'), target: '_blank' },
