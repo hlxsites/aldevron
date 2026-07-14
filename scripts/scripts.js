@@ -16,7 +16,7 @@ import {
   toClassName,
   waitForLCP,
 } from './aem.js';
-
+import './schema.js';
 const LCP_BLOCKS = ['hero-carousel', 'forms']; // add your LCP blocks to the list
 
 /**
