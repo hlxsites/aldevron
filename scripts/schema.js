@@ -68,7 +68,173 @@ function loadSchema() {
         },
       ],
     };
-  } else if (path === '/custom-manufacturing/nanoplasmid') {
+  }else if (path === '/modalities/gene-therapy/non-viral-gene-therapy') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Modalities',
+        item: 'https://www.aldevron.com/modalities',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Gene Therapy',
+        item: 'https://www.aldevron.com/modalities/gene-therapy',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Non-Viral Gene Therapy',
+        item: 'https://www.aldevron.com/modalities/gene-therapy/non-viral-gene-therapy',
+      },
+    ],
+  };
+}
+
+else if (path === '/modalities/gene-modified-cell-therapy') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Modalities',
+        item: 'https://www.aldevron.com/modalities',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Gene-Modified Cell Therapy',
+        item: 'https://www.aldevron.com/modalities/gene-modified-cell-therapy',
+      },
+    ],
+  };
+}else if (path === '/modalities/gene-editing') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Modalities',
+        item: 'https://www.aldevron.com/modalities',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Gene Editing',
+        item: 'https://www.aldevron.com/modalities/gene-editing',
+      },
+    ],
+  };
+}
+
+else if (path === '/custom-manufacturing/traditional-plasmid-dna') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Custom Manufacturing',
+        item: 'https://www.aldevron.com/custom-manufacturing',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Traditional Plasmid DNA',
+        item: 'https://www.aldevron.com/custom-manufacturing/traditional-plasmid-dna',
+      },
+    ],
+  };
+}else if (path === '/custom-manufacturing/supercoiled-plasmid-dna-preps') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Custom Manufacturing',
+        item: 'https://www.aldevron.com/custom-manufacturing',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Plasmid DNA Prep Services',
+        item: 'https://www.aldevron.com/custom-manufacturing/supercoiled-plasmid-dna-preps',
+      },
+    ],
+  };
+}else if (path === '/quality-grades/gmp/small-scale') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Quality Grades',
+        item: 'https://www.aldevron.com/quality-grades',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'cGMP',
+        item: 'https://www.aldevron.com/quality-grades/gmp',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Small-Scale cGMP Plasmid DNA',
+        item: 'https://www.aldevron.com/quality-grades/gmp/small-scale',
+      },
+    ],
+  };
+} else if (path === '/custom-manufacturing/nanoplasmid') {
     schemaData = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -93,7 +259,38 @@ function loadSchema() {
         },
       ],
     };
-  }else if (path === '/custom-manufacturing/nanoplasmid/nanoplasmid-retrofit') {
+  }else if (path === '/custom-manufacturing/nanoplasmid/faq') {
+  schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.aldevron.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Custom Manufacturing',
+        item: 'https://www.aldevron.com/custom-manufacturing',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Nanoplasmid',
+        item: 'https://www.aldevron.com/custom-manufacturing/nanoplasmid',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Nanoplasmid™ Vector FAQ',
+        item: 'https://www.aldevron.com/custom-manufacturing/nanoplasmid/faq',
+      },
+    ],
+  };
+}else if (path === '/custom-manufacturing/nanoplasmid/nanoplasmid-retrofit') {
   schemaData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -1435,17 +1632,24 @@ const VIDEO_SCHEMAS = {
 
 
 function loadVideoSchema() {
-  const path = window.location.pathname.replace(/\/$/, "");
+  const path = window.location.pathname.replace(/\/$/, '');
 
   const schema = VIDEO_SCHEMAS[path];
 
   if (!schema) return;
 
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.text = JSON.stringify(schema);
+  if (document.querySelector('script[data-video-schema]')) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.setAttribute('data-video-schema', 'true');
+  script.textContent = JSON.stringify(schema);
 
   document.head.appendChild(script);
 }
 
-loadVideoSchema();
+document.addEventListener('DOMContentLoaded', () => {
+  loadVideoSchema();
+});
