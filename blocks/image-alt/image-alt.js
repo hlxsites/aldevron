@@ -28,4 +28,4 @@ export default function decorate(block) {
 
   // Remove the block from the page
   block.remove();
-}
+}  
