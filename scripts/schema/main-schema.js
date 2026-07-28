@@ -1,7 +1,7 @@
+import BREADCRUMB_SCHEMAS from './breadcrumb-schema.js';
 import PRODUCT_SCHEMAS from './product-schema.js';
 import VIDEO_SCHEMAS from './video-schema.js';
 import EVENT_SCHEMAS from './event-schema.js';
-import BREADCRUMB_SCHEMAS from './breadcrumb-schema.js';
 
 // Normalize URL
 const path = window.location.pathname
@@ -38,7 +38,8 @@ if (path === '/') {
     'website',
   );
 }
-
+// Breadcrumb Schema
+injectSchema(BREADCRUMB_SCHEMAS[path], 'breadcrumb');
 // Product Schema
 injectSchema(PRODUCT_SCHEMAS[path], 'product');
 
@@ -47,6 +48,3 @@ injectSchema(VIDEO_SCHEMAS[path], 'video');
 
 // Event Schema
 injectSchema(EVENT_SCHEMAS[path], 'event');
-
-// Breadcrumb Schema
-injectSchema(BREADCRUMB_SCHEMAS[path], 'breadcrumb');
