@@ -327,25 +327,4 @@ const EVENT_SCHEMAS = {
   },
 };
 
-// ==========================================================
-// LOAD EVENT SCHEMA
-// ==========================================================
-
-function loadEventSchema() {
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
-
-  const schema = EVENT_SCHEMAS[path];
-
-  if (!schema) return;
-
-  if (document.querySelector('script[data-event-schema]')) return;
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.setAttribute('data-event-schema', 'true');
-  script.textContent = JSON.stringify(schema);
-
-  document.head.appendChild(script);
-}
-
-loadEventSchema();
+export default EVENT_SCHEMAS;

@@ -1,7 +1,6 @@
 // ==========================================================
 // PRODUCT & COLLECTION PAGE SCHEMAS
 // ==========================================================
-
 const PRODUCT_SCHEMAS = {
   '/catalog-products/nucleases': {
     '@context': 'https://schema.org',
@@ -1342,26 +1341,4 @@ const PRODUCT_SCHEMAS = {
     },
   },
 };
-
-// ==========================================================
-// LOAD PRODUCT SCHEMA
-// ==========================================================
-
-function loadProductSchema() {
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
-
-  const schema = PRODUCT_SCHEMAS[path];
-
-  if (!schema) return;
-
-  if (document.querySelector('script[data-product-schema]')) return;
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.setAttribute('data-product-schema', 'true');
-  script.textContent = JSON.stringify(schema);
-
-  document.head.appendChild(script);
-}
-
-loadProductSchema();
+export default PRODUCT_SCHEMAS;

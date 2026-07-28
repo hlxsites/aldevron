@@ -419,26 +419,4 @@ const VIDEO_SCHEMAS = {
   },
   // ...continue all remaining pages exactly the same way...
 };
-
-function loadVideoSchema() {
-  const path = window.location.pathname.replace(/\/$/, '');
-
-  const schema = VIDEO_SCHEMAS[path];
-
-  if (!schema) return;
-
-  if (document.querySelector('script[data-video-schema]')) {
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.setAttribute('data-video-schema', 'true');
-  script.textContent = JSON.stringify(schema);
-
-  document.head.appendChild(script);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadVideoSchema();
-});
+export default VIDEO_SCHEMAS;
