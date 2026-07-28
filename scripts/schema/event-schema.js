@@ -14,7 +14,6 @@ const EVENT_SCHEMAS = {
     eventStatus: 'https://schema.org/EventScheduled',
     startDate: '2026-09-15',
     endDate: '2026-09-17',
-    eventType: 'ConferenceEvent',
     location: {
       '@type': 'Place',
       name: 'The Westin Boston Seaport District',
@@ -60,7 +59,6 @@ const EVENT_SCHEMAS = {
     eventStatus: 'https://schema.org/EventScheduled',
     startDate: '2026-09-28',
     endDate: '2026-09-30',
-    eventType: 'ConferenceEvent',
     location: {
       '@type': 'Place',
       name: 'Hilton Boston Logan Airport',
@@ -107,7 +105,6 @@ const EVENT_SCHEMAS = {
     eventStatus: 'https://schema.org/EventScheduled',
     startDate: '2026-09-29',
     endDate: '2026-10-01',
-    eventType: 'ConferenceEvent',
     location: {
       '@type': 'Place',
       name: 'Boston, Massachusetts',
@@ -149,7 +146,6 @@ const EVENT_SCHEMAS = {
     url: 'https://www.aldevron.com/about-us/events/meeting-on-mesa-2026',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
-    eventType: 'ConferenceEvent',
     startDate: '2026-10-05',
     endDate: '2026-10-07',
     location: {
@@ -196,7 +192,6 @@ const EVENT_SCHEMAS = {
     url: 'https://www.aldevron.com/about-us/events/esgct-2026',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
-    eventType: 'ConferenceEvent',
     startDate: '2026-10-20',
     endDate: '2026-10-23',
     location: {
@@ -242,7 +237,6 @@ const EVENT_SCHEMAS = {
     url: 'https://www.aldevron.com/about-us/events/amm-ascent-alliance-mrna-medicine-2026',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
-    eventType: 'ConferenceEvent',
     startDate: '2026-10-28',
     endDate: '2026-10-30',
     location: {
@@ -289,7 +283,6 @@ const EVENT_SCHEMAS = {
     url: 'https://www.aldevron.com/about-us/events/international-mrna-health-2026',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
-    eventType: 'ConferenceEvent',
     startDate: '2026-11-17',
     endDate: '2026-11-19',
     location: {
