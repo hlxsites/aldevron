@@ -2,6 +2,7 @@ import BREADCRUMB_SCHEMAS from './breadcrumb-schema.js';
 import PRODUCT_SCHEMAS from './product-schema.js';
 import VIDEO_SCHEMAS from './video-schema.js';
 import EVENT_SCHEMAS from './event-schema.js';
+import BLOG_SCHEMAS from './blog-schema.js';
 
 // Normalize URL
 const path = window.location.pathname
@@ -48,3 +49,6 @@ injectSchema(VIDEO_SCHEMAS[path], 'video');
 
 // Event Schema
 injectSchema(EVENT_SCHEMAS[path], 'event');
+
+// Blog Schema
+injectSchema(BLOG_SCHEMAS[path], 'blog');
